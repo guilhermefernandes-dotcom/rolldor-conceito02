@@ -9,8 +9,20 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WireframeBRouteImport } from './routes/wireframe-b'
+import { Route as WireframeARouteImport } from './routes/wireframe-a'
 import { Route as IndexRouteImport } from './routes/index'
 
+const WireframeBRoute = WireframeBRouteImport.update({
+  id: '/wireframe-b',
+  path: '/wireframe-b',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WireframeARoute = WireframeARouteImport.update({
+  id: '/wireframe-a',
+  path: '/wireframe-a',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
@@ -19,28 +31,50 @@ const IndexRoute = IndexRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/wireframe-a': typeof WireframeARoute
+  '/wireframe-b': typeof WireframeBRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/wireframe-a': typeof WireframeARoute
+  '/wireframe-b': typeof WireframeBRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/wireframe-a': typeof WireframeARoute
+  '/wireframe-b': typeof WireframeBRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/'
+  fullPaths: '/' | '/wireframe-a' | '/wireframe-b'
   fileRoutesByTo: FileRoutesByTo
-  to: '/'
-  id: '__root__' | '/'
+  to: '/' | '/wireframe-a' | '/wireframe-b'
+  id: '__root__' | '/' | '/wireframe-a' | '/wireframe-b'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  WireframeARoute: typeof WireframeARoute
+  WireframeBRoute: typeof WireframeBRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/wireframe-b': {
+      id: '/wireframe-b'
+      path: '/wireframe-b'
+      fullPath: '/wireframe-b'
+      preLoaderRoute: typeof WireframeBRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/wireframe-a': {
+      id: '/wireframe-a'
+      path: '/wireframe-a'
+      fullPath: '/wireframe-a'
+      preLoaderRoute: typeof WireframeARouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/': {
       id: '/'
       path: '/'
@@ -53,6 +87,8 @@ declare module '@tanstack/react-router' {
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  WireframeARoute: WireframeARoute,
+  WireframeBRoute: WireframeBRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
