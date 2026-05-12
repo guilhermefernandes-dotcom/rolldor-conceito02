@@ -98,9 +98,10 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
   );
 }
 
-function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
+      className={className}
       variants={fadeUp}
       initial="hidden"
       whileInView="show"
@@ -168,13 +169,13 @@ function Landing() {
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
             </Reveal>
-            <Reveal delay={0.35}>
-              <div className="relative mt-10 w-full max-w-none">
+            <Reveal delay={0.35} className="w-full max-w-[640px]">
+              <div className="relative mt-10 w-full">
                 <a
                   href={WHATSAPP}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="group relative flex h-16 sm:h-[72px] w-full items-center justify-center rounded-2xl px-8 font-display text-lg sm:text-xl font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
                   style={{
                     background:
                       "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
