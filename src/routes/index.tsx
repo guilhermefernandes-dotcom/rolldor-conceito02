@@ -286,7 +286,7 @@ function Landing() {
 
       {/* AUTORIDADE */}
       <section className="border-y border-border bg-secondary/70 pt-24 md:pt-32">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
+        <div className="relative z-50 mx-auto max-w-7xl px-5 md:px-10">
           {/* Centered heading with animated underlines on key words */}
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
