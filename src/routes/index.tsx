@@ -227,6 +227,9 @@ function Landing() {
       {/* AUTORIDADE */}
       <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="mx-auto mb-16 w-full max-w-5xl md:mb-24">
+            <MacbookReveal />
+          </div>
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
