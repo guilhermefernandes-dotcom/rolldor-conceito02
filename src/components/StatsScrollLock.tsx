@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
+import curadoria from "@/assets/curadoria.jpg";
 import community from "@/assets/community.jpg";
 
 type Step = {
@@ -11,6 +12,7 @@ type Step = {
   desc: string;
   Icon: React.ComponentType<{ className?: string }>;
   image?: string;
+  imagePosition?: string;
 };
 
 const STEPS: Step[] = [
@@ -36,6 +38,8 @@ const STEPS: Step[] = [
     big: "+300 por mês",
     desc: "calçados e acessórios selecionados a dedo, com lançamentos constantes que antecipam tendências e garantem novidade pra você oferecer toda semana.",
     Icon: Sparkles,
+    image: curadoria,
+    imagePosition: "30% center",
   },
   {
     n: "04",
@@ -300,6 +304,7 @@ export function StatsScrollLock() {
                           src={s.image}
                           alt=""
                           className="h-full w-full object-cover"
+                          style={{ objectPosition: s.imagePosition ?? "center" }}
                           draggable={false}
                         />
                       </div>
