@@ -23,6 +23,7 @@ import p3 from "@/assets/p3.jpg";
 import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
+import leeviMark from "@/assets/leevi-mark.png";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
@@ -252,12 +253,13 @@ function Landing() {
           {/* Centered heading with animated underlines on key words */}
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <div className="mb-5 inline-flex items-center gap-2 justify-center">
-                <span className="h-px w-8 bg-gold" />
-                <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">
-                  Quem é a Leevi
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
                 </span>
-                <span className="h-px w-8 bg-gold" />
+                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                  quem é a Leevi
+                </span>
               </div>
             </Reveal>
             <Reveal delay={0.1}>
