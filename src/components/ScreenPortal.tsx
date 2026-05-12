@@ -41,8 +41,11 @@ export function ScreenPortal() {
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Description revealed BEHIND the portal */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-background px-6 py-16 md:px-12">
+        <div className="absolute inset-0 z-0 flex items-center justify-center bg-secondary/70 px-6 py-16 md:px-12">
           <div className="mx-auto w-full max-w-7xl">
+            <div className="mx-auto max-w-3xl text-center">
+              {/* heading intentionally removed — title lives in parent section */}
+            </div>
             <div className="mx-auto max-w-3xl text-center">
               <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-6xl">
                 Por dentro do Grupo VIP
