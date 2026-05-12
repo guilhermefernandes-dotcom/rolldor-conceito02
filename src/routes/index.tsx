@@ -316,6 +316,9 @@ function Landing() {
 
         {/* Mockup animation — pinned scroll reveal with stats behind */}
         <ScreenPortal />
+
+        {/* Scroll-locked stats progression */}
+        <StatsScrollLock />
       </section>
 
       {/* VANTAGENS */}
