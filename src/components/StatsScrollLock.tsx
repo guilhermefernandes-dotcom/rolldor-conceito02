@@ -9,6 +9,7 @@ type Step = {
   big: string;
   desc: string;
   Icon: React.ComponentType<{ className?: string }>;
+  image?: string;
 };
 
 const STEPS: Step[] = [
