@@ -66,7 +66,7 @@ export function ScreenPortal() {
               scale,
               y,
               transformPerspective: 1600,
-              transformOrigin: "50% 0%",
+              transformOrigin: "50% 50%",
             }}
             className="relative mt-8 hidden w-[680px] md:block lg:w-[780px]"
           >
