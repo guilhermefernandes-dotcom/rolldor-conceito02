@@ -78,8 +78,8 @@ function CTA({
   const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
   const variants =
     variant === "gold"
-      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-primary-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
-      : "border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground";
+      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
+      : "border border-gold/40 text-gold hover:bg-gold hover:text-foreground";
   return (
     <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${base} ${sizing} ${variants}`}>
       {children}
@@ -122,7 +122,7 @@ function Landing() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-2xl border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-flex"
+            className="hidden items-center gap-2 rounded-2xl border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-foreground md:inline-flex"
           >
             Entrar no Grupo <ArrowRight className="h-3 w-3" />
           </a>
@@ -131,7 +131,7 @@ function Landing() {
 
       {/* MARQUEE */}
       <div className="fixed top-[57px] left-0 right-0 z-30 overflow-hidden border-b border-gold/20 bg-gold py-2">
-        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground">
+        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-foreground">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="mx-6 inline-flex items-center gap-3">
               <Sparkles className="h-3 w-3" /> Vagas limitadas
@@ -322,7 +322,7 @@ function Landing() {
             ].map(({ icon: Icon, title, desc }, i) => (
               <Reveal key={i} delay={i * 0.05}>
                 <div className="group h-full bg-background p-8 transition-colors hover:bg-card md:p-10">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-foreground">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{title}</h3>
@@ -420,7 +420,7 @@ function Landing() {
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-foreground">
                     {p.tag}
                   </div>
                   <div className="border-t border-border p-4">
@@ -667,7 +667,7 @@ function Landing() {
         href={WHATSAPP}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
       >
         Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
       </a>
