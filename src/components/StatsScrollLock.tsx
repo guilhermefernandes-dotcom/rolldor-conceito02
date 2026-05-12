@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Users, Building2, Sparkles, Truck } from "lucide-react";
+import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
 
 type Step = {
