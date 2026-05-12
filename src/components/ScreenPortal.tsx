@@ -41,7 +41,7 @@ export function ScreenPortal() {
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Description revealed BEHIND the portal */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-secondary/70 px-6 py-16 md:px-12">
+        <div className="absolute inset-0 z-0 flex items-center justify-center bg-transparent px-6 py-16 md:px-12">
           <div className="mx-auto w-full max-w-7xl">
             {/* heading lives in parent AUTORIDADE section */}
 
