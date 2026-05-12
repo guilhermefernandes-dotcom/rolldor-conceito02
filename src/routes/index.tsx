@@ -146,7 +146,7 @@ function Landing() {
               }}
             />
           </div>
-          <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
+          <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
             <Reveal>
               <Logo className="mb-10" />
             </Reveal>
