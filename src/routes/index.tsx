@@ -185,7 +185,7 @@ function Landing() {
           </div>
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
             <Reveal>
-              <Logo className="mb-4" />
+              <Logo className="mb-4" priority />
             </Reveal>
             <Reveal delay={0.05}>
               <div className="mb-2" />
