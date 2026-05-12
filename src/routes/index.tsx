@@ -284,7 +284,7 @@ function Landing() {
       </div>
 
       {/* AUTORIDADE */}
-      <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
+      <section className="border-y border-border bg-secondary/70 pt-24 md:pt-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           {/* Centered heading with animated underlines on key words */}
           <div className="mx-auto max-w-4xl text-center">
