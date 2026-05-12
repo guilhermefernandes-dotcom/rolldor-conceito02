@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import {
   ArrowRight,
   Sparkles,
-  Crown,
   Tag,
   Gift,
   TrendingUp,
@@ -26,6 +25,7 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
+import logoUrl from "@/assets/logo.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,15 +56,11 @@ const fadeUp = {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <div className="flex h-9 w-9 items-center justify-center rounded-sm bg-gradient-to-br from-gold to-gold-deep text-primary-foreground">
-        <Crown className="h-5 w-5" strokeWidth={2.5} />
-      </div>
-      <div className="leading-none">
-        <div className="font-display text-lg font-black tracking-tight text-foreground">LEEVI</div>
-        <div className="font-display text-[9px] uppercase tracking-[0.25em] text-gold">Distribuidora</div>
-      </div>
-    </div>
+    <img
+      src={logoUrl}
+      alt="Leevi Distribuidora"
+      className={`h-10 w-auto md:h-12 ${className}`}
+    />
   );
 }
 
@@ -82,8 +78,8 @@ function CTA({
   const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
   const variants =
     variant === "gold"
-      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-primary-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
-      : "border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground";
+      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
+      : "border border-gold/40 text-gold hover:bg-gold hover:text-foreground";
   return (
     <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${base} ${sizing} ${variants}`}>
       {children}
@@ -126,7 +122,7 @@ function Landing() {
             href={WHATSAPP}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-sm border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-flex"
+            className="hidden items-center gap-2 rounded-2xl border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-foreground md:inline-flex"
           >
             Entrar no Grupo <ArrowRight className="h-3 w-3" />
           </a>
@@ -135,7 +131,7 @@ function Landing() {
 
       {/* MARQUEE */}
       <div className="fixed top-[57px] left-0 right-0 z-30 overflow-hidden border-b border-gold/20 bg-gold py-2">
-        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground">
+        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-foreground">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="mx-6 inline-flex items-center gap-3">
               <Sparkles className="h-3 w-3" /> Vagas limitadas
@@ -207,7 +203,7 @@ function Landing() {
               </div>
             </Reveal>
             <Reveal delay={0.4}>
-              <div className="mt-8 flex items-center gap-3 rounded-sm border border-destructive/30 bg-destructive/5 px-4 py-3">
+              <div className="mt-8 flex items-center gap-3 rounded-2xl border border-destructive/30 bg-destructive/5 px-4 py-3">
                 <Flame className="h-4 w-4 text-destructive" />
                 <p className="text-xs text-foreground/80 md:text-sm">
                   <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
@@ -225,9 +221,9 @@ function Landing() {
                   alt="Revendedora Leevi mostrando live de WhatsApp com lançamentos"
                   width={1080}
                   height={1600}
-                  className="relative aspect-[3/4] w-full rounded-sm object-cover shadow-[0_50px_120px_-30px_oklch(0_0_0_/_0.8)] ring-1 ring-gold/20"
+                  className="relative aspect-[3/4] w-full rounded-2xl object-cover shadow-[0_50px_120px_-30px_oklch(0_0_0_/_0.8)] ring-1 ring-gold/20"
                 />
-                <div className="absolute -bottom-6 -left-6 hidden rounded-sm border border-gold/30 bg-card/90 px-5 py-4 backdrop-blur-md md:block">
+                <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-gold/30 bg-card/90 px-5 py-4 backdrop-blur-md md:block">
                   <div className="flex items-center gap-3">
                     <div className="relative flex h-3 w-3">
                       <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
@@ -248,7 +244,7 @@ function Landing() {
       </section>
 
       {/* AUTORIDADE */}
-      <section className="border-y border-border bg-card/40 py-20 md:py-28">
+      <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -325,8 +321,8 @@ function Landing() {
               },
             ].map(({ icon: Icon, title, desc }, i) => (
               <Reveal key={i} delay={i * 0.05}>
-                <div className="group h-full bg-background p-8 transition-colors hover:bg-card md:p-10">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
+                <div className="group h-full bg-background p-8 transition-colors hover:bg-secondary md:p-10">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-foreground">
                     <Icon className="h-5 w-5" />
                   </div>
                   <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{title}</h3>
@@ -413,7 +409,7 @@ function Landing() {
               { src: p4, name: "Salto Bloco Nude", tag: "Sai rápido" },
             ].map((p, i) => (
               <Reveal key={i} delay={i * 0.05}>
-                <div className="group relative overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-gold/50">
+                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-gold/50">
                   <div className="aspect-square overflow-hidden">
                     <img
                       src={p.src}
@@ -424,7 +420,7 @@ function Landing() {
                       className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
                     />
                   </div>
-                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-foreground">
                     {p.tag}
                   </div>
                   <div className="border-t border-border p-4">
@@ -437,7 +433,7 @@ function Landing() {
           </div>
 
           <Reveal delay={0.2}>
-            <div className="mt-8 overflow-hidden rounded-sm border border-gold/20">
+            <div className="mt-8 overflow-hidden rounded-2xl border border-gold/20">
               <img
                 src={productsImg}
                 alt="Coleção Leevi de calçados e acessórios"
@@ -456,7 +452,7 @@ function Landing() {
       </section>
 
       {/* PROVA SOCIAL */}
-      <section className="border-y border-border bg-card/40 py-24 md:py-32">
+      <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
@@ -492,7 +488,7 @@ function Landing() {
               },
             ].map((t, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <figure className="flex h-full flex-col rounded-sm border border-border bg-background p-7">
+                <figure className="flex h-full flex-col rounded-2xl border border-border bg-background p-7">
                   <div className="flex items-center gap-1 text-gold">
                     {Array.from({ length: 5 }).map((_, j) => (
                       <Star key={j} className="h-4 w-4 fill-gold" />
@@ -514,7 +510,7 @@ function Landing() {
           </div>
 
           <Reveal delay={0.2}>
-            <div className="mt-10 flex items-center justify-center gap-3 rounded-sm border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
+            <div className="mt-10 flex items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
               <Flame className="h-4 w-4 text-gold" />
               <span className="text-foreground/90">
                 <span className="font-bold text-gold">Atenção:</span> algumas peças esgotam ainda durante a live.
@@ -565,7 +561,7 @@ function Landing() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border bg-card/40 py-24 md:py-32">
+      <section className="border-t border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-3xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
@@ -671,7 +667,7 @@ function Landing() {
         href={WHATSAPP}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
       >
         Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
       </a>
