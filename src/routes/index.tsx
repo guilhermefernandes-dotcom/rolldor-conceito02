@@ -147,7 +147,10 @@ function Landing() {
               </div>
             </Reveal>
             <Reveal delay={0.15}>
-              <h1 className="font-display text-4xl font-black leading-[1.02] tracking-[-0.04em] md:text-6xl lg:text-7xl">
+              <h1
+                className="font-display"
+                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+              >
                 Veja os lançamentos do atacado{" "}
                 <span className="italic text-gold">antes da sua concorrente.</span>
               </h1>
