@@ -68,6 +68,29 @@ export function StatsScrollLock() {
   const railHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
   const railWidth = useTransform(railProgress, (v) => `${v * 100}%`);
 
+  // Curve geometry — list lives inside a 60x440 SVG, dots evenly spaced.
+  const RAIL_W = 60;
+  const RAIL_H = 440;
+  const STEP_GAP = RAIL_H / STEPS.length; // 110
+  const dotY = (i: number) => STEP_GAP / 2 + i * STEP_GAP;
+  const baseX = 28; // resting line x
+  const apexX = 6; // bulge x (leftward) at active dot
+
+  const buildPath = (activeIdx: number) => {
+    const y = dotY(activeIdx);
+    const pre = y - 36;
+    const post = y + 36;
+    return `M ${baseX} 0
+            L ${baseX} ${pre}
+            C ${baseX} ${y - 18}, ${apexX} ${y - 18}, ${apexX} ${y}
+            C ${apexX} ${y + 18}, ${baseX} ${y + 18}, ${baseX} ${post}
+            L ${baseX} ${RAIL_H}`;
+  };
+
+  // Overall progress for the gold stroke fill (0..1)
+  const pathProgress = useTransform(scrollYProgress, (v) => v);
+  const dashOffset = useTransform(pathProgress, (v) => 1 - v);
+
   return (
     <section
       ref={ref}
@@ -76,49 +99,102 @@ export function StatsScrollLock() {
     >
       <div className="sticky top-0 flex h-screen items-center overflow-hidden">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-8 px-5 md:px-10">
-          {/* LEFT — step rail */}
+          {/* LEFT — step rail with curving line */}
           <div className="col-span-12 md:col-span-3">
-            <div className="relative pl-6">
-              {/* vertical line */}
-              <div className="absolute left-2 top-2 bottom-2 w-px bg-border" />
-              <motion.div
-                className="absolute left-2 top-2 w-px bg-gold"
-                style={{ height: railHeight }}
-              />
-
-              <ol className="space-y-8">
+            <div
+              className="relative"
+              style={{ height: RAIL_H, paddingLeft: RAIL_W + 4 }}
+            >
+              {/* Curved rail SVG */}
+              <svg
+                width={RAIL_W}
+                height={RAIL_H}
+                viewBox={`0 0 ${RAIL_W} ${RAIL_H}`}
+                className="absolute left-0 top-0 overflow-visible"
+                aria-hidden
+              >
+                {/* Faint base line */}
+                <motion.path
+                  initial={false}
+                  animate={{ d: buildPath(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  fill="none"
+                  stroke="hsl(var(--border) / 0.7)"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                />
+                {/* Gold progress stroke */}
+                <motion.path
+                  initial={false}
+                  animate={{ d: buildPath(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  fill="none"
+                  stroke="var(--gold)"
+                  strokeWidth={1.5}
+                  strokeLinecap="round"
+                  pathLength={1}
+                  strokeDasharray="1 1"
+                  style={{ strokeDashoffset: dashOffset }}
+                />
+                {/* Dots */}
                 {STEPS.map((s, i) => {
                   const isActive = i === active;
+                  const reached = i <= active;
+                  const cx = isActive ? apexX : baseX;
                   return (
-                    <li key={s.n} className="relative">
-                      {/* dot */}
-                      <span
-                        className={`absolute -left-[22px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2 transition-all duration-300 ${
-                          isActive
-                            ? "border-gold bg-gold shadow-[0_0_0_4px_rgba(0,0,0,0.04)]"
-                            : i < active
-                              ? "border-gold bg-gold/40"
-                              : "border-border bg-background"
-                        }`}
-                      />
-                      <div
-                        className={`font-display text-[11px] tracking-[0.3em] transition-colors ${
-                          isActive ? "text-gold" : "text-muted-foreground/60"
-                        }`}
-                      >
-                        {s.n}
-                      </div>
-                      <div
-                        className={`mt-1 font-display text-lg font-bold transition-colors md:text-xl ${
-                          isActive ? "text-foreground" : "text-foreground/30"
-                        }`}
-                      >
-                        {s.label}
-                      </div>
-                    </li>
+                    <motion.circle
+                      key={s.n}
+                      initial={false}
+                      animate={{ cx, r: isActive ? 7 : 4.5 }}
+                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                      cy={dotY(i)}
+                      fill={reached ? "var(--gold)" : "hsl(var(--background))"}
+                      stroke="var(--gold)"
+                      strokeWidth={1.5}
+                    />
                   );
                 })}
-              </ol>
+                {/* Soft halo on active dot */}
+                <motion.circle
+                  initial={false}
+                  animate={{ cx: apexX, cy: dotY(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  r={14}
+                  fill="var(--gold)"
+                  opacity={0.18}
+                />
+              </svg>
+
+              {/* Labels positioned at each dot's y */}
+              {STEPS.map((s, i) => {
+                const isActive = i === active;
+                return (
+                  <div
+                    key={s.n}
+                    className="absolute left-0 -translate-y-1/2"
+                    style={{
+                      top: dotY(i),
+                      paddingLeft: RAIL_W + 4,
+                      width: "100%",
+                    }}
+                  >
+                    <div
+                      className={`font-display text-[11px] tracking-[0.3em] transition-colors ${
+                        isActive ? "text-gold" : "text-muted-foreground/50"
+                      }`}
+                    >
+                      {s.n}
+                    </div>
+                    <div
+                      className={`mt-0.5 font-display text-lg font-bold transition-colors md:text-xl ${
+                        isActive ? "text-foreground" : "text-foreground/25"
+                      }`}
+                    >
+                      {s.label}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
 
