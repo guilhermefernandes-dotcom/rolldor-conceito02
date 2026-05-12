@@ -14,7 +14,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import heroImg from "@/assets/hero.jpg";
 import productsImg from "@/assets/products.jpg";
 import p1 from "@/assets/p1.jpg";
@@ -25,9 +25,8 @@ import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
 import t3 from "@/assets/t3.jpg";
-import logoUrl from "@/assets/logo.svg";
-import badgeVagas from "@/assets/badge-vagas.png";
-import handPhone from "@/assets/hand-phone.png";
+import logoUrl from "@/assets/logo.webp";
+import badgeVagas from "@/assets/badge-vagas.webp";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 
 export const Route = createFileRoute("/")({
