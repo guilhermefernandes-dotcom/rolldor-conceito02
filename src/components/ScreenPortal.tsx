@@ -44,13 +44,13 @@ export function ScreenPortal() {
   // creating a smooth "blur portal" handoff to the next section.
   const transitionOpacity = useTransform(
     scrollYProgress,
-    [0.82, 0.92, 0.98, 1],
-    [0, 1, 1, 1],
+    [0.78, 0.9, 0.96, 1],
+    [0, 1, 0.85, 0],
   );
   const transitionBlurPx = useTransform(
     scrollYProgress,
-    [0.82, 0.92, 1],
-    [0, 30, 60],
+    [0.78, 0.9, 1],
+    [0, 36, 64],
   );
   const transitionFilter = useTransform(
     transitionBlurPx,
