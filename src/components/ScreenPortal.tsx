@@ -23,25 +23,49 @@ export function ScreenPortal() {
   });
 
   // Phase 1: tilt 25deg -> 0 (0..0.4)
-  // Phase 2: scale + slide down (0.4..0.85)
-  // Phase 3: fade overlay out (0.85..0.97)
+  // Phase 2: scale up (0.4..0.85)
+  // Phase 3: warp + fade to next section (0.85..1)
   const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0]);
 
-  // Desktop transforms — scale from center, slight downward offset
-  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 6]);
-  const y = useTransform(scrollYProgress, [0.4, 0.85], [80, 80]);
+  // Desktop transforms — scale from center, with a final warp burst
+  const scale = useTransform(scrollYProgress, [0.4, 0.85, 1], [1.15, 6, 14]);
+  const y = useTransform(scrollYProgress, [0.4, 0.85, 1], [80, 80, -120]);
 
-  // Mobile transforms (smaller scale)
-  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 4.5]);
-  const yM = useTransform(scrollYProgress, [0.4, 0.85], [40, 40]);
+  // Mobile transforms
+  const scaleM = useTransform(scrollYProgress, [0.4, 0.85, 1], [1, 4.5, 10]);
+  const yM = useTransform(scrollYProgress, [0.4, 0.85, 1], [40, 40, -80]);
 
-  const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
+  // Backdrop blur intensifies as user scrolls deeper, peaks at the warp
+  const blurPx = useTransform(scrollYProgress, [0, 0.5, 0.85, 1], [0, 6, 14, 36]);
+  const backdropFilter = useTransform(blurPx, (v) => `blur(${v}px)`);
+
+  // Warp dim: a soft tinted veil that grows during the teleport
+  const warpVeilOpacity = useTransform(scrollYProgress, [0.7, 0.92, 1], [0, 0.4, 0]);
+
+  // Final overlay fade — phone & UI dissolve into the next section
+  const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
+  const phoneOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Empty backdrop — heading and stats live in parent / next section */}
-        <div className="absolute inset-0 z-0 bg-transparent" />
+        {/* Blurred backdrop tied to scroll — uses parent section bg color */}
+        <motion.div
+          aria-hidden
+          style={{ backdropFilter, WebkitBackdropFilter: backdropFilter }}
+          className="absolute inset-0 z-[1] bg-secondary/40"
+        />
+
+        {/* Warp veil — gold-tinted bloom during the teleport */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: warpVeilOpacity,
+            background:
+              "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 35%, transparent) 0%, color-mix(in oklab, var(--secondary) 70%, transparent) 45%, var(--secondary) 100%)",
+          }}
+          className="pointer-events-none absolute inset-0 z-[2]"
+        />
 
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
@@ -65,6 +89,7 @@ export function ScreenPortal() {
               rotateX,
               scale,
               y,
+              opacity: phoneOpacity,
               transformPerspective: 1600,
               transformOrigin: "50% 50%",
             }}
@@ -102,6 +127,7 @@ export function ScreenPortal() {
               rotateX,
               scale: scaleM,
               y: yM,
+              opacity: phoneOpacity,
               transformPerspective: 1200,
               transformOrigin: "50% 50%",
             }}
