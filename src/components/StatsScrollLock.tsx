@@ -86,9 +86,8 @@ export function StatsScrollLock() {
             L ${baseX} ${RAIL_H}`;
   };
 
-  // Overall progress for the gold stroke fill (0..1)
-  const pathProgress = useTransform(scrollYProgress, (v) => v);
-  const dashOffset = useTransform(pathProgress, (v) => 1 - v);
+
+
 
   return (
     <section
