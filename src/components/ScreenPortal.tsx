@@ -40,7 +40,7 @@ export function ScreenPortal() {
   const scaleM = useTransform(scrollYProgress, [0.3, 0.75, 1], [1, 3, 10]);
   const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
-  // FINAL VEIL — solid #f2f0ed bg fades in smoothly across the warp,
+  // FINAL VEIL — solid #f0efeb bg fades in smoothly across the warp,
   // replacing the previous blur-then-solid transition with a direct soft fade.
   const veilOpacity = useTransform(
     scrollYProgress,
@@ -188,12 +188,12 @@ export function ScreenPortal() {
         />
 
 
-        {/* FINAL VEIL — pure solid #f2f0ed bg covers the unpin */}
+        {/* FINAL VEIL — pure solid #f0efeb bg covers the unpin */}
         <motion.div
           aria-hidden
           style={{
             opacity: veilOpacity,
-            backgroundColor: "#f2f0ed",
+            backgroundColor: "#f0efeb",
           }}
           className="pointer-events-none absolute inset-0 z-30"
         />

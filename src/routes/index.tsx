@@ -319,7 +319,7 @@ function Landing() {
 
         {/* Scroll-locked stats progression — overlaps the ScreenPortal so the
             cards section rises up while the portal scroll is still happening.
-            The portal's veil fades to #f2f0ed which matches this section's bg
+            The portal's veil fades to #f0efeb which matches this section's bg
             for a seamless handoff. */}
         <div className="relative z-20 -mt-[80vh]">
           <StatsScrollLock />
