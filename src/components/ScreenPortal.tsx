@@ -159,6 +159,17 @@ export function ScreenPortal() {
             </div>
           </motion.div>
         </motion.div>
+
+        {/* BLUR SWEEP — covers the portal and hands off to the next section */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: transitionOpacity,
+            backdropFilter: transitionFilter,
+            WebkitBackdropFilter: transitionFilter,
+          }}
+          className="pointer-events-none absolute inset-0 z-30 bg-secondary/60"
+        />
       </div>
     </section>
   );
