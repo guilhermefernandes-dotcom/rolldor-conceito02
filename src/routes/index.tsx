@@ -244,7 +244,7 @@ function Landing() {
       </section>
 
       {/* AUTORIDADE */}
-      <section className="border-y border-border bg-card/40 py-20 md:py-28">
+      <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
@@ -321,7 +321,7 @@ function Landing() {
               },
             ].map(({ icon: Icon, title, desc }, i) => (
               <Reveal key={i} delay={i * 0.05}>
-                <div className="group h-full bg-background p-8 transition-colors hover:bg-card md:p-10">
+                <div className="group h-full bg-background p-8 transition-colors hover:bg-secondary md:p-10">
                   <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-foreground">
                     <Icon className="h-5 w-5" />
                   </div>
@@ -452,7 +452,7 @@ function Landing() {
       </section>
 
       {/* PROVA SOCIAL */}
-      <section className="border-y border-border bg-card/40 py-24 md:py-32">
+      <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
@@ -561,7 +561,7 @@ function Landing() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border bg-card/40 py-24 md:py-32">
+      <section className="border-t border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-3xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
