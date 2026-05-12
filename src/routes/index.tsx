@@ -14,7 +14,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import heroImg from "@/assets/hero.jpg";
 import productsImg from "@/assets/products.jpg";
 import p1 from "@/assets/p1.jpg";
@@ -134,6 +134,35 @@ function UnderlineWord({
         className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full bg-gold md:h-[4px]"
       />
     </span>
+  );
+}
+
+function HandPhoneReveal() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start 90%", "end 60%"],
+  });
+  const y = useTransform(scrollYProgress, [0, 1], [180, -40]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.6], [55, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1.05]);
+  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
+
+  return (
+    <div
+      ref={ref}
+      className="relative mx-auto mt-14 w-full max-w-3xl md:mt-20"
+      style={{ perspective: 1400 }}
+    >
+      <div className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[60%] w-[80%] rounded-full bg-gold/20 blur-[100px]" />
+      <motion.img
+        src={handPhone}
+        alt="Mãos segurando celular com lives do Grupo VIP Leevi"
+        draggable={false}
+        style={{ y, rotateX, scale, opacity, transformOrigin: "50% 100%" }}
+        className="relative z-10 mx-auto w-full select-none will-change-transform"
+      />
+    </div>
   );
 }
 
@@ -283,22 +312,8 @@ function Landing() {
             </Reveal>
           </div>
 
-          {/* Hand holding phone — reveals on scroll */}
-          <motion.div
-            initial={{ opacity: 0, y: 60, scale: 0.92 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-            className="relative mx-auto mt-14 w-full max-w-3xl md:mt-20"
-          >
-            <div className="pointer-events-none absolute inset-x-0 -top-10 mx-auto h-[60%] w-[80%] rounded-full bg-gold/20 blur-[100px]" />
-            <img
-              src={handPhone}
-              alt="Mãos segurando celular com lives do Grupo VIP Leevi"
-              className="relative z-10 mx-auto w-full select-none"
-              draggable={false}
-            />
-          </motion.div>
+          {/* Hand holding phone — scroll-driven rise + tilt */}
+          <HandPhoneReveal />
 
           {/* Stats grid — full width */}
           <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
