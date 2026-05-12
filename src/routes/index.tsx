@@ -299,7 +299,7 @@ function Landing() {
 
       {/* VANTAGENS */}
       <section className="bg-secondary/70 py-16 md:py-24">
-        <div className="mx-auto w-full px-5 md:px-10">
+        <div className="w-full" style={{ padding: "13px" }}>
           <div
             className="relative w-full rounded-[32px] px-6 py-14 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] md:px-14 md:py-20"
             style={{ background: "var(--gold)" }}
