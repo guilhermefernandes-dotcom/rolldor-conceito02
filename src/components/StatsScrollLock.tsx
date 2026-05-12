@@ -17,14 +17,14 @@ const STEPS: Step[] = [
     n: "01",
     label: "Comunidade",
     big: "+50 mil",
-    desc: "revendedoras acompanhando a Leevi todos os dias.",
+    desc: "revendedoras acompanham a Leevi todos os dias, criando uma das maiores redes de moda feminina do país — engajamento real, conversas vivas e oportunidade de venda diária.",
     Icon: Users,
   },
   {
     n: "02",
     label: "Origem",
     big: "Atacado & Varejo",
-    desc: "com sede própria em São Luís — MA.",
+    desc: "com sede própria em São Luís — MA, mais de uma década de mercado e estrutura completa de showroom, estoque e logística para abastecer revendedoras em todo o Brasil.",
     Icon: Building2,
     image: leeviStore,
   },
@@ -32,14 +32,14 @@ const STEPS: Step[] = [
     n: "03",
     label: "Curadoria",
     big: "Centenas",
-    desc: "de lançamentos por mês no nosso mix.",
+    desc: "de lançamentos por mês no nosso mix — calçados e acessórios selecionados a dedo, antecipando tendências e garantindo que você sempre tenha novidade pra oferecer.",
     Icon: Sparkles,
   },
   {
     n: "04",
     label: "Logística",
     big: "Brasil todo",
-    desc: "Envio para todos os estados com agilidade.",
+    desc: "envios diários para todos os estados com agilidade, embalagem caprichada e códigos de rastreio — sua revenda gira rápido, sem dor de cabeça.",
     Icon: Truck,
   },
 ];
@@ -312,43 +312,6 @@ export function StatsScrollLock() {
                       </p>
                     </motion.div>
 
-                    <div className="mt-auto flex items-end gap-5">
-                      {STEPS.map((step, j) => {
-                        const Icon = step.Icon;
-                        const chipActive = j === active;
-                        return (
-                          <div
-                            key={step.n}
-                            className="flex flex-col items-center gap-2"
-                          >
-                            <div
-                              className={`flex h-11 w-11 items-center justify-center rounded-full transition-all duration-500 md:h-12 md:w-12 ${
-                                chipActive
-                                  ? "scale-110 bg-gold shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
-                                  : "bg-secondary"
-                              }`}
-                            >
-                              <Icon
-                                className={`h-5 w-5 ${
-                                  chipActive
-                                    ? "text-background"
-                                    : "text-muted-foreground/60"
-                                }`}
-                              />
-                            </div>
-                            <span
-                              className={`font-display text-[10px] tracking-[0.25em] transition-opacity ${
-                                chipActive
-                                  ? "text-gold opacity-100"
-                                  : "opacity-0"
-                              }`}
-                            >
-                              {step.label.toUpperCase()}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
                   </motion.div>
                 );
               })}
