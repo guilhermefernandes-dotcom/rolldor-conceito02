@@ -25,32 +25,31 @@ export function ScreenPortal() {
   // Phase 1: tilt 25deg -> 0 (0..0.4)
   // Phase 2: scale up (0.4..0.85)
   // Phase 3: blur sweep that takes us to next section (0.85..1)
-  const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0]);
+  const rotateX = useTransform(scrollYProgress, [0, 0.3], [25, 0]);
 
-  // Desktop transforms — scale from center, no warp drift
-  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 6]);
-  const y = useTransform(scrollYProgress, [0.4, 0.85], [80, 80]);
+  // Desktop transforms — scale through the whole journey, ending huge
+  const scale = useTransform(scrollYProgress, [0.3, 1], [1.15, 9]);
+  const y = useTransform(scrollYProgress, [0.3, 1], [80, 80]);
 
   // Mobile transforms
-  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 4.5]);
-  const yM = useTransform(scrollYProgress, [0.4, 0.85], [40, 40]);
+  const scaleM = useTransform(scrollYProgress, [0.3, 1], [1, 7]);
+  const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
   // Mild backdrop blur during the journey (subtle depth)
   const ambientBlur = useTransform(scrollYProgress, [0, 0.5, 0.85], [0, 4, 8]);
   const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
 
-  // FINAL TRANSITION (0.85..1):
-  // A heavy blur+bg overlay sweeps in covering the portal, then fades —
-  // creating a smooth "blur portal" handoff to the next section.
+  // FINAL TRANSITION — heavy blur veil that fully covers right at the unpin,
+  // so the handoff to the next section is invisible.
   const transitionOpacity = useTransform(
     scrollYProgress,
-    [0.82, 0.92, 0.98, 1],
-    [0, 1, 1, 1],
+    [0.55, 0.85, 1],
+    [0, 1, 1],
   );
   const transitionBlurPx = useTransform(
     scrollYProgress,
-    [0.82, 0.92, 1],
-    [0, 30, 60],
+    [0.55, 0.85, 1],
+    [0, 40, 80],
   );
   const transitionFilter = useTransform(
     transitionBlurPx,
@@ -58,10 +57,10 @@ export function ScreenPortal() {
   );
 
   // Portal contents (phone + glow + badge) fade into the blur sweep
-  const overlayOpacity = useTransform(scrollYProgress, [0.82, 0.95], [1, 0]);
+  const overlayOpacity = useTransform(scrollYProgress, [0.7, 0.9], [1, 0]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "300vh" }}>
+    <section ref={ref} className="relative" style={{ height: "220vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Mild ambient blur backdrop tied to scroll */}
         <motion.div
@@ -168,7 +167,7 @@ export function ScreenPortal() {
             backdropFilter: transitionFilter,
             WebkitBackdropFilter: transitionFilter,
           }}
-          className="pointer-events-none absolute inset-0 z-30 bg-secondary/60"
+          className="pointer-events-none absolute inset-0 z-30 bg-secondary"
         />
       </div>
     </section>
