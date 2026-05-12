@@ -31,8 +31,8 @@ const STEPS: Step[] = [
   {
     n: "03",
     label: "Curadoria",
-    big: "Centenas",
-    desc: "de lançamentos por mês no nosso mix — calçados e acessórios selecionados a dedo, antecipando tendências e garantindo que você sempre tenha novidade pra oferecer.",
+    big: "+300 por mês",
+    desc: "calçados e acessórios selecionados a dedo, com lançamentos constantes que antecipam tendências e garantem novidade pra você oferecer toda semana.",
     Icon: Sparkles,
   },
   {
