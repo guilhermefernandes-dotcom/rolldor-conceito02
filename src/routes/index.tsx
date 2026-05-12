@@ -225,45 +225,82 @@ function Landing() {
       </div>
 
       {/* AUTORIDADE */}
-      <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
+      <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="mx-auto mb-16 w-full max-w-5xl md:mb-24">
-            <MacbookReveal />
-          </div>
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
-            <div className="md:col-span-5">
-              <Reveal>
-                <SectionLabel>Quem é a Leevi</SectionLabel>
-                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                  Referência em calçados e acessórios para revenda em todo o Brasil.
-                </h2>
-                <p className="mt-6 text-muted-foreground md:text-lg">
-                  Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
-                </p>
-                <div className="mt-8">
-                  <CTA>Entrar no Grupo VIP</CTA>
-                </div>
-              </Reveal>
-            </div>
-            <div className="md:col-span-7">
-              <div className="grid grid-cols-2 gap-px bg-border">
-                {[
-                  ["+50 mil", "Revendedoras ativas"],
-                  ["São Luís — MA", "Sede própria"],
-                  ["Centenas", "Lançamentos por mês"],
-                  ["Brasil todo", "Envio para todos os estados"],
-                ].map(([big, small], i) => (
-                  <Reveal key={i} delay={i * 0.05}>
-                    <div className="flex h-full flex-col justify-end bg-background p-6 md:p-8">
-                      <div className="font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
-                        {big}
-                      </div>
-                      <div className="mt-2 text-sm text-muted-foreground">{small}</div>
-                    </div>
-                  </Reveal>
-                ))}
+          {/* Centered heading with animated underlines on key words */}
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal>
+              <div className="mb-5 inline-flex items-center gap-2 justify-center">
+                <span className="h-px w-8 bg-gold" />
+                <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">
+                  Quem é a Leevi
+                </span>
+                <span className="h-px w-8 bg-gold" />
               </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Referência em <UnderlineWord delay={0}>calçados</UnderlineWord> e{" "}
+                <UnderlineWord delay={0.18}>acessórios</UnderlineWord> para revenda em todo o{" "}
+                <UnderlineWord delay={0.36}>Brasil</UnderlineWord>.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <p className="mx-auto mt-6 max-w-2xl text-muted-foreground md:text-lg">
+                Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Stats on the left, MacBook on the right — both reveal on scroll */}
+          <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-2 md:items-center md:gap-12 lg:gap-16">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
+              {[
+                ["+50 mil", "Revendedoras ativas"],
+                ["São Luís — MA", "Sede própria"],
+                ["Centenas", "Lançamentos por mês"],
+                ["Brasil todo", "Envio para todos os estados"],
+              ].map(([big, small], i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: -50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, margin: "-80px" }}
+                  transition={{
+                    duration: 0.7,
+                    delay: i * 0.12,
+                    ease: [0.22, 1, 0.36, 1],
+                  }}
+                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.25)] md:p-7"
+                >
+                  <div className="font-display text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="mt-4 font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
+                    {big}
+                  </div>
+                  <div className="mt-2 text-sm text-muted-foreground">{small}</div>
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                  />
+                </motion.div>
+              ))}
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-80px" }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="w-full"
+            >
+              <MacbookReveal />
+            </motion.div>
+          </div>
+
+          <div className="mt-14 text-center md:mt-20">
+            <CTA>Entrar no Grupo VIP</CTA>
           </div>
         </div>
       </section>
