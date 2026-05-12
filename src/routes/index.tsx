@@ -169,7 +169,7 @@ function Landing() {
               </p>
             </Reveal>
             <Reveal delay={0.35}>
-              <div className="relative mt-10 w-full max-w-5xl">
+              <div className="relative mt-10 w-full max-w-none">
                 <a
                   href={WHATSAPP}
                   target="_blank"
