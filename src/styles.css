@@ -82,11 +82,11 @@
   --secondary-foreground: oklch(0.14 0.01 85);
   --muted: oklch(0.96 0.006 85);
   --muted-foreground: oklch(0.45 0.015 85);
-  --accent: hsl(11 78% 58%);
-  --accent-foreground: hsl(36 50% 98%);
-  --accent-light: hsl(11 85% 65%);
-  --accent-dark: hsl(11 78% 50%);
-  --accent-shadow: hsl(11 80% 35%);
+  --accent: hsl(142 55% 42%);
+  --accent-foreground: hsl(140 40% 98%);
+  --accent-light: hsl(142 60% 52%);
+  --accent-dark: hsl(142 60% 32%);
+  --accent-shadow: hsl(142 70% 20%);
   --destructive: oklch(0.58 0.22 25);
   --destructive-foreground: oklch(0.99 0.003 85);
   --border: oklch(0.91 0.008 85);
