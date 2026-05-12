@@ -302,7 +302,14 @@ function Landing() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <SectionLabel>Vantagens exclusivas</SectionLabel>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                  vantagens exclusivas
+                </span>
+              </div>
               <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
                 O que você ganha por estar{" "}
                 <span className="italic text-gold">dentro do grupo</span>.
