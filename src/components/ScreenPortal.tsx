@@ -40,38 +40,31 @@ export function ScreenPortal() {
   const scaleM = useTransform(scrollYProgress, [0.3, 0.75, 1], [1, 3, 10]);
   const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
-  // Mild backdrop blur during the journey; it fully clears before the solid handoff.
-  const ambientBlur = useTransform(scrollYProgress, [0, 0.4, 0.62, 0.7], [0, 6, 14, 0]);
-  const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
+  // FINAL VEIL — solid #f2f0ed bg fades in smoothly across the warp,
+  // replacing the previous blur-then-solid transition with a direct soft fade.
+  const veilOpacity = useTransform(
+    scrollYProgress,
+    [0.5, 0.85],
+    [0, 1],
+  );
 
   // GOLD FLASH — quick burst right at warp peak (earlier)
   const flashOpacity = useTransform(
     scrollYProgress,
     [0.6, 0.72, 0.85],
-    [0, 0.85, 0],
+    [0, 0.6, 0],
   );
 
   // WARP RING — radial gradient that expands from center
   const warpScale = useTransform(scrollYProgress, [0.55, 0.95], [0.2, 6]);
   const warpOpacity = useTransform(
     scrollYProgress,
-    [0.55, 0.72, 0.82, 0.9],
-    [0, 1, 0.35, 0],
+    [0.55, 0.7, 0.82],
+    [0, 0.8, 0],
   );
 
-  // FINAL VEIL — solid bg covering at the unpin (invisible handoff) — start much earlier
-  const veilOpacity = useTransform(
-    scrollYProgress,
-    [0.66, 0.74, 1],
-    [0, 1, 1],
-  );
-  // Blur is only transitional and is fully gone before the solid color reaches 100%.
-  const veilBlurOpacity = useTransform(scrollYProgress, [0.52, 0.62, 0.68], [0, 1, 0]);
-  const veilBlurPx = useTransform(scrollYProgress, [0.52, 0.62, 0.68], [0, 36, 0]);
-  const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
-
-  // Portal contents (phone + glow + badge) fade into the warp — earlier
-  const overlayOpacity = useTransform(scrollYProgress, [0.6, 0.82], [1, 0]);
+  // Portal contents (phone + glow + badge) fade into the solid bg
+  const overlayOpacity = useTransform(scrollYProgress, [0.55, 0.8], [1, 0]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "220vh" }}>
