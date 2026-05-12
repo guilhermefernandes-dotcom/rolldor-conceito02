@@ -56,11 +56,16 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
     <img
       src={logoUrl}
       alt="Leevi Distribuidora"
+      width={800}
+      height={373}
+      decoding="async"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
       className={`h-16 w-auto md:h-24 ${className}`}
     />
   );
