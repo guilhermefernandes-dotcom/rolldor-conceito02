@@ -283,8 +283,25 @@ function Landing() {
             </Reveal>
           </div>
 
+          {/* Hand holding phone — reveals on scroll */}
+          <motion.div
+            initial={{ opacity: 0, y: 60, scale: 0.92 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
+            className="relative mx-auto mt-14 w-full max-w-3xl md:mt-20"
+          >
+            <div className="pointer-events-none absolute inset-x-0 -top-10 mx-auto h-[60%] w-[80%] rounded-full bg-gold/20 blur-[100px]" />
+            <img
+              src={handPhone}
+              alt="Mãos segurando celular com lives do Grupo VIP Leevi"
+              className="relative z-10 mx-auto w-full select-none"
+              draggable={false}
+            />
+          </motion.div>
+
           {/* Stats grid — full width */}
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-4 lg:gap-5">
+          <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
             {[
               ["+50 mil", "Revendedoras ativas"],
               ["São Luís — MA", "Sede própria"],
