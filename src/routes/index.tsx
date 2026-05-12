@@ -2,8 +2,6 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import {
   ArrowRight,
-  Sparkles,
-  Crown,
   Tag,
   Gift,
   TrendingUp,
@@ -56,15 +54,11 @@ const fadeUp = {
 
 function Logo({ className = "" }: { className?: string }) {
   return (
-    <div className={`flex items-center gap-2 ${className}`}>
-      <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-gradient-to-br from-gold to-gold-deep text-primary-foreground">
-        <Crown className="h-5 w-5" strokeWidth={2.5} />
-      </div>
-      <div className="leading-none">
-        <div className="font-display text-lg font-black tracking-tight text-foreground">LEEVI</div>
-        <div className="font-display text-[9px] uppercase tracking-[0.25em] text-gold">Distribuidora</div>
-      </div>
-    </div>
+    <img
+      src={logoUrl}
+      alt="Leevi Distribuidora"
+      className={`h-10 w-auto md:h-12 ${className}`}
+    />
   );
 }
 
