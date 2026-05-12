@@ -311,53 +311,11 @@ function Landing() {
               </p>
             </Reveal>
           </div>
-
-          {/* Hand holding phone — scroll-driven rise + tilt */}
-          <HandPhoneReveal />
-
-          {/* Stats grid — full width */}
-          <div className="mt-10 grid gap-4 sm:grid-cols-2 md:mt-14 lg:grid-cols-4 lg:gap-5">
-            {[
-              ["+50 mil", "Revendedoras ativas"],
-              ["São Luís — MA", "Sede própria"],
-              ["Centenas", "Lançamentos por mês"],
-              ["Brasil todo", "Envio para todos os estados"],
-            ].map(([big, small], i) => (
-              <motion.div
-                key={i}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-80px" }}
-                transition={{
-                  duration: 0.7,
-                  delay: i * 0.12,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.25)] md:p-7"
-              >
-                <div className="font-display text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                  {String(i + 1).padStart(2, "0")}
-                </div>
-                <div className="mt-4 font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
-                  {big}
-                </div>
-                <div className="mt-2 text-sm text-muted-foreground">{small}</div>
-                <div
-                  aria-hidden
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100"
-                />
-              </motion.div>
-            ))}
-          </div>
-
-          <div className="mt-14 text-center md:mt-20">
-            <CTA>Entrar no Grupo VIP</CTA>
-          </div>
         </div>
-      </section>
 
-      {/* SCREEN PORTAL — pinned scroll reveal */}
-      <ScreenPortal />
+        {/* Mockup animation — pinned scroll reveal with stats behind */}
+        <ScreenPortal />
+      </section>
 
       {/* VANTAGENS */}
       <section className="py-24 md:py-32">
