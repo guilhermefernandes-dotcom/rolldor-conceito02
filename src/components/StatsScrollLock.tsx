@@ -117,6 +117,7 @@ export function StatsScrollLock() {
                   strokeOpacity={0.7}
                   strokeWidth={1.5}
                   strokeLinecap="round"
+                />
                 {/* Empty placeholder slots on inactive steps — a gap in the line for the dot to fill */}
                 {STEPS.map((s, i) =>
                   i === active ? null : (
