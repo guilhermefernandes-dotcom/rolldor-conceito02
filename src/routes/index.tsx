@@ -137,7 +137,7 @@ function Landing() {
                 style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
               >
                 Veja os lançamentos do atacado{" "}
-                <span className="italic text-gold">antes da sua concorrente.</span>
+                <span className="text-gold">antes da sua concorrente.</span>
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
