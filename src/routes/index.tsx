@@ -26,6 +26,7 @@ import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
+import { MacbookReveal } from "@/components/MacbookReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -179,6 +180,11 @@ function Landing() {
                 </p>
               </div>
             </Reveal>
+          </div>
+
+          {/* MacBook reveal — screen flips down on scroll */}
+          <div className="mx-auto mt-20 w-full max-w-5xl pb-[420px] md:pb-[480px]">
+            <MacbookReveal />
           </div>
         </section>
       </div>
