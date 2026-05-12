@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
+import curadoria from "@/assets/curadoria.jpg";
 import community from "@/assets/community.jpg";
 
 type Step = {
@@ -36,6 +37,7 @@ const STEPS: Step[] = [
     big: "+300 por mês",
     desc: "calçados e acessórios selecionados a dedo, com lançamentos constantes que antecipam tendências e garantem novidade pra você oferecer toda semana.",
     Icon: Sparkles,
+    image: curadoria,
   },
   {
     n: "04",
