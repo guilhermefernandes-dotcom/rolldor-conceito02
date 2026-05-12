@@ -1,223 +1,705 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { motion } from "motion/react";
+import {
+  ArrowRight,
+  Sparkles,
+  Crown,
+  Tag,
+  Gift,
+  TrendingUp,
+  Zap,
+  Lock,
+  PackageCheck,
+  Flame,
+  CheckCircle2,
+  Star,
+  Plus,
+  Minus,
+} from "lucide-react";
+import { useState } from "react";
+import heroImg from "@/assets/hero.jpg";
+import productsImg from "@/assets/products.jpg";
+import p1 from "@/assets/p1.jpg";
+import p2 from "@/assets/p2.jpg";
+import p3 from "@/assets/p3.jpg";
+import p4 from "@/assets/p4.jpg";
+import t1 from "@/assets/t1.jpg";
+import t2 from "@/assets/t2.jpg";
+import t3 from "@/assets/t3.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Wireframe B — Grupo VIP Leevi (Copy Completa)" },
-      { name: "description", content: "Wireframe básico da LP Grupo VIP Leevi — copy completa." },
+      { title: "Grupo VIP de Revendedoras Leevi — Lançamentos antes de todo mundo" },
+      {
+        name: "description",
+        content:
+          "Entre para o Grupo VIP de Revendedoras Leevi. Lives semanais, lançamentos do atacado, ofertas exclusivas e curadoria de alto giro pra você lucrar mais.",
+      },
+      { property: "og:title", content: "Grupo VIP de Revendedoras Leevi" },
+      {
+        property: "og:description",
+        content: "Lançamentos do atacado, ofertas exclusivas e curadoria de alto giro pra revendedoras.",
+      },
+      { property: "og:image", content: heroImg },
     ],
   }),
-  component: Index,
+  component: Landing,
 });
 
-const Box = ({ children, h, className = "" }: { children?: React.ReactNode; h?: string; className?: string }) => (
-  <div className={`border-2 border-dashed border-neutral-400 bg-neutral-100 flex items-center justify-center text-neutral-500 text-xs uppercase tracking-wider ${className}`} style={{ minHeight: h }}>
-    {children}
-  </div>
-);
+const WHATSAPP = "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
 
-const Section = ({ n, title, children }: { n: number; title: string; children: React.ReactNode }) => (
-  <section className="border-t-2 border-neutral-300 py-10">
-    <div className="mx-auto max-w-5xl px-6">
-      <div className="mb-6 flex items-center gap-3">
-        <span className="rounded bg-neutral-800 px-2 py-1 font-mono text-xs text-white">SEÇÃO {String(n).padStart(2, "0")}</span>
-        <h2 className="font-mono text-sm uppercase tracking-widest text-neutral-600">{title}</h2>
-      </div>
-      {children}
-    </div>
-  </section>
-);
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
 
-const CTA = ({ label = "QUERO ENTRAR NO GRUPO VIP" }: { label?: string }) => (
-  <div className="my-4 inline-block rounded border-2 border-neutral-800 bg-neutral-800 px-6 py-3 font-mono text-sm text-white">
-    [ 👉 {label} ]
-  </div>
-);
-
-function Index() {
+function Logo({ className = "" }: { className?: string }) {
   return (
-    <main className="min-h-screen bg-white text-neutral-900">
-      <header className="border-b-2 border-neutral-300 bg-neutral-50 py-4">
-        <div className="mx-auto flex max-w-5xl items-center justify-between px-6">
-          <Box className="w-32" h="32px">LOGO</Box>
-          <span className="font-mono text-xs text-neutral-500">LP GRUPO VIP LEEVI</span>
+    <div className={`flex items-center gap-2 ${className}`}>
+      <div className="flex h-9 w-9 items-center justify-center rounded-sm bg-gradient-to-br from-gold to-gold-deep text-primary-foreground">
+        <Crown className="h-5 w-5" strokeWidth={2.5} />
+      </div>
+      <div className="leading-none">
+        <div className="font-display text-lg font-black tracking-tight text-foreground">LEEVI</div>
+        <div className="font-display text-[9px] uppercase tracking-[0.25em] text-gold">Distribuidora</div>
+      </div>
+    </div>
+  );
+}
+
+function CTA({
+  children = "Quero entrar no Grupo VIP",
+  size = "lg",
+  variant = "gold",
+}: {
+  children?: React.ReactNode;
+  size?: "lg" | "md";
+  variant?: "gold" | "outline";
+}) {
+  const base =
+    "group inline-flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider transition-all duration-300";
+  const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
+  const variants =
+    variant === "gold"
+      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-primary-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
+      : "border border-gold/40 text-gold hover:bg-gold hover:text-primary-foreground";
+  return (
+    <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${base} ${sizing} ${variants}`}>
+      {children}
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+    </a>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-5 inline-flex items-center gap-2">
+      <span className="h-px w-8 bg-gold" />
+      <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">{children}</span>
+    </div>
+  );
+}
+
+function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+  return (
+    <motion.div
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay }}
+    >
+      {children}
+    </motion.div>
+  );
+}
+
+function Landing() {
+  return (
+    <main className="min-h-screen bg-background text-foreground antialiased">
+      {/* NAV */}
+      <header className="fixed top-0 left-0 right-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-10">
+          <Logo />
+          <a
+            href={WHATSAPP}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden items-center gap-2 rounded-sm border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-primary-foreground md:inline-flex"
+          >
+            Entrar no Grupo <ArrowRight className="h-3 w-3" />
+          </a>
         </div>
       </header>
 
-      {/* Marquee */}
-      <div className="border-y-2 border-dashed border-neutral-400 bg-neutral-100 py-2">
-        <p className="text-center font-mono text-xs uppercase tracking-widest text-neutral-600">
-          ▸ MARQUEE: VAGAS LIMITADAS • GRUPO VIP LEEVI • VAGAS LIMITADAS • GRUPO VIP LEEVI ▸
-        </p>
+      {/* MARQUEE */}
+      <div className="fixed top-[57px] left-0 right-0 z-30 overflow-hidden border-b border-gold/20 bg-gold py-2">
+        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-primary-foreground">
+          {Array.from({ length: 8 }).map((_, i) => (
+            <span key={i} className="mx-6 inline-flex items-center gap-3">
+              <Sparkles className="h-3 w-3" /> Vagas limitadas
+              <span>•</span> Lives toda semana <span>•</span> Lançamentos antes de todo mundo
+              <span>•</span> Grupo VIP Leevi
+            </span>
+          ))}
+        </div>
+        <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
       </div>
 
       {/* HERO */}
-      <Section n={1} title="HERO">
-        <p className="mb-2 font-mono text-[11px] uppercase tracking-widest text-neutral-500">EXCLUSIVO PARA REVENDEDORAS</p>
-        <h1 className="mb-4 text-3xl font-bold leading-tight md:text-5xl">
-          Entre para o GRUPO VIP de Revendedoras Leevi e veja os lançamentos do atacado antes da sua concorrente.
-        </h1>
-        <p className="mb-6 max-w-2xl text-neutral-600">
-          Toda semana tem live ao vivo com novidades, ofertas que não saem do grupo e os produtos de maior giro selecionados pra você lucrar mais — antes de todo mundo.
-        </p>
-        <CTA />
-        <div className="mt-3 inline-block border-2 border-dashed border-red-500 bg-red-50 px-3 py-2 text-xs">
-          ⚠️ Grupo com limite de participantes. Restam poucas vagas para esta semana.
+      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
+        <div
+          className="absolute inset-0 -z-10 opacity-70"
+          style={{ background: "var(--gradient-dark)" }}
+        />
+        <div className="absolute -top-40 -right-40 -z-10 h-[500px] w-[500px] rounded-full bg-gold/10 blur-[120px]" />
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-12 md:gap-8 md:px-10">
+          <div className="md:col-span-7">
+            <Reveal>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5">
+                <span className="relative flex h-2 w-2">
+                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
+                  <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
+                </span>
+                <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold">
+                  Exclusivo para revendedoras
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+                Veja os lançamentos do atacado{" "}
+                <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
+                  antes da sua concorrente.
+                </span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+                Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
+                maior giro selecionados pra você lucrar mais — antes de todo mundo.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="mt-8 flex flex-wrap items-center gap-4">
+                <CTA>Entrar no Grupo VIP</CTA>
+                <div className="flex items-center gap-3">
+                  <div className="flex -space-x-2">
+                    {[t1, t2, t3].map((src, i) => (
+                      <img
+                        key={i}
+                        src={src}
+                        alt=""
+                        className="h-9 w-9 rounded-full border-2 border-background object-cover"
+                      />
+                    ))}
+                  </div>
+                  <div className="text-xs leading-tight text-muted-foreground">
+                    <div className="flex items-center gap-1 text-gold">
+                      {Array.from({ length: 5 }).map((_, i) => (
+                        <Star key={i} className="h-3 w-3 fill-gold" />
+                      ))}
+                    </div>
+                    <span>+50 mil revendedoras</span>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+            <Reveal delay={0.4}>
+              <div className="mt-8 flex items-center gap-3 rounded-sm border border-destructive/30 bg-destructive/5 px-4 py-3">
+                <Flame className="h-4 w-4 text-destructive" />
+                <p className="text-xs text-foreground/80 md:text-sm">
+                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
+                  posições para esta semana.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+          <div className="relative md:col-span-5">
+            <Reveal delay={0.2}>
+              <div className="relative">
+                <div className="absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-br from-gold/30 to-transparent blur-2xl" />
+                <img
+                  src={heroImg}
+                  alt="Revendedora Leevi mostrando live de WhatsApp com lançamentos"
+                  width={1080}
+                  height={1600}
+                  className="relative aspect-[3/4] w-full rounded-sm object-cover shadow-[0_50px_120px_-30px_oklch(0_0_0_/_0.8)] ring-1 ring-gold/20"
+                />
+                <div className="absolute -bottom-6 -left-6 hidden rounded-sm border border-gold/30 bg-card/90 px-5 py-4 backdrop-blur-md md:block">
+                  <div className="flex items-center gap-3">
+                    <div className="relative flex h-3 w-3">
+                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
+                      <span className="relative inline-flex h-3 w-3 rounded-full bg-destructive" />
+                    </div>
+                    <div>
+                      <div className="font-display text-xs font-bold uppercase tracking-wider text-foreground">
+                        Live agora
+                      </div>
+                      <div className="text-[11px] text-muted-foreground">237 revendedoras assistindo</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
         </div>
-        <div className="mt-6 grid grid-cols-1 gap-4 md:grid-cols-2">
-          <Box h="280px">FOTO REVENDEDORA / MOCKUP LIVE</Box>
-          <Box h="280px">PRODUTOS DESTAQUE</Box>
-        </div>
-      </Section>
+      </section>
 
       {/* AUTORIDADE */}
-      <Section n={2} title="AUTORIDADE / QUEM É A LEEVI">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">
-          Somos referência em calçados e acessórios para revenda em todo o Brasil
-        </h2>
-        <div className="grid gap-4 md:grid-cols-4">
-          {[
-            "+50 mil revendedoras",
-            "Sede em São Luís — MA",
-            "Centenas de lançamentos/mês",
-            "Envio para todo Brasil",
-          ].map((t, i) => (
-            <div key={i} className="border-2 border-dashed border-neutral-400 p-5 text-center">
-              <p className="text-sm font-bold">{t}</p>
+      <section className="border-y border-border bg-card/40 py-20 md:py-28">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+            <div className="md:col-span-5">
+              <Reveal>
+                <SectionLabel>Quem é a Leevi</SectionLabel>
+                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                  Referência em calçados e acessórios para revenda em todo o Brasil.
+                </h2>
+                <p className="mt-6 text-muted-foreground md:text-lg">
+                  Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
+                </p>
+                <div className="mt-8">
+                  <CTA>Entrar no Grupo VIP</CTA>
+                </div>
+              </Reveal>
             </div>
-          ))}
+            <div className="md:col-span-7">
+              <div className="grid grid-cols-2 gap-px bg-border">
+                {[
+                  ["+50 mil", "Revendedoras ativas"],
+                  ["São Luís — MA", "Sede própria"],
+                  ["Centenas", "Lançamentos por mês"],
+                  ["Brasil todo", "Envio para todos os estados"],
+                ].map(([big, small], i) => (
+                  <Reveal key={i} delay={i * 0.05}>
+                    <div className="flex h-full flex-col justify-end bg-background p-6 md:p-8">
+                      <div className="font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
+                        {big}
+                      </div>
+                      <div className="mt-2 text-sm text-muted-foreground">{small}</div>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+            </div>
+          </div>
         </div>
-        <p className="mt-6 italic text-neutral-600">"Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente."</p>
-        <div className="mt-4"><CTA label="ENTRAR NO GRUPO VIP" /></div>
-      </Section>
+      </section>
 
       {/* VANTAGENS */}
-      <Section n={3} title="VANTAGENS — CORAÇÃO DA LP">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Vantagens exclusivas para quem está no grupo e participa das lives</h2>
-        <div className="grid gap-4 md:grid-cols-2">
-          {[
-            ["🎯", "Lançamentos antes de todo mundo", "24h antes de irem pro Instagram, site ou qualquer lugar."],
-            ["💰", "Preços que só existem dentro do grupo", "Condições reservadas para quem participa das lives."],
-            ["🎁", "Sorteios e bônus para quem participa ao vivo", "Toda semana tem sorteios, brindes e ações relâmpago."],
-            ["📈", "Dicas dos produtos com mais alto giro", "Você para de apostar no escuro e compra o que vende."],
-          ].map(([icon, title, desc], i) => (
-            <div key={i} className="border-2 border-dashed border-neutral-400 p-5">
-              <div className="mb-2 text-2xl">{icon}</div>
-              <h3 className="mb-2 font-bold">{title}</h3>
-              <p className="text-sm text-neutral-600">{desc}</p>
-            </div>
-          ))}
+      <section className="py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <SectionLabel>Vantagens exclusivas</SectionLabel>
+              <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                O que você ganha por estar{" "}
+                <span className="italic text-gold">dentro do grupo</span>.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 grid gap-px bg-border md:grid-cols-2">
+            {[
+              {
+                icon: Zap,
+                title: "Lançamentos antes de todo mundo",
+                desc: "Você vê as novidades 24h antes do Instagram, do site ou de qualquer canal público.",
+              },
+              {
+                icon: Tag,
+                title: "Preços que só existem no grupo",
+                desc: "Condições reservadas para quem participa das lives. Não saem daqui pra fora.",
+              },
+              {
+                icon: Gift,
+                title: "Sorteios e bônus toda semana",
+                desc: "Brindes, kits e ações relâmpago para quem aparece nas lives ao vivo.",
+              },
+              {
+                icon: TrendingUp,
+                title: "Curadoria de alto giro",
+                desc: "Você para de apostar no escuro. Só compra o que realmente tem saída.",
+              },
+            ].map(({ icon: Icon, title, desc }, i) => (
+              <Reveal key={i} delay={i * 0.05}>
+                <div className="group h-full bg-background p-8 transition-colors hover:bg-card md:p-10">
+                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-sm border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-primary-foreground">
+                    <Icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">{desc}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center">
+            <CTA>Quero todas essas vantagens</CTA>
+          </div>
         </div>
-        <div className="mt-6"><CTA label="QUERO TODAS ESSAS VANTAGENS" /></div>
-      </Section>
+      </section>
 
       {/* COMO FUNCIONA */}
-      <Section n={4} title="COMO FUNCIONA — 4 PASSOS">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">É simples e rápido fazer parte do GRUPO VIP</h2>
-        <ol className="grid gap-4 md:grid-cols-4">
-          {["Clique e entre pelo WhatsApp", "Receba aviso das lives", "Participe ao vivo", "Aproveite condições exclusivas"].map((step, i) => (
-            <li key={i} className="border-2 border-dashed border-neutral-400 p-4">
-              <div className="mb-2 font-mono text-xs text-neutral-500">PASSO {i + 1}</div>
-              <p className="text-sm">{step}</p>
-            </li>
-          ))}
-        </ol>
-        <div className="mt-6"><CTA label="ENTRAR NO GRUPO VIP AGORA" /></div>
-      </Section>
+      <section
+        className="relative border-y border-border py-24 md:py-32"
+        style={{ background: "var(--gradient-dark)" }}
+      >
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="text-center">
+            <Reveal>
+              <SectionLabel>Como funciona</SectionLabel>
+              <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                Em 4 passos você já está dentro.
+              </h2>
+            </Reveal>
+          </div>
+          <ol className="mt-16 grid gap-8 md:grid-cols-4 md:gap-6">
+            {[
+              ["Clique no botão", "Entra direto pelo WhatsApp, sem cadastro."],
+              ["Receba os avisos", "Avisamos toda live com antecedência."],
+              ["Participe ao vivo", "Vê os lançamentos e tira dúvidas em tempo real."],
+              ["Aproveite as ofertas", "Condições exclusivas pra você lucrar mais."],
+            ].map(([title, desc], i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <li className="relative">
+                  <div className="font-display text-7xl font-black leading-none text-gold/15 md:text-8xl">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <div className="mt-4 border-t border-gold/30 pt-4">
+                    <h3 className="font-display text-lg font-bold tracking-tight">{title}</h3>
+                    <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                  </div>
+                </li>
+              </Reveal>
+            ))}
+          </ol>
+          <div className="mt-14 text-center">
+            <CTA>Entrar no Grupo VIP agora</CTA>
+          </div>
+        </div>
+      </section>
 
       {/* VITRINE */}
-      <Section n={5} title="VITRINE DE PRODUTOS — ALTO GIRO">
-        <h2 className="mb-2 text-2xl font-bold md:text-3xl">Peças que costumam esgotar primeiro dentro do GRUPO VIP</h2>
-        <p className="mb-6 text-sm text-neutral-600">Estes são alguns dos produtos que nossas revendedoras mais disputam toda semana.</p>
-        <div className="grid grid-cols-2 gap-3 md:grid-cols-5">
-          {Array.from({ length: 10 }).map((_, i) => (
-            <Box key={i} h="160px">PRODUTO {i + 1}</Box>
-          ))}
+      <section className="py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid gap-10 md:grid-cols-12 md:items-end">
+            <div className="md:col-span-7">
+              <Reveal>
+                <SectionLabel>Vitrine de alto giro</SectionLabel>
+                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                  As peças que costumam{" "}
+                  <span className="italic text-gold">esgotar primeiro</span> dentro do grupo.
+                </h2>
+              </Reveal>
+            </div>
+            <div className="md:col-span-5">
+              <Reveal delay={0.1}>
+                <p className="text-muted-foreground md:text-lg">
+                  Selecionamos toda semana o que está vendendo de verdade na boca da revendedora.
+                  Aqui está uma amostra do que circula nas lives.
+                </p>
+              </Reveal>
+            </div>
+          </div>
+
+          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
+            {[
+              { src: p1, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
+              { src: p2, name: "Tênis Casual Premium", tag: "Lançamento" },
+              { src: p3, name: "Bolsa Executiva Black", tag: "Alto giro" },
+              { src: p4, name: "Salto Bloco Nude", tag: "Sai rápido" },
+            ].map((p, i) => (
+              <Reveal key={i} delay={i * 0.05}>
+                <div className="group relative overflow-hidden rounded-sm border border-border bg-card transition-all hover:border-gold/50">
+                  <div className="aspect-square overflow-hidden">
+                    <img
+                      src={p.src}
+                      alt={p.name}
+                      loading="lazy"
+                      width={800}
+                      height={800}
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-primary-foreground">
+                    {p.tag}
+                  </div>
+                  <div className="border-t border-border p-4">
+                    <div className="font-display text-sm font-bold tracking-tight">{p.name}</div>
+                    <div className="mt-1 text-xs text-muted-foreground">Disponível na próxima live</div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-8 overflow-hidden rounded-sm border border-gold/20">
+              <img
+                src={productsImg}
+                alt="Coleção Leevi de calçados e acessórios"
+                width={1920}
+                height={1080}
+                loading="lazy"
+                className="h-64 w-full object-cover md:h-96"
+              />
+            </div>
+          </Reveal>
+
+          <div className="mt-10 text-center">
+            <CTA>Ver tudo dentro do grupo</CTA>
+          </div>
         </div>
-        <div className="mt-6"><CTA /></div>
-      </Section>
+      </section>
 
       {/* PROVA SOCIAL */}
-      <Section n={6} title="PROVA SOCIAL — DEPOIMENTOS">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Veja o que nossas revendedoras dizem</h2>
-        <div className="grid gap-4 md:grid-cols-3">
-          {Array.from({ length: 6 }).map((_, i) => (
-            <Box key={i} h="200px">DEPOIMENTO {i + 1}</Box>
-          ))}
+      <section className="border-y border-border bg-card/40 py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="text-center">
+            <Reveal>
+              <SectionLabel>Quem já está dentro</SectionLabel>
+              <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                Revendedoras que viraram a chave depois do grupo.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mt-16 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                img: t1,
+                name: "Mariana C.",
+                city: "Fortaleza — CE",
+                quote:
+                  "Triplicou meu faturamento em 3 meses. Antes eu comprava no escuro, hoje compro o que eu sei que vai vender.",
+              },
+              {
+                img: t2,
+                name: "Juliana S.",
+                city: "São Luís — MA",
+                quote:
+                  "As condições que pego no grupo eu não acho em lugar nenhum. Já saí de muita live com peça esgotada na concorrência.",
+              },
+              {
+                img: t3,
+                name: "Patrícia L.",
+                city: "Recife — PE",
+                quote:
+                  "A live é direta, sem enrolação. Eu vejo o produto, escolho ali e ainda ganho sorteio. Vale demais.",
+              },
+            ].map((t, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <figure className="flex h-full flex-col rounded-sm border border-border bg-background p-7">
+                  <div className="flex items-center gap-1 text-gold">
+                    {Array.from({ length: 5 }).map((_, j) => (
+                      <Star key={j} className="h-4 w-4 fill-gold" />
+                    ))}
+                  </div>
+                  <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/90">
+                    "{t.quote}"
+                  </blockquote>
+                  <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
+                    <img src={t.img} alt={t.name} loading="lazy" className="h-11 w-11 rounded-full object-cover" />
+                    <div>
+                      <div className="font-display text-sm font-bold">{t.name}</div>
+                      <div className="text-xs text-muted-foreground">{t.city}</div>
+                    </div>
+                  </figcaption>
+                </figure>
+              </Reveal>
+            ))}
+          </div>
+
+          <Reveal delay={0.2}>
+            <div className="mt-10 flex items-center justify-center gap-3 rounded-sm border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
+              <Flame className="h-4 w-4 text-gold" />
+              <span className="text-foreground/90">
+                <span className="font-bold text-gold">Atenção:</span> algumas peças esgotam ainda durante a live.
+              </span>
+            </div>
+          </Reveal>
         </div>
-        <div className="mt-6 border-2 border-dashed border-yellow-500 bg-yellow-50 p-4 text-sm">
-          ⚠️ ATENÇÃO! Algumas peças esgotam ainda durante a live.
-        </div>
-        <div className="mt-4"><CTA label="ENTRAR NO GRUPO VIP" /></div>
-      </Section>
+      </section>
 
       {/* LOSS AVERSION */}
-      <Section n={7} title="POR QUE NÃO PODE FICAR DE FORA">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Por que você não pode ficar de fora do GRUPO VIP</h2>
-        <div className="grid gap-3 md:grid-cols-2">
-          {[
-            ["🔥", "Compra antes do site, do Instagram e de qualquer canal."],
-            ["💸", "Condições exclusivas com preços que não saem do grupo."],
-            ["📦", "Curadoria semanal de alto giro."],
-            ["🔒", "Grupo fechado e silencioso. Apenas a equipe Leevi posta."],
-          ].map(([icon, t], i) => (
-            <div key={i} className="border-2 border-dashed border-neutral-400 p-4 text-sm">
-              <span className="mr-2">{icon}</span>{t}
+      <section className="py-24 md:py-32">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+            <div className="md:col-span-5">
+              <Reveal>
+                <SectionLabel>Por que entrar agora</SectionLabel>
+                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                  O que você perde ficando{" "}
+                  <span className="italic text-gold">de fora</span>.
+                </h2>
+                <p className="mt-6 text-muted-foreground md:text-lg">
+                  Cada semana fora do grupo é uma semana comprando depois da concorrência.
+                </p>
+              </Reveal>
             </div>
-          ))}
+            <div className="md:col-span-7">
+              <ul className="grid gap-px bg-border md:grid-cols-2">
+                {[
+                  [Flame, "Compra antes do site, do Instagram e de qualquer canal."],
+                  [Tag, "Condições exclusivas que não saem do grupo."],
+                  [PackageCheck, "Curadoria semanal do que tem alto giro."],
+                  [Lock, "Grupo fechado e silencioso. Apenas a equipe Leevi posta."],
+                ].map(([Icon, t], i) => (
+                  <Reveal key={i} delay={i * 0.05}>
+                    <li className="flex h-full items-start gap-4 bg-background p-6">
+                      <Icon className="mt-1 h-5 w-5 shrink-0 text-gold" />
+                      <span className="text-sm md:text-base">{t as string}</span>
+                    </li>
+                  </Reveal>
+                ))}
+              </ul>
+              <div className="mt-8">
+                <CTA>Entrar no Grupo VIP</CTA>
+              </div>
+            </div>
+          </div>
         </div>
-        <div className="mt-6"><CTA /></div>
-      </Section>
+      </section>
 
       {/* FAQ */}
-      <Section n={8} title="FAQ">
-        <h2 className="mb-6 text-2xl font-bold md:text-3xl">Tire suas dúvidas sobre o Grupo VIP</h2>
-        <div className="space-y-3">
-          {[
-            "Preciso pagar para entrar?",
-            "Vão me mandar muita mensagem?",
-            "Preciso ter CNPJ?",
-            "Como funcionam as lives?",
-            "Posso sair quando quiser?",
-          ].map((q, i) => (
-            <div key={i} className="border-2 border-dashed border-neutral-400 p-4">
-              <p className="font-mono text-sm">▸ {q}</p>
-            </div>
-          ))}
+      <section className="border-t border-border bg-card/40 py-24 md:py-32">
+        <div className="mx-auto max-w-3xl px-5 md:px-10">
+          <div className="text-center">
+            <Reveal>
+              <SectionLabel>Perguntas frequentes</SectionLabel>
+              <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+                Tire suas dúvidas.
+              </h2>
+            </Reveal>
+          </div>
+          <div className="mt-12 divide-y divide-border border-y border-border">
+            {[
+              {
+                q: "Preciso pagar para entrar?",
+                a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar.",
+              },
+              {
+                q: "Vão me mandar muita mensagem?",
+                a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado.",
+              },
+              {
+                q: "Preciso ter CNPJ?",
+                a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ.",
+              },
+              {
+                q: "Como funcionam as lives?",
+                a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo.",
+              },
+              {
+                q: "Posso sair quando quiser?",
+                a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro.",
+              },
+            ].map((item, i) => (
+              <FaqItem key={i} q={item.q} a={item.a} />
+            ))}
+          </div>
+          <div className="mt-12 text-center">
+            <CTA>Entrar no Grupo VIP</CTA>
+          </div>
         </div>
-        <div className="mt-6"><CTA label="ENTRAR NO GRUPO VIP" /></div>
-      </Section>
+      </section>
 
       {/* CTA FINAL */}
-      <Section n={9} title="CTA FINAL — ESCASSEZ FORTE">
-        <h2 className="mb-4 text-3xl font-bold md:text-5xl">As vagas do GRUPO VIP estão chegando ao fim!</h2>
-        <p className="mb-6 max-w-2xl text-neutral-600">
-          Toda semana fechamos a entrada quando o grupo enche. Quem perde a janela só consegue entrar quando alguém sai.
-        </p>
-        <ul className="mb-6 space-y-2 text-sm">
-          <li>✅ Lançamentos antes de todo mundo</li>
-          <li>✅ Lives semanais com curadoria de alto giro</li>
-          <li>✅ Ofertas que não saem do grupo</li>
-          <li>✅ Sorteios e bônus para quem participa</li>
-        </ul>
-        <CTA label="ENTRAR NO GRUPO VIP AGORA" />
-      </Section>
+      <section className="relative overflow-hidden py-28 md:py-40">
+        <div
+          className="absolute inset-0 -z-10"
+          style={{ background: "var(--gradient-dark)" }}
+        />
+        <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-gold/15 blur-[140px]" />
+        <div className="mx-auto max-w-4xl px-5 text-center md:px-10">
+          <Reveal>
+            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-4 py-1.5">
+              <Flame className="h-3 w-3 text-destructive" />
+              <span className="font-display text-[11px] uppercase tracking-[0.25em] text-destructive">
+                Vagas chegando ao fim
+              </span>
+            </div>
+            <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-7xl">
+              Sua próxima venda começa{" "}
+              <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
+                dentro do grupo.
+              </span>
+            </h2>
+            <p className="mx-auto mt-6 max-w-xl text-muted-foreground md:text-lg">
+              Toda semana fechamos a entrada quando o grupo enche. Quem perde a janela só consegue
+              entrar quando alguém sai.
+            </p>
+            <ul className="mx-auto mt-10 grid max-w-xl gap-3 text-left text-sm md:text-base">
+              {[
+                "Lançamentos antes de todo mundo",
+                "Lives semanais com curadoria de alto giro",
+                "Ofertas que não saem do grupo",
+                "Sorteios e bônus para quem participa",
+              ].map((t, i) => (
+                <li key={i} className="flex items-center gap-3">
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-gold" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+            <div className="mt-10 flex justify-center">
+              <CTA>Entrar no Grupo VIP agora</CTA>
+            </div>
+            <p className="mt-5 text-xs text-muted-foreground">
+              Entrada gratuita • Sem spam • Saia quando quiser
+            </p>
+          </Reveal>
+        </div>
+      </section>
 
       {/* FOOTER */}
-      <footer className="border-t-2 border-neutral-300 bg-neutral-50 py-8">
-        <div className="mx-auto max-w-5xl px-6 text-xs text-neutral-500">
-          <p className="mb-2">Termos de Uso • Política de Privacidade • Política de Cookies • CNPJ Leevi</p>
-          <p>Copyright ©2026</p>
+      <footer className="border-t border-border bg-background py-12">
+        <div className="mx-auto flex max-w-7xl flex-col items-start justify-between gap-6 px-5 md:flex-row md:items-center md:px-10">
+          <Logo />
+          <div className="text-xs text-muted-foreground">
+            <p>Termos de Uso • Política de Privacidade • Política de Cookies</p>
+            <p className="mt-1">© 2026 Leevi Distribuidora — Todos os direitos reservados</p>
+          </div>
         </div>
       </footer>
 
-      {/* Floating */}
-      <div className="fixed bottom-6 left-6 hidden rounded border-2 border-dashed border-green-600 bg-white p-3 text-xs shadow-lg md:block">
-        🟢 Mariana acabou de entrar no GRUPO VIP
-      </div>
-      <div className="fixed bottom-0 left-0 right-0 border-t-2 border-neutral-800 bg-neutral-800 p-3 text-center font-mono text-sm text-white md:hidden">
-        [ ENTRAR NO GRUPO VIP → ]
-      </div>
+      {/* STICKY MOBILE CTA */}
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-sm bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-primary-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
+      >
+        Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
+      </a>
     </main>
+  );
+}
+
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div>
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-gold"
+      >
+        <span className="font-display text-base font-bold tracking-tight md:text-lg">{q}</span>
+        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-gold">
+          {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+        </span>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
+      >
+        <p className="pb-5 text-sm leading-relaxed text-muted-foreground md:text-base">{a}</p>
+      </motion.div>
+    </div>
   );
 }
