@@ -133,70 +133,95 @@ function Landing() {
     <main className="min-h-screen bg-background text-foreground antialiased">
       {/* HERO — full width inside gold padded frame */}
       <div className="bg-gold p-5">
-        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
-          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+        <section
+          className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-5 pt-16 pb-24 md:px-10 md:pt-20 md:pb-32"
+          style={{
+            backgroundImage:
+              "radial-gradient(circle at 1px 1px, rgba(56,56,56,0.08) 1px, transparent 0)",
+            backgroundSize: "22px 22px",
+          }}
+        >
+          {/* decorative arcs */}
+          <svg
+            className="pointer-events-none absolute inset-x-0 top-1/3 -z-0 w-full opacity-50"
+            viewBox="0 0 1600 400"
+            fill="none"
+            preserveAspectRatio="none"
+          >
+            <path d="M0 200 Q 800 -50 1600 200" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.5" />
+            <path d="M0 240 Q 800 0 1600 240" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.35" />
+            <path d="M0 280 Q 800 60 1600 280" stroke="var(--gold)" strokeWidth="1" strokeOpacity="0.2" />
+          </svg>
+
+          <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
             <Reveal>
-              <Logo className="mb-10" />
+              <Logo className="mb-12" />
             </Reveal>
-            <Reveal delay={0.05}>
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-background px-4 py-1.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
-                </span>
-                <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold-deep">
-                  Exclusivo para revendedoras
-                </span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.15}>
+
+            <Reveal delay={0.1}>
               <h1
                 className="font-display"
-                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                style={{
+                  fontWeight: 600,
+                  fontSize: "clamp(34px, 5vw, 60px)",
+                  lineHeight: "1.05",
+                  color: "rgb(56,56,56)",
+                  letterSpacing: "-0.03em",
+                }}
               >
                 Veja os lançamentos do atacado{" "}
+                <span className="inline-flex items-center align-middle">
+                  <InlineLiveBadge />
+                </span>{" "}
                 <span className="text-gold">antes da sua concorrente.</span>
               </h1>
             </Reveal>
-            <Reveal delay={0.25}>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-lg">
+
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-lg">
                 Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
             </Reveal>
-            <Reveal delay={0.35}>
-              <div className="mt-10 flex flex-col items-center gap-5">
-                <CTA variant="whatsapp">Quero entrar no Grupo VIP</CTA>
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2">
-                    {[t1, t2, t3].map((src, i) => (
-                      <img
-                        key={i}
-                        src={src}
-                        alt=""
-                        className="h-9 w-9 rounded-full border-2 border-secondary object-cover"
-                      />
-                    ))}
-                  </div>
-                  <div className="text-left text-xs leading-tight text-muted-foreground">
-                    <div className="flex items-center gap-1 text-gold">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-3 w-3 fill-gold" />
-                      ))}
-                    </div>
-                    <span>+50 mil revendedoras</span>
-                  </div>
+
+            <Reveal delay={0.3}>
+              <div className="relative mt-12 w-full max-w-3xl">
+                <div className="absolute -top-1 left-6 right-6 h-px bg-gradient-to-r from-transparent via-gold to-transparent shadow-[0_0_20px_2px_var(--gold)]" />
+                <div className="relative overflow-hidden rounded-[1.5rem] shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] ring-1 ring-gold/30">
+                  <img
+                    src={heroImg}
+                    alt="Revendedora Leevi mostrando live de WhatsApp com lançamentos"
+                    width={1080}
+                    height={1600}
+                    className="aspect-[16/10] w-full object-cover"
+                  />
+                  <button
+                    aria-label="Assistir prévia"
+                    className="absolute inset-0 flex items-center justify-center bg-black/10 transition-colors hover:bg-black/20"
+                  >
+                    <span className="flex h-20 w-20 items-center justify-center rounded-full bg-white/95 shadow-2xl transition-transform hover:scale-105">
+                      <span className="ml-1 h-0 w-0 border-y-[12px] border-l-[18px] border-y-transparent border-l-foreground" />
+                    </span>
+                  </button>
                 </div>
               </div>
             </Reveal>
-            <Reveal delay={0.45}>
-              <div className="mt-10 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
-                <Flame className="h-4 w-4 text-destructive" />
-                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
-                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
-                  posições para esta semana.
-                </p>
+
+            <Reveal delay={0.4}>
+              <div className="relative mt-12 w-full max-w-2xl">
+                <CTA variant="whatsapp">Quero entrar no Grupo VIP</CTA>
+                {/* satisfaction seal */}
+                <div className="absolute -right-2 -top-3 hidden md:block lg:-right-10">
+                  <SatisfactionSeal />
+                </div>
               </div>
+            </Reveal>
+
+            <Reveal delay={0.5}>
+              <p className="mt-6 text-sm tracking-[-0.01em] text-muted-foreground">
+                Vagas limitadas para esta semana ·{" "}
+                <span className="font-semibold text-foreground/80">+50 mil revendedoras</span>
+              </p>
             </Reveal>
           </div>
         </section>
