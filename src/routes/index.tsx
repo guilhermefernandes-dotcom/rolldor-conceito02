@@ -139,7 +139,7 @@ function Landing() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
       {/* HERO — full width inside gold padded frame */}
-      <div className="bg-gold p-5">
+      <div className="bg-gold p-[13px]">
         <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-16 md:px-10 md:py-20">
           {/* Decorative background effects */}
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
