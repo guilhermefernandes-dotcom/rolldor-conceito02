@@ -183,12 +183,15 @@ function Landing() {
 
       {/* MARQUEE */}
       <div className="overflow-hidden bg-gold py-4">
-        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-sm font-semibold tracking-[-0.01em] text-foreground md:text-base">
+        <div
+          className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display"
+          style={{ fontWeight: 500, fontSize: "24px", lineHeight: "32px", color: "rgb(255,255,255)", letterSpacing: "-0.01em" }}
+        >
           {Array.from({ length: 6 }).flatMap((_, i) =>
             ["Vagas limitadas", "Lives toda semana", "Lançamentos antes de todo mundo", "Grupo VIP Leevi"].map((item, j) => (
               <span key={`${i}-${j}`} className="inline-flex items-center">
                 <span className="px-8">{item}</span>
-                <span className="text-foreground/60">•</span>
+                <span className="opacity-60">•</span>
               </span>
             ))
           )}
