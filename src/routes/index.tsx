@@ -194,10 +194,10 @@ function Landing() {
           </div>
 
           {/* MacBook reveal — screen flips down on scroll */}
-          <div className="mx-auto mt-20 w-full max-w-5xl pb-[420px] md:pb-[480px]">
+          <div className="mx-auto mt-20 w-full max-w-5xl pb-[300px] md:pb-[360px]">
             <MacbookReveal />
             <Reveal delay={0.1}>
-              <div className="mt-12 flex justify-center">
+              <div className="mt-32 flex justify-center md:mt-40">
                 <div className="inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
                   <Flame className="h-4 w-4 text-destructive" />
                   <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
