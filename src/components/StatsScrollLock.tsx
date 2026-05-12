@@ -3,6 +3,7 @@ import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
 import curadoria from "@/assets/curadoria.jpg";
+import logistica from "@/assets/logistica.jpg";
 import community from "@/assets/community.jpg";
 
 type Step = {
@@ -47,6 +48,8 @@ const STEPS: Step[] = [
     big: "Brasil todo",
     desc: "envios diários para todos os estados com agilidade, embalagem caprichada e códigos de rastreio — sua revenda gira rápido, sem dor de cabeça.",
     Icon: Truck,
+    image: logistica,
+    imagePosition: "35% center",
   },
 ];
 
