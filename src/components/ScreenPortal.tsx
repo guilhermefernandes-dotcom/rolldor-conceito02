@@ -180,15 +180,8 @@ export function ScreenPortal() {
           className="pointer-events-none absolute left-1/2 top-1/2 z-20 h-[120vmax] w-[120vmax] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
         />
 
-        {/* GOLD FLASH — quick burst at warp peak */}
-        <motion.div
-          aria-hidden
-          style={{ opacity: flashOpacity }}
-          className="pointer-events-none absolute inset-0 z-[25] bg-gold"
-        />
-
-
-        {/* FINAL VEIL — pure solid #f0efeb bg covers the unpin */}
+        {/* FINAL VEIL — pure solid #f0efeb bg covers the unpin (rendered before
+            the flash so they share the exact same DOM position/layer) */}
         <motion.div
           aria-hidden
           style={{
@@ -196,6 +189,13 @@ export function ScreenPortal() {
             backgroundColor: "#f0efeb",
           }}
           className="pointer-events-none absolute inset-0 z-[25]"
+        />
+
+        {/* GOLD FLASH — quick burst at warp peak */}
+        <motion.div
+          aria-hidden
+          style={{ opacity: flashOpacity }}
+          className="pointer-events-none absolute inset-0 z-[25] bg-gold"
         />
       </div>
     </section>
