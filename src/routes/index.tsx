@@ -114,24 +114,9 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 function Landing() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
-      {/* NAV */}
-      <header className="fixed top-0 left-0 right-0 z-40 border-b border-border/60 bg-background/70 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-5 py-3 md:px-10">
-          <Logo />
-          <a
-            href={WHATSAPP}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hidden items-center gap-2 rounded-2xl border border-gold/40 px-4 py-2 font-display text-xs font-bold uppercase tracking-wider text-gold transition-colors hover:bg-gold hover:text-foreground md:inline-flex"
-          >
-            Entrar no Grupo <ArrowRight className="h-3 w-3" />
-          </a>
-        </div>
-      </header>
-
       {/* MARQUEE */}
-      <div className="fixed top-[57px] left-0 right-0 z-30 overflow-hidden border-b border-gold/20 bg-gold py-2">
-        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.25em] text-foreground">
+      <div className="overflow-hidden bg-foreground py-2.5">
+        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.2em] text-background">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="mx-6 inline-flex items-center gap-3">
               <Sparkles className="h-3 w-3" /> Vagas limitadas
@@ -143,42 +128,38 @@ function Landing() {
         <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
       </div>
 
-      {/* HERO */}
-      <section className="relative overflow-hidden pt-32 pb-20 md:pt-40 md:pb-32">
-        <div
-          className="absolute inset-0 -z-10 opacity-70"
-          style={{ background: "var(--gradient-dark)" }}
-        />
-        <div className="absolute -top-40 -right-40 -z-10 h-[500px] w-[500px] rounded-full bg-gold/10 blur-[120px]" />
-        <div className="mx-auto grid max-w-7xl gap-12 px-5 md:grid-cols-12 md:gap-8 md:px-10">
-          <div className="md:col-span-7">
+      {/* HERO — full width inside gold padded frame */}
+      <div className="bg-gold p-5">
+        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
+          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
             <Reveal>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-4 py-1.5">
+              <Logo className="mb-10" />
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-background px-4 py-1.5">
                 <span className="relative flex h-2 w-2">
                   <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
                   <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
                 </span>
-                <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold">
+                <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold-deep">
                   Exclusivo para revendedoras
                 </span>
               </div>
             </Reveal>
-            <Reveal delay={0.1}>
-              <h1 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl lg:text-7xl">
+            <Reveal delay={0.15}>
+              <h1 className="font-display text-4xl font-black leading-[1.02] tracking-[-0.04em] md:text-6xl lg:text-7xl">
                 Veja os lançamentos do atacado{" "}
-                <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
-                  antes da sua concorrente.
-                </span>
+                <span className="italic text-gold">antes da sua concorrente.</span>
               </h1>
             </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mt-6 max-w-xl text-base leading-relaxed text-muted-foreground md:text-lg">
+            <Reveal delay={0.25}>
+              <p className="mt-7 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-lg">
                 Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
             </Reveal>
-            <Reveal delay={0.3}>
-              <div className="mt-8 flex flex-wrap items-center gap-4">
+            <Reveal delay={0.35}>
+              <div className="mt-10 flex flex-col items-center gap-5">
                 <CTA>Entrar no Grupo VIP</CTA>
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
@@ -187,11 +168,11 @@ function Landing() {
                         key={i}
                         src={src}
                         alt=""
-                        className="h-9 w-9 rounded-full border-2 border-background object-cover"
+                        className="h-9 w-9 rounded-full border-2 border-secondary object-cover"
                       />
                     ))}
                   </div>
-                  <div className="text-xs leading-tight text-muted-foreground">
+                  <div className="text-left text-xs leading-tight text-muted-foreground">
                     <div className="flex items-center gap-1 text-gold">
                       {Array.from({ length: 5 }).map((_, i) => (
                         <Star key={i} className="h-3 w-3 fill-gold" />
@@ -202,46 +183,18 @@ function Landing() {
                 </div>
               </div>
             </Reveal>
-            <Reveal delay={0.4}>
-              <div className="mt-8 flex items-center gap-3 rounded-2xl border border-destructive/30 bg-destructive/5 px-4 py-3">
+            <Reveal delay={0.45}>
+              <div className="mt-10 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
                 <Flame className="h-4 w-4 text-destructive" />
-                <p className="text-xs text-foreground/80 md:text-sm">
+                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
                   <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
                   posições para esta semana.
                 </p>
               </div>
             </Reveal>
           </div>
-          <div className="relative md:col-span-5">
-            <Reveal delay={0.2}>
-              <div className="relative">
-                <div className="absolute -inset-4 -z-10 rounded-2xl bg-gradient-to-br from-gold/30 to-transparent blur-2xl" />
-                <img
-                  src={heroImg}
-                  alt="Revendedora Leevi mostrando live de WhatsApp com lançamentos"
-                  width={1080}
-                  height={1600}
-                  className="relative aspect-[3/4] w-full rounded-2xl object-cover shadow-[0_50px_120px_-30px_oklch(0_0_0_/_0.8)] ring-1 ring-gold/20"
-                />
-                <div className="absolute -bottom-6 -left-6 hidden rounded-2xl border border-gold/30 bg-card/90 px-5 py-4 backdrop-blur-md md:block">
-                  <div className="flex items-center gap-3">
-                    <div className="relative flex h-3 w-3">
-                      <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-destructive opacity-75" />
-                      <span className="relative inline-flex h-3 w-3 rounded-full bg-destructive" />
-                    </div>
-                    <div>
-                      <div className="font-display text-xs font-bold uppercase tracking-wider text-foreground">
-                        Live agora
-                      </div>
-                      <div className="text-[11px] text-muted-foreground">237 revendedoras assistindo</div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </Reveal>
-          </div>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* AUTORIDADE */}
       <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
