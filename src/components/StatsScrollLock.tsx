@@ -146,7 +146,7 @@ export function StatsScrollLock() {
                   stroke="var(--gold)"
                   strokeWidth={1.5}
                 />
-                {/* Dashed ring around active dot */}
+                {/* Dashed ring around active dot — spins continuously */}
                 <motion.circle
                   initial={false}
                   animate={{ cx: apexX, cy: dotY(active) }}
@@ -157,7 +157,9 @@ export function StatsScrollLock() {
                   strokeWidth={1.2}
                   strokeDasharray="2 4"
                   opacity={0.85}
+                  style={{ transformBox: "fill-box", transformOrigin: "center", animation: "spin-ring 8s linear infinite" }}
                 />
+                <style>{`@keyframes spin-ring { to { transform: rotate(360deg); } }`}</style>
               </svg>
 
               {/* Labels positioned at each dot's y */}
