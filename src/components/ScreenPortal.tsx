@@ -42,20 +42,12 @@ export function ScreenPortal() {
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Description revealed BEHIND the portal */}
         <div className="absolute inset-0 z-0 flex items-center justify-center bg-background px-6 md:px-12">
-          <div className="mx-auto max-w-4xl text-center">
-            <div className="mb-5 inline-flex items-center gap-2">
-              <span className="h-px w-8 bg-gold" />
-              <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">
-                Bem-vinda ao Grupo VIP
-              </span>
-              <span className="h-px w-8 bg-gold" />
-            </div>
-            <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-foreground md:text-6xl lg:text-7xl">
-              Lançamentos, ofertas e curadoria —{" "}
-              <span className="text-gold">direto no seu WhatsApp.</span>
+          <div className="mx-auto max-w-3xl text-center">
+            <h2 className="font-display text-5xl font-semibold leading-tight tracking-tight text-foreground md:text-7xl">
+              Por dentro do Grupo VIP
             </h2>
-            <p className="mx-auto mt-6 max-w-2xl text-muted-foreground md:text-lg">
-              Tudo o que sai no atacado primeiro chega aqui. Sem barulho, sem spam — só oportunidade.
+            <p className="mx-auto mt-6 max-w-xl text-sm text-muted-foreground md:text-base">
+              Veja como é a rotina de quem está dentro: lançamentos, lives e ofertas exclusivas todos os dias.
             </p>
           </div>
         </div>
