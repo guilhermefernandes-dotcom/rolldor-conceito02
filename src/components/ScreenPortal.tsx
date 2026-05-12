@@ -173,13 +173,32 @@ export function ScreenPortal() {
           </motion.div>
         </motion.div>
 
-        {/* BLUR SWEEP — covers the portal and hands off to the next section */}
+        {/* WARP RING — radial gold gradient expanding from center */}
         <motion.div
           aria-hidden
           style={{
-            opacity: transitionOpacity,
-            backdropFilter: transitionFilter,
-            WebkitBackdropFilter: transitionFilter,
+            opacity: warpOpacity,
+            scale: warpScale,
+            background:
+              "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 70%, transparent) 0%, color-mix(in oklab, var(--gold) 25%, transparent) 30%, color-mix(in oklab, var(--secondary) 60%, transparent) 55%, transparent 75%)",
+          }}
+          className="pointer-events-none absolute left-1/2 top-1/2 z-20 h-[120vmax] w-[120vmax] -translate-x-1/2 -translate-y-1/2 rounded-full mix-blend-screen"
+        />
+
+        {/* GOLD FLASH — quick burst at warp peak */}
+        <motion.div
+          aria-hidden
+          style={{ opacity: flashOpacity }}
+          className="pointer-events-none absolute inset-0 z-[25] bg-gold"
+        />
+
+        {/* FINAL VEIL — heavy blur + solid bg covers the unpin */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: veilOpacity,
+            backdropFilter: veilFilter,
+            WebkitBackdropFilter: veilFilter,
           }}
           className="pointer-events-none absolute inset-0 z-30 bg-secondary"
         />
