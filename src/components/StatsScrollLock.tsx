@@ -276,7 +276,10 @@ export function StatsScrollLock() {
                       }}
                       transition={{ duration: 0.6, delay: isActive ? 0.15 : 0 }}
                     >
-                      <h3 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-[40px]">
+                      <h3
+                        className="font-display"
+                        style={{ fontWeight: 600, fontSize: "44px", lineHeight: "44px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                      >
                         {s.label}
                       </h3>
                       <div className="mt-3 font-display text-4xl font-black leading-none text-gold md:text-[44px]">
