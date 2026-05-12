@@ -118,24 +118,16 @@ export function StatsScrollLock() {
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
-                {/* Dots */}
-                {STEPS.map((s, i) => {
-                  const isActive = i === active;
-                  const reached = i <= active;
-                  const cx = isActive ? apexX : baseX;
-                  return (
-                    <motion.circle
-                      key={s.n}
-                      initial={false}
-                      animate={{ cx, r: isActive ? 7 : 4.5 }}
-                      transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                      cy={dotY(i)}
-                      fill={isActive ? "var(--gold)" : "transparent"}
-                      stroke="var(--gold)"
-                      strokeWidth={1.5}
-                    />
-                  );
-                })}
+                {/* Single dot that rides the curve to the active step */}
+                <motion.circle
+                  initial={false}
+                  animate={{ cx: apexX, cy: dotY(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  r={6}
+                  fill="var(--gold)"
+                  stroke="var(--gold)"
+                  strokeWidth={1.5}
+                />
                 {/* Dashed ring around active dot */}
                 <motion.circle
                   initial={false}
