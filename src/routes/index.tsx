@@ -25,6 +25,7 @@ import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
+import badgeVagas from "@/assets/badge-vagas.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
