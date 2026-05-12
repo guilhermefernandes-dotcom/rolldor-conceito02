@@ -145,30 +145,47 @@ export function StatsScrollLock() {
               {STEPS.map((s, i) => {
                 const isActive = i === active;
                 return (
-                  <div
+                  <motion.div
                     key={s.n}
+                    initial={false}
+                    animate={{
+                      scale: isActive ? 1.18 : 1,
+                      x: isActive ? 6 : 0,
+                    }}
+                    transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     className="absolute left-0 -translate-y-1/2"
                     style={{
                       top: dotY(i),
                       paddingLeft: RAIL_W + 4,
                       width: "100%",
+                      transformOrigin: "left center",
                     }}
                   >
-                    <div
-                      className={`font-display text-[11px] tracking-[0.3em] transition-colors ${
-                        isActive ? "text-gold" : "text-muted-foreground/50"
-                      }`}
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        color: isActive
+                          ? "var(--gold)"
+                          : "color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
+                      }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="font-display text-[11px] tracking-[0.3em]"
                     >
                       {s.n}
-                    </div>
-                    <div
-                      className={`mt-0.5 font-display text-lg font-bold transition-colors md:text-xl ${
-                        isActive ? "text-foreground" : "text-foreground/25"
-                      }`}
+                    </motion.div>
+                    <motion.div
+                      initial={false}
+                      animate={{
+                        color: isActive
+                          ? "rgb(56,56,56)"
+                          : "color-mix(in oklab, rgb(56,56,56) 25%, transparent)",
+                      }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="mt-0.5 font-display text-lg font-bold md:text-xl"
                     >
                       {s.label}
-                    </div>
-                  </div>
+                    </motion.div>
+                  </motion.div>
                 );
               })}
             </div>
