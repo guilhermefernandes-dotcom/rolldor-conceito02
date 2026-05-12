@@ -184,51 +184,110 @@ export function StatsScrollLock() {
             </div>
           </div>
 
-          {/* RIGHT — active card + peek */}
+          {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
-            <div className="relative h-[460px] md:h-[500px]">
+            <div
+              className="relative mx-auto h-[480px] w-full max-w-xl md:h-[520px]"
+              style={{ perspective: 1600 }}
+            >
               {STEPS.map((s, i) => {
                 const offset = i - active;
                 const isActive = offset === 0;
-                const isNext = offset === 1;
-                const visible = offset >= 0 && offset <= 2;
+
+                // Outgoing (left) — flies away with rotation + blur
+                // Active (0) — centered, sharp
+                // Next (1) — peeks behind right, tilted
+                // Stack (2) — further behind, smaller
+                let x = "0%";
+                let rotateY = 0;
+                let scale = 1;
+                let opacity = 1;
+                let blur = 0;
+                let z = 0;
+
+                if (offset < 0) {
+                  x = "-60%";
+                  rotateY = 35;
+                  scale = 0.85;
+                  opacity = 0;
+                  blur = 12;
+                  z = -200;
+                } else if (offset === 0) {
+                  x = "0%";
+                  rotateY = 0;
+                  scale = 1;
+                  opacity = 1;
+                  blur = 0;
+                  z = 0;
+                } else if (offset === 1) {
+                  x = "16%";
+                  rotateY = -14;
+                  scale = 0.92;
+                  opacity = 0.55;
+                  blur = 2;
+                  z = -120;
+                } else if (offset === 2) {
+                  x = "26%";
+                  rotateY = -18;
+                  scale = 0.84;
+                  opacity = 0.25;
+                  blur = 4;
+                  z = -240;
+                } else {
+                  x = "30%";
+                  rotateY = -20;
+                  scale = 0.78;
+                  opacity = 0;
+                  blur = 6;
+                  z = -360;
+                }
+
                 return (
                   <motion.div
                     key={s.n}
                     initial={false}
                     animate={{
-                      x:
-                        offset === 0
-                          ? "0%"
-                          : offset === 1
-                            ? "82%"
-                            : offset === 2
-                              ? "92%"
-                              : -120,
-                      opacity: visible ? (isActive ? 1 : isNext ? 1 : 0.5) : 0,
-                      scale: isActive ? 1 : 0.96,
+                      x,
+                      rotateY,
+                      scale,
+                      opacity,
+                      filter: `blur(${blur}px)`,
+                      z,
                     }}
-                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-                    style={{ zIndex: STEPS.length - Math.abs(offset) }}
-                    className="absolute inset-y-0 left-0 right-0 flex flex-col rounded-3xl bg-background p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-14"
+                    transition={{
+                      duration: 0.85,
+                      ease: [0.22, 1, 0.36, 1],
+                    }}
+                    style={{
+                      zIndex: 100 - Math.abs(offset),
+                      transformStyle: "preserve-3d",
+                      transformOrigin: "left center",
+                    }}
+                    className="absolute inset-0 flex flex-col rounded-3xl bg-background p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:p-10"
                   >
-                    <div className="absolute right-8 top-8 font-display text-2xl font-bold text-foreground/15 md:right-12 md:top-12 md:text-3xl">
+                    <div className="absolute right-7 top-7 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
                       {s.n}
                     </div>
 
-                    <div className="max-w-xl">
-                      <h3 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-[44px]">
+                    <motion.div
+                      animate={{
+                        opacity: isActive ? 1 : 0.4,
+                        y: isActive ? 0 : 8,
+                      }}
+                      transition={{ duration: 0.6, delay: isActive ? 0.15 : 0 }}
+                    >
+                      <h3 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-[40px]">
                         {s.label}
                       </h3>
-                      <div className="mt-4 font-display text-4xl font-black leading-none text-gold md:text-5xl">
+                      <div className="mt-3 font-display text-4xl font-black leading-none text-gold md:text-[44px]">
                         {s.big}
                       </div>
-                      <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
+                      <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-[17px]">
                         {s.desc}
                       </p>
-                    </div>
+                    </motion.div>
 
-                    <div className="mt-auto flex items-end gap-6">
+                    <div className="mt-auto flex items-end gap-5">
                       {STEPS.map((step, j) => {
                         const Icon = step.Icon;
                         const chipActive = j === active;
@@ -238,14 +297,14 @@ export function StatsScrollLock() {
                             className="flex flex-col items-center gap-2"
                           >
                             <div
-                              className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 md:h-14 md:w-14 ${
+                              className={`flex h-11 w-11 items-center justify-center rounded-full transition-all duration-500 md:h-12 md:w-12 ${
                                 chipActive
                                   ? "scale-110 bg-gold shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
                                   : "bg-secondary"
                               }`}
                             >
                               <Icon
-                                className={`h-5 w-5 md:h-6 md:w-6 ${
+                                className={`h-5 w-5 ${
                                   chipActive
                                     ? "text-background"
                                     : "text-muted-foreground/60"
