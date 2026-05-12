@@ -153,13 +153,18 @@
 
   body {
     background-color: var(--color-background);
-    color: var(--color-foreground);
     font-family: var(--font-sans);
+    font-weight: 500;
+    font-size: 19px;
+    line-height: 26px;
+    color: rgba(56, 56, 56, 0.8);
     letter-spacing: -0.01em;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
+    font-weight: 600;
+    color: rgb(56, 56, 56);
     letter-spacing: -0.03em;
   }
 }
