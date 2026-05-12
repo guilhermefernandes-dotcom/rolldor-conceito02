@@ -29,6 +29,7 @@ import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
 import handPhone from "@/assets/hand-phone.png";
 import { ScreenPortal } from "@/components/ScreenPortal";
+import { StatsScrollLock } from "@/components/StatsScrollLock";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -315,6 +316,9 @@ function Landing() {
 
         {/* Mockup animation — pinned scroll reveal with stats behind */}
         <ScreenPortal />
+
+        {/* Scroll-locked stats progression */}
+        <StatsScrollLock />
       </section>
 
       {/* VANTAGENS */}
