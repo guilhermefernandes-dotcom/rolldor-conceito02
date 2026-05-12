@@ -197,15 +197,16 @@ export function ScreenPortal() {
           className="pointer-events-none absolute inset-0 z-[25] bg-gold"
         />
 
-        {/* FINAL VEIL — heavy blur + solid bg covers the unpin */}
+        {/* FINAL VEIL — solid #f2f0ed bg covers the unpin */}
         <motion.div
           aria-hidden
           style={{
             opacity: veilOpacity,
             backdropFilter: veilFilter,
             WebkitBackdropFilter: veilFilter,
+            backgroundColor: "#f2f0ed",
           }}
-          className="pointer-events-none absolute inset-0 z-30 bg-background"
+          className="pointer-events-none absolute inset-0 z-30"
         />
       </div>
     </section>
