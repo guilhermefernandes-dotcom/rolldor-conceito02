@@ -26,6 +26,7 @@ const STEPS: Step[] = [
     big: "Atacado & Varejo",
     desc: "com sede própria em São Luís — MA.",
     Icon: Building2,
+    image: leeviStore,
   },
   {
     n: "03",
