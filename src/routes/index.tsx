@@ -118,7 +118,7 @@ function Landing() {
     <main className="min-h-screen bg-background text-foreground antialiased">
       {/* HERO — full width inside gold padded frame */}
       <div className="bg-gold p-5">
-        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
+        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-16 md:px-10 md:py-20">
           {/* Decorative background effects */}
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
             {/* Soft golden blobs */}
@@ -193,20 +193,13 @@ function Landing() {
                 />
               </div>
             </Reveal>
-          </div>
-
-          {/* MacBook reveal — screen flips down on scroll */}
-          <div className="mx-auto mt-20 w-full max-w-5xl pb-[140px] md:pb-[180px]">
-            <MacbookReveal />
-            <Reveal delay={0.1}>
-              <div className="mt-16 flex justify-center md:mt-20">
-                <div className="inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
-                  <Flame className="h-4 w-4 text-destructive" />
-                  <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
-                    <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
-                    posições para esta semana.
-                  </p>
-                </div>
+            <Reveal delay={0.45}>
+              <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
+                <Flame className="h-4 w-4 text-destructive" />
+                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
+                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
+                  posições para esta semana.
+                </p>
               </div>
             </Reveal>
           </div>
@@ -234,6 +227,9 @@ function Landing() {
       {/* AUTORIDADE */}
       <section className="border-y border-border bg-secondary/70 py-20 md:py-28">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
+          <div className="mx-auto mb-16 w-full max-w-5xl md:mb-24">
+            <MacbookReveal />
+          </div>
           <div className="grid gap-12 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
