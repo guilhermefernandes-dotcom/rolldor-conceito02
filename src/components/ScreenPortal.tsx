@@ -32,8 +32,8 @@ export function ScreenPortal() {
   const y = useTransform(scrollYProgress, [0.3, 1], [80, 80]);
   // Slight tilt back during warp
   const phoneRotZ = useTransform(scrollYProgress, [0.75, 1], [0, -6]);
-  // Motion blur on the phone during warp
-  const phoneBlurPx = useTransform(scrollYProgress, [0.75, 0.95], [0, 24]);
+  // Motion blur on the phone during warp — start much earlier
+  const phoneBlurPx = useTransform(scrollYProgress, [0.5, 0.8], [0, 28]);
   const phoneFilter = useTransform(phoneBlurPx, (v) => `blur(${v}px)`);
 
   // Mobile transforms
@@ -41,35 +41,35 @@ export function ScreenPortal() {
   const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
   // Mild backdrop blur during the journey (subtle depth)
-  const ambientBlur = useTransform(scrollYProgress, [0, 0.5, 0.8], [0, 4, 10]);
+  const ambientBlur = useTransform(scrollYProgress, [0, 0.4, 0.7], [0, 6, 14]);
   const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
 
-  // GOLD FLASH — quick burst right at warp peak
+  // GOLD FLASH — quick burst right at warp peak (earlier)
   const flashOpacity = useTransform(
     scrollYProgress,
-    [0.78, 0.88, 0.95],
+    [0.6, 0.72, 0.85],
     [0, 0.85, 0],
   );
 
   // WARP RING — radial gradient that expands from center
-  const warpScale = useTransform(scrollYProgress, [0.7, 1], [0.2, 6]);
+  const warpScale = useTransform(scrollYProgress, [0.55, 0.95], [0.2, 6]);
   const warpOpacity = useTransform(
     scrollYProgress,
-    [0.7, 0.85, 0.98],
+    [0.55, 0.72, 0.92],
     [0, 1, 0.7],
   );
 
-  // FINAL VEIL — solid bg covering at the unpin (invisible handoff)
+  // FINAL VEIL — solid bg covering at the unpin (invisible handoff) — start much earlier
   const veilOpacity = useTransform(
     scrollYProgress,
-    [0.82, 0.92, 1],
+    [0.6, 0.78, 1],
     [0, 1, 1],
   );
-  const veilBlurPx = useTransform(scrollYProgress, [0.7, 0.95, 1], [0, 50, 80]);
+  const veilBlurPx = useTransform(scrollYProgress, [0.5, 0.8, 1], [0, 50, 80]);
   const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
 
-  // Portal contents (phone + glow + badge) fade into the warp
-  const overlayOpacity = useTransform(scrollYProgress, [0.78, 0.95], [1, 0]);
+  // Portal contents (phone + glow + badge) fade into the warp — earlier
+  const overlayOpacity = useTransform(scrollYProgress, [0.6, 0.82], [1, 0]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "220vh" }}>
