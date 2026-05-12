@@ -187,16 +187,6 @@ export function ScreenPortal() {
           className="pointer-events-none absolute inset-0 z-[25] bg-gold"
         />
 
-        {/* TRANSITIONAL BLUR — disappears before the solid veil is complete */}
-        <motion.div
-          aria-hidden
-          style={{
-            opacity: veilBlurOpacity,
-            backdropFilter: veilFilter,
-            WebkitBackdropFilter: veilFilter,
-          }}
-          className="pointer-events-none absolute inset-0 z-[29]"
-        />
 
         {/* FINAL VEIL — pure solid #f2f0ed bg covers the unpin */}
         <motion.div
