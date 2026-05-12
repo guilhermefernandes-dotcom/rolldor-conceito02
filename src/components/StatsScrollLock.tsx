@@ -184,48 +184,6 @@ export function StatsScrollLock() {
             </div>
           </div>
 
-          {/* CENTER — animated icon visual */}
-          <div className="hidden md:col-span-4 md:flex md:items-center md:justify-center">
-            <div className="relative flex h-72 w-72 items-center justify-center">
-              {/* soft glow */}
-              <div className="absolute inset-0 rounded-full bg-gold/15 blur-3xl" />
-              {/* concentric rings */}
-              <motion.div
-                className="absolute inset-0 rounded-full border border-gold/30"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-6 rounded-full border border-gold/20"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-12 rounded-full border border-gold/10"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-              />
-              {/* active icon */}
-              {STEPS.map((s, i) => {
-                const Icon = s.Icon;
-                return (
-                  <motion.div
-                    key={s.n}
-                    initial={false}
-                    animate={{
-                      opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 0.7,
-                    }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute flex h-28 w-28 items-center justify-center rounded-full bg-background shadow-lg"
-                  >
-                    <Icon className="h-12 w-12 text-gold" />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
           {/* RIGHT — active card + peek */}
           <div className="col-span-12 md:col-span-5">
             <div className="relative h-[420px] md:h-[460px]">
