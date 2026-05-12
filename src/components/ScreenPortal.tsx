@@ -22,42 +22,54 @@ export function ScreenPortal() {
     offset: ["start start", "end end"],
   });
 
-  // Phase 1: tilt 25deg -> 0 (0..0.4)
-  // Phase 2: scale up (0.4..0.85)
-  // Phase 3: blur sweep that takes us to next section (0.85..1)
+  // Phase 1: tilt 25deg -> 0 (0..0.3)
+  // Phase 2: scale up (0.3..0.75)
+  // Phase 3: TELEPORT — flash, warp, blur (0.75..1)
   const rotateX = useTransform(scrollYProgress, [0, 0.3], [25, 0]);
 
-  // Desktop transforms — scale through the whole journey, ending huge
-  const scale = useTransform(scrollYProgress, [0.3, 1], [1.15, 9]);
+  // Desktop transforms — accelerate hard at the end for "warp speed"
+  const scale = useTransform(scrollYProgress, [0.3, 0.75, 1], [1.15, 4, 14]);
   const y = useTransform(scrollYProgress, [0.3, 1], [80, 80]);
+  // Slight tilt back during warp
+  const phoneRotZ = useTransform(scrollYProgress, [0.75, 1], [0, -6]);
+  // Motion blur on the phone during warp
+  const phoneBlurPx = useTransform(scrollYProgress, [0.75, 0.95], [0, 24]);
+  const phoneFilter = useTransform(phoneBlurPx, (v) => `blur(${v}px)`);
 
   // Mobile transforms
-  const scaleM = useTransform(scrollYProgress, [0.3, 1], [1, 7]);
+  const scaleM = useTransform(scrollYProgress, [0.3, 0.75, 1], [1, 3, 10]);
   const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
   // Mild backdrop blur during the journey (subtle depth)
-  const ambientBlur = useTransform(scrollYProgress, [0, 0.5, 0.85], [0, 4, 8]);
+  const ambientBlur = useTransform(scrollYProgress, [0, 0.5, 0.8], [0, 4, 10]);
   const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
 
-  // FINAL TRANSITION — heavy blur veil that fully covers right at the unpin,
-  // so the handoff to the next section is invisible.
-  const transitionOpacity = useTransform(
+  // GOLD FLASH — quick burst right at warp peak
+  const flashOpacity = useTransform(
     scrollYProgress,
-    [0.55, 0.85, 1],
-    [0, 1, 1],
-  );
-  const transitionBlurPx = useTransform(
-    scrollYProgress,
-    [0.55, 0.85, 1],
-    [0, 40, 80],
-  );
-  const transitionFilter = useTransform(
-    transitionBlurPx,
-    (v) => `blur(${v}px)`,
+    [0.78, 0.88, 0.95],
+    [0, 0.85, 0],
   );
 
-  // Portal contents (phone + glow + badge) fade into the blur sweep
-  const overlayOpacity = useTransform(scrollYProgress, [0.7, 0.9], [1, 0]);
+  // WARP RING — radial gradient that expands from center
+  const warpScale = useTransform(scrollYProgress, [0.7, 1], [0.2, 6]);
+  const warpOpacity = useTransform(
+    scrollYProgress,
+    [0.7, 0.85, 0.98],
+    [0, 1, 0.7],
+  );
+
+  // FINAL VEIL — solid bg covering at the unpin (invisible handoff)
+  const veilOpacity = useTransform(
+    scrollYProgress,
+    [0.82, 0.92, 1],
+    [0, 1, 1],
+  );
+  const veilBlurPx = useTransform(scrollYProgress, [0.7, 0.95, 1], [0, 50, 80]);
+  const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
+
+  // Portal contents (phone + glow + badge) fade into the warp
+  const overlayOpacity = useTransform(scrollYProgress, [0.78, 0.95], [1, 0]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "220vh" }}>
