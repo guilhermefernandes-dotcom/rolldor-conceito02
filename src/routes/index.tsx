@@ -118,7 +118,7 @@ function Landing() {
     <main className="min-h-screen bg-background text-foreground antialiased">
       {/* HERO — full width inside gold padded frame */}
       <div className="bg-gold p-5">
-        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
+        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-16 md:px-10 md:py-20">
           {/* Decorative background effects */}
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
             {/* Soft golden blobs */}
