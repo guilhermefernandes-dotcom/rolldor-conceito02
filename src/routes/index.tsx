@@ -301,7 +301,7 @@ function Landing() {
       <section className="bg-secondary/70 py-16 md:py-24">
         <div className="mx-auto w-full px-5 md:px-10">
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-14 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] md:px-14 md:py-20"
+            className="relative w-full rounded-[32px] px-6 py-14 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] md:px-14 md:py-20"
             style={{ background: "var(--gold)" }}
           >
             <div className="mx-auto max-w-3xl text-center">
@@ -361,14 +361,14 @@ function Landing() {
             {/* tail — message bubble triangle */}
             <div
               aria-hidden
-              className="absolute -bottom-5 left-16 h-6 w-8"
+              className="absolute left-14 h-14 w-16 md:left-20"
               style={{
+                bottom: "-3rem",
                 background: "var(--gold)",
-                clipPath: "polygon(0 0, 100% 0, 30% 100%)",
+                clipPath: "polygon(0 0, 100% 0, 15% 100%)",
               }}
             />
           </div>
-
           <div className="mt-12 text-center">
             <CTA>Quero todas essas vantagens</CTA>
           </div>
