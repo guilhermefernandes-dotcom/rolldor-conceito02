@@ -101,8 +101,10 @@ export function ScreenPortal() {
           <motion.div
             style={{
               rotateX,
+              rotateZ: phoneRotZ,
               scale,
               y,
+              filter: phoneFilter,
               transformPerspective: 1600,
               transformOrigin: "50% 50%",
             }}
