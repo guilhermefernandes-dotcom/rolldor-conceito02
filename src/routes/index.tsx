@@ -159,7 +159,8 @@ function Landing() {
                 className="font-display"
                 style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
               >
-                Veja os lançamentos do atacado{" "}
+                Veja os lançamentos do atacado
+                <br />
                 <span className="text-gold">antes da sua concorrente.</span>
               </h1>
             </Reveal>
