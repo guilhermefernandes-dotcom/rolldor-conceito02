@@ -167,7 +167,7 @@ export function ScreenPortal() {
             backdropFilter: transitionFilter,
             WebkitBackdropFilter: transitionFilter,
           }}
-          className="pointer-events-none absolute inset-0 z-30 bg-secondary/60"
+          className="pointer-events-none absolute inset-0 z-30 bg-secondary"
         />
       </div>
     </section>
