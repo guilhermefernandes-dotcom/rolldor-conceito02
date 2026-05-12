@@ -90,7 +90,7 @@ export function ScreenPortal() {
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
           style={{ opacity: overlayOpacity }}
-          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary/70"
+          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-transparent"
         >
           {/* radial gold glow */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/30 blur-[120px] md:h-[600px] md:w-[600px]" />
