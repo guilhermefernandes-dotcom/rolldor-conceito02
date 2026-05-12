@@ -65,6 +65,8 @@ export function StatsScrollLock() {
     const seg = 1 / STEPS.length;
     return Math.min(1, (v - active * seg) / seg);
   });
+  const railHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+  const railWidth = useTransform(railProgress, (v) => `${v * 100}%`);
 
   return (
     <section
