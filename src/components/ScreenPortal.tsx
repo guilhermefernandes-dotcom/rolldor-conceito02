@@ -204,7 +204,7 @@ export function ScreenPortal() {
             backdropFilter: veilFilter,
             WebkitBackdropFilter: veilFilter,
           }}
-          className="pointer-events-none absolute inset-0 z-30 bg-secondary"
+          className="pointer-events-none absolute inset-0 z-30 bg-background"
         />
       </div>
     </section>
