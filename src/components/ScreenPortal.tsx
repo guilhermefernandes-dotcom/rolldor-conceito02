@@ -65,8 +65,9 @@ export function ScreenPortal() {
     [0.6, 0.78, 1],
     [0, 1, 1],
   );
-  // Backdrop blur ramps up during the warp, then back to 0 once the veil is solid
-  const veilBlurPx = useTransform(scrollYProgress, [0.5, 0.7, 0.8], [0, 40, 0]);
+  // Blur is only transitional and is fully gone before the solid color reaches 100%.
+  const veilBlurOpacity = useTransform(scrollYProgress, [0.52, 0.66, 0.74], [0, 1, 0]);
+  const veilBlurPx = useTransform(scrollYProgress, [0.52, 0.66, 0.74], [0, 36, 0]);
   const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
 
   // Portal contents (phone + glow + badge) fade into the warp — earlier
@@ -197,13 +198,22 @@ export function ScreenPortal() {
           className="pointer-events-none absolute inset-0 z-[25] bg-gold"
         />
 
-        {/* FINAL VEIL — solid #f2f0ed bg covers the unpin */}
+        {/* TRANSITIONAL BLUR — disappears before the solid veil is complete */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: veilBlurOpacity,
+            backdropFilter: veilFilter,
+            WebkitBackdropFilter: veilFilter,
+          }}
+          className="pointer-events-none absolute inset-0 z-[29]"
+        />
+
+        {/* FINAL VEIL — pure solid #f2f0ed bg covers the unpin */}
         <motion.div
           aria-hidden
           style={{
             opacity: veilOpacity,
-            backdropFilter: veilFilter,
-            WebkitBackdropFilter: veilFilter,
             backgroundColor: "#f2f0ed",
           }}
           className="pointer-events-none absolute inset-0 z-30"
