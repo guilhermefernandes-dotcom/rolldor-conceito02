@@ -130,7 +130,7 @@ export function StatsScrollLock() {
                       animate={{ cx, r: isActive ? 7 : 4.5 }}
                       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                       cy={dotY(i)}
-                      fill={reached ? "var(--gold)" : "hsl(var(--background))"}
+                      fill="transparent"
                       stroke="var(--gold)"
                       strokeWidth={1.5}
                     />
