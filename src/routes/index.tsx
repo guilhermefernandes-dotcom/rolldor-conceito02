@@ -26,6 +26,7 @@ import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
+import { MacbookReveal } from "@/components/MacbookReveal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
