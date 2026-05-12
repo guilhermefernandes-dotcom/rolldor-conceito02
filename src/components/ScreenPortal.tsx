@@ -60,7 +60,7 @@ export function ScreenPortal() {
   const overlayOpacity = useTransform(scrollYProgress, [0.7, 0.9], [1, 0]);
 
   return (
-    <section ref={ref} className="relative" style={{ height: "300vh" }}>
+    <section ref={ref} className="relative" style={{ height: "220vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Mild ambient blur backdrop tied to scroll */}
         <motion.div
