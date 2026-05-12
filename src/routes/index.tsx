@@ -123,15 +123,7 @@ function Landing() {
               <Logo className="mb-10" />
             </Reveal>
             <Reveal delay={0.05}>
-              <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-gold/40 bg-background px-4 py-1.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
-                </span>
-                <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold-deep">
-                  Exclusivo para revendedoras
-                </span>
-              </div>
+              <div className="mb-8" />
             </Reveal>
             <Reveal delay={0.15}>
               <h1
