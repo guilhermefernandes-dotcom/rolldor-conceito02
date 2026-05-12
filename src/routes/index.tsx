@@ -70,29 +70,11 @@ function CTA({
 }: {
   children?: React.ReactNode;
   size?: "lg" | "md";
-  variant?: "gold" | "outline" | "whatsapp";
+  variant?: "gold" | "outline";
 }) {
   const base =
     "group inline-flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider transition-all duration-300";
   const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
-  if (variant === "whatsapp") {
-    return (
-      <a
-        href={WHATSAPP}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="group relative inline-flex w-full max-w-xl items-center justify-center gap-2 rounded-full px-10 py-5 font-display text-base font-bold tracking-[-0.01em] text-white transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
-        style={{
-          background: "linear-gradient(180deg, #2BD672 0%, #1FB85F 55%, #128C42 100%)",
-          boxShadow:
-            "inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -3px 0 rgba(0,0,0,0.18), 0 8px 0 #0E6B33, 0 14px 24px -6px rgba(18,140,66,0.55)",
-        }}
-      >
-        <span className="pointer-events-none absolute inset-x-3 top-1 h-1/3 rounded-full bg-white/20 blur-[2px]" />
-        <span className="relative">{children}</span>
-      </a>
-    );
-  }
   const variants =
     variant === "gold"
       ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
@@ -166,7 +148,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={0.35}>
               <div className="mt-10 flex flex-col items-center gap-5">
-                <CTA variant="whatsapp">Quero entrar no Grupo VIP</CTA>
+                <CTA>Entrar no Grupo VIP</CTA>
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
                     {[t1, t2, t3].map((src, i) => (
