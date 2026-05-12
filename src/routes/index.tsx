@@ -25,6 +25,7 @@ import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
+import badgeVagas from "@/assets/badge-vagas.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -147,28 +148,26 @@ function Landing() {
               </p>
             </Reveal>
             <Reveal delay={0.35}>
-              <div className="mt-10 flex flex-col items-center gap-5">
-                <CTA>Entrar no Grupo VIP</CTA>
-                <div className="flex items-center gap-3">
-                  <div className="flex -space-x-2">
-                    {[t1, t2, t3].map((src, i) => (
-                      <img
-                        key={i}
-                        src={src}
-                        alt=""
-                        className="h-9 w-9 rounded-full border-2 border-secondary object-cover"
-                      />
-                    ))}
-                  </div>
-                  <div className="text-left text-xs leading-tight text-muted-foreground">
-                    <div className="flex items-center gap-1 text-gold">
-                      {Array.from({ length: 5 }).map((_, i) => (
-                        <Star key={i} className="h-3 w-3 fill-gold" />
-                      ))}
-                    </div>
-                    <span>+50 mil revendedoras</span>
-                  </div>
-                </div>
+              <div className="relative mt-10 w-full max-w-2xl">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex h-16 sm:h-[72px] w-full items-center justify-center rounded-2xl px-8 font-display text-lg sm:text-xl font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                    boxShadow:
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                  }}
+                >
+                  Quero participar da próxima turma
+                </a>
+                <img
+                  src={badgeVagas}
+                  alt="Vagas limitadas - turma reduzida"
+                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+                />
               </div>
             </Reveal>
             <Reveal delay={0.45}>
