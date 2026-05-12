@@ -163,20 +163,22 @@ function Landing() {
                 />
               </div>
             </Reveal>
-            <Reveal delay={0.45}>
-              <div className="mt-10 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
-                <Flame className="h-4 w-4 text-destructive" />
-                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
-                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
-                  posições para esta semana.
-                </p>
-              </div>
-            </Reveal>
           </div>
 
           {/* MacBook reveal — screen flips down on scroll */}
           <div className="mx-auto mt-20 w-full max-w-5xl pb-[420px] md:pb-[480px]">
             <MacbookReveal />
+            <Reveal delay={0.1}>
+              <div className="mt-12 flex justify-center">
+                <div className="inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
+                  <Flame className="h-4 w-4 text-destructive" />
+                  <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
+                    <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
+                    posições para esta semana.
+                  </p>
+                </div>
+              </div>
+            </Reveal>
           </div>
         </section>
       </div>
