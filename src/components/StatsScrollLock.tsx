@@ -1,6 +1,5 @@
-import { useRef } from "react";
-import { motion, useScroll, useMotionValueEvent } from "motion/react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck } from "lucide-react";
 
 type Step = {
@@ -42,23 +41,21 @@ const STEPS: Step[] = [
   },
 ];
 
+const INTERVAL_MS = 4000;
+
 /**
- * Pinned scroll-locked card progression.
- * Each scroll segment swaps the active card and lights up the corresponding
- * step in the left rail.
+ * Auto-cycling card progression. Every 4s the active card advances; after the
+ * last card it loops back to the first.
  */
 export function StatsScrollLock() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
   const [active, setActive] = useState(0);
 
-  useMotionValueEvent(scrollYProgress, "change", (v) => {
-    const idx = Math.min(STEPS.length - 1, Math.max(0, Math.floor(v * STEPS.length)));
-    if (idx !== active) setActive(idx);
-  });
+  useEffect(() => {
+    const id = window.setInterval(() => {
+      setActive((prev) => (prev + 1) % STEPS.length);
+    }, INTERVAL_MS);
+    return () => window.clearInterval(id);
+  }, []);
 
 
 
@@ -87,11 +84,10 @@ export function StatsScrollLock() {
 
   return (
     <section
-      ref={ref}
       className="relative"
-      style={{ height: `${STEPS.length * 100}vh`, backgroundColor: "transparent" }}
+      style={{ backgroundColor: "transparent" }}
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="flex min-h-screen items-center overflow-hidden py-24 md:py-32">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-8 px-5 md:px-10">
           {/* LEFT — step rail with curving line */}
           <div className="col-span-12 md:col-span-3">
