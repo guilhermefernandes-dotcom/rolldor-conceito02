@@ -36,7 +36,6 @@ export function ScreenPortal() {
   const yM = useTransform(scrollYProgress, [0.4, 0.85], [-20, 240]);
 
   const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
-  const overlayVisibility = useTransform(scrollYProgress, [0.97, 0.98], ["visible", "hidden"]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
@@ -63,8 +62,8 @@ export function ScreenPortal() {
 
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
-          style={{ opacity: overlayOpacity, visibility: overlayVisibility as unknown as string }}
-          className="absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary"
+          style={{ opacity: overlayOpacity }}
+          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary"
         >
           {/* radial gold glow */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/30 blur-[120px] md:h-[600px] md:w-[600px]" />

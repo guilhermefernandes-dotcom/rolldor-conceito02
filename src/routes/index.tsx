@@ -27,7 +27,7 @@ import leeviMark from "@/assets/leevi-mark.png";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
-import { MacbookReveal } from "@/components/MacbookReveal";
+import { ScreenPortal } from "@/components/ScreenPortal";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -276,51 +276,39 @@ function Landing() {
             </Reveal>
           </div>
 
-          {/* Stats on the left, MacBook on the right — both reveal on scroll */}
-          <div className="mt-16 grid gap-10 md:mt-24 md:grid-cols-2 md:items-center md:gap-12 lg:gap-16">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 sm:gap-5">
-              {[
-                ["+50 mil", "Revendedoras ativas"],
-                ["São Luís — MA", "Sede própria"],
-                ["Centenas", "Lançamentos por mês"],
-                ["Brasil todo", "Envio para todos os estados"],
-              ].map(([big, small], i) => (
-                <motion.div
-                  key={i}
-                  initial={{ opacity: 0, x: -50 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-80px" }}
-                  transition={{
-                    duration: 0.7,
-                    delay: i * 0.12,
-                    ease: [0.22, 1, 0.36, 1],
-                  }}
-                  className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.25)] md:p-7"
-                >
-                  <div className="font-display text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
-                    {String(i + 1).padStart(2, "0")}
-                  </div>
-                  <div className="mt-4 font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
-                    {big}
-                  </div>
-                  <div className="mt-2 text-sm text-muted-foreground">{small}</div>
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100"
-                  />
-                </motion.div>
-              ))}
-            </div>
-
-            <motion.div
-              initial={{ opacity: 0, x: 60 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true, margin: "-80px" }}
-              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full"
-            >
-              <MacbookReveal />
-            </motion.div>
+          {/* Stats grid — full width */}
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 md:mt-20 lg:grid-cols-4 lg:gap-5">
+            {[
+              ["+50 mil", "Revendedoras ativas"],
+              ["São Luís — MA", "Sede própria"],
+              ["Centenas", "Lançamentos por mês"],
+              ["Brasil todo", "Envio para todos os estados"],
+            ].map(([big, small], i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{
+                  duration: 0.7,
+                  delay: i * 0.12,
+                  ease: [0.22, 1, 0.36, 1],
+                }}
+                className="group relative overflow-hidden rounded-2xl border border-border/60 bg-background p-6 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.18)] transition-all hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_30px_60px_-25px_rgba(0,0,0,0.25)] md:p-7"
+              >
+                <div className="font-display text-[11px] uppercase tracking-[0.25em] text-muted-foreground">
+                  {String(i + 1).padStart(2, "0")}
+                </div>
+                <div className="mt-4 font-display text-3xl font-black tracking-tight text-gold md:text-4xl">
+                  {big}
+                </div>
+                <div className="mt-2 text-sm text-muted-foreground">{small}</div>
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100"
+                />
+              </motion.div>
+            ))}
           </div>
 
           <div className="mt-14 text-center md:mt-20">
