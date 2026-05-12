@@ -43,17 +43,7 @@ export function ScreenPortal() {
         {/* Description revealed BEHIND the portal */}
         <div className="absolute inset-0 z-0 flex items-center justify-center bg-secondary/70 px-6 py-16 md:px-12">
           <div className="mx-auto w-full max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              {/* heading intentionally removed — title lives in parent section */}
-            </div>
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-6xl">
-                Por dentro do Grupo VIP
-              </h2>
-              <p className="mx-auto mt-5 max-w-xl text-sm text-muted-foreground md:text-base">
-                Veja como é a rotina de quem está dentro: lançamentos, lives e ofertas exclusivas todos os dias.
-              </p>
-            </div>
+            {/* heading lives in parent AUTORIDADE section */}
 
             {/* Stat cards */}
             <div className="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-6">
