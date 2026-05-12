@@ -286,7 +286,7 @@ function Landing() {
 
       {/* AUTORIDADE */}
       <section className="border-y border-border bg-secondary/70 pt-24 md:pt-32">
-        <div className="relative z-50 mx-auto max-w-7xl px-5 md:px-10">
+        <div className="mx-auto max-w-7xl px-5 md:px-10">
           {/* Centered heading with animated underlines on key words */}
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
@@ -314,18 +314,7 @@ function Landing() {
           </div>
         </div>
 
-        {/* Mockup animation — pinned scroll reveal with stats behind */}
-        <div className="-mt-24 md:-mt-40">
-          <ScreenPortal />
-        </div>
-
-        {/* Scroll-locked stats progression — overlaps the ScreenPortal so the
-            cards section rises up while the portal scroll is still happening.
-            The portal's veil fades to #f0efeb which matches this section's bg
-            for a seamless handoff. */}
-        <div className="relative z-20 -mt-[110vh]">
-          <StatsScrollLock />
-        </div>
+        <StatsScrollLock />
       </section>
 
       {/* VANTAGENS */}
