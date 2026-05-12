@@ -141,34 +141,7 @@ function UnderlineWord({
   );
 }
 
-function HandPhoneReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 90%", "end 60%"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [180, -40]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.6], [55, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1.05]);
-  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-
-  return (
-    <div
-      ref={ref}
-      className="relative mx-auto mt-14 w-full max-w-3xl md:mt-20"
-      style={{ perspective: 1400 }}
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[60%] w-[80%] rounded-full bg-gold/20 blur-[100px]" />
-      <motion.img
-        src={handPhone}
-        alt="Mãos segurando celular com lives do Grupo VIP Leevi"
-        draggable={false}
-        style={{ y, rotateX, scale, opacity, transformOrigin: "50% 100%" }}
-        className="relative z-10 mx-auto w-full select-none will-change-transform"
-      />
-    </div>
-  );
-}
+// HandPhoneReveal removed — not in use
 
 function Landing() {
   const { scrollY } = useScroll();
