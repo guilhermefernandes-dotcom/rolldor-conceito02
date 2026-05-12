@@ -90,7 +90,7 @@ export function StatsScrollLock() {
       className="relative"
       style={{ backgroundColor: "transparent" }}
     >
-      <div className="flex min-h-screen items-center overflow-hidden py-24 md:py-32">
+      <div className="flex items-center overflow-hidden py-12 md:py-16">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-8 px-5 md:px-10">
           {/* LEFT — step rail with curving line */}
           <div className="col-span-12 md:col-span-3">
@@ -193,7 +193,7 @@ export function StatsScrollLock() {
           {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
             <div
-              className="relative mx-auto h-[360px] w-full max-w-xl md:h-[400px]"
+              className="relative mx-auto h-[480px] w-full max-w-xl md:h-[520px]"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
