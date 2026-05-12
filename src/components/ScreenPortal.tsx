@@ -92,8 +92,8 @@ export function ScreenPortal() {
           style={{ opacity: overlayOpacity }}
           className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-transparent"
         >
-          {/* radial gold glow */}
-          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/30 blur-[120px] md:h-[600px] md:w-[600px]" />
+          {/* radial gold glow — subtle so the section bg stays uniform */}
+          <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-[140px] md:h-[600px] md:w-[600px]" />
 
           {/* "Keep scrolling" badge */}
           <div className="absolute bottom-12 z-20 flex items-center gap-2 rounded-full border-2 border-background bg-secondary py-1.5 pl-1.5 pr-5 shadow-sm">
