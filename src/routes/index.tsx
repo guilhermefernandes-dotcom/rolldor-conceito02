@@ -358,16 +358,17 @@ function Landing() {
               ))}
             </div>
 
-            {/* tail — message bubble triangle */}
-            <div
-              aria-hidden
-              className="absolute -bottom-5 left-16 h-6 w-8"
-              style={{
-                background: "var(--gold)",
-                clipPath: "polygon(0 0, 100% 0, 30% 100%)",
-              }}
-            />
           </div>
+          {/* tail — message bubble triangle (outside the overflow-hidden box) */}
+          <div
+            aria-hidden
+            className="absolute left-14 h-12 w-14 md:left-20"
+            style={{
+              bottom: "-2.25rem",
+              background: "var(--gold)",
+              clipPath: "polygon(0 0, 100% 0, 15% 100%)",
+            }}
+          />
 
           <div className="mt-12 text-center">
             <CTA>Quero todas essas vantagens</CTA>
