@@ -136,14 +136,26 @@ export function StatsScrollLock() {
                     />
                   );
                 })}
+                {/* Dashed ring around active dot */}
+                <motion.circle
+                  initial={false}
+                  animate={{ cx: apexX, cy: dotY(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  r={12}
+                  fill="transparent"
+                  stroke="var(--gold)"
+                  strokeWidth={1.2}
+                  strokeDasharray="2 4"
+                  opacity={0.85}
+                />
                 {/* Soft halo on active dot */}
                 <motion.circle
                   initial={false}
                   animate={{ cx: apexX, cy: dotY(active) }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  r={14}
+                  r={18}
                   fill="var(--gold)"
-                  opacity={0.18}
+                  opacity={0.1}
                 />
               </svg>
 
