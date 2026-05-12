@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight,
   Tag,
@@ -137,11 +137,17 @@ function UnderlineWord({
 }
 
 function Landing() {
+  const { scrollY } = useScroll();
+  const heroPad = useTransform(scrollY, [0, 120], [13, 0]);
+  const heroRadius = useTransform(scrollY, [0, 120], [28, 0]);
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
-      {/* HERO — full width inside gold padded frame */}
-      <div className="bg-gold p-[13px]">
-        <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-16 md:px-10 md:py-20">
+      {/* HERO — full width inside gold padded frame that collapses on scroll */}
+      <motion.div className="bg-gold" style={{ padding: heroPad }}>
+        <motion.section
+          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-20"
+          style={{ borderRadius: heroRadius }}
+        >
           {/* Decorative background effects */}
           <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
             {/* Soft golden blobs */}
@@ -226,8 +232,8 @@ function Landing() {
               </div>
             </Reveal>
           </div>
-        </section>
-      </div>
+        </motion.section>
+      </motion.div>
 
       {/* MARQUEE */}
       <div className="overflow-hidden bg-gold py-4">
