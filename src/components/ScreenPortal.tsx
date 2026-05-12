@@ -103,7 +103,7 @@ export function ScreenPortal() {
               scale: scaleM,
               y: yM,
               transformPerspective: 1200,
-              transformOrigin: "50% 0%",
+              transformOrigin: "50% 50%",
             }}
             className="relative mt-6 w-[280px] md:hidden"
           >
