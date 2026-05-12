@@ -268,11 +268,11 @@ export function StatsScrollLock() {
                     >
                       <h3
                         className="font-display"
-                        style={{ fontWeight: 600, fontSize: "44px", lineHeight: "1", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                        style={{ fontWeight: 600, fontSize: "44px", lineHeight: "0.95", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-3 font-display text-4xl font-black leading-none text-gold md:text-[44px]">
+                      <div className="mt-2 font-display text-4xl font-black leading-none text-gold md:text-[44px]">
                         {s.big}
                       </div>
                       <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-[17px]">
