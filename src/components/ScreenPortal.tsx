@@ -65,7 +65,8 @@ export function ScreenPortal() {
     [0.6, 0.78, 1],
     [0, 1, 1],
   );
-  const veilBlurPx = useTransform(scrollYProgress, [0.5, 0.8, 1], [0, 50, 80]);
+  // Backdrop blur ramps up during the warp, then back to 0 once the veil is solid
+  const veilBlurPx = useTransform(scrollYProgress, [0.5, 0.7, 0.8], [0, 40, 0]);
   const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
 
   // Portal contents (phone + glow + badge) fade into the warp — earlier
