@@ -317,10 +317,13 @@ function Landing() {
         {/* Mockup animation — pinned scroll reveal with stats behind */}
         <ScreenPortal />
 
-        {/* Scroll-locked stats progression — stacked below ScreenPortal.
+        {/* Scroll-locked stats progression — overlaps the ScreenPortal so the
+            cards section rises up while the portal scroll is still happening.
             The portal's veil fades to #f2f0ed which matches this section's bg
             for a seamless handoff. */}
-        <StatsScrollLock />
+        <div className="relative z-20 -mt-[80vh]">
+          <StatsScrollLock />
+        </div>
       </section>
 
       {/* VANTAGENS */}
