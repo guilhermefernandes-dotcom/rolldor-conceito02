@@ -232,8 +232,8 @@ function Landing() {
               </div>
             </Reveal>
           </div>
-        </section>
-      </div>
+        </motion.section>
+      </motion.div>
 
       {/* MARQUEE */}
       <div className="overflow-hidden bg-gold py-4">
