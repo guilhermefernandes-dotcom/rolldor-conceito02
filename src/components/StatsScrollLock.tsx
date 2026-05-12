@@ -68,8 +68,8 @@ export function StatsScrollLock() {
   const RAIL_H = 440;
   const STEP_GAP = RAIL_H / STEPS.length; // 110
   const dotY = (i: number) => STEP_GAP / 2 + i * STEP_GAP;
-  const baseX = 28; // resting line x
-  const apexX = 6; // bulge x (leftward) at active dot
+  const baseX = 6; // resting line x (kept on the left)
+  const apexX = 28; // bulge x (rightward) at active dot
 
   const buildPath = (activeIdx: number) => {
     const y = dotY(activeIdx);
