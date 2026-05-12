@@ -41,16 +41,9 @@ export function ScreenPortal() {
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
         {/* Description revealed BEHIND the portal */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-background px-6 py-16 md:px-12">
+        <div className="absolute inset-0 z-0 flex items-center justify-center bg-secondary/70 px-6 py-16 md:px-12">
           <div className="mx-auto w-full max-w-7xl">
-            <div className="mx-auto max-w-3xl text-center">
-              <h2 className="font-display text-4xl font-semibold leading-tight tracking-tight text-foreground md:text-6xl">
-                Por dentro do Grupo VIP
-              </h2>
-              <p className="mx-auto mt-5 max-w-xl text-sm text-muted-foreground md:text-base">
-                Veja como é a rotina de quem está dentro: lançamentos, lives e ofertas exclusivas todos os dias.
-              </p>
-            </div>
+            {/* heading lives in parent AUTORIDADE section */}
 
             {/* Stat cards */}
             <div className="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-6">
@@ -97,7 +90,7 @@ export function ScreenPortal() {
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
           style={{ opacity: overlayOpacity }}
-          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary"
+          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary/70"
         >
           {/* radial gold glow */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/30 blur-[120px] md:h-[600px] md:w-[600px]" />
@@ -108,16 +101,6 @@ export function ScreenPortal() {
               <ChevronDown className="h-5 w-5 animate-bounce text-foreground" />
             </span>
             <span className="text-sm font-medium text-foreground">Continue rolando</span>
-          </div>
-
-          {/* Heading + description */}
-          <div className="relative z-10 flex flex-col items-center gap-4 px-6 text-center">
-            <h2 className="font-display text-5xl font-semibold leading-tight text-foreground md:text-7xl">
-              Por dentro do Grupo VIP
-            </h2>
-            <p className="max-w-md text-sm text-muted-foreground md:max-w-xl md:text-base">
-              Veja como é a rotina de quem está dentro: lançamentos, lives e ofertas exclusivas todos os dias.
-            </p>
           </div>
 
           {/* Desktop phone (horizontal) */}
