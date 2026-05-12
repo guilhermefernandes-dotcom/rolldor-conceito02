@@ -315,7 +315,9 @@ function Landing() {
         </div>
 
         {/* Mockup animation — pinned scroll reveal with stats behind */}
-        <ScreenPortal />
+        <div className="-mt-24 md:-mt-40">
+          <ScreenPortal />
+        </div>
 
         {/* Scroll-locked stats progression — overlaps the ScreenPortal so the
             cards section rises up while the portal scroll is still happening.
