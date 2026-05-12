@@ -40,52 +40,8 @@ export function ScreenPortal() {
   return (
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Description revealed BEHIND the portal */}
-        <div className="absolute inset-0 z-0 flex items-center justify-center bg-transparent px-6 py-16 md:px-12">
-          <div className="mx-auto w-full max-w-7xl">
-            {/* heading lives in parent AUTORIDADE section */}
-
-            {/* Stat cards */}
-            <div className="mt-12 grid grid-cols-2 gap-4 md:mt-16 md:grid-cols-4 md:gap-6">
-              {[
-                { n: "01", title: "+50 mil", desc: "Revendedoras ativas" },
-                { n: "02", title: "São Luís — MA", desc: "Sede própria" },
-                { n: "03", title: "Centenas", desc: "Lançamentos por mês" },
-                { n: "04", title: "Brasil todo", desc: "Envio para todos os estados" },
-              ].map((c) => (
-                <div
-                  key={c.n}
-                  className="flex min-h-[180px] flex-col justify-between rounded-2xl bg-card p-6 shadow-sm md:min-h-[220px] md:p-7"
-                >
-                  <span className="font-display text-xs tracking-[0.3em] text-gold/80">
-                    {c.n}
-                  </span>
-                  <div>
-                    <h3 className="font-display text-2xl font-bold leading-tight text-gold md:text-3xl">
-                      {c.title}
-                    </h3>
-                    <p className="mt-3 text-xs text-muted-foreground md:text-sm">
-                      {c.desc}
-                    </p>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* CTA */}
-            <div className="mt-10 flex justify-center md:mt-14">
-              <a
-                href="https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi"
-                target="_blank"
-                rel="noreferrer"
-                className="group inline-flex items-center gap-3 rounded-md bg-gold px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-background shadow-md transition-all hover:brightness-110"
-              >
-                Entrar no Grupo VIP
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-            </div>
-          </div>
-        </div>
+        {/* Empty backdrop — heading and stats live in parent / next section */}
+        <div className="absolute inset-0 z-0 bg-transparent" />
 
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
