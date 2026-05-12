@@ -27,13 +27,13 @@ export function ScreenPortal() {
   // Phase 3: fade overlay out (0.85..0.97)
   const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0]);
 
-  // Desktop transforms
-  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 8]);
-  const y = useTransform(scrollYProgress, [0.4, 0.85], [-40, 480]);
+  // Desktop transforms — scale from center, no vertical drift
+  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 6]);
+  const y = useTransform(scrollYProgress, [0.4, 0.85], [0, 0]);
 
-  // Mobile transforms (smaller scale, less translate)
-  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 5.5]);
-  const yM = useTransform(scrollYProgress, [0.4, 0.85], [-20, 240]);
+  // Mobile transforms (smaller scale)
+  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 4.5]);
+  const yM = useTransform(scrollYProgress, [0.4, 0.85], [0, 0]);
 
   const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
 
