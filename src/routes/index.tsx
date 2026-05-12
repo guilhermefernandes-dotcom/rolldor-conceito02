@@ -14,7 +14,7 @@ import {
   Plus,
   Minus,
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import heroImg from "@/assets/hero.jpg";
 import productsImg from "@/assets/products.jpg";
 import p1 from "@/assets/p1.jpg";
@@ -25,9 +25,8 @@ import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
 import t3 from "@/assets/t3.jpg";
-import logoUrl from "@/assets/logo.svg";
-import badgeVagas from "@/assets/badge-vagas.png";
-import handPhone from "@/assets/hand-phone.png";
+import logoUrl from "@/assets/logo.webp";
+import badgeVagas from "@/assets/badge-vagas.webp";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 
 export const Route = createFileRoute("/")({
@@ -57,11 +56,16 @@ const fadeUp = {
   show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
 };
 
-function Logo({ className = "" }: { className?: string }) {
+function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
     <img
       src={logoUrl}
       alt="Leevi Distribuidora"
+      width={800}
+      height={373}
+      decoding="async"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
       className={`h-16 w-auto md:h-24 ${className}`}
     />
   );
@@ -137,34 +141,7 @@ function UnderlineWord({
   );
 }
 
-function HandPhoneReveal() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start 90%", "end 60%"],
-  });
-  const y = useTransform(scrollYProgress, [0, 1], [180, -40]);
-  const rotateX = useTransform(scrollYProgress, [0, 0.6], [55, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [0.85, 1.05]);
-  const opacity = useTransform(scrollYProgress, [0, 0.25], [0, 1]);
-
-  return (
-    <div
-      ref={ref}
-      className="relative mx-auto mt-14 w-full max-w-3xl md:mt-20"
-      style={{ perspective: 1400 }}
-    >
-      <div className="pointer-events-none absolute inset-x-0 top-1/4 mx-auto h-[60%] w-[80%] rounded-full bg-gold/20 blur-[100px]" />
-      <motion.img
-        src={handPhone}
-        alt="Mãos segurando celular com lives do Grupo VIP Leevi"
-        draggable={false}
-        style={{ y, rotateX, scale, opacity, transformOrigin: "50% 100%" }}
-        className="relative z-10 mx-auto w-full select-none will-change-transform"
-      />
-    </div>
-  );
-}
+// HandPhoneReveal removed — not in use
 
 function Landing() {
   const { scrollY } = useScroll();
@@ -208,7 +185,7 @@ function Landing() {
           </div>
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
             <Reveal>
-              <Logo className="mb-4" />
+              <Logo className="mb-4" priority />
             </Reveal>
             <Reveal delay={0.05}>
               <div className="mb-2" />
@@ -248,6 +225,10 @@ function Landing() {
                 <img
                   src={badgeVagas}
                   alt="Vagas limitadas - turma reduzida"
+                  width={400}
+                  height={400}
+                  decoding="async"
+                  fetchPriority="high"
                   className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
                 />
               </div>
