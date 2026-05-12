@@ -7,7 +7,7 @@ export const Route = createFileRoute("/")({
       { name: "description", content: "Wireframe básico da LP Grupo VIP Leevi — copy completa." },
     ],
   }),
-  component: WireframeB,
+  component: Index,
 });
 
 const Box = ({ children, h, className = "" }: { children?: React.ReactNode; h?: string; className?: string }) => (
