@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { Users, Building2, Sparkles, Truck } from "lucide-react";
 
@@ -60,12 +60,8 @@ export function StatsScrollLock() {
     if (idx !== active) setActive(idx);
   });
 
-  // progress within the current step (0..1)
-  const railProgress = useTransform(scrollYProgress, (v) => {
-    const seg = 1 / STEPS.length;
-    return Math.min(1, (v - active * seg) / seg);
-  });
-  const railWidth = useTransform(railProgress, (v) => `${v * 100}%`);
+
+
 
   // Curve geometry — list lives inside a 60x440 SVG, dots evenly spaced.
   const RAIL_W = 60;
@@ -184,89 +180,86 @@ export function StatsScrollLock() {
             </div>
           </div>
 
-          {/* CENTER — animated icon visual */}
-          <div className="hidden md:col-span-4 md:flex md:items-center md:justify-center">
-            <div className="relative flex h-72 w-72 items-center justify-center">
-              {/* soft glow */}
-              <div className="absolute inset-0 rounded-full bg-gold/15 blur-3xl" />
-              {/* concentric rings */}
-              <motion.div
-                className="absolute inset-0 rounded-full border border-gold/30"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 40, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-6 rounded-full border border-gold/20"
-                animate={{ rotate: -360 }}
-                transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-              />
-              <motion.div
-                className="absolute inset-12 rounded-full border border-gold/10"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-              />
-              {/* active icon */}
-              {STEPS.map((s, i) => {
-                const Icon = s.Icon;
-                return (
-                  <motion.div
-                    key={s.n}
-                    initial={false}
-                    animate={{
-                      opacity: i === active ? 1 : 0,
-                      scale: i === active ? 1 : 0.7,
-                    }}
-                    transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-                    className="absolute flex h-28 w-28 items-center justify-center rounded-full bg-background shadow-lg"
-                  >
-                    <Icon className="h-12 w-12 text-gold" />
-                  </motion.div>
-                );
-              })}
-            </div>
-          </div>
-
           {/* RIGHT — active card + peek */}
-          <div className="col-span-12 md:col-span-5">
-            <div className="relative h-[420px] md:h-[460px]">
+          <div className="col-span-12 md:col-span-9">
+            <div className="relative h-[460px] md:h-[500px]">
               {STEPS.map((s, i) => {
                 const offset = i - active;
                 const isActive = offset === 0;
+                const isNext = offset === 1;
+                const visible = offset >= 0 && offset <= 2;
                 return (
                   <motion.div
                     key={s.n}
                     initial={false}
                     animate={{
-                      x: offset === 0 ? 0 : offset > 0 ? 60 : -60,
-                      opacity: isActive ? 1 : offset === 1 ? 0.35 : 0,
-                      scale: isActive ? 1 : 0.92,
+                      x:
+                        offset === 0
+                          ? "0%"
+                          : offset === 1
+                            ? "82%"
+                            : offset === 2
+                              ? "92%"
+                              : -120,
+                      opacity: visible ? (isActive ? 1 : isNext ? 1 : 0.5) : 0,
+                      scale: isActive ? 1 : 0.96,
                     }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                     style={{ zIndex: STEPS.length - Math.abs(offset) }}
-                    className="absolute inset-0 flex flex-col rounded-3xl bg-secondary p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-12"
+                    className="absolute inset-y-0 left-0 right-0 flex flex-col rounded-3xl bg-background p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-14"
                   >
-                    <div className="font-display text-[11px] tracking-[0.3em] text-gold/80">
-                      {s.n} <span className="mx-2 text-gold/40">—</span>{" "}
-                      {s.label.toUpperCase()}
+                    <div className="absolute right-8 top-8 font-display text-2xl font-bold text-foreground/15 md:right-12 md:top-12 md:text-3xl">
+                      {s.n}
                     </div>
 
-                    <div className="mt-auto">
-                      <h3 className="font-display text-5xl font-black leading-[1.05] tracking-tight text-gold md:text-7xl">
-                        {s.big}
+                    <div className="max-w-xl">
+                      <h3 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-[44px]">
+                        {s.label}
                       </h3>
-                      <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+                      <div className="mt-4 font-display text-4xl font-black leading-none text-gold md:text-5xl">
+                        {s.big}
+                      </div>
+                      <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
                         {s.desc}
                       </p>
                     </div>
 
-                    {/* bottom separator with scroll progress fill */}
-                    <div className="relative mt-10 h-px w-full overflow-hidden bg-border/70">
-                      {isActive && (
-                        <motion.div
-                          className="absolute inset-y-0 left-0 bg-gold"
-                          style={{ width: railWidth }}
-                        />
-                      )}
+                    <div className="mt-auto flex items-end gap-6">
+                      {STEPS.map((step, j) => {
+                        const Icon = step.Icon;
+                        const chipActive = j === active;
+                        return (
+                          <div
+                            key={step.n}
+                            className="flex flex-col items-center gap-2"
+                          >
+                            <div
+                              className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 md:h-14 md:w-14 ${
+                                chipActive
+                                  ? "scale-110 bg-gold shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                                  : "bg-secondary"
+                              }`}
+                            >
+                              <Icon
+                                className={`h-5 w-5 md:h-6 md:w-6 ${
+                                  chipActive
+                                    ? "text-background"
+                                    : "text-muted-foreground/60"
+                                }`}
+                              />
+                            </div>
+                            <span
+                              className={`font-display text-[10px] tracking-[0.25em] transition-opacity ${
+                                chipActive
+                                  ? "text-gold opacity-100"
+                                  : "opacity-0"
+                              }`}
+                            >
+                              {step.label.toUpperCase()}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 );
