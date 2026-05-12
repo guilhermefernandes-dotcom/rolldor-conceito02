@@ -60,7 +60,7 @@ function Logo({ className = "" }: { className?: string }) {
     <img
       src={logoUrl}
       alt="Leevi Distribuidora"
-      className={`h-10 w-auto md:h-12 ${className}`}
+      className={`h-16 w-auto md:h-24 ${className}`}
     />
   );
 }
