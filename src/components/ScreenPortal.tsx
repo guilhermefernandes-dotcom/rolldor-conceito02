@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronDown } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import mockupDesktop from "@/assets/mockup-desktop.webp";
 import mockupMobile from "@/assets/mockup-mobile.webp";
 import screenDesktop from "@/assets/whatsapp-screen.png";
