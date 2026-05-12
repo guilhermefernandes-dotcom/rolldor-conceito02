@@ -107,7 +107,18 @@ export function ScreenPortal() {
             }}
             className="relative mt-6 w-[280px] md:hidden"
           >
-            <img src={mockupMobile} alt="" className="relative z-10 w-full select-none" draggable={false} />
+            <img
+              src={mockupMobile}
+              alt=""
+              className="relative z-10 w-full select-none"
+              draggable={false}
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)",
+              }}
+            />
             <div
               className="absolute z-[5] overflow-hidden rounded-[28px]"
               style={{
