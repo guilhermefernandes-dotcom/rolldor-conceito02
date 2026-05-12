@@ -69,12 +69,8 @@ export function ScreenPortal() {
   return (
     <section ref={ref} className="relative" style={{ height: "220vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Mild ambient blur backdrop tied to scroll */}
-        <motion.div
-          aria-hidden
-          style={{ backdropFilter: ambientFilter, WebkitBackdropFilter: ambientFilter }}
-          className="absolute inset-0 z-[1] bg-secondary/30"
-        />
+        {/* Soft secondary backdrop (no blur) */}
+        <div aria-hidden className="absolute inset-0 z-[1] bg-secondary/30" />
 
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
