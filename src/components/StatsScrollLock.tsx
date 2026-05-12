@@ -18,7 +18,7 @@ const STEPS: Step[] = [
     n: "01",
     label: "Comunidade",
     big: "+50 mil",
-    desc: "revendedoras acompanham a Leevi todos os dias, criando uma das maiores redes de moda feminina do país — engajamento real, conversas vivas e oportunidade de venda diária.",
+    desc: "revendedoras acompanham a Leevi todos os dias, criando uma das maiores redes de moda feminina do país, com engajamento real, conversas vivas e oportunidade de venda diária.",
     Icon: Users,
     image: community,
   },
@@ -208,7 +208,7 @@ export function StatsScrollLock() {
           {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
             <div
-              className="relative mx-auto h-[410px] w-full max-w-xl md:h-[450px]"
+              className="relative mx-auto h-[420px] w-full max-w-xl md:h-[460px]"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
@@ -294,7 +294,7 @@ export function StatsScrollLock() {
                       <div
                         aria-hidden
                         className="pointer-events-none absolute right-6 top-6 z-0 hidden overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:block"
-                        style={{ width: "44%", height: "78%" }}
+                        style={{ width: "48%", height: "84%" }}
                       >
                         <img
                           src={s.image}
