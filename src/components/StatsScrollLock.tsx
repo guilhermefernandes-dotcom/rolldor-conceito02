@@ -199,9 +199,7 @@ export function StatsScrollLock() {
                       {isActive && (
                         <motion.div
                           className="absolute inset-y-0 left-0 bg-gold"
-                          style={{
-                            width: useTransform(railProgress, (v) => `${v * 100}%`),
-                          }}
+                          style={{ width: railWidth }}
                         />
                       )}
                     </div>
