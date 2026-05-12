@@ -268,7 +268,7 @@ export function StatsScrollLock() {
                     >
                       <h3
                         className="font-display"
-                        style={{ fontWeight: 600, fontSize: "44px", lineHeight: "44px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                        style={{ fontWeight: 600, fontSize: "44px", lineHeight: "1", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
                       >
                         {s.label}
                       </h3>
