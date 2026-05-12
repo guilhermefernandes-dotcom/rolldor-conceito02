@@ -24,47 +24,50 @@ export function ScreenPortal() {
 
   // Phase 1: tilt 25deg -> 0 (0..0.4)
   // Phase 2: scale up (0.4..0.85)
-  // Phase 3: warp + fade to next section (0.85..1)
+  // Phase 3: blur sweep that takes us to next section (0.85..1)
   const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0]);
 
-  // Desktop transforms — scale from center, with a final warp burst
-  const scale = useTransform(scrollYProgress, [0.4, 0.85, 1], [1.15, 6, 14]);
-  const y = useTransform(scrollYProgress, [0.4, 0.85, 1], [80, 80, -120]);
+  // Desktop transforms — scale from center, no warp drift
+  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 6]);
+  const y = useTransform(scrollYProgress, [0.4, 0.85], [80, 80]);
 
   // Mobile transforms
-  const scaleM = useTransform(scrollYProgress, [0.4, 0.85, 1], [1, 4.5, 10]);
-  const yM = useTransform(scrollYProgress, [0.4, 0.85, 1], [40, 40, -80]);
+  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 4.5]);
+  const yM = useTransform(scrollYProgress, [0.4, 0.85], [40, 40]);
 
-  // Backdrop blur intensifies as user scrolls deeper, peaks at the warp
-  const blurPx = useTransform(scrollYProgress, [0, 0.5, 0.85, 1], [0, 6, 14, 36]);
-  const backdropFilter = useTransform(blurPx, (v) => `blur(${v}px)`);
+  // Mild backdrop blur during the journey (subtle depth)
+  const ambientBlur = useTransform(scrollYProgress, [0, 0.5, 0.85], [0, 4, 8]);
+  const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
 
-  // Warp dim: a soft tinted veil that grows during the teleport
-  const warpVeilOpacity = useTransform(scrollYProgress, [0.7, 0.92, 1], [0, 0.4, 0]);
+  // FINAL TRANSITION (0.85..1):
+  // A heavy blur+bg overlay sweeps in covering the portal, then fades —
+  // creating a smooth "blur portal" handoff to the next section.
+  const transitionOpacity = useTransform(
+    scrollYProgress,
+    [0.82, 0.92, 0.98, 1],
+    [0, 1, 1, 1],
+  );
+  const transitionBlurPx = useTransform(
+    scrollYProgress,
+    [0.82, 0.92, 1],
+    [0, 30, 60],
+  );
+  const transitionFilter = useTransform(
+    transitionBlurPx,
+    (v) => `blur(${v}px)`,
+  );
 
-  // Final overlay fade — phone & UI dissolve into the next section
-  const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.98], [1, 0]);
-  const phoneOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
+  // Portal contents (phone + glow + badge) fade into the blur sweep
+  const overlayOpacity = useTransform(scrollYProgress, [0.82, 0.95], [1, 0]);
 
   return (
     <section ref={ref} className="relative" style={{ height: "300vh" }}>
       <div className="sticky top-0 h-screen overflow-hidden">
-        {/* Blurred backdrop tied to scroll — uses parent section bg color */}
+        {/* Mild ambient blur backdrop tied to scroll */}
         <motion.div
           aria-hidden
-          style={{ backdropFilter, WebkitBackdropFilter: backdropFilter }}
-          className="absolute inset-0 z-[1] bg-secondary/40"
-        />
-
-        {/* Warp veil — gold-tinted bloom during the teleport */}
-        <motion.div
-          aria-hidden
-          style={{
-            opacity: warpVeilOpacity,
-            background:
-              "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 35%, transparent) 0%, color-mix(in oklab, var(--secondary) 70%, transparent) 45%, var(--secondary) 100%)",
-          }}
-          className="pointer-events-none absolute inset-0 z-[2]"
+          style={{ backdropFilter: ambientFilter, WebkitBackdropFilter: ambientFilter }}
+          className="absolute inset-0 z-[1] bg-secondary/30"
         />
 
         {/* Portal overlay (covers description until end of scroll) */}
@@ -89,7 +92,6 @@ export function ScreenPortal() {
               rotateX,
               scale,
               y,
-              opacity: phoneOpacity,
               transformPerspective: 1600,
               transformOrigin: "50% 50%",
             }}
@@ -127,7 +129,6 @@ export function ScreenPortal() {
               rotateX,
               scale: scaleM,
               y: yM,
-              opacity: phoneOpacity,
               transformPerspective: 1200,
               transformOrigin: "50% 50%",
             }}
@@ -158,6 +159,17 @@ export function ScreenPortal() {
             </div>
           </motion.div>
         </motion.div>
+
+        {/* BLUR SWEEP — covers the portal and hands off to the next section */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: transitionOpacity,
+            backdropFilter: transitionFilter,
+            WebkitBackdropFilter: transitionFilter,
+          }}
+          className="pointer-events-none absolute inset-0 z-30 bg-secondary/60"
+        />
       </div>
     </section>
   );
