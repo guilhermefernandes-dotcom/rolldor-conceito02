@@ -27,13 +27,13 @@ export function ScreenPortal() {
   // Phase 3: fade overlay out (0.85..0.97)
   const rotateX = useTransform(scrollYProgress, [0, 0.4], [25, 0]);
 
-  // Desktop transforms
-  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 8]);
-  const y = useTransform(scrollYProgress, [0.4, 0.85], [-40, 480]);
+  // Desktop transforms — scale from center, no vertical drift
+  const scale = useTransform(scrollYProgress, [0.4, 0.85], [1.15, 6]);
+  const y = useTransform(scrollYProgress, [0.4, 0.85], [0, 0]);
 
-  // Mobile transforms (smaller scale, less translate)
-  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 5.5]);
-  const yM = useTransform(scrollYProgress, [0.4, 0.85], [-20, 240]);
+  // Mobile transforms (smaller scale)
+  const scaleM = useTransform(scrollYProgress, [0.4, 0.85], [1, 4.5]);
+  const yM = useTransform(scrollYProgress, [0.4, 0.85], [0, 0]);
 
   const overlayOpacity = useTransform(scrollYProgress, [0.85, 0.97], [1, 0]);
 
@@ -66,7 +66,7 @@ export function ScreenPortal() {
               scale,
               y,
               transformPerspective: 1600,
-              transformOrigin: "50% 0%",
+              transformOrigin: "50% 50%",
             }}
             className="relative mt-8 hidden w-[680px] md:block lg:w-[780px]"
           >
@@ -103,7 +103,7 @@ export function ScreenPortal() {
               scale: scaleM,
               y: yM,
               transformPerspective: 1200,
-              transformOrigin: "50% 0%",
+              transformOrigin: "50% 50%",
             }}
             className="relative mt-6 w-[280px] md:hidden"
           >
