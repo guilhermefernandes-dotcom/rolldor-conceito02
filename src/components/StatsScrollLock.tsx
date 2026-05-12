@@ -60,12 +60,8 @@ export function StatsScrollLock() {
     if (idx !== active) setActive(idx);
   });
 
-  // progress within the current step (0..1)
-  const railProgress = useTransform(scrollYProgress, (v) => {
-    const seg = 1 / STEPS.length;
-    return Math.min(1, (v - active * seg) / seg);
-  });
-  const railWidth = useTransform(railProgress, (v) => `${v * 100}%`);
+
+
 
   // Curve geometry — list lives inside a 60x440 SVG, dots evenly spaced.
   const RAIL_W = 60;
