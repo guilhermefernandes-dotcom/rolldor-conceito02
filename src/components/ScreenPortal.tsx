@@ -124,15 +124,19 @@ export function ScreenPortal() {
             />
             {/* Overlay screen content — bbox derived from mockup transparent screen */}
             <div
-              className="absolute z-[5] overflow-hidden rounded-[14px]"
+              className="absolute z-[5] overflow-hidden rounded-[10px] bg-white"
               style={{
-                left: "25.9%",
-                right: "24.2%",
-                top: "9.4%",
-                bottom: "39.1%",
+                left: "20.1%",
+                right: "19.9%",
+                top: "13.7%",
+                bottom: "42.4%",
               }}
             >
-              <img src={screenDesktop} alt="" className="h-full w-full object-cover object-top" />
+              <img
+                src={screenDesktop}
+                alt=""
+                className="h-full w-full object-contain object-center"
+              />
             </div>
           </motion.div>
 
