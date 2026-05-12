@@ -40,8 +40,8 @@ export function ScreenPortal() {
   const scaleM = useTransform(scrollYProgress, [0.3, 0.75, 1], [1, 3, 10]);
   const yM = useTransform(scrollYProgress, [0.3, 1], [40, 40]);
 
-  // Mild backdrop blur during the journey (subtle depth)
-  const ambientBlur = useTransform(scrollYProgress, [0, 0.4, 0.7], [0, 6, 14]);
+  // Mild backdrop blur during the journey; it fully clears before the solid handoff.
+  const ambientBlur = useTransform(scrollYProgress, [0, 0.4, 0.62, 0.7], [0, 6, 14, 0]);
   const ambientFilter = useTransform(ambientBlur, (v) => `blur(${v}px)`);
 
   // GOLD FLASH — quick burst right at warp peak (earlier)
@@ -55,18 +55,19 @@ export function ScreenPortal() {
   const warpScale = useTransform(scrollYProgress, [0.55, 0.95], [0.2, 6]);
   const warpOpacity = useTransform(
     scrollYProgress,
-    [0.55, 0.72, 0.92],
-    [0, 1, 0.7],
+    [0.55, 0.72, 0.82, 0.9],
+    [0, 1, 0.35, 0],
   );
 
   // FINAL VEIL — solid bg covering at the unpin (invisible handoff) — start much earlier
   const veilOpacity = useTransform(
     scrollYProgress,
-    [0.6, 0.78, 1],
+    [0.66, 0.74, 1],
     [0, 1, 1],
   );
-  // Backdrop blur ramps up during the warp, then back to 0 once the veil is solid
-  const veilBlurPx = useTransform(scrollYProgress, [0.5, 0.7, 0.8], [0, 40, 0]);
+  // Blur is only transitional and is fully gone before the solid color reaches 100%.
+  const veilBlurOpacity = useTransform(scrollYProgress, [0.52, 0.62, 0.68], [0, 1, 0]);
+  const veilBlurPx = useTransform(scrollYProgress, [0.52, 0.62, 0.68], [0, 36, 0]);
   const veilFilter = useTransform(veilBlurPx, (v) => `blur(${v}px)`);
 
   // Portal contents (phone + glow + badge) fade into the warp — earlier
@@ -197,13 +198,22 @@ export function ScreenPortal() {
           className="pointer-events-none absolute inset-0 z-[25] bg-gold"
         />
 
-        {/* FINAL VEIL — solid #f2f0ed bg covers the unpin */}
+        {/* TRANSITIONAL BLUR — disappears before the solid veil is complete */}
+        <motion.div
+          aria-hidden
+          style={{
+            opacity: veilBlurOpacity,
+            backdropFilter: veilFilter,
+            WebkitBackdropFilter: veilFilter,
+          }}
+          className="pointer-events-none absolute inset-0 z-[29]"
+        />
+
+        {/* FINAL VEIL — pure solid #f2f0ed bg covers the unpin */}
         <motion.div
           aria-hidden
           style={{
             opacity: veilOpacity,
-            backdropFilter: veilFilter,
-            WebkitBackdropFilter: veilFilter,
             backgroundColor: "#f2f0ed",
           }}
           className="pointer-events-none absolute inset-0 z-30"
