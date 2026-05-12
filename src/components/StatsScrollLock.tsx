@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
+import community from "@/assets/community.jpg";
 
 type Step = {
   n: string;
@@ -19,6 +20,7 @@ const STEPS: Step[] = [
     big: "+50 mil",
     desc: "revendedoras acompanham a Leevi todos os dias, criando uma das maiores redes de moda feminina do país — engajamento real, conversas vivas e oportunidade de venda diária.",
     Icon: Users,
+    image: community,
   },
   {
     n: "02",
