@@ -195,7 +195,7 @@ export function ScreenPortal() {
             opacity: veilOpacity,
             backgroundColor: "#f0efeb",
           }}
-          className="pointer-events-none absolute inset-0 z-30"
+          className="pointer-events-none absolute inset-0 z-[25]"
         />
       </div>
     </section>
