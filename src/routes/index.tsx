@@ -312,7 +312,7 @@ function Landing() {
               </div>
               <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
                 O que você ganha por estar{" "}
-                <span className="italic text-gold">dentro do grupo</span>.
+                <span className="text-gold">dentro do grupo</span>.
               </h2>
             </Reveal>
           </div>
