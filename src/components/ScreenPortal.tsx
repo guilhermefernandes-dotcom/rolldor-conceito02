@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { motion, useScroll, useTransform } from "motion/react";
-import { ChevronDown } from "lucide-react";
+
 import mockupDesktop from "@/assets/mockup-desktop.webp";
 import mockupMobile from "@/assets/mockup-mobile.webp";
 import screenDesktop from "@/assets/whatsapp-screen.png";
@@ -80,13 +80,6 @@ export function ScreenPortal() {
           {/* radial gold glow — subtle so the section bg stays uniform */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/10 blur-[140px] md:h-[600px] md:w-[600px]" />
 
-          {/* "Keep scrolling" badge */}
-          <div className="absolute bottom-12 z-20 flex items-center gap-2 rounded-full border-2 border-background bg-secondary py-1.5 pl-1.5 pr-5 shadow-sm">
-            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-background">
-              <ChevronDown className="h-5 w-5 animate-bounce text-foreground" />
-            </span>
-            <span className="text-sm font-medium text-foreground">Continue rolando</span>
-          </div>
 
           {/* Desktop phone (horizontal) */}
           <motion.div
