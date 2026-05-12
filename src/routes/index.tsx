@@ -317,6 +317,9 @@ function Landing() {
         </div>
       </section>
 
+      {/* SCREEN PORTAL — pinned scroll reveal */}
+      <ScreenPortal />
+
       {/* VANTAGENS */}
       <section className="py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
