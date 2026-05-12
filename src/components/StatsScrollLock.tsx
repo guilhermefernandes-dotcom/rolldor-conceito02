@@ -1,6 +1,6 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Users, Building2, Sparkles, Truck } from "lucide-react";
+import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
 import leeviStore from "@/assets/leevi-store.jpg";
 
 type Step = {
@@ -52,13 +52,24 @@ const INTERVAL_MS = 4000;
  */
 export function StatsScrollLock() {
   const [active, setActive] = useState(0);
+  const stoppedRef = useRef(false);
 
   useEffect(() => {
     const id = window.setInterval(() => {
+      if (stoppedRef.current) return;
       setActive((prev) => (prev + 1) % STEPS.length);
     }, INTERVAL_MS);
     return () => window.clearInterval(id);
   }, []);
+
+  const goPrev = () => {
+    stoppedRef.current = true;
+    setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
+  };
+  const goNext = () => {
+    stoppedRef.current = true;
+    setActive((prev) => (prev + 1) % STEPS.length);
+  };
 
 
 
@@ -315,6 +326,24 @@ export function StatsScrollLock() {
                   </motion.div>
                 );
               })}
+
+              {/* Carousel arrows — bottom corners of the active card */}
+              <button
+                type="button"
+                onClick={goPrev}
+                aria-label="Card anterior"
+                className="absolute bottom-6 left-6 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:left-8"
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                onClick={goNext}
+                aria-label="Próximo card"
+                className="absolute bottom-6 right-6 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:right-8"
+              >
+                <ArrowRight className="h-5 w-5" />
+              </button>
             </div>
           </div>
         </div>
