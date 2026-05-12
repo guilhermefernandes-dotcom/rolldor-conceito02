@@ -118,7 +118,35 @@ function Landing() {
       {/* HERO — full width inside gold padded frame */}
       <div className="bg-gold p-5">
         <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
-          <div className="mx-auto flex max-w-4xl flex-col items-center text-center">
+          {/* Decorative background effects */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            {/* Soft golden blobs */}
+            <div className="absolute -left-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-gold/25 blur-[120px]" />
+            <div className="absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-gold-soft/30 blur-[140px]" />
+            <div className="absolute bottom-0 left-1/3 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]" />
+            {/* Subtle grid */}
+            <div
+              className="absolute inset-0 opacity-[0.04]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgb(56,56,56) 1px, transparent 1px), linear-gradient(to bottom, rgb(56,56,56) 1px, transparent 1px)",
+                backgroundSize: "56px 56px",
+                maskImage:
+                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+              }}
+            />
+            {/* Vignette to focus the center */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, transparent 50%, color-mix(in oklab, var(--secondary) 60%, transparent) 100%)",
+              }}
+            />
+          </div>
+          <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
             <Reveal>
               <Logo className="mb-10" />
             </Reveal>
