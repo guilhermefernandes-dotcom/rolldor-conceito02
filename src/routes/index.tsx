@@ -113,6 +113,28 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+function UnderlineWord({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <span className="relative inline-block whitespace-nowrap">
+      <span className="relative z-10">{children}</span>
+      <motion.span
+        aria-hidden
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.5 + delay, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full bg-gold md:h-[4px]"
+      />
+    </span>
+  );
+}
+
 function Landing() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
