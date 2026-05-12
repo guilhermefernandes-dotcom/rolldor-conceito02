@@ -372,7 +372,6 @@ function Landing() {
 
         <div className="mx-auto mt-12 max-w-7xl px-5 text-center md:px-10">
           <CTA>Quero todas essas vantagens</CTA>
-          </div>
         </div>
       </section>
 
