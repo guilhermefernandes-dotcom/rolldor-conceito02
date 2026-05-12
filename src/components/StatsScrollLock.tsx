@@ -296,6 +296,7 @@ export function StatsScrollLock() {
                         y: isActive ? 0 : 8,
                       }}
                       transition={{ duration: 0.6, delay: isActive ? 0.15 : 0 }}
+                      style={s.image ? { maxWidth: "52%" } : undefined}
                     >
                       <h3
                         className="font-display"
