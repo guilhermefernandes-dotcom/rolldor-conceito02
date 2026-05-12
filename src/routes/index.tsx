@@ -166,7 +166,7 @@ function Landing() {
             </Reveal>
             <Reveal delay={0.35}>
               <div className="mt-10 flex flex-col items-center gap-5">
-                <CTA>Entrar no Grupo VIP</CTA>
+                <CTA variant="whatsapp">Quero entrar no Grupo VIP</CTA>
                 <div className="flex items-center gap-3">
                   <div className="flex -space-x-2">
                     {[t1, t2, t3].map((src, i) => (
