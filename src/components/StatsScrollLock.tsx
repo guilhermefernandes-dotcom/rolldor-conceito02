@@ -90,8 +90,8 @@ export function StatsScrollLock() {
       className="relative"
       style={{ backgroundColor: "transparent" }}
     >
-      <div className="flex items-center overflow-hidden py-12 md:py-16">
-        <div className="mx-auto grid w-full grid-cols-12 gap-8 px-5 md:px-10" style={{ maxWidth: "1300px" }}>
+      <div className="flex items-center py-12 md:py-16">
+        <div className="mx-auto grid w-full grid-cols-12 gap-8 px-5 md:px-10">
           {/* LEFT — step rail with curving line */}
           <div className="col-span-12 md:col-span-3">
             <div
