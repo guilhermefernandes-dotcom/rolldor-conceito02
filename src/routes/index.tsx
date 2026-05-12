@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion } from "motion/react";
 import {
   ArrowRight,
+  Sparkles,
   Tag,
   Gift,
   TrendingUp,
@@ -24,6 +25,7 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import t3 from "@/assets/t3.jpg";
+import logoUrl from "@/assets/logo.svg";
 
 export const Route = createFileRoute("/")({
   head: () => ({
