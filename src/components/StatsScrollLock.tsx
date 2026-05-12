@@ -126,7 +126,7 @@ export function StatsScrollLock() {
                       cx={baseX}
                       cy={dotY(i)}
                       r={4.5}
-                      fill="hsl(var(--background))"
+                      fill="var(--background)"
                       stroke="var(--gold)"
                       strokeOpacity={0.7}
                       strokeWidth={1.5}
