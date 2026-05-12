@@ -86,9 +86,8 @@ export function StatsScrollLock() {
             L ${baseX} ${RAIL_H}`;
   };
 
-  // Overall progress for the gold stroke fill (0..1)
-  const pathProgress = useTransform(scrollYProgress, (v) => v);
-  const dashOffset = useTransform(pathProgress, (v) => 1 - v);
+
+
 
   return (
     <section
@@ -112,28 +111,16 @@ export function StatsScrollLock() {
                 className="absolute left-0 top-0 overflow-visible"
                 aria-hidden
               >
-                {/* Faint base line */}
-                <motion.path
-                  initial={false}
-                  animate={{ d: buildPath(active) }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  fill="none"
-                  stroke="hsl(var(--border) / 0.7)"
-                  strokeWidth={1.5}
-                  strokeLinecap="round"
-                />
-                {/* Gold progress stroke */}
+                {/* Static gold rail line — curves to active dot */}
                 <motion.path
                   initial={false}
                   animate={{ d: buildPath(active) }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                   fill="none"
                   stroke="var(--gold)"
+                  strokeOpacity={0.7}
                   strokeWidth={1.5}
                   strokeLinecap="round"
-                  pathLength={1}
-                  strokeDasharray="1 1"
-                  style={{ strokeDashoffset: dashOffset }}
                 />
                 {/* Dots */}
                 {STEPS.map((s, i) => {
