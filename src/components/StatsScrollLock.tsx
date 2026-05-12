@@ -312,43 +312,6 @@ export function StatsScrollLock() {
                       </p>
                     </motion.div>
 
-                    <div className="mt-auto flex items-end gap-5">
-                      {STEPS.map((step, j) => {
-                        const Icon = step.Icon;
-                        const chipActive = j === active;
-                        return (
-                          <div
-                            key={step.n}
-                            className="flex flex-col items-center gap-2"
-                          >
-                            <div
-                              className={`flex h-11 w-11 items-center justify-center rounded-full transition-all duration-500 md:h-12 md:w-12 ${
-                                chipActive
-                                  ? "scale-110 bg-gold shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
-                                  : "bg-secondary"
-                              }`}
-                            >
-                              <Icon
-                                className={`h-5 w-5 ${
-                                  chipActive
-                                    ? "text-background"
-                                    : "text-muted-foreground/60"
-                                }`}
-                              />
-                            </div>
-                            <span
-                              className={`font-display text-[10px] tracking-[0.25em] transition-opacity ${
-                                chipActive
-                                  ? "text-gold opacity-100"
-                                  : "opacity-0"
-                              }`}
-                            >
-                              {step.label.toUpperCase()}
-                            </span>
-                          </div>
-                        );
-                      })}
-                    </div>
                   </motion.div>
                 );
               })}
