@@ -317,8 +317,11 @@ function Landing() {
         {/* Mockup animation — pinned scroll reveal with stats behind */}
         <ScreenPortal />
 
-        {/* Scroll-locked stats progression */}
-        <StatsScrollLock />
+        {/* Scroll-locked stats progression — pulled up so it sits where the
+            ScreenPortal ends, hidden behind the blur veil during transition */}
+        <div className="relative z-0 -mt-[100vh]">
+          <StatsScrollLock />
+        </div>
       </section>
 
       {/* VANTAGENS */}
