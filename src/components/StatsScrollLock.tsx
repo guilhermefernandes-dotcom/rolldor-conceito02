@@ -140,15 +140,6 @@ export function StatsScrollLock() {
                   strokeDasharray="2 4"
                   opacity={0.85}
                 />
-                {/* Soft halo on active dot */}
-                <motion.circle
-                  initial={false}
-                  animate={{ cx: apexX, cy: dotY(active) }}
-                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  r={18}
-                  fill="var(--gold)"
-                  opacity={0.1}
-                />
               </svg>
 
               {/* Labels positioned at each dot's y */}
