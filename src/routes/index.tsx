@@ -27,6 +27,7 @@ import leeviMark from "@/assets/leevi-mark.png";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.svg";
 import badgeVagas from "@/assets/badge-vagas.png";
+import handPhone from "@/assets/hand-phone.png";
 import { ScreenPortal } from "@/components/ScreenPortal";
 
 export const Route = createFileRoute("/")({
