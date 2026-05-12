@@ -85,6 +85,7 @@ export function ScreenPortal() {
               rotateX,
               scale,
               y,
+              opacity: phoneOpacity,
               transformPerspective: 1600,
               transformOrigin: "50% 50%",
             }}
