@@ -52,13 +52,24 @@ const INTERVAL_MS = 4000;
  */
 export function StatsScrollLock() {
   const [active, setActive] = useState(0);
+  const stoppedRef = useRef(false);
 
   useEffect(() => {
     const id = window.setInterval(() => {
+      if (stoppedRef.current) return;
       setActive((prev) => (prev + 1) % STEPS.length);
     }, INTERVAL_MS);
     return () => window.clearInterval(id);
   }, []);
+
+  const goPrev = () => {
+    stoppedRef.current = true;
+    setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
+  };
+  const goNext = () => {
+    stoppedRef.current = true;
+    setActive((prev) => (prev + 1) % STEPS.length);
+  };
 
 
 
