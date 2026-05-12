@@ -59,8 +59,12 @@ export function ScreenPortal() {
         {/* Warp veil — gold-tinted bloom during the teleport */}
         <motion.div
           aria-hidden
-          style={{ opacity: warpVeilOpacity }}
-          className="pointer-events-none absolute inset-0 z-[2] bg-gradient-radial from-gold/30 via-secondary/60 to-secondary"
+          style={{
+            opacity: warpVeilOpacity,
+            background:
+              "radial-gradient(circle at 50% 50%, color-mix(in oklab, var(--gold) 35%, transparent) 0%, color-mix(in oklab, var(--secondary) 70%, transparent) 45%, var(--secondary) 100%)",
+          }}
+          className="pointer-events-none absolute inset-0 z-[2]"
         />
 
         {/* Portal overlay (covers description until end of scroll) */}
