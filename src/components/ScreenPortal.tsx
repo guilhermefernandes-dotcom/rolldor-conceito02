@@ -70,7 +70,18 @@ export function ScreenPortal() {
             }}
             className="relative mt-8 hidden w-[680px] md:block lg:w-[780px]"
           >
-            <img src={mockupDesktop} alt="" className="relative z-10 w-full select-none" draggable={false} />
+            <img
+              src={mockupDesktop}
+              alt=""
+              className="relative z-10 w-full select-none"
+              draggable={false}
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%)",
+              }}
+            />
             {/* Overlay screen content — bbox derived from mockup transparent screen */}
             <div
               className="absolute z-[5] overflow-hidden rounded-[14px]"
@@ -96,7 +107,18 @@ export function ScreenPortal() {
             }}
             className="relative mt-6 w-[280px] md:hidden"
           >
-            <img src={mockupMobile} alt="" className="relative z-10 w-full select-none" draggable={false} />
+            <img
+              src={mockupMobile}
+              alt=""
+              className="relative z-10 w-full select-none"
+              draggable={false}
+              style={{
+                WebkitMaskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)",
+                maskImage:
+                  "linear-gradient(to bottom, #000 0%, #000 75%, transparent 100%)",
+              }}
+            />
             <div
               className="absolute z-[5] overflow-hidden rounded-[28px]"
               style={{
