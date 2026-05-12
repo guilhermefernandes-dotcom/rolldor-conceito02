@@ -317,39 +317,55 @@ function Landing() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-px bg-border md:grid-cols-2">
-            {[
-              {
-                icon: Zap,
-                title: "Lançamentos antes de todo mundo",
-                desc: "Você vê as novidades 24h antes do Instagram, do site ou de qualquer canal público.",
-              },
-              {
-                icon: Tag,
-                title: "Preços que só existem no grupo",
-                desc: "Condições reservadas para quem participa das lives. Não saem daqui pra fora.",
-              },
-              {
-                icon: Gift,
-                title: "Sorteios e bônus toda semana",
-                desc: "Brindes, kits e ações relâmpago para quem aparece nas lives ao vivo.",
-              },
-              {
-                icon: TrendingUp,
-                title: "Curadoria de alto giro",
-                desc: "Você para de apostar no escuro. Só compra o que realmente tem saída.",
-              },
-            ].map(({ icon: Icon, title, desc }, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="group h-full bg-background p-8 transition-colors hover:bg-secondary md:p-10">
-                  <div className="mb-6 flex h-12 w-12 items-center justify-center rounded-2xl border border-gold/40 bg-gold/5 text-gold transition-colors group-hover:bg-gold group-hover:text-foreground">
-                    <Icon className="h-5 w-5" />
+          <div
+            className="relative mt-16 w-full rounded-[28px] shadow-[0_30px_60px_-30px_rgba(0,0,0,0.45)]"
+            style={{ background: "var(--gradient-dark, var(--foreground))", padding: "13px" }}
+          >
+            <div className="grid gap-[13px] md:grid-cols-4">
+              {[
+                {
+                  icon: Zap,
+                  title: "Lançamentos antes de todo mundo",
+                  desc: "Você vê as novidades 24h antes do Instagram, do site ou de qualquer canal público.",
+                },
+                {
+                  icon: Tag,
+                  title: "Preços que só existem no grupo",
+                  desc: "Condições reservadas para quem participa das lives. Não saem daqui pra fora.",
+                },
+                {
+                  icon: Gift,
+                  title: "Sorteios e bônus toda semana",
+                  desc: "Brindes, kits e ações relâmpago para quem aparece nas lives ao vivo.",
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Curadoria de alto giro",
+                  desc: "Você para de apostar no escuro. Só compra o que realmente tem saída.",
+                },
+              ].map(({ icon: Icon, title, desc }, i) => (
+                <Reveal key={i} delay={i * 0.05}>
+                  <div className="group flex h-full flex-col rounded-2xl bg-white/[0.04] p-6 ring-1 ring-white/10 transition-colors hover:bg-white/[0.07]">
+                    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-gold/15 text-gold transition-colors group-hover:bg-gold group-hover:text-foreground">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <h3 className="font-display text-base font-bold leading-tight tracking-tight text-background md:text-lg">
+                      {title}
+                    </h3>
+                    <p className="mt-2 text-sm leading-relaxed text-background/60">{desc}</p>
                   </div>
-                  <h3 className="font-display text-xl font-bold tracking-tight md:text-2xl">{title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:text-base">{desc}</p>
-                </div>
-              </Reveal>
-            ))}
+                </Reveal>
+              ))}
+            </div>
+            {/* tail — message bubble triangle */}
+            <div
+              aria-hidden
+              className="absolute -bottom-5 left-10 h-6 w-8"
+              style={{
+                background: "var(--gradient-dark, var(--foreground))",
+                clipPath: "polygon(0 0, 100% 0, 30% 100%)",
+              }}
+            />
           </div>
 
           <div className="mt-12 text-center">
