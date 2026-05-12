@@ -114,20 +114,6 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
 function Landing() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
-      {/* MARQUEE */}
-      <div className="overflow-hidden bg-foreground py-2.5">
-        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.2em] text-background">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <span key={i} className="mx-6 inline-flex items-center gap-3">
-              <Sparkles className="h-3 w-3" /> Vagas limitadas
-              <span>•</span> Lives toda semana <span>•</span> Lançamentos antes de todo mundo
-              <span>•</span> Grupo VIP Leevi
-            </span>
-          ))}
-        </div>
-        <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
-      </div>
-
       {/* HERO — full width inside gold padded frame */}
       <div className="bg-gold p-5">
         <section className="relative w-full overflow-hidden rounded-[1.75rem] bg-secondary px-6 py-20 md:px-10 md:py-32">
@@ -197,6 +183,21 @@ function Landing() {
             </Reveal>
           </div>
         </section>
+      </div>
+
+      {/* MARQUEE */}
+      <div className="overflow-hidden bg-gold py-4">
+        <div className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display text-sm font-semibold tracking-[-0.01em] text-foreground md:text-base">
+          {Array.from({ length: 6 }).flatMap((_, i) =>
+            ["Vagas limitadas", "Lives toda semana", "Lançamentos antes de todo mundo", "Grupo VIP Leevi"].map((item, j) => (
+              <span key={`${i}-${j}`} className="inline-flex items-center">
+                <span className="px-8">{item}</span>
+                <span className="text-foreground/60">•</span>
+              </span>
+            ))
+          )}
+        </div>
+        <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
       </div>
 
       {/* AUTORIDADE */}
