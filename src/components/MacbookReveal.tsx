@@ -7,7 +7,7 @@ export function MacbookReveal() {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ["start 80%", "end 30%"],
+    offset: ["start 30%", "end 60%"],
   });
 
   // Screen flips down from the lid and grows as user scrolls
