@@ -130,20 +130,32 @@ export function StatsScrollLock() {
                       animate={{ cx, r: isActive ? 7 : 4.5 }}
                       transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                       cy={dotY(i)}
-                      fill="transparent"
+                      fill={isActive ? "var(--gold)" : "transparent"}
                       stroke="var(--gold)"
                       strokeWidth={1.5}
                     />
                   );
                 })}
+                {/* Dashed ring around active dot */}
+                <motion.circle
+                  initial={false}
+                  animate={{ cx: apexX, cy: dotY(active) }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  r={12}
+                  fill="transparent"
+                  stroke="var(--gold)"
+                  strokeWidth={1.2}
+                  strokeDasharray="2 4"
+                  opacity={0.85}
+                />
                 {/* Soft halo on active dot */}
                 <motion.circle
                   initial={false}
                   animate={{ cx: apexX, cy: dotY(active) }}
                   transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                  r={14}
+                  r={18}
                   fill="var(--gold)"
-                  opacity={0.18}
+                  opacity={0.1}
                 />
               </svg>
 
