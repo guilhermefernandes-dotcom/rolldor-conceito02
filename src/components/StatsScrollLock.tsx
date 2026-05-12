@@ -207,7 +207,6 @@ export function StatsScrollLock() {
                       )}
                     </div>
                   </motion.div>
-                  </motion.div>
                 );
               })}
             </div>
