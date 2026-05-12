@@ -84,11 +84,10 @@ export function StatsScrollLock() {
 
   return (
     <section
-      ref={ref}
       className="relative"
-      style={{ height: `${STEPS.length * 100}vh`, backgroundColor: "transparent" }}
+      style={{ backgroundColor: "transparent" }}
     >
-      <div className="sticky top-0 flex h-screen items-center overflow-hidden">
+      <div className="flex min-h-screen items-center overflow-hidden py-24 md:py-32">
         <div className="mx-auto grid w-full max-w-7xl grid-cols-12 gap-8 px-5 md:px-10">
           {/* LEFT — step rail with curving line */}
           <div className="col-span-12 md:col-span-3">
