@@ -118,21 +118,6 @@ export function StatsScrollLock() {
                   strokeWidth={1.5}
                   strokeLinecap="round"
                 />
-                {/* Empty placeholder slots on inactive steps — a gap in the line for the dot to fill */}
-                {STEPS.map((s, i) =>
-                  i === active ? null : (
-                    <circle
-                      key={`slot-${s.n}`}
-                      cx={baseX}
-                      cy={dotY(i)}
-                      r={4.5}
-                      fill="var(--background)"
-                      stroke="var(--gold)"
-                      strokeOpacity={0.7}
-                      strokeWidth={1.5}
-                    />
-                  ),
-                )}
                 <motion.circle
                   initial={false}
                   animate={{ cx: apexX, cy: dotY(active) }}
