@@ -323,7 +323,7 @@ function Landing() {
             cards section rises up while the portal scroll is still happening.
             The portal's veil fades to #f0efeb which matches this section's bg
             for a seamless handoff. */}
-        <div className="relative z-20 -mt-[80vh]">
+        <div className="relative z-20 -mt-[110vh]">
           <StatsScrollLock />
         </div>
       </section>
