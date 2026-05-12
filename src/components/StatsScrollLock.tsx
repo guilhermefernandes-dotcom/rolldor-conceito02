@@ -24,7 +24,7 @@ const STEPS: Step[] = [
     n: "02",
     label: "Origem",
     big: "Atacado & Varejo",
-    desc: "com sede própria em São Luís — MA, mais de uma década de mercado e estrutura completa de showroom, estoque e logística para abastecer revendedoras em todo o Brasil.",
+    desc: "com sede própria em São Luís, MA, mais de uma década de mercado e estrutura completa de showroom, estoque e logística para abastecer revendedoras em todo o Brasil.",
     Icon: Building2,
     image: leeviStore,
   },
