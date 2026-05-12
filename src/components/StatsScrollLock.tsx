@@ -185,46 +185,85 @@ export function StatsScrollLock() {
           </div>
 
           {/* RIGHT — active card + peek */}
-          <div className="col-span-12 md:col-span-5">
-            <div className="relative h-[420px] md:h-[460px]">
+          <div className="col-span-12 md:col-span-9">
+            <div className="relative h-[460px] md:h-[500px]">
               {STEPS.map((s, i) => {
                 const offset = i - active;
                 const isActive = offset === 0;
+                const isNext = offset === 1;
+                const visible = offset >= 0 && offset <= 2;
                 return (
                   <motion.div
                     key={s.n}
                     initial={false}
                     animate={{
-                      x: offset === 0 ? 0 : offset > 0 ? 60 : -60,
-                      opacity: isActive ? 1 : offset === 1 ? 0.35 : 0,
-                      scale: isActive ? 1 : 0.92,
+                      x:
+                        offset === 0
+                          ? "0%"
+                          : offset === 1
+                            ? "82%"
+                            : offset === 2
+                              ? "92%"
+                              : -120,
+                      opacity: visible ? (isActive ? 1 : isNext ? 1 : 0.5) : 0,
+                      scale: isActive ? 1 : 0.96,
                     }}
-                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                    transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
                     style={{ zIndex: STEPS.length - Math.abs(offset) }}
-                    className="absolute inset-0 flex flex-col rounded-3xl bg-secondary p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-12"
+                    className="absolute inset-y-0 left-0 right-0 flex flex-col rounded-3xl bg-background p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-14"
                   >
-                    <div className="font-display text-[11px] tracking-[0.3em] text-gold/80">
-                      {s.n} <span className="mx-2 text-gold/40">—</span>{" "}
-                      {s.label.toUpperCase()}
+                    <div className="absolute right-8 top-8 font-display text-2xl font-bold text-foreground/15 md:right-12 md:top-12 md:text-3xl">
+                      {s.n}
                     </div>
 
-                    <div className="mt-auto">
-                      <h3 className="font-display text-5xl font-black leading-[1.05] tracking-tight text-gold md:text-7xl">
-                        {s.big}
+                    <div className="max-w-xl">
+                      <h3 className="font-display text-3xl font-bold leading-[1.1] tracking-tight text-foreground md:text-[44px]">
+                        {s.label}
                       </h3>
-                      <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+                      <div className="mt-4 font-display text-4xl font-black leading-none text-gold md:text-5xl">
+                        {s.big}
+                      </div>
+                      <p className="mt-5 text-base leading-relaxed text-muted-foreground md:text-lg">
                         {s.desc}
                       </p>
                     </div>
 
-                    {/* bottom separator with scroll progress fill */}
-                    <div className="relative mt-10 h-px w-full overflow-hidden bg-border/70">
-                      {isActive && (
-                        <motion.div
-                          className="absolute inset-y-0 left-0 bg-gold"
-                          style={{ width: railWidth }}
-                        />
-                      )}
+                    <div className="mt-auto flex items-end gap-6">
+                      {STEPS.map((step, j) => {
+                        const Icon = step.Icon;
+                        const chipActive = j === active;
+                        return (
+                          <div
+                            key={step.n}
+                            className="flex flex-col items-center gap-2"
+                          >
+                            <div
+                              className={`flex h-12 w-12 items-center justify-center rounded-full transition-all duration-300 md:h-14 md:w-14 ${
+                                chipActive
+                                  ? "scale-110 bg-gold shadow-[0_8px_20px_-6px_color-mix(in_oklab,var(--gold)_55%,transparent)]"
+                                  : "bg-secondary"
+                              }`}
+                            >
+                              <Icon
+                                className={`h-5 w-5 md:h-6 md:w-6 ${
+                                  chipActive
+                                    ? "text-background"
+                                    : "text-muted-foreground/60"
+                                }`}
+                              />
+                            </div>
+                            <span
+                              className={`font-display text-[10px] tracking-[0.25em] transition-opacity ${
+                                chipActive
+                                  ? "text-gold opacity-100"
+                                  : "opacity-0"
+                              }`}
+                            >
+                              {step.label.toUpperCase()}
+                            </span>
+                          </div>
+                        );
+                      })}
                     </div>
                   </motion.div>
                 );
