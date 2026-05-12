@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck } from "lucide-react";
+import leeviStore from "@/assets/leevi-store.jpg";
 
 type Step = {
   n: string;
@@ -8,6 +9,7 @@ type Step = {
   big: string;
   desc: string;
   Icon: React.ComponentType<{ className?: string }>;
+  image?: string;
 };
 
 const STEPS: Step[] = [
@@ -24,6 +26,7 @@ const STEPS: Step[] = [
     big: "Atacado & Varejo",
     desc: "com sede própria em São Luís — MA.",
     Icon: Building2,
+    image: leeviStore,
   },
   {
     n: "03",
@@ -268,9 +271,24 @@ export function StatsScrollLock() {
                     }}
                     className="absolute inset-0 flex flex-col rounded-3xl bg-background p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:p-10"
                   >
-                    <div className="absolute right-7 top-7 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
+                    <div className="absolute right-7 top-7 z-10 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
                       {s.n}
                     </div>
+
+                    {s.image && (
+                      <div
+                        aria-hidden
+                        className="pointer-events-none absolute right-6 top-6 z-0 hidden overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:block"
+                        style={{ width: "44%", height: "78%" }}
+                      >
+                        <img
+                          src={s.image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          draggable={false}
+                        />
+                      </div>
+                    )}
 
                     <motion.div
                       animate={{
