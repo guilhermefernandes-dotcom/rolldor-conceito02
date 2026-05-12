@@ -1,5 +1,5 @@
 import { useRef } from "react";
-import { motion, useScroll, useTransform, useMotionValueEvent } from "motion/react";
+import { motion, useScroll, useMotionValueEvent } from "motion/react";
 import { useState } from "react";
 import { Users, Building2, Sparkles, Truck } from "lucide-react";
 
