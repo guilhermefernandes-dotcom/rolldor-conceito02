@@ -128,6 +128,50 @@ function Reveal({ children, delay = 0 }: { children: React.ReactNode; delay?: nu
   );
 }
 
+function InlineLiveBadge() {
+  return (
+    <motion.span
+      initial={{ scale: 0.6, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ delay: 0.6, type: "spring", stiffness: 200, damping: 14 }}
+      className="mx-1 inline-flex items-center gap-2 rounded-full px-3 py-1 align-middle text-[0.32em] font-semibold uppercase tracking-[0.15em] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.4),0_8px_20px_-6px_rgba(120,80,0,0.5)]"
+      style={{ background: "linear-gradient(180deg, #D9A95C 0%, #B8853A 100%)" }}
+    >
+      <span className="relative flex h-1.5 w-1.5">
+        <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-white opacity-75" />
+        <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-white" />
+      </span>
+      Ao vivo
+    </motion.span>
+  );
+}
+
+function SatisfactionSeal() {
+  return (
+    <motion.div
+      initial={{ rotate: -20, scale: 0 }}
+      animate={{ rotate: -12, scale: 1 }}
+      transition={{ delay: 0.7, type: "spring", stiffness: 180, damping: 12 }}
+      className="relative flex h-24 w-24 items-center justify-center"
+    >
+      <svg viewBox="0 0 100 100" className="absolute inset-0 h-full w-full drop-shadow-lg">
+        <defs>
+          <path id="seal-circle" d="M50,50 m-36,0 a36,36 0 1,1 72,0 a36,36 0 1,1 -72,0" />
+        </defs>
+        <circle cx="50" cy="50" r="46" fill="#1FA855" />
+        <circle cx="50" cy="50" r="40" fill="none" stroke="#fff" strokeWidth="1.2" strokeDasharray="2 3" />
+        <text fontSize="9" fontWeight="700" fill="#fff" letterSpacing="1">
+          <textPath href="#seal-circle" startOffset="0">SATISFAÇÃO • GARANTIDA •</textPath>
+        </text>
+      </svg>
+      <div className="relative text-center text-white">
+        <div className="font-display text-xl font-black leading-none">7</div>
+        <div className="font-display text-[8px] font-bold uppercase leading-tight tracking-wider">dias</div>
+      </div>
+    </motion.div>
+  );
+}
+
 function Landing() {
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
