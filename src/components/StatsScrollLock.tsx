@@ -181,21 +181,24 @@ export function StatsScrollLock() {
                     }}
                     transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                     style={{ zIndex: STEPS.length - Math.abs(offset) }}
-                    className="absolute inset-0 flex flex-col justify-between rounded-3xl bg-background p-8 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.25)] md:p-10"
+                    className="absolute inset-0 flex flex-col rounded-3xl bg-secondary p-10 shadow-[0_30px_70px_-30px_rgba(0,0,0,0.18)] md:p-12"
                   >
-                    <div className="font-display text-xs tracking-[0.3em] text-gold/80">
-                      {s.n} — {s.label.toUpperCase()}
+                    <div className="font-display text-[11px] tracking-[0.3em] text-gold/80">
+                      {s.n} <span className="mx-2 text-gold/40">—</span>{" "}
+                      {s.label.toUpperCase()}
                     </div>
-                    <div>
-                      <h3 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-gold md:text-6xl">
+
+                    <div className="mt-auto">
+                      <h3 className="font-display text-5xl font-black leading-[1.05] tracking-tight text-gold md:text-7xl">
                         {s.big}
                       </h3>
-                      <p className="mt-5 max-w-md text-base text-muted-foreground md:text-lg">
+                      <p className="mt-5 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
                         {s.desc}
                       </p>
                     </div>
-                    {/* progress bar inside active card */}
-                    <div className="relative h-[3px] w-full overflow-hidden rounded-full bg-border">
+
+                    {/* bottom separator with scroll progress fill */}
+                    <div className="relative mt-10 h-px w-full overflow-hidden bg-border/70">
                       {isActive && (
                         <motion.div
                           className="absolute inset-y-0 left-0 bg-gold"
@@ -203,6 +206,7 @@ export function StatsScrollLock() {
                         />
                       )}
                     </div>
+                  </motion.div>
                   </motion.div>
                 );
               })}
