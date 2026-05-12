@@ -298,7 +298,7 @@ export function StatsScrollLock() {
                       <div
                         aria-hidden
                         className="pointer-events-none absolute right-6 top-6 z-0 hidden overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:block"
-                        style={{ width: "48%", height: "84%" }}
+                        style={{ width: "38%", height: "70%" }}
                       >
                         <img
                           src={s.image}
