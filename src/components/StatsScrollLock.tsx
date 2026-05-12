@@ -83,9 +83,7 @@ export function StatsScrollLock() {
               <div className="absolute left-2 top-2 bottom-2 w-px bg-border" />
               <motion.div
                 className="absolute left-2 top-2 w-px bg-gold"
-                style={{
-                  height: useTransform(scrollYProgress, [0, 1], ["0%", "100%"]),
-                }}
+                style={{ height: railHeight }}
               />
 
               <ol className="space-y-8">
