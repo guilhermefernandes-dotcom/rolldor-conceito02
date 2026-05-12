@@ -90,7 +90,7 @@ export function ScreenPortal() {
         {/* Portal overlay (covers description until end of scroll) */}
         <motion.div
           style={{ opacity: overlayOpacity }}
-          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary"
+          className="pointer-events-none absolute inset-0 z-10 flex flex-col items-center justify-center overflow-hidden bg-secondary/70"
         >
           {/* radial gold glow */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 h-[400px] w-[400px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/30 blur-[120px] md:h-[600px] md:w-[600px]" />
@@ -101,16 +101,6 @@ export function ScreenPortal() {
               <ChevronDown className="h-5 w-5 animate-bounce text-foreground" />
             </span>
             <span className="text-sm font-medium text-foreground">Continue rolando</span>
-          </div>
-
-          {/* Heading + description */}
-          <div className="relative z-10 flex flex-col items-center gap-4 px-6 text-center">
-            <h2 className="font-display text-5xl font-semibold leading-tight text-foreground md:text-7xl">
-              Por dentro do Grupo VIP
-            </h2>
-            <p className="max-w-md text-sm text-muted-foreground md:max-w-xl md:text-base">
-              Veja como é a rotina de quem está dentro: lançamentos, lives e ofertas exclusivas todos os dias.
-            </p>
           </div>
 
           {/* Desktop phone (horizontal) */}
