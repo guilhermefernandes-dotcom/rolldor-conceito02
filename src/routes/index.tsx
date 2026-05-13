@@ -553,10 +553,10 @@ function Landing() {
             {/* tail — polygon pointer */}
             <svg
               aria-hidden
-              className="absolute left-14 md:left-20"
-              style={{ bottom: "-2rem" }}
-              width="150"
-              height="117"
+              className="absolute left-28 md:left-40"
+              style={{ bottom: "-5rem" }}
+              width="190"
+              height="149"
               viewBox="0 0 2137 1681"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
