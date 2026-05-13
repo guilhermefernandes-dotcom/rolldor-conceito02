@@ -24,6 +24,7 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
+import launchesImg from "@/assets/launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
