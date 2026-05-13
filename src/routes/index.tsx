@@ -299,11 +299,11 @@ function Landing() {
       </section>
 
       {/* VANTAGENS */}
-      <section className="bg-secondary/70 py-4">
-        <div className="w-full" style={{ padding: "4px" }}>
+      <section className="bg-secondary/70 pt-4 pb-28">
+        <div className="w-full" style={{ padding: "20px" }}>
           <div
             className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
-            style={{ background: "oklch(0.16 0.025 75)" }}
+            style={{ background: "oklch(0.22 0 0)" }}
           >
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -421,7 +421,7 @@ function Landing() {
             >
               <path
                 d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
-                fill="oklch(0.16 0.025 75)"
+                fill="oklch(0.22 0 0)"
               />
             </svg>
           </div>
