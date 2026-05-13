@@ -372,7 +372,7 @@ function Landing() {
                 fill="none"
               />
             </svg>
-            <div className="relative">
+            <div className="relative z-10">
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
@@ -551,8 +551,8 @@ function Landing() {
             {/* tail — polygon pointer */}
             <svg
               aria-hidden
-              className="absolute left-28 md:left-40"
-              style={{ bottom: "calc(-5rem + 5px)" }}
+              className="absolute left-28 z-0 md:left-40"
+              style={{ bottom: "calc(-5rem + 10px)" }}
               width="190"
               height="149"
               viewBox="0 0 2137 1681"
