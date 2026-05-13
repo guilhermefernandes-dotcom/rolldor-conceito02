@@ -398,66 +398,117 @@ function Landing() {
                 {
                   icon: Zap,
                   title: "Lançamentos antes de todo mundo",
-                  desc: "Você vê as novidades 24h antes do Instagram, do site ou de qualquer canal público.",
-                  image: launchesImg,
+                  bullets: [
+                    "Novidades 24h antes do público",
+                    "Avisos exclusivos no grupo",
+                    "Acesso prioritário às coleções",
+                  ],
                 },
                 {
                   icon: Tag,
                   title: "Preços que só existem no grupo",
-                  desc: "Condições reservadas para quem participa das lives. Não saem daqui pra fora.",
+                  bullets: [
+                    "Descontos reservados",
+                    "Cupons relâmpago",
+                    "Condições especiais de revenda",
+                  ],
                 },
                 {
                   icon: Gift,
                   title: "Sorteios e bônus toda semana",
-                  desc: "Brindes, kits e ações relâmpago para quem aparece nas lives ao vivo.",
+                  bullets: [
+                    "Brindes para participantes",
+                    "Kits exclusivos das lives",
+                    "Ações relâmpago ao vivo",
+                  ],
+                  highlight: true,
                 },
                 {
                   icon: TrendingUp,
                   title: "Curadoria de alto giro",
-                  desc: "Você para de apostar no escuro. Só compra o que realmente tem saída.",
+                  bullets: [
+                    "Produtos validados na loja",
+                    "Foco em alto giro",
+                    "Sem apostar no escuro",
+                  ],
                 },
-              ].map(({ icon: Icon, title, desc, image }, i) => (
+              ].map(({ icon: Icon, title, bullets, highlight }, i) => (
                 <Reveal key={i} delay={i * 0.05}>
                   <article
-                    className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[24px] p-6"
-                    style={{ background: "oklch(0.22 0.035 75)" }}
+                    className="group relative flex h-full flex-col rounded-[24px] p-7 backdrop-blur-xl transition-colors"
+                    style={
+                      highlight
+                        ? {
+                            background:
+                              "linear-gradient(180deg, color-mix(in oklab, var(--gold) 28%, transparent) 0%, color-mix(in oklab, var(--gold) 14%, transparent) 100%)",
+                            border:
+                              "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
+                            boxShadow:
+                              "0 10px 40px -10px color-mix(in oklab, var(--gold) 30%, transparent)",
+                          }
+                        : {
+                            background: "rgba(255,255,255,0.06)",
+                            border: "1px solid rgba(255,255,255,0.1)",
+                            boxShadow:
+                              "inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 30px -12px rgba(0,0,0,0.4)",
+                          }
+                    }
                   >
-                    {/* image area with bottom-right curved cutout */}
-                    <div className="relative flex-1">
-                      <div
-                        className="absolute inset-0 overflow-hidden rounded-[18px]"
-                        style={{
-                          background: image ? undefined : "oklch(0.30 0.05 75)",
-                          maskImage:
-                            "radial-gradient(circle at calc(100% - 4px) calc(100% - 4px), transparent 38px, black 39px)",
-                          WebkitMaskImage:
-                            "radial-gradient(circle at calc(100% - 4px) calc(100% - 4px), transparent 38px, black 39px)",
-                        }}
-                      >
-                        {image && (
-                          <img
-                            src={image}
-                            alt={title}
-                            loading="lazy"
-                            width={768}
-                            height={768}
-                            className="h-full w-full object-cover"
-                          />
-                        )}
-                      </div>
-                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-foreground shadow-md">
-                        <Icon className="h-5 w-5" />
-                      </div>
-                      <span className="absolute bottom-0 right-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-foreground shadow-md transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
-                        <ArrowRight className="h-4 w-4 -rotate-45" />
-                      </span>
+                    {/* icon */}
+                    <div
+                      className="flex h-11 w-11 items-center justify-center rounded-full"
+                      style={{
+                        background: highlight
+                          ? "rgba(0,0,0,0.25)"
+                          : "rgba(255,255,255,0.08)",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                      }}
+                    >
+                      <Icon className="h-5 w-5 text-white" strokeWidth={1.6} />
                     </div>
 
-                    {/* footer: title */}
-                    <div className="mt-6">
-                      <h3 className="font-display leading-tight tracking-tight text-white text-2xl font-medium">
-                        {title}
-                      </h3>
+                    {/* title */}
+                    <h3 className="mt-8 font-display text-[26px] font-medium leading-[1.1] tracking-tight text-white">
+                      {title}
+                    </h3>
+
+                    {/* bullets */}
+                    <ul className="mt-6 space-y-2.5">
+                      {bullets.map((b) => (
+                        <li
+                          key={b}
+                          className="flex items-start gap-2.5 text-[13px] leading-relaxed text-white/80"
+                        >
+                          <Check
+                            className="mt-0.5 h-4 w-4 shrink-0"
+                            style={{ color: "var(--gold)" }}
+                            strokeWidth={2.5}
+                          />
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    {/* CTA */}
+                    <div className="mt-auto pt-8">
+                      <a
+                        href="#cta"
+                        className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-display text-sm font-medium transition-transform hover:-translate-y-0.5"
+                        style={
+                          highlight
+                            ? {
+                                background: "oklch(0.18 0 0)",
+                                color: "#ffffff",
+                              }
+                            : {
+                                background: "transparent",
+                                color: "rgba(255,255,255,0.95)",
+                              }
+                        }
+                      >
+                        Saiba mais
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
                     </div>
                   </article>
                 </Reveal>
