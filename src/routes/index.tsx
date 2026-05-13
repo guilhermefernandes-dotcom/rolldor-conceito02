@@ -302,7 +302,7 @@ function Landing() {
       <section className="bg-secondary/70 pt-4 pb-28">
         <div className="w-full" style={{ padding: "20px" }}>
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-12 md:px-12 md:py-16"
+            className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
             style={{ background: "oklch(0.22 0 0)" }}
           >
             {/* decorative bg details */}
