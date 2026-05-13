@@ -455,7 +455,7 @@ function Landing() {
                         <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-white">
                           {title}
                         </h3>
-                        <p className="mt-2 text-xs leading-relaxed text-white/70">{desc}</p>
+                        
                       </div>
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
                         <ArrowRight className="h-4 w-4 -rotate-45" />
