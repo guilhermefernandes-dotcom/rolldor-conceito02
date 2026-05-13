@@ -305,6 +305,39 @@ function Landing() {
             className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
             style={{ background: "oklch(0.22 0 0)" }}
           >
+            {/* decorative bg details */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px]"
+              style={{
+                background:
+                  "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
+              }}
+            />
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.07]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
+                backgroundSize: "22px 22px",
+                maskImage:
+                  "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)",
+              }}
+            />
+            <svg
+              aria-hidden
+              className="pointer-events-none absolute right-10 top-10 h-24 w-24 opacity-20"
+              viewBox="0 0 100 100"
+              fill="none"
+            >
+              <circle cx="50" cy="50" r="48" stroke="var(--gold)" strokeWidth="0.6" />
+              <circle cx="50" cy="50" r="34" stroke="var(--gold)" strokeWidth="0.6" />
+              <circle cx="50" cy="50" r="20" stroke="var(--gold)" strokeWidth="0.6" />
+            </svg>
+            <div className="relative">
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
@@ -417,6 +450,7 @@ function Landing() {
               ))}
             </div>
 
+            </div>
             {/* tail — message bubble triangle with rounded edges */}
             <svg
               aria-hidden
