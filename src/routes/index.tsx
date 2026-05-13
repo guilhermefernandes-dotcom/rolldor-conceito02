@@ -203,7 +203,7 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-lg">
+              <p className="mt-7 max-w-2xl text-[21px] leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-[23px]">
                 Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
