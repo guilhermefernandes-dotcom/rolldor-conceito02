@@ -421,7 +421,7 @@ function Landing() {
             >
               <path
                 d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
-                fill="oklch(0.16 0.025 75)"
+                fill="oklch(0.22 0 0)"
               />
             </svg>
           </div>
