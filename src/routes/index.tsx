@@ -527,7 +527,7 @@ function Landing() {
 
                       <a
                         href="#cta"
-                        className="group/btn inline-flex items-center justify-between gap-3 rounded-full px-5 py-3 font-display text-sm font-medium transition-transform hover:-translate-y-0.5"
+                        className="group/btn flex w-full items-center justify-between gap-3 rounded-md px-4 py-3 font-display text-sm font-medium transition-colors"
                         style={
                           highlight
                             ? {
@@ -536,14 +536,14 @@ function Landing() {
                                 border: "1px solid rgba(255,255,255,0.08)",
                               }
                             : {
-                                background: "rgba(255,255,255,0.06)",
+                                background: "rgba(255,255,255,0.04)",
                                 color: "rgba(255,255,255,0.95)",
                                 border: "1px solid rgba(255,255,255,0.08)",
                               }
                         }
                       >
                         Saiba mais
-                        <ArrowRight className="h-4 w-4" />
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                       </a>
                     </div>
                   </article>
