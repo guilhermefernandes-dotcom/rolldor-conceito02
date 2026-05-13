@@ -24,7 +24,7 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
-import launchesImg from "@/assets/launches.jpg";
+import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
@@ -421,16 +421,16 @@ function Landing() {
                     className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[24px] p-6"
                     style={{ background: "oklch(0.22 0.035 75)" }}
                   >
-                    {/* curved cutout shape with icon */}
+                    {/* image area with bottom-right curved cutout */}
                     <div className="relative flex-1">
                       <div
                         className="absolute inset-0 overflow-hidden rounded-[18px]"
                         style={{
                           background: image ? undefined : "oklch(0.30 0.05 75)",
                           maskImage:
-                            "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
+                            "radial-gradient(circle at calc(100% - 4px) calc(100% - 4px), transparent 38px, black 39px)",
                           WebkitMaskImage:
-                            "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
+                            "radial-gradient(circle at calc(100% - 4px) calc(100% - 4px), transparent 38px, black 39px)",
                         }}
                       >
                         {image && (
@@ -447,19 +447,16 @@ function Landing() {
                       <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-foreground shadow-md">
                         <Icon className="h-5 w-5" />
                       </div>
-                    </div>
-
-                    {/* footer: title + arrow */}
-                    <div className="mt-6 flex items-end justify-between gap-3">
-                      <div>
-                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-white">
-                          {title}
-                        </h3>
-                        
-                      </div>
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
+                      <span className="absolute bottom-0 right-0 flex h-12 w-12 items-center justify-center rounded-full bg-white text-foreground shadow-md transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
                         <ArrowRight className="h-4 w-4 -rotate-45" />
                       </span>
+                    </div>
+
+                    {/* footer: title */}
+                    <div className="mt-6">
+                      <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-white">
+                        {title}
+                      </h3>
                     </div>
                   </article>
                 </Reveal>
