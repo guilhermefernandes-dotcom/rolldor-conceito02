@@ -317,7 +317,15 @@ function Landing() {
                       vantagens exclusivas
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
+                  <h2
+                    className="text-white"
+                    style={{
+                      fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
+                      fontWeight: 600,
+                      fontSize: "44px",
+                      lineHeight: "40px",
+                    }}
+                  >
                     O que você ganha por estar{" "}
                     <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
                   </h2>
