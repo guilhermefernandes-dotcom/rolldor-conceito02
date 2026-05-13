@@ -315,28 +315,62 @@ function Landing() {
                   "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
               }}
             />
+            {/* diagonal hairlines */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.07]"
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.08]"
               style={{
                 backgroundImage:
-                  "radial-gradient(rgba(255,255,255,0.9) 1px, transparent 1px)",
-                backgroundSize: "22px 22px",
+                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
                 maskImage:
-                  "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)",
+                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
                 WebkitMaskImage:
-                  "radial-gradient(ellipse at 50% 40%, black 40%, transparent 80%)",
+                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
               }}
             />
+            {/* gold accent line sweep */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, color-mix(in oklab, var(--gold) 90%, transparent) 0 1px, transparent 1px 90px)",
+                maskImage:
+                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
+              }}
+            />
+            {/* SVG noise grain */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18] mix-blend-overlay"
+              style={{
+                backgroundImage:
+                  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+                backgroundSize: "220px 220px",
+              }}
+            />
+            {/* long thin gold stroke top-right */}
             <svg
               aria-hidden
-              className="pointer-events-none absolute right-10 top-10 h-24 w-24 opacity-20"
-              viewBox="0 0 100 100"
+              className="pointer-events-none absolute right-0 top-0 h-full w-[55%] opacity-[0.22]"
+              viewBox="0 0 600 400"
               fill="none"
+              preserveAspectRatio="none"
             >
-              <circle cx="50" cy="50" r="48" stroke="var(--gold)" strokeWidth="0.6" />
-              <circle cx="50" cy="50" r="34" stroke="var(--gold)" strokeWidth="0.6" />
-              <circle cx="50" cy="50" r="20" stroke="var(--gold)" strokeWidth="0.6" />
+              <path
+                d="M -20 380 Q 200 280 380 200 T 620 -20"
+                stroke="var(--gold)"
+                strokeWidth="1"
+                fill="none"
+              />
+              <path
+                d="M -20 420 Q 240 320 420 240 T 660 20"
+                stroke="var(--gold)"
+                strokeWidth="0.6"
+                fill="none"
+              />
             </svg>
             <div className="relative">
             {/* Header row */}
