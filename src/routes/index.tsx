@@ -301,7 +301,7 @@ function Landing() {
       <section className="py-4" style={{ background: "var(--background)" }}>
         <div className="w-full" style={{ padding: "13px" }}>
           <div
-            className="relative w-full rounded-[32px] px-6 py-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] md:px-12 md:py-16"
+            className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
             style={{ background: "var(--gold)" }}
           >
             {/* Header row */}
