@@ -372,7 +372,7 @@ function Landing() {
                 fill="none"
               />
             </svg>
-            <div className="relative">
+            <div className="relative z-10">
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
