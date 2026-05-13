@@ -10,6 +10,7 @@ import {
   PackageCheck,
   Flame,
   CheckCircle2,
+  Check,
   Star,
   Plus,
   Minus,
