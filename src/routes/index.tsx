@@ -301,24 +301,24 @@ function Landing() {
       <section className="py-4" style={{ background: "var(--background)" }}>
         <div className="w-full" style={{ padding: "13px" }}>
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] md:px-12 md:py-16"
-            style={{ background: "oklch(0.18 0.015 80)" }}
+            className="relative w-full rounded-[32px] px-6 py-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] md:px-12 md:py-16"
+            style={{ background: "var(--gold)" }}
           >
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
                 <Reveal>
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-background/15 bg-background/5 py-2 pl-2 pr-5 backdrop-blur">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/90">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 py-2 pl-2 pr-5 backdrop-blur">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground/90">
                       <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
                     </span>
-                    <span className="font-display text-sm font-medium tracking-wide text-background">
+                    <span className="font-display text-sm font-medium tracking-wide text-foreground">
                       vantagens exclusivas
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-background md:text-5xl">
+                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-foreground md:text-5xl">
                     O que você ganha por estar{" "}
-                    <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
+                    <span className="text-background">dentro do grupo</span>.
                   </h2>
                 </Reveal>
               </div>
@@ -360,7 +360,7 @@ function Landing() {
                 <Reveal key={i} delay={i * 0.05}>
                   <article
                     className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[24px] p-6"
-                    style={{ background: "var(--gold)" }}
+                    style={{ background: "var(--gold-deep)" }}
                   >
                     {/* curved cutout shape with icon */}
                     <div className="relative flex-1">
@@ -374,7 +374,7 @@ function Landing() {
                             "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
                         }}
                       />
-                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-background/90 text-foreground shadow-md">
+                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-background/95 text-foreground shadow-md">
                         <Icon className="h-5 w-5" />
                       </div>
                     </div>
@@ -382,10 +382,10 @@ function Landing() {
                     {/* footer: title + arrow */}
                     <div className="mt-6 flex items-end justify-between gap-3">
                       <div>
-                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-foreground">
+                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-background">
                           {title}
                         </h3>
-                        <p className="mt-2 text-xs leading-relaxed text-foreground/70">{desc}</p>
+                        <p className="mt-2 text-xs leading-relaxed text-background/80">{desc}</p>
                       </div>
                       <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
                         <ArrowRight className="h-4 w-4 -rotate-45" />
@@ -395,6 +395,22 @@ function Landing() {
                 </Reveal>
               ))}
             </div>
+
+            {/* tail — message bubble triangle with rounded edges */}
+            <svg
+              aria-hidden
+              className="absolute left-14 md:left-20"
+              style={{ bottom: "-4.5rem" }}
+              width="96"
+              height="80"
+              viewBox="0 0 96 80"
+              fill="none"
+            >
+              <path
+                d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
+                fill="var(--gold)"
+              />
+            </svg>
           </div>
         </div>
       </section>
