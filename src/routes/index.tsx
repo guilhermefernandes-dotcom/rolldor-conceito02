@@ -469,74 +469,93 @@ function Landing() {
               ].map(({ icon: Icon, title, bullets, highlight }, i) => (
                 <Reveal key={i} delay={i * 0.05}>
                   <article
-                    className="group relative flex h-full flex-col rounded-[24px] p-7 backdrop-blur-xl transition-colors"
+                    className="group relative flex h-full flex-col gap-2 rounded-[24px] p-2 backdrop-blur-xl transition-colors"
                     style={
                       highlight
                         ? {
                             background:
-                              "linear-gradient(180deg, color-mix(in oklab, var(--gold) 28%, transparent) 0%, color-mix(in oklab, var(--gold) 14%, transparent) 100%)",
+                              "linear-gradient(180deg, color-mix(in oklab, var(--gold) 22%, transparent) 0%, color-mix(in oklab, var(--gold) 10%, transparent) 100%)",
                             border:
                               "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
                             boxShadow:
                               "0 10px 40px -10px color-mix(in oklab, var(--gold) 30%, transparent)",
                           }
                         : {
-                            background: "rgba(255,255,255,0.06)",
-                            border: "1px solid rgba(255,255,255,0.1)",
+                            background: "rgba(255,255,255,0.04)",
+                            border: "1px solid rgba(255,255,255,0.08)",
                             boxShadow:
-                              "inset 0 1px 0 rgba(255,255,255,0.08), 0 8px 30px -12px rgba(0,0,0,0.4)",
+                              "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px -12px rgba(0,0,0,0.4)",
                           }
                     }
                   >
-                    {/* icon */}
+                    {/* TOP — icon + title */}
                     <div
-                      className="flex h-11 w-11 items-center justify-center rounded-full"
+                      className="flex flex-1 flex-col rounded-[18px] p-6"
                       style={{
                         background: highlight
-                          ? "rgba(0,0,0,0.25)"
-                          : "rgba(255,255,255,0.08)",
-                        border: "1px solid rgba(255,255,255,0.12)",
+                          ? "color-mix(in oklab, var(--gold) 14%, rgba(255,255,255,0.04))"
+                          : "rgba(255,255,255,0.05)",
+                        border: "1px solid rgba(255,255,255,0.06)",
                       }}
                     >
-                      <Icon className="h-5 w-5 text-white" strokeWidth={1.6} />
+                      <div
+                        className="flex h-10 w-10 items-center justify-center rounded-full"
+                        style={{
+                          background: "rgba(255,255,255,0.06)",
+                          border: "1px solid rgba(255,255,255,0.1)",
+                        }}
+                      >
+                        <Icon
+                          className="h-[18px] w-[18px] text-white/90"
+                          strokeWidth={1.4}
+                        />
+                      </div>
+
+                      <h3 className="mt-14 font-display text-[26px] font-medium leading-[1.1] tracking-tight text-white">
+                        {title}
+                      </h3>
                     </div>
 
-                    {/* title */}
-                    <h3 className="mt-8 font-display text-[26px] font-medium leading-[1.1] tracking-tight text-white">
-                      {title}
-                    </h3>
+                    {/* BOTTOM — bullets + CTA pill */}
+                    <div
+                      className="flex flex-col gap-5 rounded-[18px] p-6"
+                      style={{
+                        background: highlight
+                          ? "color-mix(in oklab, var(--gold) 8%, rgba(0,0,0,0.25))"
+                          : "rgba(255,255,255,0.025)",
+                        border: "1px solid rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <ul className="space-y-2">
+                        {bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex items-start gap-2.5 text-[13px] leading-relaxed text-white/75"
+                          >
+                            <Check
+                              className="mt-0.5 h-4 w-4 shrink-0"
+                              style={{ color: "var(--gold)" }}
+                              strokeWidth={2.5}
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
 
-                    {/* bullets */}
-                    <ul className="mt-6 space-y-2.5">
-                      {bullets.map((b) => (
-                        <li
-                          key={b}
-                          className="flex items-start gap-2.5 text-[13px] leading-relaxed text-white/80"
-                        >
-                          <Check
-                            className="mt-0.5 h-4 w-4 shrink-0"
-                            style={{ color: "var(--gold)" }}
-                            strokeWidth={2.5}
-                          />
-                          <span>{b}</span>
-                        </li>
-                      ))}
-                    </ul>
-
-                    {/* CTA */}
-                    <div className="mt-auto pt-8">
                       <a
                         href="#cta"
-                        className="inline-flex items-center gap-2 rounded-full px-4 py-2.5 font-display text-sm font-medium transition-transform hover:-translate-y-0.5"
+                        className="group/btn inline-flex items-center justify-between gap-3 rounded-full px-5 py-3 font-display text-sm font-medium transition-transform hover:-translate-y-0.5"
                         style={
                           highlight
                             ? {
-                                background: "oklch(0.18 0 0)",
+                                background: "oklch(0.16 0 0)",
                                 color: "#ffffff",
+                                border: "1px solid rgba(255,255,255,0.08)",
                               }
                             : {
-                                background: "transparent",
+                                background: "rgba(255,255,255,0.06)",
                                 color: "rgba(255,255,255,0.95)",
+                                border: "1px solid rgba(255,255,255,0.08)",
                               }
                         }
                       >
