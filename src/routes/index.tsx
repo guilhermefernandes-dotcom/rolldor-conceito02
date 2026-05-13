@@ -358,16 +358,21 @@ function Landing() {
               ))}
             </div>
 
-            {/* tail — message bubble triangle */}
-            <div
+            {/* tail — message bubble triangle with rounded edges */}
+            <svg
               aria-hidden
-              className="absolute left-14 h-14 w-16 md:left-20"
-              style={{
-                bottom: "-3rem",
-                background: "var(--gold)",
-                clipPath: "polygon(0 0, 100% 0, 15% 100%)",
-              }}
-            />
+              className="absolute left-14 md:left-20"
+              style={{ bottom: "-4.5rem" }}
+              width="96"
+              height="80"
+              viewBox="0 0 96 80"
+              fill="none"
+            >
+              <path
+                d="M 4 0 L 92 0 Q 96 0 94 3 L 22 76 Q 18 82 16 75 L 2 6 Q 0 0 4 0 Z"
+                fill="var(--gold)"
+              />
+            </svg>
           </div>
           <div className="mt-12 text-center">
             <CTA>Quero todas essas vantagens</CTA>
