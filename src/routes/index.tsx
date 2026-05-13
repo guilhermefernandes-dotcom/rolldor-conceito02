@@ -289,7 +289,7 @@ function Landing() {
               </h2>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mx-auto mt-6 max-w-2xl text-muted-foreground md:text-lg">
+              <p className="mx-auto mt-6 max-w-2xl text-[21px] text-muted-foreground md:text-[23px]">
                 Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
               </p>
             </Reveal>
