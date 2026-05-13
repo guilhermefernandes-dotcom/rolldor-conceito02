@@ -298,30 +298,43 @@ function Landing() {
       </section>
 
       {/* VANTAGENS */}
-      <section className="bg-secondary/70 py-16 md:py-24">
+      <section className="py-4" style={{ background: "var(--background)" }}>
         <div className="w-full" style={{ padding: "13px" }}>
           <div
-            className="relative w-full rounded-[32px] px-6 py-14 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.35)] md:px-14 md:py-20"
-            style={{ background: "var(--gold)" }}
+            className="relative w-full overflow-hidden rounded-[32px] px-6 py-12 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.5)] md:px-12 md:py-16"
+            style={{ background: "oklch(0.18 0.015 80)" }}
           >
-            <div className="mx-auto max-w-3xl text-center">
-              <Reveal>
-                <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-background/30 bg-background/15 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/90">
-                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
-                  </span>
-                  <span className="font-display text-sm font-medium tracking-wide text-background">
-                    vantagens exclusivas
-                  </span>
-                </div>
-                <h2 className="font-display text-3xl font-black leading-tight tracking-tight text-background md:text-5xl">
-                  O que você ganha por estar{" "}
-                  <span className="text-foreground">dentro do grupo</span>.
-                </h2>
+            {/* Header row */}
+            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <Reveal>
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-background/15 bg-background/5 py-2 pl-2 pr-5 backdrop-blur">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/90">
+                      <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                    </span>
+                    <span className="font-display text-sm font-medium tracking-wide text-background">
+                      vantagens exclusivas
+                    </span>
+                  </div>
+                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-background md:text-5xl">
+                    O que você ganha por estar{" "}
+                    <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
+                  </h2>
+                </Reveal>
+              </div>
+              <Reveal delay={0.1}>
+                <a
+                  href="#cta"
+                  className="inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 font-display text-sm font-semibold text-foreground shadow-md transition-transform hover:-translate-y-0.5"
+                >
+                  Quero entrar
+                  <ArrowRight className="h-4 w-4" />
+                </a>
               </Reveal>
             </div>
 
-            <div className="mt-12 grid gap-[13px] md:mt-16 md:grid-cols-4">
+            {/* Cards grid */}
+            <div className="mt-10 grid gap-[13px] md:mt-14 md:grid-cols-4">
               {[
                 {
                   icon: Zap,
@@ -345,37 +358,43 @@ function Landing() {
                 },
               ].map(({ icon: Icon, title, desc }, i) => (
                 <Reveal key={i} delay={i * 0.05}>
-                  <div className="group flex h-full flex-col rounded-2xl bg-background/10 p-7 ring-1 ring-background/15 backdrop-blur-sm transition-colors hover:bg-background/15">
-                    <div className="mb-5 flex h-10 w-10 items-center justify-center rounded-xl bg-background/20 text-background transition-colors group-hover:bg-background group-hover:text-gold">
-                      <Icon className="h-5 w-5" />
+                  <article
+                    className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[24px] p-6"
+                    style={{ background: "var(--gold)" }}
+                  >
+                    {/* curved cutout shape with icon */}
+                    <div className="relative flex-1">
+                      <div
+                        className="absolute inset-0 rounded-[18px]"
+                        style={{
+                          background: "var(--gold-soft)",
+                          maskImage:
+                            "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
+                          WebkitMaskImage:
+                            "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
+                        }}
+                      />
+                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-background/90 text-foreground shadow-md">
+                        <Icon className="h-5 w-5" />
+                      </div>
                     </div>
-                    <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-background md:text-xl">
-                      {title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-relaxed text-background/80">{desc}</p>
-                  </div>
+
+                    {/* footer: title + arrow */}
+                    <div className="mt-6 flex items-end justify-between gap-3">
+                      <div>
+                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-foreground">
+                          {title}
+                        </h3>
+                        <p className="mt-2 text-xs leading-relaxed text-foreground/70">{desc}</p>
+                      </div>
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
+                        <ArrowRight className="h-4 w-4 -rotate-45" />
+                      </span>
+                    </div>
+                  </article>
                 </Reveal>
               ))}
             </div>
-
-            {/* tail — message bubble triangle with rounded edges */}
-            <svg
-              aria-hidden
-              className="absolute left-14 md:left-20"
-              style={{ bottom: "-4.5rem" }}
-              width="96"
-              height="80"
-              viewBox="0 0 96 80"
-              fill="none"
-            >
-              <path
-                d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
-                fill="var(--gold)"
-              />
-            </svg>
-          </div>
-          <div className="mt-12 text-center">
-            <CTA>Quero todas essas vantagens</CTA>
           </div>
         </div>
       </section>
