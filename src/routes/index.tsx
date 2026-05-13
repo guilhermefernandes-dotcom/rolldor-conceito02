@@ -450,6 +450,7 @@ function Landing() {
               ))}
             </div>
 
+            </div>
             {/* tail — message bubble triangle with rounded edges */}
             <svg
               aria-hidden
