@@ -369,7 +369,7 @@ function Landing() {
               fill="none"
             >
               <path
-                d="M 4 0 L 92 0 Q 96 0 94 3 L 22 76 Q 18 82 16 75 L 2 6 Q 0 0 4 0 Z"
+                d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
                 fill="var(--gold)"
               />
             </svg>
