@@ -523,7 +523,7 @@ function Landing() {
 
                       <a
                         href="#cta"
-                        className="group/btn flex w-full items-center justify-between gap-3 rounded-md px-4 py-3 font-display text-sm font-medium transition-colors"
+                        className="group/btn flex w-full items-center justify-between gap-3 rounded-md px-4 py-3.5 font-display text-base font-medium transition-colors"
                         style={
                           highlight
                             ? {
