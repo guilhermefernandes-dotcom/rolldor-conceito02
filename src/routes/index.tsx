@@ -488,18 +488,11 @@ function Landing() {
                         border: "1px solid rgba(255,255,255,0.06)",
                       }}
                     >
-                      <div
-                        className="flex h-10 w-10 items-center justify-center rounded-full"
-                        style={{
-                          background: "rgba(255,255,255,0.06)",
-                          border: "1px solid rgba(255,255,255,0.1)",
-                        }}
-                      >
-                        <Icon
-                          className="h-[18px] w-[18px] text-white/90"
-                          strokeWidth={1.4}
-                        />
-                      </div>
+                      <Icon
+                        className="h-9 w-9"
+                        style={{ color: "var(--gold)" }}
+                        strokeWidth={1.3}
+                      />
 
                       <h3 className="mt-14 font-display text-[26px] font-medium leading-[1.1] tracking-tight text-white">
                         {title}
