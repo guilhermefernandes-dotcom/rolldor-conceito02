@@ -569,10 +569,7 @@ function Landing() {
       </section>
 
       {/* COMO FUNCIONA */}
-      <section
-        className="relative border-y border-border py-24 md:py-32"
-        style={{ background: "var(--gradient-dark)" }}
-      >
+      <section className="relative bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
