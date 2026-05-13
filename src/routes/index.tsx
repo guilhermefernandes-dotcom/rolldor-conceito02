@@ -513,7 +513,7 @@ function Landing() {
                         {bullets.map((b) => (
                           <li
                             key={b}
-                            className="flex items-start gap-2.5 text-[13px] leading-relaxed text-white/75"
+                            className="flex items-start gap-2.5 text-base leading-relaxed text-white/75"
                           >
                             <Check
                               className="mt-0.5 h-4 w-4 shrink-0"
