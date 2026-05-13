@@ -471,9 +471,9 @@ function Landing() {
             <svg
               aria-hidden
               className="absolute left-14 md:left-20"
-              style={{ bottom: "-4.5rem" }}
-              width="110"
-              height="86"
+              style={{ bottom: "-2rem" }}
+              width="150"
+              height="117"
               viewBox="0 0 2137 1681"
               fill="none"
               preserveAspectRatio="xMidYMid meet"
