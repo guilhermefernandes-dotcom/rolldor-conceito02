@@ -454,7 +454,7 @@ function Landing() {
 
                     {/* footer: title */}
                     <div className="mt-6">
-                      <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-white">
+                      <h3 className="font-display leading-tight tracking-tight text-white text-2xl font-medium">
                         {title}
                       </h3>
                     </div>
