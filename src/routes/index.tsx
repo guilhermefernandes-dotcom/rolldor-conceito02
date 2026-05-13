@@ -203,7 +203,7 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-7 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-lg">
+              <p className="mt-7 max-w-2xl text-[21px] leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-[23px]">
                 Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
@@ -289,7 +289,7 @@ function Landing() {
               </h2>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mx-auto mt-6 max-w-2xl text-muted-foreground md:text-lg">
+              <p className="mx-auto mt-6 max-w-2xl text-[21px] text-muted-foreground md:text-[23px]">
                 Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
               </p>
             </Reveal>
@@ -509,7 +509,7 @@ function Landing() {
                         {bullets.map((b) => (
                           <li
                             key={b}
-                            className="flex items-start gap-2.5 text-base leading-relaxed text-white/75"
+                            className="flex items-start gap-2.5 text-[21px] leading-relaxed text-white/75"
                           >
                             <Check
                               className="mt-0.5 h-4 w-4 shrink-0"
