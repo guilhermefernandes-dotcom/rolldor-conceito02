@@ -298,7 +298,7 @@ function Landing() {
       </section>
 
       {/* VANTAGENS */}
-      <section className="py-4" style={{ background: "var(--background)" }}>
+      <section className="bg-secondary/70 py-4">
         <div className="w-full" style={{ padding: "13px" }}>
           <div
             className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
