@@ -551,8 +551,8 @@ function Landing() {
             {/* tail — polygon pointer */}
             <svg
               aria-hidden
-              className="absolute left-28 md:left-40"
-              style={{ bottom: "calc(-5rem + 5px)" }}
+              className="absolute left-28 z-0 md:left-40"
+              style={{ bottom: "calc(-5rem + 10px)" }}
               width="190"
               height="149"
               viewBox="0 0 2137 1681"
