@@ -402,26 +402,16 @@ function Landing() {
               <Reveal delay={0.1}>
                 <a
                   href="#cta"
-                  className="group relative inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-bold text-white transition-transform hover:-translate-y-0.5"
+                  className="group relative inline-flex items-center gap-3 rounded-2xl px-8 py-4 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
                   style={{
                     background:
-                      "linear-gradient(180deg, #4ade80 0%, #22c55e 45%, #16a34a 100%)",
-                    border: "1px solid #15803d",
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
                     boxShadow:
-                      "inset 0 1px 0 rgba(255,255,255,0.45), inset 0 -2px 0 rgba(0,0,0,0.18), 0 6px 14px -4px rgba(22,163,74,0.55), 0 2px 4px rgba(0,0,0,0.25)",
-                    textShadow: "0 1px 1px rgba(0,0,0,0.25)",
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow)",
                   }}
                 >
-                  <span
-                    aria-hidden
-                    className="pointer-events-none absolute inset-x-2 top-[3px] h-1/2 rounded-full"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, rgba(255,255,255,0.35), rgba(255,255,255,0))",
-                    }}
-                  />
-                  <span className="relative">Quero entrar</span>
-                  <ArrowRight className="relative h-4 w-4" />
+                  Quero entrar
+                  <ArrowRight className="h-5 w-5" />
                 </a>
               </Reveal>
             </div>
