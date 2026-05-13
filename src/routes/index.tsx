@@ -467,14 +467,10 @@ function Landing() {
                               "linear-gradient(180deg, color-mix(in oklab, var(--gold) 22%, transparent) 0%, color-mix(in oklab, var(--gold) 10%, transparent) 100%)",
                             border:
                               "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
-                            boxShadow:
-                              "0 10px 40px -10px color-mix(in oklab, var(--gold) 30%, transparent)",
                           }
                         : {
                             background: "rgba(255,255,255,0.04)",
                             border: "1px solid rgba(255,255,255,0.08)",
-                            boxShadow:
-                              "inset 0 1px 0 rgba(255,255,255,0.06), 0 8px 30px -12px rgba(0,0,0,0.4)",
                           }
                     }
                   >
