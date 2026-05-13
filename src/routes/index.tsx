@@ -303,30 +303,30 @@ function Landing() {
         <div className="w-full" style={{ padding: "13px" }}>
           <div
             className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
-            style={{ background: "var(--gold)" }}
+            style={{ background: "oklch(0.16 0.025 75)" }}
           >
             {/* Header row */}
             <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
               <div className="max-w-2xl">
                 <Reveal>
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-foreground/5 py-2 pl-2 pr-5 backdrop-blur">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-foreground/90">
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
                       <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
                     </span>
-                    <span className="font-display text-sm font-medium tracking-wide text-foreground">
+                    <span className="font-display text-sm font-medium tracking-wide text-white/90">
                       vantagens exclusivas
                     </span>
                   </div>
-                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-foreground md:text-5xl">
+                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
                     O que você ganha por estar{" "}
-                    <span className="text-background">dentro do grupo</span>.
+                    <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
                   </h2>
                 </Reveal>
               </div>
               <Reveal delay={0.1}>
                 <a
                   href="#cta"
-                  className="inline-flex items-center gap-2 rounded-full bg-background px-6 py-3 font-display text-sm font-semibold text-foreground shadow-md transition-transform hover:-translate-y-0.5"
+                  className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 font-display text-sm font-semibold text-foreground shadow-md transition-transform hover:-translate-y-0.5"
                 >
                   Quero entrar
                   <ArrowRight className="h-4 w-4" />
@@ -341,6 +341,7 @@ function Landing() {
                   icon: Zap,
                   title: "Lançamentos antes de todo mundo",
                   desc: "Você vê as novidades 24h antes do Instagram, do site ou de qualquer canal público.",
+                  image: launchesImg,
                 },
                 {
                   icon: Tag,
@@ -357,25 +358,36 @@ function Landing() {
                   title: "Curadoria de alto giro",
                   desc: "Você para de apostar no escuro. Só compra o que realmente tem saída.",
                 },
-              ].map(({ icon: Icon, title, desc }, i) => (
+              ].map(({ icon: Icon, title, desc, image }, i) => (
                 <Reveal key={i} delay={i * 0.05}>
                   <article
                     className="group relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[24px] p-6"
-                    style={{ background: "var(--gold-deep)" }}
+                    style={{ background: "oklch(0.22 0.035 75)" }}
                   >
                     {/* curved cutout shape with icon */}
                     <div className="relative flex-1">
                       <div
-                        className="absolute inset-0 rounded-[18px]"
+                        className="absolute inset-0 overflow-hidden rounded-[18px]"
                         style={{
-                          background: "var(--gold-soft)",
+                          background: image ? undefined : "oklch(0.30 0.05 75)",
                           maskImage:
                             "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
                           WebkitMaskImage:
                             "radial-gradient(circle at 85% 15%, transparent 70px, black 71px)",
                         }}
-                      />
-                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-background/95 text-foreground shadow-md">
+                      >
+                        {image && (
+                          <img
+                            src={image}
+                            alt={title}
+                            loading="lazy"
+                            width={768}
+                            height={768}
+                            className="h-full w-full object-cover"
+                          />
+                        )}
+                      </div>
+                      <div className="absolute left-5 top-5 flex h-12 w-12 items-center justify-center rounded-full bg-white/95 text-foreground shadow-md">
                         <Icon className="h-5 w-5" />
                       </div>
                     </div>
@@ -383,12 +395,12 @@ function Landing() {
                     {/* footer: title + arrow */}
                     <div className="mt-6 flex items-end justify-between gap-3">
                       <div>
-                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-background">
+                        <h3 className="font-display text-lg font-bold leading-tight tracking-tight text-white">
                           {title}
                         </h3>
-                        <p className="mt-2 text-xs leading-relaxed text-background/80">{desc}</p>
+                        <p className="mt-2 text-xs leading-relaxed text-white/70">{desc}</p>
                       </div>
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-background text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-white text-foreground transition-transform group-hover:-translate-y-1 group-hover:rotate-45">
                         <ArrowRight className="h-4 w-4 -rotate-45" />
                       </span>
                     </div>
@@ -409,7 +421,7 @@ function Landing() {
             >
               <path
                 d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
-                fill="var(--gold)"
+                fill="oklch(0.16 0.025 75)"
               />
             </svg>
           </div>
