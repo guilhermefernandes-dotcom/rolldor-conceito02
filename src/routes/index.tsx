@@ -467,19 +467,21 @@ function Landing() {
             </div>
 
             </div>
-            {/* tail — message bubble triangle with rounded edges */}
+            {/* tail — polygon pointer */}
             <svg
               aria-hidden
               className="absolute left-14 md:left-20"
               style={{ bottom: "-4.5rem" }}
-              width="96"
-              height="80"
-              viewBox="0 0 96 80"
+              width="110"
+              height="86"
+              viewBox="0 0 2137 1681"
               fill="none"
+              preserveAspectRatio="xMidYMid meet"
             >
               <path
-                d="M 12 0 L 84 0 Q 96 0 90 10 L 32 72 Q 24 86 18 70 L 6 14 Q 0 0 12 0 Z"
+                d="M2006.04 652.34C2180.53 716.618 2180.53 963.406 2006.04 1027.68L269.133 1667.52C138.564 1715.62 7.69499e-05 1618.99 7.69499e-05 1479.85L7.69499e-05 200.178C7.69499e-05 61.0311 138.564 -35.592 269.134 12.5066L2006.04 652.34Z"
                 fill="oklch(0.22 0 0)"
+                transform="rotate(110 1068.5 840.5)"
               />
             </svg>
           </div>
