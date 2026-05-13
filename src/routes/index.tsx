@@ -563,7 +563,7 @@ function Landing() {
             <svg
               aria-hidden
               className="absolute left-28 md:left-40"
-              style={{ bottom: "-5rem" }}
+              style={{ bottom: "calc(-5rem + 5px)" }}
               width="190"
               height="149"
               viewBox="0 0 2137 1681"
