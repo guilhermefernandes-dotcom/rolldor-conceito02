@@ -9,24 +9,21 @@ import {
   
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import p1 from "@/assets/p1.jpg";
-import p2 from "@/assets/p2.jpg";
-import p3 from "@/assets/p3.jpg";
-import p4 from "@/assets/p4.jpg";
+import sandalia from "@/assets/sandalia-dourada.png";
 import leeviMark from "@/assets/leevi-mark.png";
 
 const WHATSAPP =
   "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
 
 const ITEMS = [
-  { src: p1, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
-  { src: p2, name: "Tênis Casual Premium", tag: "Lançamento" },
-  { src: p3, name: "Bolsa Executiva Black", tag: "Alto giro" },
-  { src: p4, name: "Salto Bloco Nude", tag: "Sai rápido" },
-  { src: p1, name: "Mocassim Caramelo", tag: "Top giro" },
-  { src: p2, name: "Sneaker Off-White", tag: "Novidade" },
-  { src: p3, name: "Clutch Estruturada", tag: "Vitrine" },
-  { src: p4, name: "Sandália Bloco Camel", tag: "Procurada" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Lançamento" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Alto giro" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Sai rápido" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Top giro" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Novidade" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Vitrine" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Procurada" },
 ];
 
 export function VitrineOrbit() {
