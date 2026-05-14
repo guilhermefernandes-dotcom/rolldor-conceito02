@@ -457,7 +457,7 @@ function Landing() {
                   ],
                 },
               ].map(({ icon: Icon, title, bullets, highlight }, i) => (
-                <Reveal key={i} delay={i * 0.05}>
+                <Reveal key={i} delay={i * 0.05} className="h-full">
                   <article
                     className="group relative flex h-full flex-col gap-2 rounded-[24px] p-2 backdrop-blur-xl transition-colors"
                     style={
