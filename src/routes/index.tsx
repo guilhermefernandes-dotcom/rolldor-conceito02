@@ -740,9 +740,14 @@ function Landing() {
             {/* LEFT — pill, headline, CTA */}
             <div>
               <Reveal>
-                <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 font-display text-[11px] font-bold uppercase tracking-[0.25em] text-foreground/80">
-                  Depoimentos
-                </span>
+                <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                  </span>
+                  <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                    depoimentos
+                  </span>
+                </div>
                 <h2 className="mt-7 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
                   O que{" "}
                   <span className="text-gold-deep">dizem nossas</span>{" "}
