@@ -321,7 +321,7 @@ export function StatsScrollLock() {
           {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
             <div
-              className="relative mx-auto min-h-[600px] w-full max-w-xl md:h-[460px] md:min-h-0"
+              className="relative mx-auto min-h-[520px] w-full max-w-xl md:h-[460px] md:min-h-0"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
@@ -436,7 +436,7 @@ export function StatsScrollLock() {
                       <div className="mt-2 font-display text-3xl font-black leading-none text-gold md:text-[44px]">
                         {s.big}
                       </div>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
+                      <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
                         {s.desc}
                       </p>
                     </motion.div>
@@ -445,7 +445,7 @@ export function StatsScrollLock() {
                     {s.image && (
                       <div
                         aria-hidden
-                        className="pointer-events-none relative z-0 mt-auto h-[160px] w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:hidden"
+                        className="pointer-events-none relative z-0 mt-5 h-[160px] w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:hidden"
                       >
                         <img
                           src={s.image}
