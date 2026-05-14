@@ -143,34 +143,46 @@ export function VitrineOrbit() {
                   "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
                 boxShadow:
                   "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+          <div className="mt-8">
+            <a
+              href={WHATSAPP}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0"
+              style={{
+                background:
+                  "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                boxShadow:
+                  "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
               }}
             >
               Solicitar acesso
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </a>
 
-            {/* Active item badge */}
-            <div className="relative h-12 min-w-[220px] overflow-hidden rounded-full border border-gold/30 bg-foreground/5 px-2 pr-5 backdrop-blur">
+            {/* Active item — minimal, photo + name */}
+            <div className="relative mt-5 h-10 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
-                  initial={{ y: 14, opacity: 0 }}
+                  initial={{ y: 12, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
-                  exit={{ y: -14, opacity: 0 }}
+                  exit={{ y: -12, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex h-full items-center gap-3"
+                  className="flex items-center gap-3"
                 >
                   <img
                     src={current.src}
                     alt=""
                     className="h-9 w-9 rounded-full object-cover ring-1 ring-gold/40"
                   />
-                  <div className="leading-tight">
-                    <div className="font-display text-sm font-bold text-foreground">
-                      {current.name}
-                    </div>
-                    <div className="text-[10px] uppercase tracking-widest text-gold-deep">
-                      {current.tag}
+                  <span className="font-display text-sm font-bold text-foreground">
+                    {current.name}
+                  </span>
+                </motion.div>
+              </AnimatePresence>
+            </div>
+          </div>
                     </div>
                   </div>
                 </motion.div>
