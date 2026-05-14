@@ -1006,14 +1006,16 @@ function Landing() {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div>
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-gold/30">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-4 py-5 text-left transition-colors hover:text-gold"
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
       >
-        <span className="font-display text-base font-bold tracking-tight md:text-lg">{q}</span>
-        <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-gold/40 text-gold">
-          {open ? <Minus className="h-4 w-4" /> : <Plus className="h-4 w-4" />}
+        <span className="font-display text-base font-semibold tracking-tight text-white md:text-lg">
+          {q}
+        </span>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center text-gold">
+          {open ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
         </span>
       </button>
       <motion.div
@@ -1022,7 +1024,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <p className="pb-5 text-sm leading-relaxed text-muted-foreground md:text-base">{a}</p>
+        <p className="px-6 pb-5 text-sm leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-base">
+          {a}
+        </p>
       </motion.div>
     </div>
   );
