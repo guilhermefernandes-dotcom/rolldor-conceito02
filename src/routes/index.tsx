@@ -303,7 +303,7 @@ function Landing() {
             <Reveal delay={0.15}>
               <h1
                 className="font-display"
-                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
               >
                 Veja os lançamentos do atacado
                 <br />
@@ -311,7 +311,7 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-7 max-w-2xl text-[21px] leading-relaxed tracking-[-0.01em] text-muted-foreground md:text-[23px]">
+              <p className="mt-5 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:mt-7 md:text-[23px]">
                 Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
                 maior giro selecionados pra você lucrar mais — antes de todo mundo.
               </p>
@@ -360,7 +360,7 @@ function Landing() {
       <div className="overflow-hidden bg-gold py-4">
         <div
           className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display"
-          style={{ fontWeight: 500, fontSize: "24px", lineHeight: "32px", color: "rgb(255,255,255)", letterSpacing: "-0.01em" }}
+          style={{ fontWeight: 500, fontSize: "clamp(15px, 4.5vw, 24px)", lineHeight: "1.3", color: "rgb(255,255,255)", letterSpacing: "-0.01em" }}
         >
           {Array.from({ length: 6 }).flatMap((_, i) =>
             ["Vagas limitadas", "Lives toda semana", "Lançamentos antes de todo mundo", "Grupo VIP Leevi"].map((item, j) => (
@@ -397,7 +397,7 @@ function Landing() {
               </h2>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mx-auto mt-6 max-w-2xl text-[21px] text-muted-foreground md:text-[23px]">
+              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[23px]">
                 Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
               </p>
             </Reveal>
@@ -498,8 +498,8 @@ function Landing() {
                     style={{
                       fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
                       fontWeight: 600,
-                      fontSize: "44px",
-                      lineHeight: "40px",
+                      fontSize: "clamp(28px, 7vw, 44px)",
+                      lineHeight: "1.05",
                     }}
                   >
                     O que você ganha por estar{" "}
@@ -967,14 +967,14 @@ function Landing() {
             <Reveal delay={0.1}>
               <h2
                 className="font-display text-white"
-                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", letterSpacing: "-0.03em" }}
+                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", letterSpacing: "-0.03em" }}
               >
                 O que você perde<br />
                 ficando <span className="text-gold">de fora.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-xl text-[19px] leading-relaxed text-white/60 md:text-[21px]">
+              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 md:text-[21px]">
                 Cada semana fora do grupo é uma semana comprando depois da concorrência.
               </p>
             </Reveal>

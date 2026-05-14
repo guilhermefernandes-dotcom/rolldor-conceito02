@@ -155,15 +155,32 @@
     border-color: var(--color-border);
   }
 
+  html, body {
+    overflow-x: hidden;
+    max-width: 100vw;
+  }
+
   body {
     background-color: var(--color-background);
     font-family: var(--font-sans);
     font-weight: 500;
-    font-size: 19px;
-    line-height: 26px;
+    font-size: 17px;
+    line-height: 25px;
     color: rgba(56, 56, 56, 0.8);
     letter-spacing: -0.01em;
     position: relative;
+  }
+
+  @media (min-width: 768px) {
+    body {
+      font-size: 19px;
+      line-height: 26px;
+    }
+  }
+
+  img, video, svg {
+    max-width: 100%;
+    height: auto;
   }
 
   /* Subtle noise overlay across the whole site */
