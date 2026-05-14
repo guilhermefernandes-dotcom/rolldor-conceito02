@@ -806,11 +806,58 @@ function Landing() {
           </div>
 
           <Reveal delay={0.2}>
-            <div className="mt-12 flex items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
-              <Flame className="h-4 w-4 text-gold" />
-              <span className="text-foreground/90">
-                <span className="font-bold text-gold">Atenção:</span> algumas peças esgotam ainda durante a live.
-              </span>
+            <div
+              className="relative mt-12 overflow-hidden rounded-2xl border border-gold/40 bg-foreground text-background shadow-[0_20px_60px_-20px_rgba(0,0,0,0.5)]"
+              style={{
+                backgroundImage:
+                  "radial-gradient(ellipse at 0% 50%, color-mix(in oklab, var(--gold) 25%, transparent), transparent 60%), radial-gradient(ellipse at 100% 50%, color-mix(in oklab, var(--accent) 18%, transparent), transparent 60%)",
+              }}
+            >
+              {/* LIVE badge — left */}
+              <div className="absolute left-0 top-0 z-20 flex h-full items-center gap-2.5 bg-[#e11d2a] pl-5 pr-6 font-display text-xs font-black uppercase tracking-[0.25em] text-white">
+                <span className="relative flex h-2.5 w-2.5">
+                  <span
+                    className="absolute inset-0 rounded-full bg-white"
+                    style={{ animation: "leevi-pulse-ring 1.4s ease-out infinite" }}
+                  />
+                  <span
+                    className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"
+                    style={{ animation: "leevi-pulse-dot 1.4s ease-in-out infinite" }}
+                  />
+                </span>
+                ao vivo
+                <span
+                  aria-hidden
+                  className="absolute right-[-14px] top-0 h-full w-[14px] bg-[#e11d2a]"
+                  style={{ clipPath: "polygon(0 0, 100% 50%, 0 100%)" }}
+                />
+              </div>
+
+              {/* Marquee */}
+              <div className="relative flex overflow-hidden py-4 pl-[150px] pr-6">
+                <div
+                  className="flex shrink-0 items-center gap-10 whitespace-nowrap pr-10 font-display text-sm font-bold uppercase tracking-[0.18em]"
+                  style={{ animation: "leevi-marquee 28s linear infinite" }}
+                >
+                  {Array.from({ length: 2 }).flatMap((_, group) =>
+                    [
+                      "Algumas peças esgotam ainda durante a live",
+                      "Estoque limitado",
+                      "Quem chega primeiro leva",
+                      "Curadoria semanal",
+                      "Compre antes do site",
+                    ].map((t, i) => (
+                      <span key={`${group}-${i}`} className="flex items-center gap-10">
+                        <Flame className="h-4 w-4 text-gold" />
+                        <span className="text-background/90">{t}</span>
+                      </span>
+                    )),
+                  )}
+                </div>
+              </div>
+
+              {/* edge fades */}
+              <div className="pointer-events-none absolute right-0 top-0 h-full w-24 bg-gradient-to-l from-foreground to-transparent" />
             </div>
           </Reveal>
         </div>
