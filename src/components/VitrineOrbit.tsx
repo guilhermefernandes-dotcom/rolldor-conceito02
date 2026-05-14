@@ -108,7 +108,19 @@ export function VitrineOrbit() {
             }}
           >
             As peças que costumam{" "}
-            <span className="text-gold-deep">esgotar primeiro</span> dentro do grupo.
+            <span
+              className="text-gold-deep"
+              style={{
+                background: "oklch(0.85 0.10 85 / 0.28)",
+                padding: "0 0.18em",
+                borderRadius: "6px",
+                boxDecorationBreak: "clone",
+                WebkitBoxDecorationBreak: "clone",
+              }}
+            >
+              esgotar primeiro
+            </span>{" "}
+            dentro do grupo.
           </h2>
 
           <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
