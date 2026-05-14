@@ -637,35 +637,42 @@ function Landing() {
             ];
 
             return (
-              <div className="relative mx-auto mt-20 max-w-6xl">
-                <div className="relative grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-10">
-                  {/* Left floating cards (desktop) */}
-                  <div className="hidden flex-col justify-between gap-24 md:flex md:h-[460px]">
-                    {[steps[0], steps[2]].map((s) => (
-                      <Reveal key={s.key}>
-                        <FloatingStepCard title={s.title} desc={s.desc} align="right" />
-                      </Reveal>
-                    ))}
-                  </div>
-
-                  {/* Central radar image */}
+              <div className="relative mx-auto mt-20 max-w-7xl">
+                {/* Desktop: radar centered with cards overlapping on top */}
+                <div className="relative hidden md:block">
                   <Reveal>
-                    <div className="relative mx-auto">
+                    <div className="relative mx-auto flex justify-center">
                       <img
                         src={comoFuncionaRadar}
                         alt="4 passos para entrar no grupo VIP"
-                        className="h-auto w-[440px] md:w-[620px] lg:w-[720px]"
+                        className="h-auto w-[620px] lg:w-[760px]"
                       />
                     </div>
                   </Reveal>
 
-                  {/* Right floating cards (desktop) */}
-                  <div className="hidden flex-col justify-between gap-24 md:flex md:h-[460px]">
-                    {[steps[1], steps[3]].map((s) => (
-                      <Reveal key={s.key}>
-                        <FloatingStepCard title={s.title} desc={s.desc} align="left" />
-                      </Reveal>
-                    ))}
+                  {/* Top-left */}
+                  <div className="absolute left-0 top-4 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[0].title} desc={steps[0].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Top-right */}
+                  <div className="absolute right-0 top-4 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[1].title} desc={steps[1].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Bottom-left */}
+                  <div className="absolute bottom-4 left-0 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[2].title} desc={steps[2].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Bottom-right */}
+                  <div className="absolute bottom-4 right-0 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[3].title} desc={steps[3].desc} />
+                    </Reveal>
                   </div>
                 </div>
 
