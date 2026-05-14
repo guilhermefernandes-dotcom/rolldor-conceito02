@@ -23,7 +23,7 @@ const ITEMS = [
   { src: sandalia, name: "Sandália Vizzano", tag: "Mais vendida" },
   { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Lançamento" },
   { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Alto giro" },
-  { src: sandaliaPerola, name: "Sandália Pérola Studs", tag: "Sai rápido" },
+  { src: sandaliaPerola, name: "Sandália Pérola Vizzano", tag: "Sai rápido" },
   { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Top giro" },
   { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Novidade" },
   { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Vitrine" },
