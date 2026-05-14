@@ -24,10 +24,10 @@ const ITEMS = [
   { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Lançamento" },
   { src: sandaliaVerde, name: "Mule Verde Militar", tag: "Alto giro" },
   { src: sandaliaPerola, name: "Sandália Pérola Studs", tag: "Sai rápido" },
-  { src: sandaliaPreta, name: "Sandália Preta Vizzano", tag: "Top giro" },
+  { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Top giro" },
   { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Novidade" },
   { src: sandaliaVerde, name: "Mule Verde Militar", tag: "Vitrine" },
-  { src: sandaliaPreta, name: "Sandália Preta Vizzano", tag: "Procurada" },
+  { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Procurada" },
 ];
 
 export function VitrineOrbit() {
