@@ -81,7 +81,7 @@ export function VitrineOrbit() {
             "radial-gradient(ellipse at center, black 30%, transparent 85%)",
         }}
       />
-      <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
+      <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
         {/* LEFT — text */}
         <div className="relative z-30">
           {/* Protective radial backdrop for legibility */}
