@@ -227,7 +227,7 @@ export function VitrineOrbit() {
               const radiusPct = 38; // % of container
               const x = 50 + radiusPct * Math.cos(angle);
               const y = 50 + radiusPct * Math.sin(angle);
-              const isActive = i === active;
+              
               return (
                 <motion.div
                   key={i}
