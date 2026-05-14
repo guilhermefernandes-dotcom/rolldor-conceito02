@@ -55,19 +55,8 @@ export function VitrineOrbit() {
   const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
   const maskBg = useMotionTemplate`radial-gradient(280px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.35), transparent 70%)`;
 
-  // Scroll-driven pixelated reveal
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "center center"],
-  });
-  const pxSpring = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.6 });
-  const pixelSize = useTransform(pxSpring, [0, 1], [120, 6]);
-  const pixelSizePx = useTransform(pixelSize, (v) => `${v}px ${v}px`);
-  const pixelHalfNeg = useTransform(pixelSize, (v) => `-${v / 2}px`);
-  const pixelHalfPos = useTransform(pixelSize, (v) => `${v / 2}px`);
-  const pixelBgPos = useMotionTemplate`0 0, 0 ${pixelHalfPos} ${pixelHalfPos}, ${pixelHalfPos} ${pixelHalfNeg}, ${pixelHalfNeg} 0`;
-  const pixelOpacity = useTransform(pxSpring, [0, 0.6, 1], [1, 0.55, 0]);
-  const pixelBlur = useTransform(pxSpring, (v) => `blur(${(1 - v) * 6}px)`);
+  // Pixelated mask that follows the cursor
+  const pixelMask = useMotionTemplate`radial-gradient(260px circle at ${glowX} ${glowY}, black 0%, rgba(0,0,0,0.7) 40%, transparent 75%)`;
 
   function onMove(e: React.MouseEvent) {
     const r = containerRef.current?.getBoundingClientRect();
