@@ -903,20 +903,46 @@ function Landing() {
       </section>
 
       {/* LOSS AVERSION */}
-      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: "oklch(0.14 0.01 85)" }}>
-        {/* Grid pattern */}
+      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: "oklch(0.22 0 0)" }}>
+        {/* gold radial accents */}
         <div
           aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          className="pointer-events-none absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
+          }}
+        />
+        {/* diagonal hairlines */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
           style={{
             backgroundImage:
-              "linear-gradient(to right, oklch(0.95 0.02 85) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85) 1px, transparent 1px)",
-            backgroundSize: "72px 72px",
+              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
+            maskImage:
+              "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
+            WebkitMaskImage:
+              "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
+          }}
+        />
+        {/* gold accent line sweep */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.18]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, color-mix(in oklab, var(--gold) 90%, transparent) 0 1px, transparent 1px 90px)",
+            maskImage:
+              "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
+            WebkitMaskImage:
+              "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
           }}
         />
         {/* Gold halo */}
         <div className="pointer-events-none absolute -left-40 top-1/2 -z-0 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-gold/15 blur-[160px]" />
         <div className="pointer-events-none absolute -right-40 bottom-0 -z-0 h-[400px] w-[400px] rounded-full bg-gold-deep/20 blur-[140px]" />
+
 
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-14 md:grid-cols-12 md:gap-16">
