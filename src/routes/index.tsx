@@ -94,7 +94,7 @@ function CTA({
   variant?: "gold" | "outline";
 }) {
   const base =
-    "group inline-flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider transition-all duration-300";
+    "group inline-flex items-center justify-center gap-2 font-display font-bold tracking-tight transition-all duration-300";
   const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
   const variants =
     variant === "gold"
@@ -819,7 +819,7 @@ function Landing() {
                     href={WHATSAPP}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-base"
+                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-base font-bold tracking-tight text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
                     style={{
                       background:
                         "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
@@ -1106,7 +1106,7 @@ function Landing() {
         href={WHATSAPP}
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-sm font-bold uppercase tracking-wider text-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-gradient-to-r from-gold via-gold to-gold-deep px-6 py-4 font-display text-base font-bold tracking-tight text-foreground shadow-[0_20px_60px_-15px_oklch(0.80_0.13_85_/_0.6)] md:hidden"
       >
         Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
       </a>
