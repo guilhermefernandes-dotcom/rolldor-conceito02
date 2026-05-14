@@ -81,16 +81,10 @@ export function JoinNotifications() {
             </div>
             <div className="min-w-0 leading-tight">
               <div className="truncate font-display text-[13px] font-bold text-background">
-                {toast.name} <span className="font-medium text-background/70">acabou de entrar</span>
+                {toast.name} <span className="font-medium text-background/70">entrou no grupo</span>
               </div>
-              <div className="mt-0.5 flex items-center gap-1.5 text-[11px] text-background/60">
-                <span className="font-display font-bold uppercase tracking-[0.18em] text-gold">
-                  Grupo VIP
-                </span>
-                <span>·</span>
-                <span>{toast.city}</span>
-                <span>·</span>
-                <span>{toast.time}</span>
+              <div className="mt-0.5 truncate text-[11px] text-background/60">
+                {toast.city}
               </div>
             </div>
           </motion.div>
