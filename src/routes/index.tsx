@@ -174,6 +174,7 @@ function Landing() {
   const heroRadius = useTransform(scrollY, [0, 120], [28, 0]);
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
+      <JoinNotifications />
       {/* HERO — full width inside gold padded frame that collapses on scroll */}
       <motion.div className="bg-gold" style={{ padding: heroPad }}>
         <motion.section
