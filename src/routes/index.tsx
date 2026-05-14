@@ -14,6 +14,7 @@ import {
   Star,
   Plus,
   Minus,
+  Quote,
 } from "lucide-react";
 import { useState } from "react";
 import heroImg from "@/assets/hero.jpg";
@@ -735,63 +736,98 @@ function Landing() {
       {/* PROVA SOCIAL */}
       <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="text-center">
-            <Reveal>
-              <SectionLabel>Quem já está dentro</SectionLabel>
-              <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                Revendedoras que viraram a chave depois do grupo.
-              </h2>
+          <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
+            {/* LEFT — pill, headline, CTA */}
+            <div>
+              <Reveal>
+                <span className="inline-flex items-center rounded-full border border-border bg-background px-4 py-1.5 font-display text-[11px] font-bold uppercase tracking-[0.25em] text-foreground/80">
+                  Depoimentos
+                </span>
+                <h2 className="mt-7 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                  O que{" "}
+                  <span className="text-gold-deep">dizem nossas</span>{" "}
+                  revendedoras no grupo.
+                </h2>
+
+                <div className="mt-10 flex flex-wrap items-center gap-5">
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-base"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                      boxShadow:
+                        "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                    }}
+                  >
+                    Entrar no Grupo VIP
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </a>
+
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-background ring-1 ring-border">
+                      <span className="font-display text-lg font-black text-gold-deep">L</span>
+                    </div>
+                    <div className="leading-tight">
+                      <div className="font-display text-lg font-black text-foreground">5.0</div>
+                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
+                        Revendedoras<br />no grupo
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* RIGHT — testimonials card */}
+            <Reveal delay={0.1}>
+              <div className="rounded-[28px] border border-border bg-background p-8 md:p-10">
+                <Quote
+                  className="h-10 w-10 fill-gold-deep text-gold-deep"
+                  strokeWidth={0}
+                />
+
+                <div className="mt-6 space-y-8">
+                  {[
+                    {
+                      img: t1,
+                      name: "Mariana C.",
+                      meta: "Fortaleza — CE",
+                      quote:
+                        "Triplicou meu faturamento em 3 meses. Antes eu comprava no escuro, hoje compro o que eu sei que vai vender.",
+                    },
+                  ].map((t, i) => (
+                    <div key={i}>
+                      <div className="flex items-center gap-3">
+                        <img
+                          src={t.img}
+                          alt={t.name}
+                          loading="lazy"
+                          className="h-12 w-12 rounded-full object-cover"
+                        />
+                        <div className="leading-tight">
+                          <div className="font-display text-base font-bold text-foreground">
+                            {t.name}
+                          </div>
+                          <div className="text-xs italic text-muted-foreground">
+                            {t.meta}
+                          </div>
+                        </div>
+                      </div>
+                      <blockquote className="mt-4 text-base italic leading-relaxed text-foreground/80 md:text-[17px]">
+                        "{t.quote}"
+                      </blockquote>
+                    </div>
+                  ))}
+                </div>
+              </div>
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                img: t1,
-                name: "Mariana C.",
-                city: "Fortaleza — CE",
-                quote:
-                  "Triplicou meu faturamento em 3 meses. Antes eu comprava no escuro, hoje compro o que eu sei que vai vender.",
-              },
-              {
-                img: t2,
-                name: "Juliana S.",
-                city: "São Luís — MA",
-                quote:
-                  "As condições que pego no grupo eu não acho em lugar nenhum. Já saí de muita live com peça esgotada na concorrência.",
-              },
-              {
-                img: t3,
-                name: "Patrícia L.",
-                city: "Recife — PE",
-                quote:
-                  "A live é direta, sem enrolação. Eu vejo o produto, escolho ali e ainda ganho sorteio. Vale demais.",
-              },
-            ].map((t, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <figure className="flex h-full flex-col rounded-2xl border border-border bg-background p-7">
-                  <div className="flex items-center gap-1 text-gold">
-                    {Array.from({ length: 5 }).map((_, j) => (
-                      <Star key={j} className="h-4 w-4 fill-gold" />
-                    ))}
-                  </div>
-                  <blockquote className="mt-5 flex-1 text-base leading-relaxed text-foreground/90">
-                    "{t.quote}"
-                  </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-3 border-t border-border pt-5">
-                    <img src={t.img} alt={t.name} loading="lazy" className="h-11 w-11 rounded-full object-cover" />
-                    <div>
-                      <div className="font-display text-sm font-bold">{t.name}</div>
-                      <div className="text-xs text-muted-foreground">{t.city}</div>
-                    </div>
-                  </figcaption>
-                </figure>
-              </Reveal>
-            ))}
-          </div>
-
           <Reveal delay={0.2}>
-            <div className="mt-10 flex items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
+            <div className="mt-12 flex items-center justify-center gap-3 rounded-2xl border border-gold/30 bg-gold/5 px-5 py-4 text-sm">
               <Flame className="h-4 w-4 text-gold" />
               <span className="text-foreground/90">
                 <span className="font-bold text-gold">Atenção:</span> algumas peças esgotam ainda durante a live.
