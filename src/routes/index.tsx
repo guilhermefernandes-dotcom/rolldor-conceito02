@@ -34,6 +34,9 @@ import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
+import cardShape1 from "@/assets/card-shape-1.png";
+import cardShape2 from "@/assets/card-shape-2.png";
+import cardShape3 from "@/assets/card-shape-3.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
@@ -952,9 +955,9 @@ function Landing() {
           {/* Top benefit cards — gold gradient with check badges */}
           <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
             {[
-              { kicker: "Acesso semanal", title: "Lançamentos antes do site", tone: "soft" },
-              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", tone: "deep" },
-              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", tone: "soft" },
+              { kicker: "Acesso semanal", title: "Lançamentos antes do site", img: cardShape1 },
+              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", img: cardShape2 },
+              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", img: cardShape3 },
             ].map((c, i) => (
               <Reveal key={i} delay={i * 0.08}>
                 <div className="relative">
@@ -962,20 +965,17 @@ function Landing() {
                   <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card ring-1 ring-white/10">
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
-                  <div
-                    className="relative overflow-hidden px-10 pb-9 pt-11 text-center"
-                    style={{
-                      borderRadius: "24px 140px 24px 140px / 24px 95% 24px 95%",
-                      background:
-                        c.tone === "deep"
-                          ? "linear-gradient(160deg, oklch(0.86 0.13 88), oklch(0.62 0.13 75))"
-                          : "linear-gradient(160deg, oklch(0.92 0.10 92), oklch(0.74 0.13 82))",
-                    }}
-                  >
-                    <div className="font-display text-[17px] font-semibold tracking-normal text-foreground/70">
+                  <div className="relative px-10 pb-9 pt-11 text-center">
+                    <img
+                      src={c.img}
+                      alt=""
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 h-full w-full object-fill"
+                    />
+                    <div className="relative font-display text-[17px] font-semibold tracking-normal text-foreground/70">
                       {c.kicker}
                     </div>
-                    <div className="mt-2 font-display text-[30px] font-bold leading-tight text-foreground md:text-[32px]">
+                    <div className="relative mt-2 font-display text-[30px] font-bold leading-tight text-foreground md:text-[32px]">
                       {c.title}
                     </div>
                   </div>
