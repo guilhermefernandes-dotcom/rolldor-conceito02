@@ -1049,7 +1049,7 @@ function Landing() {
                     <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-white md:text-[22px]">
                       {n}. {title}
                     </h4>
-                    <p className="mt-2 max-w-[260px] text-[15px] leading-relaxed text-white/60">
+                    <p className="mt-3 max-w-[300px] text-base leading-relaxed text-white/70 md:text-[17px]">
                       {desc}
                     </p>
                   </li>
