@@ -105,11 +105,13 @@ export function MagnifierCard() {
         .content2fpbentov6inside:before{
           content: "";
           position: absolute;
-          top: 10px;
+          top: 23px;
+          left: 50%;
+          transform: translateX(-50%);
           background: var(--bentov6screen);
-          border-radius: 40px;
-          width: 270px;
-          height: 500px;
+          border-radius: 32px;
+          width: 188px;
+          height: 392px;
           z-index: 1;
         }
 
@@ -206,8 +208,9 @@ export function MagnifierCard() {
           .descriptionfpbentov6{ font-size: 16px; }
           .mockupv6{ width: 230px; z-index: 2; }
           .content2fpbentov6inside:before{
-            border-radius: 20px;
-            width: 205px;
+            top: 18px;
+            border-radius: 24px;
+            width: 144px;
             height: 300px;
           }
         }
