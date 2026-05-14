@@ -445,7 +445,7 @@ export function StatsScrollLock() {
                     {s.image && (
                       <div
                         aria-hidden
-                        className="pointer-events-none relative z-0 mt-auto h-[160px] w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:hidden"
+                        className="pointer-events-none relative z-0 mt-5 h-[160px] w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:hidden"
                       >
                         <img
                           src={s.image}
