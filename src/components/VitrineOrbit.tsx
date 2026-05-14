@@ -52,9 +52,6 @@ export function VitrineOrbit() {
   const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
   
 
-  // Pixelated mask that follows the cursor
-  const pixelMask = useMotionTemplate`radial-gradient(260px circle at ${glowX} ${glowY}, black 0%, rgba(0,0,0,0.7) 40%, transparent 75%)`;
-
   function onMove(e: React.MouseEvent) {
     const r = containerRef.current?.getBoundingClientRect();
     if (!r) return;
