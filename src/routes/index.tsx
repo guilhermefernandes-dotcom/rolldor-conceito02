@@ -28,6 +28,7 @@ import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
 import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
+import depoimentoMockup from "@/assets/depoimento-mockup.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
