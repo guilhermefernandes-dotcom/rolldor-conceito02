@@ -134,7 +134,7 @@ function FloatingStepCard({
 }) {
   return (
     <div
-      className={`relative rounded-2xl border border-border/60 bg-card p-5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] md:p-6 ${
+      className={`relative rounded-2xl border border-border/60 bg-card p-5 md:p-6 ${
         align === "right" ? "md:text-right" : "md:text-left"
       }`}
     >
