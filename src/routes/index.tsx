@@ -596,7 +596,14 @@ function Landing() {
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="text-center">
             <Reveal>
-              <SectionLabel>Como funciona</SectionLabel>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                  como funciona
+                </span>
+              </div>
               <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
                 Em 4 passos <br className="hidden md:block" />
                 você já está <span className="italic text-gold">dentro</span>.
@@ -611,50 +618,29 @@ function Landing() {
                 title: "Clique no botão",
                 desc: "Entra direto pelo WhatsApp, sem cadastro nem espera.",
                 center: "Clique no botão",
-                Icon: ArrowRight,
               },
               {
                 key: "tr",
                 title: "Receba os avisos",
                 desc: "Avisamos toda live com antecedência pra você não perder.",
                 center: "Receba os avisos",
-                Icon: Zap,
               },
               {
                 key: "bl",
                 title: "Participe ao vivo",
                 desc: "Vê os lançamentos e tira dúvidas em tempo real com a curadoria.",
                 center: "Participe ao vivo",
-                Icon: Flame,
               },
               {
                 key: "br",
                 title: "Aproveite as ofertas",
                 desc: "Condições exclusivas do grupo pra você lucrar mais em cada peça.",
                 center: "Aproveite as ofertas",
-                Icon: Tag,
               },
             ];
 
             return (
               <div className="relative mx-auto mt-20 max-w-6xl">
-                {/* Radar / concentric rings */}
-                <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
-                  <div className="relative aspect-square w-[820px] max-w-full">
-                    {[1, 0.78, 0.56, 0.36].map((s, i) => (
-                      <div
-                        key={i}
-                        className="absolute inset-0 m-auto rounded-full border border-gold/25"
-                        style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
-                      />
-                    ))}
-                    {/* Horizontal line with end dots */}
-                    <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
-                    <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70" />
-                    <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70" />
-                  </div>
-                </div>
-
                 <div className="relative grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-10">
                   {/* Left floating cards (desktop) */}
                   <div className="hidden flex-col justify-between gap-24 md:flex md:h-[460px]">
@@ -669,10 +655,10 @@ function Landing() {
                   <Reveal>
                     <div className="relative mx-auto">
                       <div className="relative grid h-[360px] w-[360px] grid-cols-2 grid-rows-2 gap-3 md:h-[420px] md:w-[420px]">
-                        {steps.map((s, i) => (
+                        {steps.map((s) => (
                           <div
                             key={s.key}
-                            className="relative flex items-center justify-center rounded-2xl p-6 text-center shadow-[0_20px_40px_-20px_rgba(180,140,40,0.45)]"
+                            className="relative flex items-center justify-center rounded-2xl p-6 text-center"
                             style={{
                               background:
                                 "linear-gradient(180deg, oklch(0.86 0.12 88) 0%, oklch(0.70 0.14 78) 100%)",
@@ -681,25 +667,11 @@ function Landing() {
                             <span className="font-display text-base font-bold leading-tight tracking-tight text-foreground md:text-lg">
                               {s.center}
                             </span>
-                            {/* Outer corner icon */}
-                            <div
-                              className={`absolute z-20 flex h-12 w-12 items-center justify-center rounded-full bg-background text-gold-deep shadow-[0_8px_20px_-6px_rgba(0,0,0,0.25)] ring-1 ring-gold/30 ${
-                                i === 0
-                                  ? "-left-5 -top-5"
-                                  : i === 1
-                                    ? "-right-5 -top-5"
-                                    : i === 2
-                                      ? "-bottom-5 -left-5"
-                                      : "-bottom-5 -right-5"
-                              }`}
-                            >
-                              <s.Icon className="h-5 w-5" />
-                            </div>
                           </div>
                         ))}
 
                         {/* Center logo bubble */}
-                        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-foreground shadow-[0_20px_50px_-10px_rgba(0,0,0,0.55)] md:h-28 md:w-28">
+                        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-foreground md:h-28 md:w-28">
                           <img
                             src={leeviMark}
                             alt="Leevi"
@@ -740,8 +712,33 @@ function Landing() {
             </p>
           </Reveal>
 
-          <div className="mt-10 text-center">
-            <CTA>Entrar no Grupo VIP agora</CTA>
+          <div className="mt-10 flex justify-center">
+            <Reveal className="w-full max-w-[640px]">
+              <div className="relative w-full">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                    boxShadow:
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                  }}
+                >
+                  Quero participar da próxima turma
+                </a>
+                <img
+                  src={badgeVagas}
+                  alt="Vagas limitadas - turma reduzida"
+                  width={400}
+                  height={400}
+                  decoding="async"
+                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+                />
+              </div>
+            </Reveal>
           </div>
         </div>
       </section>
