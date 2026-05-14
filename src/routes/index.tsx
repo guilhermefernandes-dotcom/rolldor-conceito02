@@ -1059,7 +1059,21 @@ function Landing() {
 
           <Reveal delay={0.2}>
             <div className="mt-16 flex justify-center">
-              <CTA>Entrar no Grupo VIP</CTA>
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center gap-3 rounded-2xl px-8 py-4 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                style={{
+                  background:
+                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                  boxShadow:
+                    "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow)",
+                }}
+              >
+                Entrar no Grupo VIP
+                <ArrowRight className="h-5 w-5" />
+              </a>
             </div>
           </Reveal>
         </div>
