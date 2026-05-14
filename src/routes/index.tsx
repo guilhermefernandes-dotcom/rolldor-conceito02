@@ -37,6 +37,7 @@ import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
+import { MagnifierCard } from "@/components/MagnifierCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -941,11 +942,9 @@ function Landing() {
                   Cada semana fora do grupo é uma semana comprando depois da concorrência.
                 </p>
 
-                {/* Decorative quote */}
-                <div className="mt-10 hidden border-l-2 border-gold/40 pl-5 md:block">
-                  <p className="font-display text-lg italic leading-snug text-white/70">
-                    "As peças boas saem na live. Quem não tá no grupo, descobre depois — e paga mais caro no varejo."
-                  </p>
+                {/* Magnifier showcase — animated lens over real WhatsApp screenshot */}
+                <div className="mt-10">
+                  <MagnifierCard />
                 </div>
               </Reveal>
             </div>
