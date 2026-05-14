@@ -68,8 +68,8 @@ export function VitrineOrbit() {
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="relative w-full overflow-hidden py-20 md:py-32"
-      style={{ background: "oklch(0.16 0.012 80)" }}
+      className="relative w-full overflow-hidden rounded-[20px] py-20 md:py-32"
+      style={{ background: "oklch(0.99 0.003 85)" }}
     >
       {/* Pixel dots layers */}
       <motion.div
@@ -77,7 +77,7 @@ export function VitrineOrbit() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(oklch(0.72 0.12 80 / 0.20) 1px, transparent 1px), radial-gradient(oklch(0.72 0.12 80 / 0.10) 1px, transparent 1px)",
+            "radial-gradient(oklch(0.55 0.12 80 / 0.18) 1px, transparent 1px), radial-gradient(oklch(0.55 0.12 80 / 0.10) 1px, transparent 1px)",
           backgroundSize: "18px 18px, 24px 24px",
           backgroundPosition: "0 0, 9px 9px",
           rotateX: rotX,
@@ -89,7 +89,7 @@ export function VitrineOrbit() {
       {/* Hover-follow glow mask */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-screen"
+        className="pointer-events-none absolute inset-0 mix-blend-multiply"
         style={{ backgroundImage: maskBg }}
       />
       {/* Soft global glow */}
