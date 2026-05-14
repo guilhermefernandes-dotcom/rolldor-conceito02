@@ -321,17 +321,13 @@ export function StatsScrollLock() {
           {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
             <div
-              className="relative mx-auto h-[420px] w-full max-w-xl md:h-[460px]"
+              className="relative mx-auto min-h-[600px] w-full max-w-xl md:h-[460px] md:min-h-0"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
                 const offset = i - active;
                 const isActive = offset === 0;
 
-                // Outgoing (left) — flies away with rotation + blur
-                // Active (0) — centered, sharp
-                // Next (1) — peeks behind right, tilted
-                // Stack (2) — further behind, smaller
                 let x = "0%";
                 let rotateY = 0;
                 let scale = 1;
@@ -397,12 +393,13 @@ export function StatsScrollLock() {
                       transformStyle: "preserve-3d",
                       transformOrigin: "left center",
                     }}
-                    className="absolute inset-0 flex flex-col rounded-3xl bg-background p-8 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:p-10"
+                    className="absolute inset-0 flex flex-col gap-5 rounded-3xl bg-background p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
                   >
-                    <div className="absolute right-7 top-7 z-10 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
+                    <div className="absolute right-6 top-6 z-10 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
                       {s.n}
                     </div>
 
+                    {/* Desktop image — absolute right side */}
                     {s.image && (
                       <div
                         aria-hidden
@@ -415,42 +412,62 @@ export function StatsScrollLock() {
                           className="h-full w-full object-cover"
                           style={{ objectPosition: s.imagePosition ?? "center" }}
                           draggable={false}
-                        loading="lazy" decoding="async" />
+                          loading="lazy"
+                          decoding="async"
+                        />
                       </div>
                     )}
 
+                    {/* Text block */}
                     <motion.div
                       animate={{
                         opacity: isActive ? 1 : 0.4,
                         y: isActive ? 0 : 8,
                       }}
                       transition={{ duration: 0.6, delay: isActive ? 0.15 : 0 }}
-                      style={s.image ? { maxWidth: "52%" } : undefined}
+                      className="md:max-w-[52%]"
                     >
                       <h3
-                        className="font-display"
-                        style={{ fontWeight: 600, fontSize: "clamp(28px, 7vw, 44px)", lineHeight: "0.95", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                        className="font-display pr-10"
+                        style={{ fontWeight: 600, fontSize: "clamp(24px, 6.5vw, 44px)", lineHeight: "0.95", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-2 font-display text-4xl font-black leading-none text-gold md:text-[44px]">
+                      <div className="mt-2 font-display text-3xl font-black leading-none text-gold md:text-[44px]">
                         {s.big}
                       </div>
-                      <p className="mt-4 text-base leading-relaxed text-muted-foreground md:text-[17px]">
+                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
                         {s.desc}
                       </p>
                     </motion.div>
 
+                    {/* Mobile image — below text */}
+                    {s.image && (
+                      <div
+                        aria-hidden
+                        className="pointer-events-none relative z-0 mt-auto h-[160px] w-full overflow-hidden rounded-2xl shadow-[0_20px_40px_-20px_rgba(0,0,0,0.35)] md:hidden"
+                      >
+                        <img
+                          src={s.image}
+                          alt=""
+                          className="h-full w-full object-cover"
+                          style={{ objectPosition: s.imagePosition ?? "center" }}
+                          draggable={false}
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    )}
                   </motion.div>
                 );
               })}
 
-              {/* Carousel arrows — bottom corners of the active card */}
+              {/* Carousel arrows — pinned to card bottom */}
               <button
                 type="button"
                 onClick={goPrev}
                 aria-label="Card anterior"
-                className="absolute bottom-6 left-6 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:left-8"
+                className="absolute bottom-5 left-5 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:left-8"
               >
                 <ArrowLeft className="h-5 w-5" />
               </button>
@@ -458,7 +475,7 @@ export function StatsScrollLock() {
                 type="button"
                 onClick={goNext}
                 aria-label="Próximo card"
-                className="absolute bottom-6 right-6 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:right-8"
+                className="absolute bottom-5 right-5 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:right-8"
               >
                 <ArrowRight className="h-5 w-5" />
               </button>
