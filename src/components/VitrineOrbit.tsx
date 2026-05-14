@@ -6,7 +6,7 @@ import {
   useSpring,
   useTransform,
   useMotionTemplate,
-  useScroll,
+  
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import p1 from "@/assets/p1.jpg";
@@ -53,21 +53,10 @@ export function VitrineOrbit() {
   const glowX = useTransform(sx, [0, 1], ["20%", "80%"]);
   const glowY = useTransform(sy, [0, 1], ["20%", "80%"]);
   const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
-  const maskBg = useMotionTemplate`radial-gradient(280px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.35), transparent 70%)`;
+  
 
-  // Scroll-driven pixelated reveal
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "center center"],
-  });
-  const pxSpring = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.6 });
-  const pixelSize = useTransform(pxSpring, [0, 1], [120, 6]);
-  const pixelSizePx = useTransform(pixelSize, (v) => `${v}px ${v}px`);
-  const pixelHalfNeg = useTransform(pixelSize, (v) => `-${v / 2}px`);
-  const pixelHalfPos = useTransform(pixelSize, (v) => `${v / 2}px`);
-  const pixelBgPos = useMotionTemplate`0 0, 0 ${pixelHalfPos} ${pixelHalfPos}, ${pixelHalfPos} ${pixelHalfNeg}, ${pixelHalfNeg} 0`;
-  const pixelOpacity = useTransform(pxSpring, [0, 0.6, 1], [1, 0.55, 0]);
-  const pixelBlur = useTransform(pxSpring, (v) => `blur(${(1 - v) * 6}px)`);
+  // Pixelated mask that follows the cursor
+  const pixelMask = useMotionTemplate`radial-gradient(260px circle at ${glowX} ${glowY}, black 0%, rgba(0,0,0,0.7) 40%, transparent 75%)`;
 
   function onMove(e: React.MouseEvent) {
     const r = containerRef.current?.getBoundingClientRect();
@@ -101,38 +90,28 @@ export function VitrineOrbit() {
             "radial-gradient(ellipse at center, black 30%, transparent 80%)",
         }}
       />
-      {/* Hover-follow glow mask */}
+      {/* Hover pixelated mosaic — chunky pixels following the cursor */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-multiply"
-        style={{ backgroundImage: maskBg }}
+        className="pointer-events-none absolute inset-0"
+        style={{
+          backgroundImage: `
+            linear-gradient(45deg, oklch(0.55 0.12 80 / 0.28) 25%, transparent 25%),
+            linear-gradient(-45deg, oklch(0.55 0.12 80 / 0.28) 25%, transparent 25%),
+            linear-gradient(45deg, transparent 75%, oklch(0.45 0.10 80 / 0.22) 75%),
+            linear-gradient(-45deg, transparent 75%, oklch(0.45 0.10 80 / 0.22) 75%)
+          `,
+          backgroundSize: "22px 22px",
+          backgroundPosition: "0 0, 0 11px, 11px -11px, -11px 0",
+          maskImage: pixelMask,
+          WebkitMaskImage: pixelMask,
+        }}
       />
       {/* Soft global glow */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{ backgroundImage: glowBg, filter: "blur(60px)" }}
-      />
-
-      {/* Scroll-driven pixelated reveal — chunky mosaic that resolves */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 z-20"
-        style={{
-          opacity: pixelOpacity,
-          filter: pixelBlur,
-          backgroundColor: "oklch(0.99 0.003 85)",
-          backgroundImage: `
-            linear-gradient(45deg, oklch(0.55 0.12 80 / 0.22) 25%, transparent 25%),
-            linear-gradient(-45deg, oklch(0.55 0.12 80 / 0.22) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, oklch(0.45 0.10 80 / 0.18) 75%),
-            linear-gradient(-45deg, transparent 75%, oklch(0.45 0.10 80 / 0.18) 75%)
-          `,
-          backgroundSize: pixelSizePx,
-          backgroundPosition: pixelBgPos,
-          maskImage:
-            "radial-gradient(ellipse at center, black 20%, rgba(0,0,0,0.6) 55%, transparent 90%)",
-        }}
       />
       <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
         {/* LEFT — text */}
