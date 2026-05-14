@@ -58,9 +58,6 @@ export const Route = createFileRoute("/")({
       },
       { property: "og:image", content: heroImg },
     ],
-    links: [
-      { rel: "preload", as: "image", href: heroImg, fetchpriority: "high" },
-    ],
   }),
   component: Landing,
 });
