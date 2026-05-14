@@ -6,6 +6,7 @@ import {
   useSpring,
   useTransform,
   useMotionTemplate,
+  useScroll,
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import p1 from "@/assets/p1.jpg";
