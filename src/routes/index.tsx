@@ -130,7 +130,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 const DEPOIMENTOS = [
   { src: depoimentoMockup, alt: "Depoimento de Mariana C. no grupo VIP da Leevi" },
-  { src: depoimentoMockup2, alt: "Depoimento de Juliana S. no grupo VIP da Leevi" },
   { src: depoimentoMockup3, alt: "Depoimento de Patrícia S. no grupo VIP da Leevi" },
 ];
 
