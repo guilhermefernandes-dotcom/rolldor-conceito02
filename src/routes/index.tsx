@@ -312,7 +312,7 @@ function Landing() {
                   decoding="async"
                   fetchPriority="high"
                   className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-                loading="lazy" decoding="async" />
+                loading="lazy" />
               </div>
             </Reveal>
             <Reveal delay={0.45}>
