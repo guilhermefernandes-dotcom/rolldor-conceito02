@@ -136,7 +136,7 @@ export function VitrineOrbit() {
             </a>
 
             {/* Active item — minimal, photo + name */}
-            <div className="relative mt-5 h-10 overflow-hidden">
+            <div className="relative mt-7 h-16 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
@@ -144,14 +144,14 @@ export function VitrineOrbit() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -12, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center gap-3"
+                  className="flex items-center gap-4"
                 >
                   <img
                     src={current.src}
                     alt=""
-                    className="h-10 w-10 object-contain"
+                    className="h-16 w-16 object-contain"
                   />
-                  <span className="font-display text-sm font-bold text-foreground">
+                  <span className="font-display text-lg font-bold text-foreground md:text-xl">
                     {current.name}
                   </span>
                 </motion.div>
