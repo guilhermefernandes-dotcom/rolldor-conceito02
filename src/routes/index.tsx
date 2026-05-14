@@ -903,28 +903,41 @@ function Landing() {
       </section>
 
       {/* LOSS AVERSION */}
-      <section className="relative overflow-hidden bg-secondary/70 py-24 md:py-32">
+      <section
+        className="relative overflow-hidden py-24 md:py-32"
+        style={{ background: "oklch(0.18 0.005 80)" }}
+      >
+        {/* Line grid pattern */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px)",
+            backgroundSize: "64px 64px",
+          }}
+        />
         {/* soft gold halos */}
-        <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold/15 blur-[160px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-soft/20 blur-[140px]" />
+        <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold/10 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-soft/10 blur-[140px]" />
 
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
-          {/* Centered header — Clany-style */}
+          {/* Centered header */}
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <SectionLabel>por que entrar agora</SectionLabel>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
-                className="font-display"
-                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                className="font-display text-white"
+                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", letterSpacing: "-0.03em" }}
               >
                 O que você perde<br />
                 ficando <span className="text-gold">de fora.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-xl text-[19px] leading-relaxed text-muted-foreground md:text-[21px]">
+              <p className="mx-auto mt-6 max-w-xl text-[19px] leading-relaxed text-white/60 md:text-[21px]">
                 Cada semana fora do grupo é uma semana comprando depois da concorrência.
               </p>
             </Reveal>
@@ -940,11 +953,11 @@ function Landing() {
               <Reveal key={i} delay={i * 0.08}>
                 <div className="relative">
                   {/* Check badge */}
-                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card shadow-md ring-1 ring-border">
+                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card shadow-md ring-1 ring-white/10">
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
                   <div
-                    className="relative overflow-hidden rounded-[28px] px-6 pb-7 pt-9 text-center shadow-[0_18px_50px_-20px_oklch(0.72_0.12_80_/_0.45)]"
+                    className="relative overflow-hidden rounded-[28px] px-6 pb-7 pt-9 text-center shadow-[0_18px_50px_-20px_oklch(0.72_0.12_80_/_0.55)] ring-1 ring-white/5"
                     style={{
                       background:
                         c.tone === "deep"
@@ -958,7 +971,6 @@ function Landing() {
                     <div className="mt-2 font-display text-[26px] font-bold leading-tight text-foreground md:text-[28px]">
                       {c.title}
                     </div>
-                    {/* corner shine */}
                     <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/30 blur-2xl" />
                   </div>
                 </div>
@@ -969,7 +981,7 @@ function Landing() {
           {/* Sub-heading */}
           <Reveal delay={0.1}>
             <div className="mt-24 text-center">
-              <h3 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-[40px]">
+              <h3 className="font-display text-3xl font-semibold tracking-tight text-white md:text-[40px]">
                 Como funciona?
               </h3>
             </div>
@@ -977,7 +989,6 @@ function Landing() {
 
           {/* Steps with curved dashed line */}
           <div className="relative mx-auto mt-12 max-w-5xl">
-            {/* Curved dashed SVG — desktop */}
             <svg
               aria-hidden
               viewBox="0 0 1000 520"
@@ -987,20 +998,19 @@ function Landing() {
               <path
                 d="M 200 40 C 520 60, 120 240, 500 260 S 880 460, 800 500"
                 fill="none"
-                stroke="oklch(0.55 0.11 70)"
+                stroke="oklch(0.82 0.12 85)"
                 strokeWidth="2"
                 strokeDasharray="2 8"
                 strokeLinecap="round"
-                opacity="0.55"
+                opacity="0.5"
               />
             </svg>
-            {/* Vertical dashed — mobile */}
             <div
               aria-hidden
               className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 md:hidden"
               style={{
                 backgroundImage:
-                  "linear-gradient(to bottom, oklch(0.55 0.11 70 / 0.55) 50%, transparent 50%)",
+                  "linear-gradient(to bottom, oklch(0.82 0.12 85 / 0.5) 50%, transparent 50%)",
                 backgroundSize: "1px 10px",
               }}
             />
@@ -1031,19 +1041,17 @@ function Landing() {
               ].map(({ Icon, n, title, desc, align }, i) => (
                 <Reveal key={i} delay={i * 0.12}>
                   <li className={`relative flex flex-col items-center text-center ${align}`}>
-                    {/* Icon bubble */}
                     <div className="relative">
-                      <div className="absolute inset-0 -m-3 rounded-full bg-gold/15 blur-md" />
-                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-card shadow-md ring-1 ring-border">
-                        <Icon className="h-7 w-7 text-gold-deep" />
-                        {/* sparkle */}
+                      <div className="absolute inset-0 -m-3 rounded-full bg-gold/20 blur-md" />
+                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] shadow-md ring-1 ring-white/10 backdrop-blur">
+                        <Icon className="h-7 w-7 text-gold" />
                         <span className="absolute -right-1 -top-1 text-gold">✦</span>
                       </div>
                     </div>
-                    <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground md:text-[22px]">
+                    <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-white md:text-[22px]">
                       {n}. {title}
                     </h4>
-                    <p className="mt-2 max-w-[260px] text-[15px] leading-relaxed text-muted-foreground">
+                    <p className="mt-2 max-w-[260px] text-[15px] leading-relaxed text-white/60">
                       {desc}
                     </p>
                   </li>
@@ -1052,7 +1060,6 @@ function Landing() {
             </ol>
           </div>
 
-          {/* CTA pill */}
           <Reveal delay={0.2}>
             <div className="mt-16 flex justify-center">
               <CTA>Entrar no Grupo VIP</CTA>
