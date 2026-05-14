@@ -819,7 +819,7 @@ function Landing() {
                     href={WHATSAPP}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-base"
+                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-base font-bold tracking-tight text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
                     style={{
                       background:
                         "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
