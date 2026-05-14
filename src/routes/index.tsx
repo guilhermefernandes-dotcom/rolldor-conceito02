@@ -498,8 +498,8 @@ function Landing() {
                     style={{
                       fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
                       fontWeight: 600,
-                      fontSize: "44px",
-                      lineHeight: "40px",
+                      fontSize: "clamp(28px, 7vw, 44px)",
+                      lineHeight: "1.05",
                     }}
                   >
                     O que você ganha por estar{" "}
@@ -967,14 +967,14 @@ function Landing() {
             <Reveal delay={0.1}>
               <h2
                 className="font-display text-white"
-                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", letterSpacing: "-0.03em" }}
+                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", letterSpacing: "-0.03em" }}
               >
                 O que você perde<br />
                 ficando <span className="text-gold">de fora.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-xl text-[19px] leading-relaxed text-white/60 md:text-[21px]">
+              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 md:text-[21px]">
                 Cada semana fora do grupo é uma semana comprando depois da concorrência.
               </p>
             </Reveal>
