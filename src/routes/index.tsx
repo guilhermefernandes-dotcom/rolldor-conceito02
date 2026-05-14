@@ -31,6 +31,7 @@ import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
+import { VitrineOrbit } from "@/components/VitrineOrbit";
 
 export const Route = createFileRoute("/")({
   head: () => ({
