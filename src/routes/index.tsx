@@ -29,7 +29,7 @@ import leeviMark from "@/assets/leevi-mark.png";
 import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import depoimentoMockup from "@/assets/depoimento-mockup-mariana.png";
-import depoimentoMockup2 from "@/assets/depoimento-mockup-juliana.png";
+
 import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
@@ -130,7 +130,6 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 
 const DEPOIMENTOS = [
   { src: depoimentoMockup, alt: "Depoimento de Mariana C. no grupo VIP da Leevi" },
-  { src: depoimentoMockup2, alt: "Depoimento de Juliana S. no grupo VIP da Leevi" },
   { src: depoimentoMockup3, alt: "Depoimento de Patrícia S. no grupo VIP da Leevi" },
 ];
 
