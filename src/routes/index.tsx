@@ -689,7 +689,7 @@ function Landing() {
           })()}
 
           <Reveal>
-            <p className="mx-auto mt-16 max-w-3xl text-center text-base text-muted-foreground md:text-lg">
+            <p className="mx-auto mt-16 max-w-3xl text-center text-base text-muted-foreground md:text-xl">
               Quando esses <strong className="font-semibold text-foreground">4 passos</strong>{" "}
               acontecem juntos, entrar no grupo deixa de ser curiosidade e passa a ser{" "}
               <strong className="font-semibold text-foreground">decisão de venda</strong>.
