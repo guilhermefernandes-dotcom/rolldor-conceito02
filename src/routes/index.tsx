@@ -956,16 +956,16 @@ function Landing() {
           <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
             {[
               { kicker: "Acesso semanal", title: "Lançamentos antes do site", img: cardShape1 },
-              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", img: cardShape2 },
-              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", img: cardShape3 },
+              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", img: cardShape3 },
+              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", img: cardShape2 },
             ].map((c, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="relative">
+                <div className="relative h-full">
                   {/* Check badge */}
                   <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card ring-1 ring-white/10">
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
-                  <div className="relative px-10 pb-9 pt-11 text-center">
+                  <div className="relative flex h-[210px] flex-col items-center justify-center px-10 text-center">
                     <img
                       src={c.img}
                       alt=""
