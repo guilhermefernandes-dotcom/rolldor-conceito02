@@ -63,7 +63,9 @@ export function VitrineOrbit() {
   const pxSpring = useSpring(scrollYProgress, { stiffness: 60, damping: 20, mass: 0.6 });
   const pixelSize = useTransform(pxSpring, [0, 1], [120, 6]);
   const pixelSizePx = useTransform(pixelSize, (v) => `${v}px ${v}px`);
-  const pixelHalf = useTransform(pixelSize, (v) => `${v / 2}px ${v / 2}px`);
+  const pixelHalfNeg = useTransform(pixelSize, (v) => `-${v / 2}px`);
+  const pixelHalfPos = useTransform(pixelSize, (v) => `${v / 2}px`);
+  const pixelBgPos = useMotionTemplate`0 0, 0 ${pixelHalfPos} ${pixelHalfPos}, ${pixelHalfPos} ${pixelHalfNeg}, ${pixelHalfNeg} 0`;
   const pixelOpacity = useTransform(pxSpring, [0, 0.6, 1], [1, 0.55, 0]);
   const pixelBlur = useTransform(pxSpring, (v) => `blur(${(1 - v) * 6}px)`);
 
