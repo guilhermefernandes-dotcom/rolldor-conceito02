@@ -94,7 +94,7 @@ function CTA({
   variant?: "gold" | "outline";
 }) {
   const base =
-    "group inline-flex items-center justify-center gap-2 font-display font-bold uppercase tracking-wider transition-all duration-300";
+    "group inline-flex items-center justify-center gap-2 font-display font-bold tracking-tight transition-all duration-300";
   const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
   const variants =
     variant === "gold"
