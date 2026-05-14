@@ -43,22 +43,50 @@ import { JoinNotifications } from "@/components/JoinNotifications";
 import { MagnifierCard } from "@/components/MagnifierCard";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Grupo VIP de Revendedoras Leevi — Lançamentos antes de todo mundo" },
-      {
-        name: "description",
-        content:
-          "Entre para o Grupo VIP de Revendedoras Leevi. Lives semanais, lançamentos do atacado, ofertas exclusivas e curadoria de alto giro pra você lucrar mais.",
-      },
-      { property: "og:title", content: "Grupo VIP de Revendedoras Leevi" },
-      {
-        property: "og:description",
-        content: "Lançamentos do atacado, ofertas exclusivas e curadoria de alto giro pra revendedoras.",
-      },
-      { property: "og:image", content: heroImg },
-    ],
-  }),
+  head: () => {
+    const url = "https://wireframe-leevi.lovable.app/";
+    const image = "https://wireframe-leevi.lovable.app/og-image.webp";
+    const title = "Grupo VIP de Revendedoras Leevi — Lançamentos antes de todo mundo";
+    const description =
+      "Entre no Grupo VIP de Revendedoras Leevi no WhatsApp. Lives semanais, lançamentos do atacado, ofertas exclusivas e curadoria de calçados e acessórios femininos de alto giro pra você lucrar mais.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { name: "keywords", content: "revendedora de calçados, atacado calçados femininos, grupo vip whatsapp, distribuidora calçados, leevi, revenda sandálias, atacado moda feminina" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              { q: "Preciso pagar para entrar?", a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar." },
+              { q: "Vão me mandar muita mensagem?", a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado." },
+              { q: "Preciso ter CNPJ?", a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ." },
+              { q: "Como funcionam as lives?", a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo." },
+              { q: "Posso sair quando quiser?", a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro." },
+            ].map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        },
+      ],
+    };
+  },
   component: Landing,
 });
 
