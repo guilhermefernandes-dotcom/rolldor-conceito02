@@ -126,22 +126,17 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
 function FloatingStepCard({
   title,
   desc,
-  align = "left",
 }: {
   title: string;
   desc: string;
   align?: "left" | "right";
 }) {
   return (
-    <div
-      className={`relative rounded-2xl border border-border/60 bg-card p-5 md:p-6 ${
-        align === "right" ? "md:text-right" : "md:text-left"
-      }`}
-    >
-      <h4 className="font-display text-base font-bold tracking-tight text-gold-deep md:text-lg">
+    <div className="relative rounded-2xl border border-border/60 bg-card p-5 text-left md:p-6">
+      <h4 className="font-display text-lg font-bold tracking-tight text-gold-deep md:text-xl">
         {title}
       </h4>
-      <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{desc}</p>
+      <p className="mt-2 text-base leading-relaxed text-muted-foreground">{desc}</p>
     </div>
   );
 }
