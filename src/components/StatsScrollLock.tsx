@@ -112,8 +112,115 @@ export function StatsScrollLock() {
     >
       <div className="flex items-center py-12 md:py-16">
         <div className="mx-auto grid w-full grid-cols-12 gap-8 pl-5 pr-5 md:pl-32 md:pr-10" style={{ maxWidth: "1300px" }}>
-          {/* LEFT — step rail with curving line */}
-          <div className="col-span-12 md:col-span-3">
+          {/* MOBILE — horizontal stepper above cards */}
+          <div className="col-span-12 md:hidden">
+            <div className="relative w-full" style={{ height: 70 }}>
+              {/* Horizontal curved rail */}
+              <svg
+                width="100%"
+                height={70}
+                viewBox="0 0 400 70"
+                preserveAspectRatio="none"
+                className="absolute left-0 top-0 overflow-visible"
+                aria-hidden
+              >
+                {(() => {
+                  const W = 400;
+                  const stepGap = W / STEPS.length;
+                  const dotX = (i: number) => stepGap / 2 + i * stepGap;
+                  const baseY = 12;
+                  const apexY = 44;
+                  const x = dotX(active);
+                  const pre = x - 50;
+                  const post = x + 50;
+                  const d = `M 0 ${baseY}
+                    L ${pre} ${baseY}
+                    C ${x - 25} ${baseY}, ${x - 25} ${apexY}, ${x} ${apexY}
+                    C ${x + 25} ${apexY}, ${x + 25} ${baseY}, ${post} ${baseY}
+                    L ${W} ${baseY}`;
+                  return (
+                    <>
+                      <motion.path
+                        initial={false}
+                        animate={{ d }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        fill="none"
+                        stroke="var(--gold)"
+                        strokeOpacity={0.7}
+                        strokeWidth={1.5}
+                        strokeLinecap="round"
+                      />
+                      <motion.circle
+                        initial={false}
+                        animate={{ cx: x, cy: apexY }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        r={5}
+                        fill="var(--gold)"
+                      />
+                      <motion.circle
+                        initial={false}
+                        animate={{ cx: x, cy: apexY }}
+                        transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                        r={10}
+                        fill="transparent"
+                        stroke="var(--gold)"
+                        strokeWidth={1.2}
+                        strokeDasharray="2 4"
+                        opacity={0.85}
+                        style={{ transformBox: "fill-box", transformOrigin: "center", animation: "spin-ring 8s linear infinite" }}
+                      />
+                    </>
+                  );
+                })()}
+              </svg>
+
+              {/* Labels distributed horizontally */}
+              <div className="absolute inset-x-0 bottom-0 grid" style={{ gridTemplateColumns: `repeat(${STEPS.length}, 1fr)` }}>
+                {STEPS.map((s, i) => {
+                  const isActive = i === active;
+                  return (
+                    <motion.div
+                      key={s.n}
+                      initial={false}
+                      animate={{ scale: isActive ? 1.1 : 1 }}
+                      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+                      className="flex flex-col items-center text-center"
+                      style={{ transformOrigin: "center bottom" }}
+                    >
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          color: isActive
+                            ? "var(--gold)"
+                            : "color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
+                        }}
+                        transition={{ duration: 0.6 }}
+                        className="font-display text-[9px] tracking-[0.25em]"
+                      >
+                        {s.n}
+                      </motion.div>
+                      <motion.div
+                        initial={false}
+                        animate={{
+                          color: isActive
+                            ? "rgb(56,56,56)"
+                            : "color-mix(in oklab, rgb(56,56,56) 25%, transparent)",
+                        }}
+                        transition={{ duration: 0.6 }}
+                        className="mt-0.5 font-display text-xs font-bold leading-none"
+                      >
+                        {s.label}
+                      </motion.div>
+                    </motion.div>
+                  );
+                })}
+              </div>
+              <style>{`@keyframes spin-ring { to { transform: rotate(360deg); } }`}</style>
+            </div>
+          </div>
+
+          {/* DESKTOP — vertical step rail with curving line */}
+          <div className="hidden md:col-span-3 md:block">
             <div
               className="relative"
               style={{ height: RAIL_H, paddingLeft: RAIL_W + 4 }}
@@ -126,7 +233,6 @@ export function StatsScrollLock() {
                 className="absolute left-0 top-0 overflow-visible"
                 aria-hidden
               >
-                {/* Static gold rail line — curves to active dot */}
                 <motion.path
                   initial={false}
                   animate={{ d: buildPath(active) }}
@@ -146,7 +252,6 @@ export function StatsScrollLock() {
                   stroke="var(--gold)"
                   strokeWidth={1.5}
                 />
-                {/* Dashed ring around active dot — spins continuously */}
                 <motion.circle
                   initial={false}
                   animate={{ cx: apexX, cy: dotY(active) }}
@@ -162,7 +267,6 @@ export function StatsScrollLock() {
                 <style>{`@keyframes spin-ring { to { transform: rotate(360deg); } }`}</style>
               </svg>
 
-              {/* Labels positioned at each dot's y */}
               {STEPS.map((s, i) => {
                 const isActive = i === active;
                 return (
