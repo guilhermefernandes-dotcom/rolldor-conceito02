@@ -965,10 +965,10 @@ function Landing() {
                           : "linear-gradient(160deg, oklch(0.92 0.10 92), oklch(0.74 0.13 82))",
                     }}
                   >
-                    <div className="font-display text-[12px] font-semibold uppercase tracking-[0.18em] text-foreground/70">
+                    <div className="font-display text-[17px] font-semibold tracking-normal text-foreground/70">
                       {c.kicker}
                     </div>
-                    <div className="mt-2 font-display text-[26px] font-bold leading-tight text-foreground md:text-[28px]">
+                    <div className="mt-2 font-display text-[30px] font-bold leading-tight text-foreground md:text-[32px]">
                       {c.title}
                     </div>
                   </div>
