@@ -773,13 +773,13 @@ function Landing() {
                   </a>
 
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-background ring-1 ring-border">
-                      <span className="font-display text-lg font-black text-gold-deep">L</span>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background ring-1 ring-border">
+                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" />
                     </div>
                     <div className="leading-tight">
-                      <div className="font-display text-lg font-black text-foreground">5.0</div>
-                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                        Revendedoras<br />no grupo
+                      <div className="font-display text-2xl font-black text-foreground">5.0</div>
+                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        Depoimentos<br />no grupo
                       </div>
                     </div>
                   </div>
