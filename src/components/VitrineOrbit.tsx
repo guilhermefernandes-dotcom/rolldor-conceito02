@@ -173,7 +173,7 @@ export function VitrineOrbit() {
         </div>
 
         {/* RIGHT — orbit */}
-        <div className="relative mx-auto aspect-square w-[300px] sm:w-[420px] md:w-[620px] lg:-ml-40 lg:w-[820px]">
+        <div className="relative mx-auto aspect-square w-[230px] sm:w-[420px] md:w-[620px] lg:-ml-40 lg:w-[820px]">
           {/* Orbit rings */}
           <svg
             aria-hidden
