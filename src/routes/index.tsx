@@ -956,7 +956,7 @@ function Landing() {
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
                   <div
-                    className="relative overflow-hidden px-6 pb-7 pt-9 text-center"
+                    className="relative overflow-hidden px-10 pb-9 pt-11 text-center"
                     style={{
                       borderRadius: "24px 140px 24px 140px / 24px 95% 24px 95%",
                       background:
