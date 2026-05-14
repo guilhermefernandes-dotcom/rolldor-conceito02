@@ -208,12 +208,12 @@ export function MagnifierCard() {
         @media(max-width: 1024px){
           .headfpbentov6{ font-size: 26px; }
           .descriptionfpbentov6{ font-size: 16px; }
-          .mockupv6{ width: 230px; z-index: 2; }
+          .mockupv6{ width: 330px; z-index: 2; }
           .content2fpbentov6inside:before{
-            top: 18px;
-            border-radius: 24px;
-            width: 144px;
-            height: 300px;
+            top: 25px;
+            border-radius: 36px;
+            width: 207px;
+            height: 430px;
           }
         }
 
