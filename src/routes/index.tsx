@@ -37,6 +37,7 @@ import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
+import { MagnifierCard } from "@/components/MagnifierCard";
 
 export const Route = createFileRoute("/")({
   head: () => ({
