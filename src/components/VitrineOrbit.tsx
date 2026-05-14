@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionTemplate,
+  
   
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
