@@ -53,7 +53,7 @@ export function VitrineOrbit() {
   const glowX = useTransform(sx, [0, 1], ["20%", "80%"]);
   const glowY = useTransform(sy, [0, 1], ["20%", "80%"]);
   const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
-  const maskBg = useMotionTemplate`radial-gradient(280px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.35), transparent 70%)`;
+  
 
   // Pixelated mask that follows the cursor
   const pixelMask = useMotionTemplate`radial-gradient(260px circle at ${glowX} ${glowY}, black 0%, rgba(0,0,0,0.7) 40%, transparent 75%)`;
