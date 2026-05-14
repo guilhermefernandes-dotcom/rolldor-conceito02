@@ -103,7 +103,7 @@ export function VitrineOrbit() {
               lineHeight: "60px",
               color: "rgb(56,56,56)",
               letterSpacing: "-0.03em",
-              maxWidth: "12ch",
+              maxWidth: "16ch",
             }}
           >
             As peças que costumam{" "}
