@@ -66,7 +66,7 @@ export function VitrineOrbit() {
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="relative w-full overflow-hidden rounded-[20px] border border-gold/70 py-20 md:py-32"
+      className="relative w-full overflow-hidden rounded-[20px] border border-gold/70 py-10 md:py-32"
       style={{ background: "oklch(0.99 0.003 85)" }}
     >
       {/* Subtle line grid pattern */}
@@ -85,7 +85,7 @@ export function VitrineOrbit() {
       />
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
         {/* LEFT — text */}
-        <div className="relative z-30">
+        <div className="relative z-30 text-center lg:text-left">
           {/* Protective radial backdrop for legibility */}
           <div
             aria-hidden
@@ -97,7 +97,7 @@ export function VitrineOrbit() {
           />
 
           <h2
-            className="font-display"
+            className="font-display mx-auto lg:mx-0"
             style={{
               fontWeight: 600,
               fontSize: "clamp(34px, 9vw, 60px)",
@@ -123,7 +123,7 @@ export function VitrineOrbit() {
             dentro do grupo.
           </h2>
 
-          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
+          <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground lg:mx-0 md:text-xl">
             Você não precisa garimpar 10 fornecedores.{" "}
             <strong className="font-semibold text-foreground">
               Você só precisa do Grupo VIP Leevi.
@@ -156,7 +156,7 @@ export function VitrineOrbit() {
                   animate={{ y: 0, opacity: 1 }}
                   exit={{ y: -12, opacity: 0 }}
                   transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
-                  className="flex items-center gap-4"
+                  className="flex items-center justify-center gap-4 lg:justify-start"
                 >
                   <img
                     src={current.src}
