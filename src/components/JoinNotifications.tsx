@@ -58,32 +58,32 @@ export function JoinNotifications() {
   }, []);
 
   return (
-    <div className="pointer-events-none fixed left-4 top-4 z-[60] md:left-6 md:top-6">
+    <div className="pointer-events-none fixed left-0 top-6 z-[60] md:top-8">
       <AnimatePresence mode="wait">
         {toast && (
           <motion.div
             key={toast.id}
-            initial={{ opacity: 0, y: -20, scale: 0.92 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: -12, scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 280, damping: 24 }}
-            className="pointer-events-auto flex max-w-[340px] items-center gap-3 rounded-full border border-gold/40 bg-foreground/95 py-2 pl-2 pr-5 text-background shadow-[0_18px_50px_-12px_rgba(0,0,0,0.45)] backdrop-blur"
+            initial={{ opacity: 0, x: -40 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -24 }}
+            transition={{ type: "spring", stiffness: 280, damping: 26 }}
+            className="pointer-events-auto flex max-w-[420px] items-center gap-4 rounded-r-xl border border-l-0 border-[#16a34a]/25 bg-white py-3 pl-4 pr-6 text-foreground shadow-[0_22px_60px_-18px_rgba(0,0,0,0.25)]"
             style={{
-              backgroundImage:
-                "linear-gradient(135deg, color-mix(in oklab, var(--gold) 12%, transparent), transparent 60%)",
+              borderLeft: "4px solid #16a34a",
             }}
           >
-            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-background ring-2 ring-gold/60">
-              <img src={leeviMark} alt="" className="h-6 w-6 object-contain" />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-foreground">
-                <Check className="h-2.5 w-2.5 text-white" strokeWidth={3.5} />
+            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30">
+              <img src={leeviMark} alt="" className="h-7 w-7 object-contain" />
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white">
+                <Check className="h-3 w-3 text-white" strokeWidth={3.5} />
               </span>
             </div>
             <div className="min-w-0 leading-tight">
-              <div className="truncate font-display text-[13px] font-bold text-background">
-                {toast.name} <span className="font-medium text-background/70">entrou no grupo</span>
+              <div className="truncate font-display text-[15px] font-bold text-foreground">
+                {toast.name} <span className="font-medium text-foreground/60">entrou no grupo</span>
               </div>
-              <div className="mt-0.5 truncate text-[11px] text-background/60">
+              <div className="mt-1 flex items-center gap-1.5 truncate text-[13px] font-medium text-[#16a34a]">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
                 {toast.city}
               </div>
             </div>
