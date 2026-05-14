@@ -111,7 +111,7 @@ export function VitrineOrbit() {
             <span className="text-gold-deep">esgotar primeiro</span> dentro do grupo.
           </h2>
 
-          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
+          <p className="mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground md:text-xl">
             Você não precisa garimpar 10 fornecedores.{" "}
             <strong className="font-semibold text-foreground">
               Você só precisa do Grupo VIP Leevi.
