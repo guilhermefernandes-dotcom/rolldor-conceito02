@@ -252,7 +252,7 @@ export function VitrineOrbit() {
               <img
                 src={leeviMark}
                 alt="Leevi"
-                className="h-14 w-14 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
+                className="h-10 w-10 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
                 style={{
                   filter:
                     "brightness(0) saturate(100%) invert(62%) sepia(48%) saturate(560%) hue-rotate(2deg) brightness(92%) contrast(88%)",
