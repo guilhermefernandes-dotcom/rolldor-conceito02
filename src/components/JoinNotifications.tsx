@@ -67,23 +67,23 @@ export function JoinNotifications() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ type: "spring", stiffness: 280, damping: 26 }}
-            className="pointer-events-auto flex max-w-[520px] items-center gap-5 rounded-r-2xl border border-l-0 border-[#16a34a]/25 bg-white py-5 pl-5 pr-8 text-foreground shadow-[0_28px_70px_-18px_rgba(0,0,0,0.28)]"
+            className="pointer-events-auto flex max-w-[300px] items-center gap-3 rounded-r-xl border border-l-0 border-[#16a34a]/25 bg-white py-3 pl-3 pr-4 text-foreground shadow-[0_18px_50px_-18px_rgba(0,0,0,0.28)] md:max-w-[520px] md:gap-5 md:rounded-r-2xl md:py-5 md:pl-5 md:pr-8 md:shadow-[0_28px_70px_-18px_rgba(0,0,0,0.28)]"
             style={{
-              borderLeft: "6px solid #16a34a",
+              borderLeft: "4px solid #16a34a",
             }}
           >
-            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30">
-              <img src={leeviMark} alt="" className="h-9 w-9 object-contain" loading="lazy" decoding="async" />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white">
-                <Check className="h-3.5 w-3.5 text-white" strokeWidth={3.5} />
+            <div className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30 md:h-16 md:w-16">
+              <img src={leeviMark} alt="" className="h-6 w-6 object-contain md:h-9 md:w-9" loading="lazy" decoding="async" />
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-4 w-4 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white md:h-6 md:w-6">
+                <Check className="h-2.5 w-2.5 text-white md:h-3.5 md:w-3.5" strokeWidth={3.5} />
               </span>
             </div>
             <div className="min-w-0 leading-tight">
-              <div className="truncate font-display text-[19px] font-bold text-foreground">
+              <div className="truncate font-display text-[13px] font-bold text-foreground md:text-[19px]">
                 {toast.name} <span className="font-medium text-foreground/60">entrou no grupo</span>
               </div>
-              <div className="mt-1.5 flex items-center gap-2 truncate text-[16px] font-semibold text-[#16a34a]">
-                <span className="inline-block h-2 w-2 rounded-full bg-[#16a34a]" />
+              <div className="mt-1 flex items-center gap-1.5 truncate text-[11px] font-semibold text-[#16a34a] md:mt-1.5 md:gap-2 md:text-[16px]">
+                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#16a34a] md:h-2 md:w-2" />
                 {toast.city}
               </div>
             </div>
