@@ -984,6 +984,47 @@ function Landing() {
             ))}
           </div>
 
+          {/* CTA + Vagas limitadas stamp */}
+          <Reveal delay={0.2}>
+            <div className="mt-14 flex items-center justify-center gap-5">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative inline-flex items-center justify-center rounded-2xl px-10 py-5 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                style={{
+                  background:
+                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                  boxShadow:
+                    "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 20px 40px -20px var(--accent-shadow)",
+                }}
+              >
+                Quero participar da próxima turma
+              </a>
+              <div
+                className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-full text-center"
+                style={{
+                  background:
+                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 60%, var(--accent-dark) 100%)",
+                  boxShadow:
+                    "inset 0 0 0 2px hsl(0 0% 100% / 0.35), inset 0 0 0 4px var(--accent), 0 10px 30px -10px var(--accent-shadow)",
+                  clipPath:
+                    "polygon(50% 0%,57% 4%,65% 1%,70% 7%,78% 6%,82% 13%,90% 14%,92% 22%,99% 26%,97% 34%,100% 42%,96% 48%,100% 55%,96% 62%,99% 70%,93% 75%,93% 83%,86% 86%,84% 94%,76% 93%,72% 99%,64% 96%,57% 100%,50% 95%,43% 100%,36% 96%,28% 99%,24% 93%,16% 94%,14% 86%,7% 83%,7% 75%,1% 70%,4% 62%,0% 55%,4% 48%,0% 42%,3% 34%,1% 26%,8% 22%,10% 14%,18% 13%,22% 6%,30% 7%,35% 1%,43% 4%)",
+                }}
+              >
+                <div className="flex flex-col items-center leading-none text-accent-foreground">
+                  <Flame className="mb-0.5 h-3.5 w-3.5" strokeWidth={2.5} />
+                  <span className="font-display text-[8px] font-extrabold uppercase tracking-wider">
+                    Vagas
+                  </span>
+                  <span className="font-display text-[8px] font-extrabold uppercase tracking-wider">
+                    limitadas
+                  </span>
+                </div>
+              </div>
+            </div>
+          </Reveal>
+
         </div>
 
         {/* FAQ (continues in same section to avoid background seam) */}
