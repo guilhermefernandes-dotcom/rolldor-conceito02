@@ -120,26 +120,21 @@ export function VitrineOrbit() {
           </div>
 
           <h2
-            className="font-display font-black tracking-tight text-background"
+            className="font-display font-black tracking-tight text-foreground"
             style={{
               fontSize: "clamp(1.9rem, 4.6vw, 4rem)",
               lineHeight: 0.98,
               maxWidth: "12ch",
-              textShadow: "0 4px 30px rgba(0,0,0,0.55)",
-              color: "oklch(0.99 0.003 85)",
             }}
           >
             As peças que costumam{" "}
-            <span className="italic text-gold">esgotar primeiro</span> dentro do
+            <span className="italic text-gold-deep">esgotar primeiro</span> dentro do
             grupo.
           </h2>
 
-          <p
-            className="mt-6 max-w-md text-base leading-relaxed text-background/70 md:text-lg"
-            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
-          >
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
             Você não precisa garimpar 10 fornecedores.{" "}
-            <strong className="font-semibold text-background">
+            <strong className="font-semibold text-foreground">
               Você só precisa do Grupo VIP Leevi.
             </strong>
           </p>
