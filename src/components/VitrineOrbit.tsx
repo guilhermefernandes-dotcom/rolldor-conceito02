@@ -113,16 +113,18 @@ export function VitrineOrbit() {
           />
 
           <h2
-            className="font-display font-black tracking-tight text-foreground"
+            className="font-display"
             style={{
-              fontSize: "clamp(1.9rem, 4.6vw, 4rem)",
-              lineHeight: 0.98,
+              fontWeight: 600,
+              fontSize: "60px",
+              lineHeight: "60px",
+              color: "rgb(56,56,56)",
+              letterSpacing: "-0.03em",
               maxWidth: "12ch",
             }}
           >
             As peças que costumam{" "}
-            <span className="italic text-gold-deep">esgotar primeiro</span> dentro do
-            grupo.
+            <span className="text-gold-deep">esgotar primeiro</span> dentro do grupo.
           </h2>
 
           <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
