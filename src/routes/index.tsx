@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { motion, useScroll, useTransform, AnimatePresence } from "motion/react";
 import {
   ArrowRight,
   Tag,
@@ -29,6 +29,8 @@ import leeviMark from "@/assets/leevi-mark.png";
 import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import depoimentoMockup from "@/assets/depoimento-mockup.png";
+import depoimentoMockup2 from "@/assets/depoimento-mockup-2.png";
+import depoimentoMockup3 from "@/assets/depoimento-mockup-3.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
