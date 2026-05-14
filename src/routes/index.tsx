@@ -737,9 +737,9 @@ function Landing() {
       {/* PROVA SOCIAL */}
       <section className="border-b border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
+          <div className="grid gap-12 md:grid-cols-2 md:items-stretch md:gap-16">
             {/* LEFT — pill, headline, CTA */}
-            <div>
+            <div className="flex flex-col justify-between gap-12 md:py-4">
               <Reveal>
                 <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
@@ -753,8 +753,10 @@ function Landing() {
                   O que <UnderlineWord delay={0}>dizem</UnderlineWord>{" "}
                   <UnderlineWord delay={0.18}>nossas</UnderlineWord> revendedoras no grupo.
                 </h2>
+              </Reveal>
 
-                <div className="mt-10 flex flex-wrap items-center gap-5">
+              <Reveal delay={0.15}>
+                <div className="flex flex-wrap items-center gap-5">
                   <a
                     href={WHATSAPP}
                     target="_blank"
