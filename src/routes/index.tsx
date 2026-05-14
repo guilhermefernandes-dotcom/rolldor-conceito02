@@ -17,8 +17,8 @@ import {
   Quote,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import heroImg from "@/assets/hero.jpg";
-import productsImg from "@/assets/products.jpg";
+import heroImg from "@/assets/hero.webp";
+import productsImg from "@/assets/products.webp";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
@@ -26,14 +26,14 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
-import launchesImg from "@/assets/leevi-launches.jpg";
+import launchesImg from "@/assets/leevi-launches.webp";
 import t3 from "@/assets/t3.jpg";
-import depoimentoMockup from "@/assets/depoimento-mockup-mariana.png";
+import depoimentoMockup from "@/assets/depoimento-mockup-mariana.webp";
 
-import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.png";
+import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.webp";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
-import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
+import comoFuncionaRadar from "@/assets/como-funciona-radar.webp";
 import cardShape1 from "@/assets/card-shape-1.png";
 import cardShape2 from "@/assets/card-shape-2.png";
 import cardShape3 from "@/assets/card-shape-3.png";
@@ -312,7 +312,7 @@ function Landing() {
                   decoding="async"
                   fetchPriority="high"
                   className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-                />
+                loading="lazy" decoding="async" />
               </div>
             </Reveal>
             <Reveal delay={0.45}>
@@ -354,7 +354,7 @@ function Landing() {
             <Reveal>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
                 </span>
                 <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
                   quem é a Leevi
@@ -459,7 +459,7 @@ function Landing() {
                 <Reveal>
                   <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
                     <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
-                      <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                      <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
                     </span>
                     <span className="font-display text-sm font-medium tracking-wide text-white/90">
                       vantagens exclusivas
@@ -655,7 +655,7 @@ function Landing() {
             <Reveal>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
                 </span>
                 <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
                   como funciona
@@ -706,7 +706,7 @@ function Landing() {
                         src={comoFuncionaRadar}
                         alt="4 passos para entrar no grupo VIP"
                         className="h-auto w-[620px] lg:w-[760px]"
-                      />
+                      loading="lazy" decoding="async" />
                     </div>
                   </Reveal>
 
@@ -780,7 +780,7 @@ function Landing() {
                   height={400}
                   decoding="async"
                   className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-                />
+                loading="lazy" decoding="async" />
               </div>
             </Reveal>
           </div>
@@ -801,7 +801,7 @@ function Landing() {
               <Reveal>
                 <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
                   </span>
                   <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
                     depoimentos
@@ -833,7 +833,7 @@ function Landing() {
 
                   <div className="flex items-center gap-3">
                     <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background ring-1 ring-border">
-                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" />
+                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" loading="lazy" decoding="async" />
                     </div>
                     <div className="leading-tight">
                       <div className="font-display text-2xl font-black text-foreground">5.0</div>
@@ -929,7 +929,7 @@ function Landing() {
             <Reveal>
               <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
                 <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
                 </span>
                 <span className="font-display text-sm font-medium tracking-wide text-white/90">
                   por que entrar agora
@@ -971,7 +971,7 @@ function Landing() {
                       alt=""
                       aria-hidden
                       className="pointer-events-none absolute inset-0 h-full w-full object-fill"
-                    />
+                    loading="lazy" decoding="async" />
                     <div className="relative font-display text-[17px] font-semibold tracking-normal text-foreground/70">
                       {c.kicker}
                     </div>

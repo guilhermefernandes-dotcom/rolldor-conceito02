@@ -1,5 +1,5 @@
-import whatsappScreen from "@/assets/whatsapp-vip-screen.png";
-import iphoneMockup from "@/assets/iphone-mockup.png";
+import whatsappScreen from "@/assets/whatsapp-vip-screen.webp";
+import iphoneMockup from "@/assets/iphone-mockup.webp";
 
 /**
  * Bento V6 — animated magnifier card.
@@ -14,7 +14,7 @@ export function MagnifierCard() {
       <div className="fpbentov6">
         <div className="content2fpbentov6">
           <div className="content2fpbentov6inside">
-            <img className="mockupv6" src={iphoneMockup} alt="" />
+            <img className="mockupv6" src={iphoneMockup} alt="" loading="lazy" decoding="async" />
           </div>
         </div>
         <div className="dot1xbzxfz6"></div>
