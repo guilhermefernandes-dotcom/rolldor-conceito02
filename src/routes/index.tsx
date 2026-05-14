@@ -728,7 +728,9 @@ function Landing() {
       </section>
 
       {/* VITRINE — Orbit */}
-      <VitrineOrbit />
+      <div className="bg-secondary/70 p-[20px]">
+        <VitrineOrbit />
+      </div>
 
       {/* PROVA SOCIAL */}
       <section className="border-y border-border bg-secondary/70 py-24 md:py-32">

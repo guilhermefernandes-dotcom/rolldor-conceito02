@@ -68,8 +68,8 @@ export function VitrineOrbit() {
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="relative w-full overflow-hidden py-20 md:py-32"
-      style={{ background: "oklch(0.16 0.012 80)" }}
+      className="relative w-full overflow-hidden rounded-[20px] py-20 md:py-32"
+      style={{ background: "oklch(0.99 0.003 85)" }}
     >
       {/* Pixel dots layers */}
       <motion.div
@@ -77,7 +77,7 @@ export function VitrineOrbit() {
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(oklch(0.72 0.12 80 / 0.20) 1px, transparent 1px), radial-gradient(oklch(0.72 0.12 80 / 0.10) 1px, transparent 1px)",
+            "radial-gradient(oklch(0.55 0.12 80 / 0.18) 1px, transparent 1px), radial-gradient(oklch(0.55 0.12 80 / 0.10) 1px, transparent 1px)",
           backgroundSize: "18px 18px, 24px 24px",
           backgroundPosition: "0 0, 9px 9px",
           rotateX: rotX,
@@ -89,7 +89,7 @@ export function VitrineOrbit() {
       {/* Hover-follow glow mask */}
       <motion.div
         aria-hidden
-        className="pointer-events-none absolute inset-0 mix-blend-screen"
+        className="pointer-events-none absolute inset-0 mix-blend-multiply"
         style={{ backgroundImage: maskBg }}
       />
       {/* Soft global glow */}
@@ -108,10 +108,10 @@ export function VitrineOrbit() {
             className="pointer-events-none absolute -inset-10 -z-10"
             style={{
               background:
-                "radial-gradient(ellipse at center, oklch(0.16 0.012 80 / 0.92) 0%, oklch(0.16 0.012 80 / 0.6) 45%, transparent 75%)",
+                "radial-gradient(ellipse at center, oklch(0.99 0.003 85 / 0.92) 0%, oklch(0.99 0.003 85 / 0.6) 45%, transparent 75%)",
             }}
           />
-          <div className="mb-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.3em] text-gold">
+          <div className="mb-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.3em] text-gold-deep">
             <span className="relative flex h-2 w-2">
               <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
               <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
@@ -120,26 +120,21 @@ export function VitrineOrbit() {
           </div>
 
           <h2
-            className="font-display font-black tracking-tight text-background"
+            className="font-display font-black tracking-tight text-foreground"
             style={{
               fontSize: "clamp(1.9rem, 4.6vw, 4rem)",
               lineHeight: 0.98,
               maxWidth: "12ch",
-              textShadow: "0 4px 30px rgba(0,0,0,0.55)",
-              color: "oklch(0.99 0.003 85)",
             }}
           >
             As peças que costumam{" "}
-            <span className="italic text-gold">esgotar primeiro</span> dentro do
+            <span className="italic text-gold-deep">esgotar primeiro</span> dentro do
             grupo.
           </h2>
 
-          <p
-            className="mt-6 max-w-md text-base leading-relaxed text-background/70 md:text-lg"
-            style={{ textShadow: "0 2px 20px rgba(0,0,0,0.6)" }}
-          >
+          <p className="mt-6 max-w-md text-base leading-relaxed text-muted-foreground md:text-lg">
             Você não precisa garimpar 10 fornecedores.{" "}
-            <strong className="font-semibold text-background">
+            <strong className="font-semibold text-foreground">
               Você só precisa do Grupo VIP Leevi.
             </strong>
           </p>
@@ -162,7 +157,7 @@ export function VitrineOrbit() {
             </a>
 
             {/* Active item badge */}
-            <div className="relative h-12 min-w-[220px] overflow-hidden rounded-full border border-gold/25 bg-background/5 px-2 pr-5 backdrop-blur">
+            <div className="relative h-12 min-w-[220px] overflow-hidden rounded-full border border-gold/30 bg-foreground/5 px-2 pr-5 backdrop-blur">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={active}
@@ -178,10 +173,10 @@ export function VitrineOrbit() {
                     className="h-9 w-9 rounded-full object-cover ring-1 ring-gold/40"
                   />
                   <div className="leading-tight">
-                    <div className="font-display text-sm font-bold text-background">
+                    <div className="font-display text-sm font-bold text-foreground">
                       {current.name}
                     </div>
-                    <div className="text-[10px] uppercase tracking-widest text-gold">
+                    <div className="text-[10px] uppercase tracking-widest text-gold-deep">
                       {current.tag}
                     </div>
                   </div>
@@ -205,7 +200,7 @@ export function VitrineOrbit() {
               rx="310"
               ry="310"
               fill="none"
-              stroke="oklch(0.72 0.12 80 / 0.35)"
+              stroke="oklch(0.55 0.12 80 / 0.45)"
               strokeWidth="1"
             />
             <ellipse
@@ -214,7 +209,7 @@ export function VitrineOrbit() {
               rx="210"
               ry="210"
               fill="none"
-              stroke="oklch(0.72 0.12 80 / 0.25)"
+              stroke="oklch(0.55 0.12 80 / 0.35)"
               strokeWidth="1"
               strokeDasharray="4 6"
             />
