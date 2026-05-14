@@ -173,7 +173,7 @@ export function VitrineOrbit() {
         </div>
 
         {/* RIGHT — orbit */}
-        <div className="relative mx-auto aspect-square w-[300px] sm:w-[420px] md:w-[620px] lg:-ml-40 lg:w-[820px]">
+        <div className="relative mx-auto aspect-square w-[230px] sm:w-[420px] md:w-[620px] lg:-ml-40 lg:w-[820px]">
           {/* Orbit rings */}
           <svg
             aria-hidden
@@ -222,13 +222,13 @@ export function VitrineOrbit() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div
-                    className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36"
+                    className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36"
                   >
                     <img
                       src={item.src}
                       alt={item.name}
                       loading="lazy"
-                      className="h-24 w-24 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
+                      className="h-16 w-16 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
                     />
                   </div>
                 </motion.div>
@@ -239,7 +239,7 @@ export function VitrineOrbit() {
           {/* Center brand — white background, gold mark, animates on each tick */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
-              className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
+              className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
               animate={{
                 scale: highlighting ? 1.15 : 1,
               }}
@@ -252,7 +252,7 @@ export function VitrineOrbit() {
               <img
                 src={leeviMark}
                 alt="Leevi"
-                className="h-14 w-14 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
+                className="h-10 w-10 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
                 style={{
                   filter:
                     "brightness(0) saturate(100%) invert(62%) sepia(48%) saturate(560%) hue-rotate(2deg) brightness(92%) contrast(88%)",
