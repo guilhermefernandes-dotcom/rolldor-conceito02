@@ -31,6 +31,7 @@ import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
+import { VitrineOrbit } from "@/components/VitrineOrbit";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -724,80 +725,8 @@ function Landing() {
         </div>
       </section>
 
-      {/* VITRINE */}
-      <div className="bg-secondary/70 p-5">
-        <section className="w-full bg-background py-24 md:py-32 rounded-2xl">
-        <div className="mx-auto max-w-7xl px-5 md:px-10">
-          <div className="grid gap-10 md:grid-cols-12 md:items-end">
-            <div className="md:col-span-7">
-              <Reveal>
-                <SectionLabel>Vitrine de alto giro</SectionLabel>
-                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                  As peças que costumam{" "}
-                  <span className="italic text-gold">esgotar primeiro</span> dentro do grupo.
-                </h2>
-              </Reveal>
-            </div>
-            <div className="md:col-span-5">
-              <Reveal delay={0.1}>
-                <p className="text-muted-foreground md:text-lg">
-                  Selecionamos toda semana o que está vendendo de verdade na boca da revendedora.
-                  Aqui está uma amostra do que circula nas lives.
-                </p>
-              </Reveal>
-            </div>
-          </div>
-
-          <div className="mt-12 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-5">
-            {[
-              { src: p1, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
-              { src: p2, name: "Tênis Casual Premium", tag: "Lançamento" },
-              { src: p3, name: "Bolsa Executiva Black", tag: "Alto giro" },
-              { src: p4, name: "Salto Bloco Nude", tag: "Sai rápido" },
-            ].map((p, i) => (
-              <Reveal key={i} delay={i * 0.05}>
-                <div className="group relative overflow-hidden rounded-2xl border border-border bg-card transition-all hover:border-gold/50">
-                  <div className="aspect-square overflow-hidden">
-                    <img
-                      src={p.src}
-                      alt={p.name}
-                      loading="lazy"
-                      width={800}
-                      height={800}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    />
-                  </div>
-                  <div className="absolute top-3 left-3 rounded-full bg-gold px-3 py-1 font-display text-[10px] font-bold uppercase tracking-wider text-foreground">
-                    {p.tag}
-                  </div>
-                  <div className="border-t border-border p-4">
-                    <div className="font-display text-sm font-bold tracking-tight">{p.name}</div>
-                    <div className="mt-1 text-xs text-muted-foreground">Disponível na próxima live</div>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-
-          <Reveal delay={0.2}>
-            <div className="mt-8 overflow-hidden rounded-2xl border border-gold/20">
-              <img
-                src={productsImg}
-                alt="Coleção Leevi de calçados e acessórios"
-                width={1920}
-                height={1080}
-                loading="lazy"
-                className="h-64 w-full object-cover md:h-96"
-              />
-            </div>
-          </Reveal>
-
-          <div className="mt-10 text-center">
-            <CTA>Ver tudo dentro do grupo</CTA>
-          </div>
-        </div>
-      </section>
-      </div>
+      {/* VITRINE — Orbit */}
+      <VitrineOrbit />
 
       {/* PROVA SOCIAL */}
       <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
