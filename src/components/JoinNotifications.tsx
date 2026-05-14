@@ -67,23 +67,23 @@ export function JoinNotifications() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -24 }}
             transition={{ type: "spring", stiffness: 280, damping: 26 }}
-            className="pointer-events-auto flex max-w-[420px] items-center gap-4 rounded-r-xl border border-l-0 border-[#16a34a]/25 bg-white py-3 pl-4 pr-6 text-foreground shadow-[0_22px_60px_-18px_rgba(0,0,0,0.25)]"
+            className="pointer-events-auto flex max-w-[520px] items-center gap-5 rounded-r-2xl border border-l-0 border-[#16a34a]/25 bg-white py-5 pl-5 pr-8 text-foreground shadow-[0_28px_70px_-18px_rgba(0,0,0,0.28)]"
             style={{
-              borderLeft: "4px solid #16a34a",
+              borderLeft: "6px solid #16a34a",
             }}
           >
-            <div className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30">
-              <img src={leeviMark} alt="" className="h-7 w-7 object-contain" />
-              <span className="absolute -bottom-0.5 -right-0.5 flex h-5 w-5 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white">
-                <Check className="h-3 w-3 text-white" strokeWidth={3.5} />
+            <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30">
+              <img src={leeviMark} alt="" className="h-9 w-9 object-contain" />
+              <span className="absolute -bottom-0.5 -right-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white">
+                <Check className="h-3.5 w-3.5 text-white" strokeWidth={3.5} />
               </span>
             </div>
             <div className="min-w-0 leading-tight">
-              <div className="truncate font-display text-[15px] font-bold text-foreground">
+              <div className="truncate font-display text-[19px] font-bold text-foreground">
                 {toast.name} <span className="font-medium text-foreground/60">entrou no grupo</span>
               </div>
-              <div className="mt-1 flex items-center gap-1.5 truncate text-[13px] font-medium text-[#16a34a]">
-                <span className="inline-block h-1.5 w-1.5 rounded-full bg-[#16a34a]" />
+              <div className="mt-1.5 flex items-center gap-2 truncate text-[16px] font-semibold text-[#16a34a]">
+                <span className="inline-block h-2 w-2 rounded-full bg-[#16a34a]" />
                 {toast.city}
               </div>
             </div>
