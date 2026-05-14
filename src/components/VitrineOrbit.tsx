@@ -236,8 +236,7 @@ export function VitrineOrbit() {
             <motion.div
               className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
               animate={{
-                scale: highlighting ? 1.08 : 1,
-                rotate: active * ANGLE_STEP,
+                scale: highlighting ? 1.15 : 1,
               }}
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               style={{
