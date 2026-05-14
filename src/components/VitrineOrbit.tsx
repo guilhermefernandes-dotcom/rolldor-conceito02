@@ -156,7 +156,7 @@ export function VitrineOrbit() {
                   <img
                     src={current.src}
                     alt=""
-                    className="h-9 w-9 rounded-full object-cover ring-1 ring-gold/40"
+                    className="h-10 w-10 object-contain"
                   />
                   <span className="font-display text-sm font-bold text-foreground">
                     {current.name}
