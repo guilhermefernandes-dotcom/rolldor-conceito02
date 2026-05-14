@@ -123,7 +123,7 @@ export function VitrineOrbit() {
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0"
+              className="group inline-flex items-center gap-3 rounded-full px-10 py-5 font-display text-base font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
               style={{
                 background:
                   "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
@@ -132,7 +132,7 @@ export function VitrineOrbit() {
               }}
             >
               Solicitar acesso
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
             </a>
 
             {/* Active item — minimal, photo + name */}
