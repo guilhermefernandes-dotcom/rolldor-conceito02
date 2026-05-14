@@ -132,17 +132,6 @@ export function VitrineOrbit() {
             </strong>
           </p>
 
-          <div className="mt-8 flex flex-wrap items-center gap-5">
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group inline-flex items-center gap-2 rounded-full px-7 py-3.5 font-display text-sm font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                boxShadow:
-                  "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
           <div className="mt-8">
             <a
               href={WHATSAPP}
@@ -179,12 +168,6 @@ export function VitrineOrbit() {
                   <span className="font-display text-sm font-bold text-foreground">
                     {current.name}
                   </span>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-          </div>
-                    </div>
-                  </div>
                 </motion.div>
               </AnimatePresence>
             </div>
