@@ -1085,7 +1085,7 @@ function Landing() {
       </section>
 
       {/* FAQ */}
-      <section className="px-5 py-16 md:px-10 md:py-24">
+      <section className="px-5 pb-16 md:px-10 md:pb-24" style={{ background: "oklch(0.18 0.005 80)" }}>
         <div className="mx-auto max-w-[1400px]">
           <div
             className="relative overflow-hidden rounded-[24px] p-6 md:p-12"
