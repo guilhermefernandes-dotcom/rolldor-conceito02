@@ -990,18 +990,18 @@ function Landing() {
           <div className="relative mx-auto mt-12 max-w-5xl">
             <svg
               aria-hidden
-              viewBox="0 0 1000 520"
+              viewBox="0 0 1000 900"
               preserveAspectRatio="none"
               className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
             >
               <path
-                d="M 200 40 C 520 60, 120 240, 500 260 S 880 460, 800 500"
+                d="M 500 0 C 500 120, 880 160, 720 320 S 120 480, 280 620 S 820 760, 720 900"
                 fill="none"
                 stroke="oklch(0.82 0.12 85)"
                 strokeWidth="2"
                 strokeDasharray="2 8"
                 strokeLinecap="round"
-                opacity="0.5"
+                opacity="0.55"
               />
             </svg>
             <div
@@ -1014,44 +1014,48 @@ function Landing() {
               }}
             />
 
-            <ol className="relative grid gap-14 md:grid-cols-3 md:gap-8">
+            <ol className="relative flex flex-col gap-16 md:gap-12">
               {[
                 {
                   Icon: Zap,
                   n: "1",
                   title: "Você entra no grupo",
                   desc: "Cadastro rápido pelo WhatsApp. Sem mensalidade, sem letra miúda.",
-                  align: "md:items-start md:text-left",
+                  side: "right",
                 },
                 {
                   Icon: PackageCheck,
                   n: "2",
                   title: "Recebe lançamentos cedo",
                   desc: "A curadoria Leevi cai antes do site, com preço e bônus do VIP.",
-                  align: "md:items-center md:text-center md:pt-24",
+                  side: "left",
                 },
                 {
                   Icon: TrendingUp,
                   n: "3",
                   title: "Vende com vantagem",
                   desc: "Compra primeiro, marca o preço primeiro e gira estoque mais rápido.",
-                  align: "md:items-end md:text-right md:pt-44",
+                  side: "right",
                 },
-              ].map(({ Icon, n, title, desc, align }, i) => (
+              ].map(({ Icon, n, title, desc, side }, i) => (
                 <Reveal key={i} delay={i * 0.12}>
-                  <li className={`relative flex flex-col items-center text-center ${align}`}>
-                    <div className="relative">
+                  <li
+                    className={`relative flex w-full justify-center ${
+                      side === "right" ? "md:justify-end" : "md:justify-start"
+                    }`}
+                  >
+                    <div className="flex max-w-[340px] flex-col items-center text-center">
                       <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
                         <Icon className="h-7 w-7 text-gold" />
                         <span className="absolute -right-1 -top-1 text-gold">✦</span>
                       </div>
+                      <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-white md:text-[22px]">
+                        {n}. {title}
+                      </h4>
+                      <p className="mt-3 text-base leading-relaxed text-white/70 md:text-[17px]">
+                        {desc}
+                      </p>
                     </div>
-                    <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-white md:text-[22px]">
-                      {n}. {title}
-                    </h4>
-                    <p className="mt-3 max-w-[300px] text-base leading-relaxed text-white/70 md:text-[17px]">
-                      {desc}
-                    </p>
                   </li>
                 </Reveal>
               ))}
