@@ -83,7 +83,7 @@ export function MagnifierCard() {
           display: flex;
           justify-content: center;
           position: relative;
-          top: 15px;
+          top: 80px;
           transform-origin: bottom;
           transition: transform 1s;
         }
