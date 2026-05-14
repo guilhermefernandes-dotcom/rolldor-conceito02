@@ -812,14 +812,14 @@ function Landing() {
         <Reveal delay={0.2}>
           <div className="relative mt-16 flex w-full items-stretch overflow-hidden bg-gold py-4 font-display">
             {/* EM LIVE badge */}
-            <div className="z-10 flex shrink-0 items-center gap-2 border-r border-white/25 bg-gold-deep px-6 text-xs font-black uppercase tracking-[0.25em] text-white">
-              <span className="relative flex h-2 w-2">
+            <div className="z-10 -my-4 flex shrink-0 items-center gap-3 self-stretch rounded-r-3xl bg-gold-deep px-7 text-base font-black uppercase tracking-[0.25em] text-white">
+              <span className="relative flex h-2.5 w-2.5">
                 <span
                   className="absolute inset-0 rounded-full bg-white"
                   style={{ animation: "leevi-pulse-ring 1.4s ease-out infinite" }}
                 />
                 <span
-                  className="relative inline-flex h-2 w-2 rounded-full bg-white"
+                  className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"
                   style={{ animation: "leevi-pulse-dot 1.4s ease-in-out infinite" }}
                 />
               </span>
