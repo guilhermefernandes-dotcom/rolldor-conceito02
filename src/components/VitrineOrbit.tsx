@@ -21,11 +21,11 @@ const WHATSAPP =
 
 const ITEMS = [
   { src: sandalia, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
-  { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Lançamento" },
+  { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Lançamento" },
   { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Alto giro" },
   { src: sandaliaPerola, name: "Sandália Pérola Studs", tag: "Sai rápido" },
   { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Top giro" },
-  { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Novidade" },
+  { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Novidade" },
   { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Vitrine" },
   { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Procurada" },
 ];
