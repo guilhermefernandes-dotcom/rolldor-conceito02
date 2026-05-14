@@ -100,8 +100,8 @@ export function VitrineOrbit() {
             className="font-display"
             style={{
               fontWeight: 600,
-              fontSize: "60px",
-              lineHeight: "60px",
+              fontSize: "clamp(34px, 9vw, 60px)",
+              lineHeight: "1.02",
               color: "rgb(56,56,56)",
               letterSpacing: "-0.03em",
               maxWidth: "16ch",
