@@ -797,6 +797,7 @@ function Landing() {
           </div>
         </div>
       </section>
+      </div>
 
       {/* PROVA SOCIAL */}
       <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
