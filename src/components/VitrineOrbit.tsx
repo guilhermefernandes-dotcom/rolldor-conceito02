@@ -48,10 +48,6 @@ export function VitrineOrbit() {
   const sy = useSpring(my, { stiffness: 80, damping: 20 });
   const rotX = useTransform(sy, [0, 1], [6, -6]);
   const rotY = useTransform(sx, [0, 1], [-6, 6]);
-  const glowX = useTransform(sx, [0, 1], ["20%", "80%"]);
-  const glowY = useTransform(sy, [0, 1], ["20%", "80%"]);
-  const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
-  
 
   function onMove(e: React.MouseEvent) {
     const r = containerRef.current?.getBoundingClientRect();
