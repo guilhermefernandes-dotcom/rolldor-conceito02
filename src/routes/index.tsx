@@ -132,11 +132,11 @@ function FloatingStepCard({
   align?: "left" | "right";
 }) {
   return (
-    <div className="relative rounded-2xl border border-border/60 bg-card p-5 text-left md:p-6">
-      <h4 className="font-display text-base font-bold tracking-tight text-gold-deep md:text-lg">
+    <div className="relative rounded-2xl border border-border/60 bg-card p-6 text-left md:p-7">
+      <h4 className="font-display text-xl font-bold tracking-tight text-gold-deep md:text-2xl">
         {title}
       </h4>
-      <p className="mt-2 text-base leading-relaxed text-muted-foreground md:text-lg">{desc}</p>
+      <p className="mt-3 text-lg leading-relaxed text-muted-foreground md:text-xl">{desc}</p>
     </div>
   );
 }
