@@ -72,21 +72,37 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Leevi VIP Access offers exclusive WhatsApp group access for resellers to get early product launches and special offers." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Leevi VIP Access offers exclusive WhatsApp group access for resellers to get early product launches and special offers." },
+      { name: "theme-color", content: "#0a0a0a" },
+      { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "Leevi VIP Access offers exclusive WhatsApp group access for resellers to get early product launches and special offers." },
+      { property: "og:site_name", content: "Leevi Distribuidora" },
+      { property: "og:locale", content: "pt_BR" },
+      { name: "twitter:card", content: "summary_large_image" },
     ],
     links: [
+      { rel: "stylesheet", href: appCss },
+      { rel: "icon", type: "image/webp", href: "/favicon.webp" },
+      { rel: "apple-touch-icon", href: "/favicon.webp" },
+    ],
+    scripts: [
       {
-        rel: "stylesheet",
-        href: appCss,
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Leevi Distribuidora",
+          url: "https://wireframe-leevi.lovable.app",
+          logo: "https://wireframe-leevi.lovable.app/favicon.webp",
+          description:
+            "Distribuidora de calçados e acessórios femininos com sede em São Luís (MA). Atende revendedoras em todo o Brasil com lançamentos do atacado e curadoria de alto giro.",
+          address: {
+            "@type": "PostalAddress",
+            addressLocality: "São Luís",
+            addressRegion: "MA",
+            addressCountry: "BR",
+          },
+          sameAs: ["https://wa.me/5599999999999"],
+        }),
       },
     ],
   }),
@@ -98,7 +114,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="pt-BR">
       <head>
         <HeadContent />
       </head>
