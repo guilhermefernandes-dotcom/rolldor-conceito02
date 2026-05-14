@@ -750,9 +750,8 @@ function Landing() {
                   </span>
                 </div>
                 <h2 className="mt-7 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
-                  O que{" "}
-                  <span className="text-gold-deep">dizem nossas</span>{" "}
-                  revendedoras no grupo.
+                  O que <UnderlineWord delay={0}>dizem</UnderlineWord>{" "}
+                  <UnderlineWord delay={0.18}>nossas</UnderlineWord> revendedoras no grupo.
                 </h2>
 
                 <div className="mt-10 flex flex-wrap items-center gap-5">
