@@ -29,7 +29,7 @@ import leeviMark from "@/assets/leevi-mark.png";
 import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import depoimentoMockup from "@/assets/depoimento-mockup-mariana.png";
-import depoimentoMockup2 from "@/assets/depoimento-mockup-juliana.png";
+
 import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
