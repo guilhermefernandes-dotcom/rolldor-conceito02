@@ -29,6 +29,7 @@ import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
+import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 
 export const Route = createFileRoute("/")({
