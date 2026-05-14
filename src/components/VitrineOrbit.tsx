@@ -70,26 +70,19 @@ export function VitrineOrbit() {
       className="relative w-full overflow-hidden rounded-[20px] py-20 md:py-32"
       style={{ background: "oklch(0.99 0.003 85)" }}
     >
-      {/* Pixel dots layers */}
+      {/* Subtle line grid pattern */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(oklch(0.55 0.12 80 / 0.18) 1px, transparent 1px), radial-gradient(oklch(0.55 0.12 80 / 0.10) 1px, transparent 1px)",
-          backgroundSize: "18px 18px, 24px 24px",
-          backgroundPosition: "0 0, 9px 9px",
+            "linear-gradient(to right, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
           rotateX: rotX,
           rotateY: rotY,
           maskImage:
-            "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+            "radial-gradient(ellipse at center, black 30%, transparent 85%)",
         }}
-      />
-      {/* Soft global glow */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: glowBg, filter: "blur(60px)" }}
       />
       <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
         {/* LEFT — text */}
