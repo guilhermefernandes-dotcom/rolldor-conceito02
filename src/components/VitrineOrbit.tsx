@@ -84,23 +84,6 @@ export function VitrineOrbit() {
             "radial-gradient(ellipse at center, black 30%, transparent 80%)",
         }}
       />
-      {/* Hover pixelated mosaic — chunky pixels following the cursor */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          backgroundImage: `
-            linear-gradient(45deg, oklch(0.55 0.12 80 / 0.28) 25%, transparent 25%),
-            linear-gradient(-45deg, oklch(0.55 0.12 80 / 0.28) 25%, transparent 25%),
-            linear-gradient(45deg, transparent 75%, oklch(0.45 0.10 80 / 0.22) 75%),
-            linear-gradient(-45deg, transparent 75%, oklch(0.45 0.10 80 / 0.22) 75%)
-          `,
-          backgroundSize: "22px 22px",
-          backgroundPosition: "0 0, 0 11px, 11px -11px, -11px 0",
-          maskImage: pixelMask,
-          WebkitMaskImage: pixelMask,
-        }}
-      />
       {/* Soft global glow */}
       <motion.div
         aria-hidden
