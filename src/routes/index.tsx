@@ -598,7 +598,7 @@ function Landing() {
                         strokeWidth={1.3}
                       />
 
-                      <h3 className="mt-14 font-display text-[26px] font-medium leading-[1.1] tracking-tight text-white">
+                      <h3 className="mt-10 font-display text-[22px] font-medium leading-[1.1] tracking-tight text-white md:mt-14 md:text-[26px]">
                         {title}
                       </h3>
                     </div>
@@ -617,7 +617,7 @@ function Landing() {
                         {bullets.map((b) => (
                           <li
                             key={b}
-                            className="flex items-start gap-2.5 text-[21px] leading-relaxed text-white/75"
+                            className="flex items-start gap-2.5 text-[16px] leading-relaxed text-white/75 md:text-[21px]"
                           >
                             <Check
                               className="mt-0.5 h-4 w-4 shrink-0"
