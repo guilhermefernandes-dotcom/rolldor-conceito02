@@ -129,7 +129,7 @@ export function VitrineOrbit() {
             linear-gradient(-45deg, transparent 75%, oklch(0.45 0.10 80 / 0.18) 75%)
           `,
           backgroundSize: pixelSizePx,
-          backgroundPosition: useMotionTemplate`0 0, 0 ${pixelHalf}, ${pixelHalf} ${useTransform(pixelSize, (v) => `-${v / 2}px`)}, ${useTransform(pixelSize, (v) => `-${v / 2}px`)} 0`,
+          backgroundPosition: pixelBgPos,
           maskImage:
             "radial-gradient(ellipse at center, black 20%, rgba(0,0,0,0.6) 55%, transparent 90%)",
         }}
