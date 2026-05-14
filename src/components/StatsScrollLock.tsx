@@ -436,7 +436,7 @@ export function StatsScrollLock() {
                       <div className="mt-2 font-display text-3xl font-black leading-none text-gold md:text-[44px]">
                         {s.big}
                       </div>
-                      <p className="mt-3 text-sm leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
+                      <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
                         {s.desc}
                       </p>
                     </motion.div>
