@@ -210,13 +210,13 @@ export function VitrineOrbit() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28"
+                    className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36"
                   >
                     <img
                       src={item.src}
                       alt={item.name}
                       loading="lazy"
-                      className="h-16 w-16 object-contain sm:h-20 sm:w-20 md:h-24 md:w-24"
+                      className="h-24 w-24 object-contain sm:h-28 sm:w-28 md:h-32 md:w-32"
                     />
                   </div>
                 </motion.div>
