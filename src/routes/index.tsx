@@ -128,6 +128,69 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+const DEPOIMENTOS = [
+  { src: depoimentoMockup, alt: "Depoimento de Mariana C. no grupo VIP da Leevi" },
+  { src: depoimentoMockup2, alt: "Depoimento de Juliana S. no grupo VIP da Leevi" },
+  { src: depoimentoMockup3, alt: "Depoimento de Camila O. no grupo VIP da Leevi" },
+];
+
+function DepoimentoCarousel() {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % DEPOIMENTOS.length), 4200);
+    return () => clearInterval(id);
+  }, []);
+  const current = DEPOIMENTOS[index];
+  return (
+    <div className="relative w-full max-w-[460px]" style={{ aspectRatio: "660 / 1080", perspective: "1400px" }}>
+      <AnimatePresence mode="wait">
+        <motion.img
+          key={index}
+          src={current.src}
+          alt={current.alt}
+          className="absolute inset-0 h-full w-full object-contain"
+          style={{
+            filter:
+              "drop-shadow(0 40px 50px rgba(0,0,0,0.28)) drop-shadow(0 18px 22px rgba(0,0,0,0.18))",
+            transformStyle: "preserve-3d",
+          }}
+          loading="lazy"
+          initial={{ opacity: 0, rotateY: -35, scale: 0.85, y: 40, filter: "blur(12px)" }}
+          animate={{
+            opacity: 1,
+            rotateY: 0,
+            scale: 1,
+            y: 0,
+            filter: "blur(0px)",
+            transition: { duration: 0.95, ease: [0.22, 1, 0.36, 1] },
+          }}
+          exit={{
+            opacity: 0,
+            rotateY: 35,
+            scale: 0.85,
+            y: -40,
+            filter: "blur(12px)",
+            transition: { duration: 0.55, ease: [0.4, 0, 0.6, 1] },
+          }}
+        />
+      </AnimatePresence>
+      {/* Pagination dots */}
+      <div className="pointer-events-none absolute -bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        {DEPOIMENTOS.map((_, i) => (
+          <span
+            key={i}
+            className="h-1.5 rounded-full transition-all duration-500"
+            style={{
+              width: i === index ? 24 : 8,
+              background: i === index ? "var(--gold)" : "color-mix(in oklab, var(--gold) 30%, transparent)",
+            }}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}
+
 function FloatingStepCard({
   title,
   desc,
