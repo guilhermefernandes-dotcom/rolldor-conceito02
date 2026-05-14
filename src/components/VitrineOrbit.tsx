@@ -239,7 +239,7 @@ export function VitrineOrbit() {
           {/* Center brand — white background, gold mark, animates on each tick */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
-              className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
+              className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
               animate={{
                 scale: highlighting ? 1.15 : 1,
               }}
