@@ -952,11 +952,11 @@ function Landing() {
               <Reveal key={i} delay={i * 0.08}>
                 <div className="relative">
                   {/* Check badge */}
-                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card shadow-md ring-1 ring-white/10">
+                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card ring-1 ring-white/10">
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
                   <div
-                    className="relative overflow-hidden rounded-[28px] px-6 pb-7 pt-9 text-center shadow-[0_18px_50px_-20px_oklch(0.72_0.12_80_/_0.55)] ring-1 ring-white/5"
+                    className="relative overflow-hidden rounded-[28px] px-6 pb-7 pt-9 text-center ring-1 ring-white/5"
                     style={{
                       background:
                         c.tone === "deep"
@@ -970,7 +970,6 @@ function Landing() {
                     <div className="mt-2 font-display text-[26px] font-bold leading-tight text-foreground md:text-[28px]">
                       {c.title}
                     </div>
-                    <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/30 blur-2xl" />
                   </div>
                 </div>
               </Reveal>
@@ -1041,8 +1040,7 @@ function Landing() {
                 <Reveal key={i} delay={i * 0.12}>
                   <li className={`relative flex flex-col items-center text-center ${align}`}>
                     <div className="relative">
-                      <div className="absolute inset-0 -m-3 rounded-full bg-gold/20 blur-md" />
-                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] shadow-md ring-1 ring-white/10 backdrop-blur">
+                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
                         <Icon className="h-7 w-7 text-gold" />
                         <span className="absolute -right-1 -top-1 text-gold">✦</span>
                       </div>
