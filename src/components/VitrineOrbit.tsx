@@ -152,6 +152,10 @@ export function VitrineOrbit() {
                   "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
               }}
             >
+              Solicitar acesso
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </a>
+
             {/* Active item badge */}
             <div className="relative h-12 min-w-[220px] overflow-hidden rounded-full border border-gold/30 bg-foreground/5 px-2 pr-5 backdrop-blur">
               <AnimatePresence mode="wait">
