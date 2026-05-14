@@ -725,7 +725,8 @@ function Landing() {
       </section>
 
       {/* VITRINE */}
-      <section className="py-24 md:py-32">
+      <div className="bg-secondary/70 p-5">
+        <section className="w-full bg-background py-24 md:py-32 rounded-2xl">
         <div className="mx-auto max-w-7xl px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-12 md:items-end">
             <div className="md:col-span-7">
