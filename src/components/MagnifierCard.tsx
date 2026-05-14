@@ -98,20 +98,22 @@ export function MagnifierCard() {
           filter: blur(20px);
         }
         .mockupv6{
-          width: 300px;
+          width: 430px;
           z-index: 2;
           filter: saturate(1) contrast(1) hue-rotate(20deg);
         }
         .content2fpbentov6inside:before{
           content: "";
           position: absolute;
-          top: 23px;
+          top: 33px;
           left: 50%;
           transform: translateX(-50%);
           background: var(--bentov6screen);
-          border-radius: 32px;
-          width: 188px;
-          height: 392px;
+          background-size: cover;
+          background-position: top center;
+          border-radius: 46px;
+          width: 270px;
+          height: 560px;
           z-index: 1;
         }
 
@@ -206,12 +208,12 @@ export function MagnifierCard() {
         @media(max-width: 1024px){
           .headfpbentov6{ font-size: 26px; }
           .descriptionfpbentov6{ font-size: 16px; }
-          .mockupv6{ width: 230px; z-index: 2; }
+          .mockupv6{ width: 330px; z-index: 2; }
           .content2fpbentov6inside:before{
-            top: 18px;
-            border-radius: 24px;
-            width: 144px;
-            height: 300px;
+            top: 25px;
+            border-radius: 36px;
+            width: 207px;
+            height: 430px;
           }
         }
 
