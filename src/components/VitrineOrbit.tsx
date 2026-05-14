@@ -5,7 +5,7 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  useMotionTemplate,
+  
   
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
@@ -48,10 +48,6 @@ export function VitrineOrbit() {
   const sy = useSpring(my, { stiffness: 80, damping: 20 });
   const rotX = useTransform(sy, [0, 1], [6, -6]);
   const rotY = useTransform(sx, [0, 1], [-6, 6]);
-  const glowX = useTransform(sx, [0, 1], ["20%", "80%"]);
-  const glowY = useTransform(sy, [0, 1], ["20%", "80%"]);
-  const glowBg = useMotionTemplate`radial-gradient(600px circle at ${glowX} ${glowY}, oklch(0.72 0.12 80 / 0.18), transparent 60%)`;
-  
 
   function onMove(e: React.MouseEvent) {
     const r = containerRef.current?.getBoundingClientRect();
@@ -70,26 +66,19 @@ export function VitrineOrbit() {
       className="relative w-full overflow-hidden rounded-[20px] py-20 md:py-32"
       style={{ background: "oklch(0.99 0.003 85)" }}
     >
-      {/* Pixel dots layers */}
+      {/* Subtle line grid pattern */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "radial-gradient(oklch(0.55 0.12 80 / 0.18) 1px, transparent 1px), radial-gradient(oklch(0.55 0.12 80 / 0.10) 1px, transparent 1px)",
-          backgroundSize: "18px 18px, 24px 24px",
-          backgroundPosition: "0 0, 9px 9px",
+            "linear-gradient(to right, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px)",
+          backgroundSize: "64px 64px",
           rotateX: rotX,
           rotateY: rotY,
           maskImage:
-            "radial-gradient(ellipse at center, black 30%, transparent 80%)",
+            "radial-gradient(ellipse at center, black 30%, transparent 85%)",
         }}
-      />
-      {/* Soft global glow */}
-      <motion.div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{ backgroundImage: glowBg, filter: "blur(60px)" }}
       />
       <div className="relative mx-auto grid max-w-[1200px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
         {/* LEFT — text */}
