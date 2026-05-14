@@ -842,44 +842,91 @@ function Landing() {
       </section>
 
       {/* FAQ */}
-      <section className="border-t border-border bg-secondary/70 py-24 md:py-32">
-        <div className="mx-auto max-w-3xl px-5 md:px-10">
-          <div className="text-center">
-            <Reveal>
-              <SectionLabel>Perguntas frequentes</SectionLabel>
-              <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                Tire suas dúvidas.
-              </h2>
-            </Reveal>
-          </div>
-          <div className="mt-12 divide-y divide-border border-y border-border">
-            {[
-              {
-                q: "Preciso pagar para entrar?",
-                a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar.",
-              },
-              {
-                q: "Vão me mandar muita mensagem?",
-                a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado.",
-              },
-              {
-                q: "Preciso ter CNPJ?",
-                a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ.",
-              },
-              {
-                q: "Como funcionam as lives?",
-                a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo.",
-              },
-              {
-                q: "Posso sair quando quiser?",
-                a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro.",
-              },
-            ].map((item, i) => (
-              <FaqItem key={i} q={item.q} a={item.a} />
-            ))}
-          </div>
-          <div className="mt-12 text-center">
-            <CTA>Entrar no Grupo VIP</CTA>
+      <section className="px-5 py-16 md:px-10 md:py-24">
+        <div className="mx-auto max-w-[1400px]">
+          <div
+            className="relative overflow-hidden rounded-[24px] p-6 md:p-12"
+            style={{ background: "oklch(0.18 0.005 80)" }}
+          >
+            {/* Line grid pattern */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px)",
+                backgroundSize: "64px 64px",
+              }}
+            />
+
+            <div className="relative grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
+              {/* LEFT — Title + contact cards */}
+              <div>
+                <Reveal>
+                  <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
+                    Ficou com<br />dúvidas?
+                  </h2>
+                  <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60 md:text-base">
+                    Aqui colocamos as perguntas mais comuns e você também pode falar com o nosso time pelos canais abaixo.
+                  </p>
+
+                  <div className="mt-8 space-y-3">
+                    <a
+                      href="mailto:contato@leevi.com.br"
+                      className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
+                    >
+                      <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
+                        E-mail
+                      </div>
+                      <div className="mt-1 text-sm text-white/80">
+                        contato@leevi.com.br
+                      </div>
+                    </a>
+                    <a
+                      href={WHATSAPP}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
+                    >
+                      <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
+                        WhatsApp
+                      </div>
+                      <div className="mt-1 text-sm text-white/80">
+                        Conversar agora
+                      </div>
+                    </a>
+                  </div>
+                </Reveal>
+              </div>
+
+              {/* RIGHT — FAQ items */}
+              <div className="space-y-3">
+                {[
+                  {
+                    q: "Preciso pagar para entrar?",
+                    a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar.",
+                  },
+                  {
+                    q: "Vão me mandar muita mensagem?",
+                    a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado.",
+                  },
+                  {
+                    q: "Preciso ter CNPJ?",
+                    a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ.",
+                  },
+                  {
+                    q: "Como funcionam as lives?",
+                    a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo.",
+                  },
+                  {
+                    q: "Posso sair quando quiser?",
+                    a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro.",
+                  },
+                ].map((item, i) => (
+                  <FaqItem key={i} q={item.q} a={item.a} />
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
