@@ -1011,7 +1011,7 @@ function Landing() {
 
           {/* CTA + Vagas limitadas stamp */}
           <Reveal delay={0.2}>
-            <div className="mt-14 flex items-center justify-center gap-5">
+            <div className="mt-14 flex flex-col items-center justify-center gap-5 sm:flex-row">
               <a
                 href={WHATSAPP}
                 target="_blank"
