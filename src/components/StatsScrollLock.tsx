@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
-import leeviStore from "@/assets/leevi-store.jpg";
-import curadoria from "@/assets/curadoria.jpg";
-import logistica from "@/assets/logistica.jpg";
-import community from "@/assets/community.jpg";
+import leeviStore from "@/assets/leevi-store.webp";
+import curadoria from "@/assets/curadoria.webp";
+import logistica from "@/assets/logistica.webp";
+import community from "@/assets/community.webp";
 
 type Step = {
   n: string;

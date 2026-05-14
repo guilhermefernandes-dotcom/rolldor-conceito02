@@ -9,11 +9,11 @@ import {
   
 } from "motion/react";
 import { ArrowRight } from "lucide-react";
-import sandalia from "@/assets/sandalia-dourada.png";
-import sandaliaCaramelo from "@/assets/sandalia-caramelo.png";
-import sandaliaVerde from "@/assets/sandalia-verde.png";
-import sandaliaPerola from "@/assets/sandalia-perola.png";
-import sandaliaPreta from "@/assets/sandalia-preta.png";
+import sandalia from "@/assets/sandalia-dourada.webp";
+import sandaliaCaramelo from "@/assets/sandalia-caramelo.webp";
+import sandaliaVerde from "@/assets/sandalia-verde.webp";
+import sandaliaPerola from "@/assets/sandalia-perola.webp";
+import sandaliaPreta from "@/assets/sandalia-preta.webp";
 import leeviMark from "@/assets/leevi-mark.png";
 
 const WHATSAPP =

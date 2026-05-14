@@ -17,8 +17,8 @@ import {
   Quote,
 } from "lucide-react";
 import { useState, useEffect } from "react";
-import heroImg from "@/assets/hero.jpg";
-import productsImg from "@/assets/products.jpg";
+import heroImg from "@/assets/hero.webp";
+import productsImg from "@/assets/products.webp";
 import p1 from "@/assets/p1.jpg";
 import p2 from "@/assets/p2.jpg";
 import p3 from "@/assets/p3.jpg";
@@ -26,14 +26,14 @@ import p4 from "@/assets/p4.jpg";
 import t1 from "@/assets/t1.jpg";
 import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
-import launchesImg from "@/assets/leevi-launches.jpg";
+import launchesImg from "@/assets/leevi-launches.webp";
 import t3 from "@/assets/t3.jpg";
-import depoimentoMockup from "@/assets/depoimento-mockup-mariana.png";
+import depoimentoMockup from "@/assets/depoimento-mockup-mariana.webp";
 
-import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.png";
+import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.webp";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
-import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
+import comoFuncionaRadar from "@/assets/como-funciona-radar.webp";
 import cardShape1 from "@/assets/card-shape-1.png";
 import cardShape2 from "@/assets/card-shape-2.png";
 import cardShape3 from "@/assets/card-shape-3.png";

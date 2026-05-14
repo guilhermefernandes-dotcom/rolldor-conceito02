@@ -1,5 +1,5 @@
-import whatsappScreen from "@/assets/whatsapp-vip-screen.png";
-import iphoneMockup from "@/assets/iphone-mockup.png";
+import whatsappScreen from "@/assets/whatsapp-vip-screen.webp";
+import iphoneMockup from "@/assets/iphone-mockup.webp";
 
 /**
  * Bento V6 — animated magnifier card.
