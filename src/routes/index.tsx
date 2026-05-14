@@ -956,9 +956,9 @@ function Landing() {
                     <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
                   </div>
                   <div
-                    className="relative overflow-hidden px-6 pb-7 pt-9 text-center ring-1 ring-white/5"
+                    className="relative overflow-hidden px-6 pb-7 pt-9 text-center"
                     style={{
-                      borderRadius: "90px 18px 90px 18px",
+                      borderRadius: "24px 140px 24px 140px / 24px 95% 24px 95%",
                       background:
                         c.tone === "deep"
                           ? "linear-gradient(160deg, oklch(0.86 0.13 88), oklch(0.62 0.13 75))"
