@@ -794,7 +794,11 @@ function Landing() {
                 <img
                   src={depoimentoMockup}
                   alt="Depoimento de Mariana C. no grupo VIP da Leevi"
-                  className="w-full max-w-[420px] object-contain"
+                  className="w-full max-w-[460px] object-contain"
+                  style={{
+                    filter:
+                      "drop-shadow(0 40px 50px rgba(0,0,0,0.28)) drop-shadow(0 18px 22px rgba(0,0,0,0.18))",
+                  }}
                   loading="lazy"
                 />
               </div>
