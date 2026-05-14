@@ -321,7 +321,7 @@ export function StatsScrollLock() {
           {/* RIGHT — active card + dramatic 3D peek */}
           <div className="col-span-12 md:col-span-9">
             <div
-              className="relative mx-auto min-h-[600px] w-full max-w-xl md:h-[460px] md:min-h-0"
+              className="relative mx-auto min-h-[520px] w-full max-w-xl md:h-[460px] md:min-h-0"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
