@@ -985,20 +985,9 @@ function Landing() {
           </div>
 
         </div>
-      </section>
 
-      {/* FAQ */}
-      <section className="relative overflow-hidden px-5 pb-16 md:px-10 md:pb-24" style={{ background: "oklch(0.18 0.005 80)" }}>
-        {/* Diagonal line pattern (matches section above) */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, oklch(0.95 0.02 85 / 0.06) 0px, oklch(0.95 0.02 85 / 0.06) 1px, transparent 1px, transparent 22px)",
-          }}
-        />
-        <div className="relative mx-auto max-w-[1400px]">
+        {/* FAQ (continues in same section to avoid background seam) */}
+        <div className="relative mx-auto mt-24 max-w-[1400px] px-5 md:mt-32 md:px-10">
           <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
             {/* LEFT — Title + contact cards */}
             <div>
