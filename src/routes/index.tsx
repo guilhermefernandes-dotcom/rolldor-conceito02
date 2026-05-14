@@ -659,7 +659,7 @@ function Landing() {
                       <img
                         src={comoFuncionaRadar}
                         alt="4 passos para entrar no grupo VIP"
-                        className="h-auto w-[360px] md:w-[460px]"
+                        className="h-auto w-[440px] md:w-[620px] lg:w-[720px]"
                       />
                     </div>
                   </Reveal>
