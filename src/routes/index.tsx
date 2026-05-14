@@ -975,7 +975,7 @@ function Landing() {
                     <div className="relative font-display text-[17px] font-semibold tracking-normal text-foreground/70">
                       {c.kicker}
                     </div>
-                    <div className="relative mt-2 font-display text-[30px] font-bold leading-tight text-foreground md:text-[32px]">
+                    <div className="relative mt-2 font-display text-[28px] font-bold leading-tight text-foreground md:text-[30px]">
                       {c.title}
                     </div>
                   </div>
