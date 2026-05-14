@@ -66,7 +66,7 @@ export function VitrineOrbit() {
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="relative w-full overflow-hidden rounded-[20px] border-x border-b border-gold/40 py-20 md:py-32"
+      className="relative w-full overflow-hidden rounded-[20px] border border-gold/70 py-20 md:py-32"
       style={{ background: "oklch(0.99 0.003 85)" }}
     >
       {/* Subtle line grid pattern */}
