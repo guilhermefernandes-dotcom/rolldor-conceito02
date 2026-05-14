@@ -240,12 +240,8 @@ export function VitrineOrbit() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full border border-gold/25 backdrop-blur-md transition-transform sm:h-24 sm:w-24 md:h-28 md:w-28"
+                    className="relative flex h-20 w-20 items-center justify-center rounded-full transition-transform sm:h-24 sm:w-24 md:h-28 md:w-28"
                     style={{
-                      background:
-                        "radial-gradient(circle at 30% 25%, oklch(0.32 0.02 80) 0%, oklch(0.18 0.012 80) 60%, oklch(0.12 0.01 80) 100%)",
-                      boxShadow:
-                        "inset 0 2px 4px oklch(0.72 0.12 80 / 0.25), inset 0 -10px 20px oklch(0 0 0 / 0.6), 0 14px 30px -10px oklch(0 0 0 / 0.7)",
                       transform: isActive && highlighting ? "scale(1.1)" : "scale(1)",
                     }}
                   >
