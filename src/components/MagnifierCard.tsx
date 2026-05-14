@@ -98,20 +98,22 @@ export function MagnifierCard() {
           filter: blur(20px);
         }
         .mockupv6{
-          width: 300px;
+          width: 430px;
           z-index: 2;
           filter: saturate(1) contrast(1) hue-rotate(20deg);
         }
         .content2fpbentov6inside:before{
           content: "";
           position: absolute;
-          top: 23px;
+          top: 33px;
           left: 50%;
           transform: translateX(-50%);
           background: var(--bentov6screen);
-          border-radius: 32px;
-          width: 188px;
-          height: 392px;
+          background-size: cover;
+          background-position: top center;
+          border-radius: 46px;
+          width: 270px;
+          height: 560px;
           z-index: 1;
         }
 
