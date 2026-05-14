@@ -20,7 +20,7 @@ const WHATSAPP =
   "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
 
 const ITEMS = [
-  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
+  { src: sandalia, name: "Sandália Vizzano", tag: "Mais vendida" },
   { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Lançamento" },
   { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Alto giro" },
   { src: sandaliaPerola, name: "Sandália Pérola Studs", tag: "Sai rápido" },
