@@ -924,7 +924,14 @@ function Landing() {
           {/* Centered header */}
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <SectionLabel>por que entrar agora</SectionLabel>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-white/90">
+                  por que entrar agora
+                </span>
+              </div>
             </Reveal>
             <Reveal delay={0.1}>
               <h2
