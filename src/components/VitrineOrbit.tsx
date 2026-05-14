@@ -200,7 +200,7 @@ export function VitrineOrbit() {
               rx="310"
               ry="310"
               fill="none"
-              stroke="oklch(0.72 0.12 80 / 0.35)"
+              stroke="oklch(0.55 0.12 80 / 0.45)"
               strokeWidth="1"
             />
             <ellipse
@@ -209,7 +209,7 @@ export function VitrineOrbit() {
               rx="210"
               ry="210"
               fill="none"
-              stroke="oklch(0.72 0.12 80 / 0.25)"
+              stroke="oklch(0.55 0.12 80 / 0.35)"
               strokeWidth="1"
               strokeDasharray="4 6"
             />
