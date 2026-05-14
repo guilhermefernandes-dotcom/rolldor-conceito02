@@ -859,38 +859,88 @@ function Landing() {
       </section>
 
       {/* LOSS AVERSION */}
-      <section className="py-24 md:py-32">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-12 md:grid-cols-12 md:gap-16">
+      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: "oklch(0.14 0.01 85)" }}>
+        {/* Grid pattern */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.07]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, oklch(0.95 0.02 85) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85) 1px, transparent 1px)",
+            backgroundSize: "72px 72px",
+          }}
+        />
+        {/* Gold halo */}
+        <div className="pointer-events-none absolute -left-40 top-1/2 -z-0 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-gold/15 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 -z-0 h-[400px] w-[400px] rounded-full bg-gold-deep/20 blur-[140px]" />
+
+        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-14 md:grid-cols-12 md:gap-16">
             <div className="md:col-span-5">
               <Reveal>
-                <SectionLabel>Por que entrar agora</SectionLabel>
-                <h2 className="font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                  O que você perde ficando{" "}
-                  <span className="italic text-gold">de fora</span>.
+                <div className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-3 py-1">
+                  <span className="h-1.5 w-1.5 rounded-full bg-gold" />
+                  <span className="font-display text-[11px] uppercase tracking-[0.25em] text-gold">
+                    Por que entrar agora
+                  </span>
+                </div>
+                <h2 className="mt-6 font-display text-4xl font-black leading-[1.02] tracking-tight text-white md:text-6xl">
+                  O que você perde<br />
+                  ficando{" "}
+                  <span className="relative inline-block italic">
+                    <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
+                      de fora.
+                    </span>
+                    <span className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
+                  </span>
                 </h2>
-                <p className="mt-6 text-muted-foreground md:text-lg">
+                <p className="mt-6 max-w-md text-base leading-relaxed text-white/60 md:text-lg">
                   Cada semana fora do grupo é uma semana comprando depois da concorrência.
                 </p>
+
+                {/* Decorative quote */}
+                <div className="mt-10 hidden border-l-2 border-gold/40 pl-5 md:block">
+                  <p className="font-display text-lg italic leading-snug text-white/70">
+                    "As peças boas saem na live. Quem não tá no grupo, descobre depois — e paga mais caro no varejo."
+                  </p>
+                </div>
               </Reveal>
             </div>
+
             <div className="md:col-span-7">
-              <ul className="grid gap-px bg-border md:grid-cols-2">
+              <ul className="grid gap-4 md:grid-cols-2">
                 {[
-                  [Flame, "Compra antes do site, do Instagram e de qualquer canal."],
-                  [Tag, "Condições exclusivas que não saem do grupo."],
-                  [PackageCheck, "Curadoria semanal do que tem alto giro."],
-                  [Lock, "Grupo fechado e silencioso. Apenas a equipe Leevi posta."],
-                ].map(([Icon, t], i) => (
-                  <Reveal key={i} delay={i * 0.05}>
-                    <li className="flex h-full items-start gap-4 bg-background p-6">
-                      <Icon className="mt-1 h-5 w-5 shrink-0 text-gold" />
-                      <span className="text-sm md:text-base">{t as string}</span>
+                  { Icon: Flame, title: "Compra antes de todo mundo", desc: "Antes do site, do Instagram e de qualquer outro canal." },
+                  { Icon: Tag, title: "Condições exclusivas", desc: "Preços e bônus que não saem do grupo." },
+                  { Icon: PackageCheck, title: "Curadoria semanal", desc: "Selecionamos o que tem alto giro pra você." },
+                  { Icon: Lock, title: "Ambiente silencioso", desc: "Apenas a equipe Leevi posta. Zero spam." },
+                ].map(({ Icon, title, desc }, i) => (
+                  <Reveal key={i} delay={i * 0.06}>
+                    <li
+                      className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-white/[0.04]"
+                    >
+                      {/* Number */}
+                      <div className="pointer-events-none absolute -right-2 -top-4 font-display text-[80px] font-black leading-none text-white/[0.04] transition-colors duration-300 group-hover:text-gold/15">
+                        0{i + 1}
+                      </div>
+                      <div className="relative">
+                        <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 ring-1 ring-gold/30 transition-colors group-hover:bg-gold/20">
+                          <Icon className="h-5 w-5 text-gold" />
+                        </div>
+                        <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-white">
+                          {title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-relaxed text-white/60">
+                          {desc}
+                        </p>
+                      </div>
+                      {/* Hover line */}
+                      <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100" />
                     </li>
                   </Reveal>
                 ))}
               </ul>
-              <div className="mt-8">
+              <div className="mt-10">
                 <CTA>Entrar no Grupo VIP</CTA>
               </div>
             </div>
@@ -989,47 +1039,81 @@ function Landing() {
       </section>
 
       {/* CTA FINAL */}
-      <section className="relative overflow-hidden py-28 md:py-40">
+      <section className="relative overflow-hidden py-28 md:py-40" style={{ background: "oklch(0.14 0.01 85)" }}>
+        {/* Grid */}
         <div
-          className="absolute inset-0 -z-10"
-          style={{ background: "var(--gradient-dark)" }}
+          aria-hidden
+          className="pointer-events-none absolute inset-0 opacity-[0.06]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, oklch(0.95 0.02 85) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85) 1px, transparent 1px)",
+            backgroundSize: "80px 80px",
+          }}
         />
-        <div className="absolute -top-40 left-1/2 -z-10 h-[600px] w-[600px] -translate-x-1/2 rounded-full bg-gold/15 blur-[140px]" />
-        <div className="mx-auto max-w-4xl px-5 text-center md:px-10">
+        {/* Gold halos */}
+        <div className="pointer-events-none absolute -top-40 left-1/2 h-[700px] w-[700px] -translate-x-1/2 rounded-full bg-gold/20 blur-[160px]" />
+        <div className="pointer-events-none absolute -bottom-40 left-1/4 h-[400px] w-[400px] rounded-full bg-gold-deep/25 blur-[140px]" />
+
+        {/* Edge marquee strip */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 flex overflow-hidden border-y border-gold/20 bg-gold/5 py-2">
+          <div
+            className="flex shrink-0 items-center whitespace-nowrap font-display text-[11px] font-bold uppercase tracking-[0.4em] text-gold/70"
+            style={{ animation: "leevi-marquee 45s linear infinite" }}
+          >
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} className="inline-flex items-center">
+                <span className="px-6">Vagas chegando ao fim</span>
+                <span className="opacity-50">✦</span>
+                <span className="px-6">Lançamentos antes de todo mundo</span>
+                <span className="opacity-50">✦</span>
+              </span>
+            ))}
+          </div>
+        </div>
+
+        <div className="relative mx-auto max-w-4xl px-5 text-center md:px-10">
           <Reveal>
-            <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-4 py-1.5">
+            <div className="mb-8 inline-flex items-center gap-2 rounded-full border border-destructive/40 bg-destructive/10 px-4 py-1.5 backdrop-blur-sm">
               <Flame className="h-3 w-3 text-destructive" />
               <span className="font-display text-[11px] uppercase tracking-[0.25em] text-destructive">
                 Vagas chegando ao fim
               </span>
             </div>
-            <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-7xl">
-              Sua próxima venda começa{" "}
-              <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
-                dentro do grupo.
+            <h2 className="font-display text-4xl font-black leading-[1.02] tracking-tight text-white md:text-7xl">
+              Sua próxima venda<br />começa{" "}
+              <span className="relative inline-block">
+                <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text italic text-transparent">
+                  dentro do grupo.
+                </span>
+                <span className="absolute -bottom-2 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
               </span>
             </h2>
-            <p className="mx-auto mt-6 max-w-xl text-muted-foreground md:text-lg">
+            <p className="mx-auto mt-8 max-w-xl text-base leading-relaxed text-white/60 md:text-lg">
               Toda semana fechamos a entrada quando o grupo enche. Quem perde a janela só consegue
               entrar quando alguém sai.
             </p>
-            <ul className="mx-auto mt-10 grid max-w-xl gap-3 text-left text-sm md:text-base">
+
+            <ul className="mx-auto mt-12 grid max-w-2xl gap-3 text-left text-sm md:grid-cols-2 md:text-base">
               {[
                 "Lançamentos antes de todo mundo",
-                "Lives semanais com curadoria de alto giro",
+                "Lives semanais de alto giro",
                 "Ofertas que não saem do grupo",
-                "Sorteios e bônus para quem participa",
+                "Sorteios e bônus exclusivos",
               ].map((t, i) => (
-                <li key={i} className="flex items-center gap-3">
+                <li
+                  key={i}
+                  className="flex items-center gap-3 rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3"
+                >
                   <CheckCircle2 className="h-5 w-5 shrink-0 text-gold" />
-                  <span>{t}</span>
+                  <span className="text-white/85">{t}</span>
                 </li>
               ))}
             </ul>
-            <div className="mt-10 flex justify-center">
+
+            <div className="mt-12 flex justify-center">
               <CTA>Entrar no Grupo VIP agora</CTA>
             </div>
-            <p className="mt-5 text-xs text-muted-foreground">
+            <p className="mt-5 text-xs uppercase tracking-[0.2em] text-white/40">
               Entrada gratuita • Sem spam • Saia quando quiser
             </p>
           </Reveal>
@@ -1037,12 +1121,20 @@ function Landing() {
       </section>
 
       {/* FOOTER */}
-      <footer className="border-t border-border bg-background py-12">
+      <footer className="relative border-t border-gold/15 bg-foreground py-14">
         <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-6 px-5 md:flex-row md:items-center md:px-10">
-          <Logo />
-          <div className="text-xs text-muted-foreground">
-            <p>Termos de Uso • Política de Privacidade • Política de Cookies</p>
-            <p className="mt-1">© 2026 Leevi Distribuidora — Todos os direitos reservados</p>
+          <div className="text-background">
+            <Logo />
+          </div>
+          <div className="text-xs text-white/50">
+            <p className="space-x-1">
+              <span className="cursor-pointer transition-colors hover:text-gold">Termos de Uso</span>
+              <span>•</span>
+              <span className="cursor-pointer transition-colors hover:text-gold">Política de Privacidade</span>
+              <span>•</span>
+              <span className="cursor-pointer transition-colors hover:text-gold">Política de Cookies</span>
+            </p>
+            <p className="mt-2">© 2026 Leevi Distribuidora — Todos os direitos reservados</p>
           </div>
         </div>
       </footer>
