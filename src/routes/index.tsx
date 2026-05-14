@@ -601,9 +601,9 @@ function Landing() {
                   como funciona
                 </span>
               </div>
-              <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
+              <h2 className="mx-auto max-w-2xl font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
                 Em 4 passos <br className="hidden md:block" />
-                você já está <span className="italic text-gold">dentro</span>.
+                você já está <span className="text-gold">dentro</span>.
               </h2>
             </Reveal>
           </div>
