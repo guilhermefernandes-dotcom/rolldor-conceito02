@@ -930,54 +930,134 @@ function Landing() {
             </Reveal>
           </div>
 
-          {/* Content grid */}
-          <div className="mt-16 grid items-start gap-10 md:grid-cols-12 md:gap-12">
-            {/* Magnifier card — without internal heading */}
-            <div className="md:col-span-5">
-              <Reveal>
-                <MagnifierCard />
+          {/* Top benefit cards — gold gradient with check badges */}
+          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
+            {[
+              { kicker: "Acesso semanal", title: "Lançamentos antes do site", tone: "soft" },
+              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", tone: "deep" },
+              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", tone: "soft" },
+            ].map((c, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="relative">
+                  {/* Check badge */}
+                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card shadow-md ring-1 ring-border">
+                    <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
+                  </div>
+                  <div
+                    className="relative overflow-hidden rounded-[28px] px-6 pb-7 pt-9 text-center shadow-[0_18px_50px_-20px_oklch(0.72_0.12_80_/_0.45)]"
+                    style={{
+                      background:
+                        c.tone === "deep"
+                          ? "linear-gradient(160deg, oklch(0.86 0.13 88), oklch(0.62 0.13 75))"
+                          : "linear-gradient(160deg, oklch(0.92 0.10 92), oklch(0.74 0.13 82))",
+                    }}
+                  >
+                    <div className="font-display text-[12px] font-semibold uppercase tracking-[0.18em] text-foreground/70">
+                      {c.kicker}
+                    </div>
+                    <div className="mt-2 font-display text-[26px] font-bold leading-tight text-foreground md:text-[28px]">
+                      {c.title}
+                    </div>
+                    {/* corner shine */}
+                    <div className="pointer-events-none absolute -right-10 -top-10 h-32 w-32 rounded-full bg-white/30 blur-2xl" />
+                  </div>
+                </div>
               </Reveal>
-            </div>
-
-            {/* Bento grid — light/site colors */}
-            <div className="md:col-span-7">
-              <ul className="grid gap-4 md:grid-cols-2">
-                {[
-                  { Icon: Flame, title: "Compra antes de todo mundo", desc: "Antes do site, do Instagram e de qualquer outro canal." },
-                  { Icon: Tag, title: "Condições exclusivas", desc: "Preços e bônus que não saem do grupo." },
-                  { Icon: PackageCheck, title: "Curadoria semanal", desc: "Selecionamos o que tem alto giro pra você." },
-                  { Icon: Lock, title: "Ambiente silencioso", desc: "Apenas a equipe Leevi posta. Zero spam." },
-                ].map(({ Icon, title, desc }, i) => (
-                  <Reveal key={i} delay={i * 0.06}>
-                    <li
-                      className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_20px_50px_-20px_oklch(0.72_0.12_80_/_0.35)]"
-                    >
-                      {/* Number */}
-                      <div className="pointer-events-none absolute -right-2 -top-4 font-display text-[80px] font-black leading-none text-foreground/[0.05] transition-colors duration-300 group-hover:text-gold/20">
-                        0{i + 1}
-                      </div>
-                      <div className="relative">
-                        <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 ring-1 ring-gold/30 transition-colors group-hover:bg-gold/20">
-                          <Icon className="h-5 w-5 text-gold-deep" />
-                        </div>
-                        <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-foreground">
-                          {title}
-                        </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
-                          {desc}
-                        </p>
-                      </div>
-                      {/* Hover line */}
-                      <div className="pointer-events-none absolute inset-x-6 bottom-0 h-px scale-x-0 bg-gradient-to-r from-transparent via-gold to-transparent transition-transform duration-500 group-hover:scale-x-100" />
-                    </li>
-                  </Reveal>
-                ))}
-              </ul>
-              <div className="mt-10 flex justify-center md:justify-start">
-                <CTA>Entrar no Grupo VIP</CTA>
-              </div>
-            </div>
+            ))}
           </div>
+
+          {/* Sub-heading */}
+          <Reveal delay={0.1}>
+            <div className="mt-24 text-center">
+              <h3 className="font-display text-3xl font-semibold tracking-tight text-foreground md:text-[40px]">
+                Como funciona?
+              </h3>
+            </div>
+          </Reveal>
+
+          {/* Steps with curved dashed line */}
+          <div className="relative mx-auto mt-12 max-w-5xl">
+            {/* Curved dashed SVG — desktop */}
+            <svg
+              aria-hidden
+              viewBox="0 0 1000 520"
+              preserveAspectRatio="none"
+              className="pointer-events-none absolute inset-0 hidden h-full w-full md:block"
+            >
+              <path
+                d="M 200 40 C 520 60, 120 240, 500 260 S 880 460, 800 500"
+                fill="none"
+                stroke="oklch(0.55 0.11 70)"
+                strokeWidth="2"
+                strokeDasharray="2 8"
+                strokeLinecap="round"
+                opacity="0.55"
+              />
+            </svg>
+            {/* Vertical dashed — mobile */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute left-1/2 top-0 h-full w-px -translate-x-1/2 md:hidden"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to bottom, oklch(0.55 0.11 70 / 0.55) 50%, transparent 50%)",
+                backgroundSize: "1px 10px",
+              }}
+            />
+
+            <ol className="relative grid gap-14 md:grid-cols-3 md:gap-8">
+              {[
+                {
+                  Icon: Zap,
+                  n: "1",
+                  title: "Você entra no grupo",
+                  desc: "Cadastro rápido pelo WhatsApp. Sem mensalidade, sem letra miúda.",
+                  align: "md:items-start md:text-left",
+                },
+                {
+                  Icon: PackageCheck,
+                  n: "2",
+                  title: "Recebe lançamentos cedo",
+                  desc: "A curadoria Leevi cai antes do site, com preço e bônus do VIP.",
+                  align: "md:items-center md:text-center md:pt-24",
+                },
+                {
+                  Icon: TrendingUp,
+                  n: "3",
+                  title: "Vende com vantagem",
+                  desc: "Compra primeiro, marca o preço primeiro e gira estoque mais rápido.",
+                  align: "md:items-end md:text-right md:pt-44",
+                },
+              ].map(({ Icon, n, title, desc, align }, i) => (
+                <Reveal key={i} delay={i * 0.12}>
+                  <li className={`relative flex flex-col items-center text-center ${align}`}>
+                    {/* Icon bubble */}
+                    <div className="relative">
+                      <div className="absolute inset-0 -m-3 rounded-full bg-gold/15 blur-md" />
+                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-card shadow-md ring-1 ring-border">
+                        <Icon className="h-7 w-7 text-gold-deep" />
+                        {/* sparkle */}
+                        <span className="absolute -right-1 -top-1 text-gold">✦</span>
+                      </div>
+                    </div>
+                    <h4 className="mt-5 font-display text-xl font-semibold tracking-tight text-foreground md:text-[22px]">
+                      {n}. {title}
+                    </h4>
+                    <p className="mt-2 max-w-[260px] text-[15px] leading-relaxed text-muted-foreground">
+                      {desc}
+                    </p>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+          </div>
+
+          {/* CTA pill */}
+          <Reveal delay={0.2}>
+            <div className="mt-16 flex justify-center">
+              <CTA>Entrar no Grupo VIP</CTA>
+            </div>
+          </Reveal>
         </div>
       </section>
 
