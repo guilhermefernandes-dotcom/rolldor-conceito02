@@ -651,34 +651,14 @@ function Landing() {
                     ))}
                   </div>
 
-                  {/* Central 2x2 grid */}
+                  {/* Central radar image */}
                   <Reveal>
                     <div className="relative mx-auto">
-                      <div className="relative grid h-[360px] w-[360px] grid-cols-2 grid-rows-2 gap-3 md:h-[420px] md:w-[420px]">
-                        {steps.map((s) => (
-                          <div
-                            key={s.key}
-                            className="relative flex items-center justify-center rounded-2xl p-6 text-center"
-                            style={{
-                              background:
-                                "linear-gradient(180deg, oklch(0.86 0.12 88) 0%, oklch(0.70 0.14 78) 100%)",
-                            }}
-                          >
-                            <span className="font-display text-base font-bold leading-tight tracking-tight text-foreground md:text-lg">
-                              {s.center}
-                            </span>
-                          </div>
-                        ))}
-
-                        {/* Center logo bubble */}
-                        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-foreground md:h-28 md:w-28">
-                          <img
-                            src={leeviMark}
-                            alt="Leevi"
-                            className="h-12 w-12 object-contain md:h-14 md:w-14"
-                          />
-                        </div>
-                      </div>
+                      <img
+                        src={comoFuncionaRadar}
+                        alt="4 passos para entrar no grupo VIP"
+                        className="h-auto w-[360px] md:w-[460px]"
+                      />
                     </div>
                   </Reveal>
 
