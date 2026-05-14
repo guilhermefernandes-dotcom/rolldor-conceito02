@@ -907,14 +907,13 @@ function Landing() {
         className="relative overflow-hidden py-24 md:py-32"
         style={{ background: "oklch(0.18 0.005 80)" }}
       >
-        {/* Line grid pattern */}
+        {/* Diagonal line pattern */}
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0"
           style={{
             backgroundImage:
-              "linear-gradient(to right, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.95 0.02 85 / 0.05) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
+              "repeating-linear-gradient(115deg, oklch(0.95 0.02 85 / 0.06) 0px, oklch(0.95 0.02 85 / 0.06) 1px, transparent 1px, transparent 22px)",
           }}
         />
         {/* soft gold halos */}
