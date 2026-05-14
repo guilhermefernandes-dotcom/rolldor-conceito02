@@ -11,6 +11,7 @@ import {
 import { ArrowRight } from "lucide-react";
 import sandalia from "@/assets/sandalia-dourada.png";
 import sandaliaCaramelo from "@/assets/sandalia-caramelo.png";
+import sandaliaVerde from "@/assets/sandalia-verde.png";
 import leeviMark from "@/assets/leevi-mark.png";
 
 const WHATSAPP =
@@ -19,10 +20,10 @@ const WHATSAPP =
 const ITEMS = [
   { src: sandalia, name: "Sandália Dourada Strappy", tag: "Mais vendida" },
   { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Lançamento" },
-  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Alto giro" },
-  { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Sai rápido" },
-  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Top giro" },
-  { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Novidade" },
+  { src: sandaliaVerde, name: "Mule Verde Militar", tag: "Alto giro" },
+  { src: sandalia, name: "Sandália Dourada Strappy", tag: "Sai rápido" },
+  { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Top giro" },
+  { src: sandaliaVerde, name: "Mule Verde Militar", tag: "Novidade" },
   { src: sandalia, name: "Sandália Dourada Strappy", tag: "Vitrine" },
   { src: sandaliaCaramelo, name: "Sandália Caramelo Studs", tag: "Procurada" },
 ];
