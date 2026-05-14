@@ -105,11 +105,13 @@ export function MagnifierCard() {
         .content2fpbentov6inside:before{
           content: "";
           position: absolute;
-          top: 10px;
+          top: 23px;
+          left: 50%;
+          transform: translateX(-50%);
           background: var(--bentov6screen);
-          border-radius: 40px;
-          width: 270px;
-          height: 500px;
+          border-radius: 32px;
+          width: 188px;
+          height: 392px;
           z-index: 1;
         }
 
