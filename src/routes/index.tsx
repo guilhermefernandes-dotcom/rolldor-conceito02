@@ -121,6 +121,29 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
+function FloatingStepCard({
+  title,
+  desc,
+  align = "left",
+}: {
+  title: string;
+  desc: string;
+  align?: "left" | "right";
+}) {
+  return (
+    <div
+      className={`relative rounded-2xl border border-border/60 bg-card p-5 shadow-[0_20px_50px_-25px_rgba(0,0,0,0.25)] md:p-6 ${
+        align === "right" ? "md:text-right" : "md:text-left"
+      }`}
+    >
+      <h4 className="font-display text-base font-bold tracking-tight text-gold-deep md:text-lg">
+        {title}
+      </h4>
+      <p className="mt-2 text-sm leading-relaxed text-muted-foreground md:text-[15px]">{desc}</p>
+    </div>
+  );
+}
+
 function UnderlineWord({
   children,
   delay = 0,
@@ -575,31 +598,149 @@ function Landing() {
             <Reveal>
               <SectionLabel>Como funciona</SectionLabel>
               <h2 className="mx-auto max-w-2xl font-display text-3xl font-black leading-tight tracking-tight md:text-5xl">
-                Em 4 passos você já está dentro.
+                Em 4 passos <br className="hidden md:block" />
+                você já está <span className="italic text-gold">dentro</span>.
               </h2>
             </Reveal>
           </div>
-          <ol className="mt-16 grid gap-8 md:grid-cols-4 md:gap-6">
-            {[
-              ["Clique no botão", "Entra direto pelo WhatsApp, sem cadastro."],
-              ["Receba os avisos", "Avisamos toda live com antecedência."],
-              ["Participe ao vivo", "Vê os lançamentos e tira dúvidas em tempo real."],
-              ["Aproveite as ofertas", "Condições exclusivas pra você lucrar mais."],
-            ].map(([title, desc], i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <li className="relative">
-                  <div className="font-display text-7xl font-black leading-none text-gold/15 md:text-8xl">
-                    {String(i + 1).padStart(2, "0")}
+
+          {(() => {
+            const steps = [
+              {
+                key: "tl",
+                title: "Clique no botão",
+                desc: "Entra direto pelo WhatsApp, sem cadastro nem espera.",
+                center: "Clique no botão",
+                Icon: ArrowRight,
+              },
+              {
+                key: "tr",
+                title: "Receba os avisos",
+                desc: "Avisamos toda live com antecedência pra você não perder.",
+                center: "Receba os avisos",
+                Icon: Zap,
+              },
+              {
+                key: "bl",
+                title: "Participe ao vivo",
+                desc: "Vê os lançamentos e tira dúvidas em tempo real com a curadoria.",
+                center: "Participe ao vivo",
+                Icon: Flame,
+              },
+              {
+                key: "br",
+                title: "Aproveite as ofertas",
+                desc: "Condições exclusivas do grupo pra você lucrar mais em cada peça.",
+                center: "Aproveite as ofertas",
+                Icon: Tag,
+              },
+            ];
+
+            return (
+              <div className="relative mx-auto mt-20 max-w-6xl">
+                {/* Radar / concentric rings */}
+                <div className="pointer-events-none absolute inset-0 hidden items-center justify-center md:flex">
+                  <div className="relative aspect-square w-[820px] max-w-full">
+                    {[1, 0.78, 0.56, 0.36].map((s, i) => (
+                      <div
+                        key={i}
+                        className="absolute inset-0 m-auto rounded-full border border-gold/25"
+                        style={{ width: `${s * 100}%`, height: `${s * 100}%` }}
+                      />
+                    ))}
+                    {/* Horizontal line with end dots */}
+                    <div className="absolute left-0 right-0 top-1/2 h-px -translate-y-1/2 bg-gradient-to-r from-transparent via-gold/40 to-transparent" />
+                    <div className="absolute left-0 top-1/2 h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70" />
+                    <div className="absolute right-0 top-1/2 h-2 w-2 translate-x-1/2 -translate-y-1/2 rounded-full bg-gold/70" />
                   </div>
-                  <div className="mt-4 border-t border-gold/30 pt-4">
-                    <h3 className="font-display text-lg font-bold tracking-tight">{title}</h3>
-                    <p className="mt-2 text-sm text-muted-foreground">{desc}</p>
+                </div>
+
+                <div className="relative grid grid-cols-1 gap-8 md:grid-cols-[1fr_auto_1fr] md:items-center md:gap-10">
+                  {/* Left floating cards (desktop) */}
+                  <div className="hidden flex-col justify-between gap-24 md:flex md:h-[460px]">
+                    {[steps[0], steps[2]].map((s) => (
+                      <Reveal key={s.key}>
+                        <FloatingStepCard title={s.title} desc={s.desc} align="right" />
+                      </Reveal>
+                    ))}
                   </div>
-                </li>
-              </Reveal>
-            ))}
-          </ol>
-          <div className="mt-14 text-center">
+
+                  {/* Central 2x2 grid */}
+                  <Reveal>
+                    <div className="relative mx-auto">
+                      <div className="relative grid h-[360px] w-[360px] grid-cols-2 grid-rows-2 gap-3 md:h-[420px] md:w-[420px]">
+                        {steps.map((s, i) => (
+                          <div
+                            key={s.key}
+                            className="relative flex items-center justify-center rounded-2xl p-6 text-center shadow-[0_20px_40px_-20px_rgba(180,140,40,0.45)]"
+                            style={{
+                              background:
+                                "linear-gradient(180deg, oklch(0.86 0.12 88) 0%, oklch(0.70 0.14 78) 100%)",
+                            }}
+                          >
+                            <span className="font-display text-base font-bold leading-tight tracking-tight text-foreground md:text-lg">
+                              {s.center}
+                            </span>
+                            {/* Outer corner icon */}
+                            <div
+                              className={`absolute z-20 flex h-12 w-12 items-center justify-center rounded-full bg-background text-gold-deep shadow-[0_8px_20px_-6px_rgba(0,0,0,0.25)] ring-1 ring-gold/30 ${
+                                i === 0
+                                  ? "-left-5 -top-5"
+                                  : i === 1
+                                    ? "-right-5 -top-5"
+                                    : i === 2
+                                      ? "-bottom-5 -left-5"
+                                      : "-bottom-5 -right-5"
+                              }`}
+                            >
+                              <s.Icon className="h-5 w-5" />
+                            </div>
+                          </div>
+                        ))}
+
+                        {/* Center logo bubble */}
+                        <div className="pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-foreground shadow-[0_20px_50px_-10px_rgba(0,0,0,0.55)] md:h-28 md:w-28">
+                          <img
+                            src={leeviMark}
+                            alt="Leevi"
+                            className="h-12 w-12 object-contain md:h-14 md:w-14"
+                          />
+                        </div>
+                      </div>
+                    </div>
+                  </Reveal>
+
+                  {/* Right floating cards (desktop) */}
+                  <div className="hidden flex-col justify-between gap-24 md:flex md:h-[460px]">
+                    {[steps[1], steps[3]].map((s) => (
+                      <Reveal key={s.key}>
+                        <FloatingStepCard title={s.title} desc={s.desc} align="left" />
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Mobile floating cards (stacked) */}
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:hidden">
+                  {steps.map((s) => (
+                    <Reveal key={s.key}>
+                      <FloatingStepCard title={s.title} desc={s.desc} align="left" />
+                    </Reveal>
+                  ))}
+                </div>
+              </div>
+            );
+          })()}
+
+          <Reveal>
+            <p className="mx-auto mt-16 max-w-3xl text-center text-base text-muted-foreground md:text-lg">
+              Quando esses <strong className="font-semibold text-foreground">4 passos</strong>{" "}
+              acontecem juntos, entrar no grupo deixa de ser curiosidade e passa a ser{" "}
+              <strong className="font-semibold text-foreground">decisão de venda</strong>.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 text-center">
             <CTA>Entrar no Grupo VIP agora</CTA>
           </div>
         </div>
