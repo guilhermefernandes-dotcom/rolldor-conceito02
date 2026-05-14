@@ -14,7 +14,7 @@ export function MagnifierCard() {
       <div className="fpbentov6">
         <div className="content2fpbentov6">
           <div className="content2fpbentov6inside">
-            <img className="mockupv6" src={iphoneMockup} alt="" / loading="lazy" decoding="async">
+            <img className="mockupv6" src={iphoneMockup} alt="" loading="lazy" decoding="async" />
           </div>
         </div>
         <div className="dot1xbzxfz6"></div>

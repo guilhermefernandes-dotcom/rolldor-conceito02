@@ -311,7 +311,7 @@ export function StatsScrollLock() {
                           className="h-full w-full object-cover"
                           style={{ objectPosition: s.imagePosition ?? "center" }}
                           draggable={false}
-                        / loading="lazy" decoding="async">
+                        loading="lazy" decoding="async" />
                       </div>
                     )}
 

@@ -73,7 +73,7 @@ export function JoinNotifications() {
             }}
           >
             <div className="relative flex h-16 w-16 shrink-0 items-center justify-center rounded-full bg-[#16a34a]/10 ring-2 ring-[#16a34a]/30">
-              <img src={leeviMark} alt="" className="h-9 w-9 object-contain" / loading="lazy" decoding="async">
+              <img src={leeviMark} alt="" className="h-9 w-9 object-contain" loading="lazy" decoding="async" />
               <span className="absolute -bottom-0.5 -right-0.5 flex h-6 w-6 items-center justify-center rounded-full bg-[#16a34a] ring-2 ring-white">
                 <Check className="h-3.5 w-3.5 text-white" strokeWidth={3.5} />
               </span>

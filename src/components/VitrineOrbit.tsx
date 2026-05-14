@@ -162,7 +162,7 @@ export function VitrineOrbit() {
                     src={current.src}
                     alt=""
                     className="h-16 w-16 object-contain"
-                  / loading="lazy" decoding="async">
+                  loading="lazy" decoding="async" />
                   <span className="font-display text-lg font-bold text-foreground md:text-xl">
                     {current.name}
                   </span>
@@ -257,7 +257,7 @@ export function VitrineOrbit() {
                   filter:
                     "brightness(0) saturate(100%) invert(62%) sepia(48%) saturate(560%) hue-rotate(2deg) brightness(92%) contrast(88%)",
                 }}
-              / loading="lazy" decoding="async">
+              loading="lazy" decoding="async" />
             </motion.div>
           </div>
         </div>
