@@ -111,13 +111,6 @@ export function VitrineOrbit() {
                 "radial-gradient(ellipse at center, oklch(0.99 0.003 85 / 0.92) 0%, oklch(0.99 0.003 85 / 0.6) 45%, transparent 75%)",
             }}
           />
-          <div className="mb-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.3em] text-gold-deep">
-            <span className="relative flex h-2 w-2">
-              <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-gold opacity-60" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-gold" />
-            </span>
-            Vitrine de alto giro
-          </div>
 
           <h2
             className="font-display font-black tracking-tight text-foreground"
