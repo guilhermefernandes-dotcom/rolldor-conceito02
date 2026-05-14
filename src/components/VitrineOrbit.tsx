@@ -237,67 +237,44 @@ export function VitrineOrbit() {
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
                   <div
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full transition-transform sm:h-24 sm:w-24 md:h-28 md:w-28"
-                    style={{
-                      transform: isActive && highlighting ? "scale(1.1)" : "scale(1)",
-                    }}
+                    className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-24 sm:w-24 md:h-28 md:w-28"
                   >
                     <img
                       src={item.src}
                       alt={item.name}
                       loading="lazy"
-                      className="h-12 w-12 rounded-full object-cover sm:h-14 sm:w-14 md:h-16 md:w-16"
+                      className="h-16 w-16 object-contain sm:h-20 sm:w-20 md:h-24 md:w-24"
                     />
-                    {isActive && (
-                      <span
-                        aria-hidden
-                        className="absolute -inset-2 rounded-full"
-                        style={{
-                          boxShadow:
-                            "0 0 40px 6px oklch(0.72 0.12 80 / 0.45)",
-                        }}
-                      />
-                    )}
                   </div>
                 </motion.div>
               );
             })}
           </motion.div>
 
-          {/* Center brand */}
+          {/* Center brand — white background, gold mark, animates on each tick */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
-              aria-hidden
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+              className="relative flex h-28 w-28 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
               animate={{
-                scale: highlighting ? 1.14 : 1,
-                opacity: highlighting ? 0.42 : 0.22,
+                scale: highlighting ? 1.08 : 1,
+                rotate: active * ANGLE_STEP,
               }}
-              transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               style={{
-                width: 280,
-                height: 280,
-                background:
-                  "radial-gradient(circle, oklch(0.72 0.12 80 / 0.55) 0%, transparent 65%)",
-                filter: "blur(20px)",
-              }}
-            />
-            <div
-              className="relative flex h-28 w-28 items-center justify-center rounded-full border border-gold/30 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
-              style={{
-                background:
-                  "radial-gradient(circle at 30% 25%, oklch(0.30 0.02 80) 0%, oklch(0.14 0.012 80) 70%)",
-                boxShadow:
-                  "inset 0 2px 6px oklch(0.72 0.12 80 / 0.35), inset 0 -14px 28px oklch(0 0 0 / 0.7), 0 28px 60px -10px oklch(0 0 0 / 0.8)",
+                background: "#ffffff",
+                border: "1px solid oklch(0.72 0.12 80 / 0.35)",
               }}
             >
               <img
                 src={leeviMark}
                 alt="Leevi"
                 className="h-14 w-14 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
-                style={{ filter: "brightness(0) invert(1)" }}
+                style={{
+                  filter:
+                    "brightness(0) saturate(100%) invert(62%) sepia(48%) saturate(560%) hue-rotate(2deg) brightness(92%) contrast(88%)",
+                }}
               />
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
