@@ -16,7 +16,7 @@ import {
   Minus,
   Quote,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import heroImg from "@/assets/hero.jpg";
 import productsImg from "@/assets/products.jpg";
 import p1 from "@/assets/p1.jpg";
