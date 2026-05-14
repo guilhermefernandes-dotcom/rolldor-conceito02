@@ -734,7 +734,7 @@ function Landing() {
       </div>
 
       {/* PROVA SOCIAL */}
-      <section className="border-y border-border bg-secondary/70 py-24 md:py-32">
+      <section className="border-b border-border bg-secondary/70 py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-12 md:grid-cols-2 md:items-center md:gap-16">
             {/* LEFT — pill, headline, CTA */}
