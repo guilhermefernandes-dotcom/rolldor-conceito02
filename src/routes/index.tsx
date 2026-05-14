@@ -1256,24 +1256,6 @@ function Landing() {
         </div>
       </section>
 
-      {/* FOOTER */}
-      <footer className="relative border-t border-gold/15 bg-foreground py-14">
-        <div className="mx-auto flex max-w-[1400px] flex-col items-start justify-between gap-6 px-5 md:flex-row md:items-center md:px-10">
-          <div className="text-background">
-            <Logo />
-          </div>
-          <div className="text-xs text-white/50">
-            <p className="space-x-1">
-              <span className="cursor-pointer transition-colors hover:text-gold">Termos de Uso</span>
-              <span>•</span>
-              <span className="cursor-pointer transition-colors hover:text-gold">Política de Privacidade</span>
-              <span>•</span>
-              <span className="cursor-pointer transition-colors hover:text-gold">Política de Cookies</span>
-            </p>
-            <p className="mt-2">© 2026 Leevi Distribuidora — Todos os direitos reservados</p>
-          </div>
-        </div>
-      </footer>
 
       {/* STICKY MOBILE CTA */}
       <a
