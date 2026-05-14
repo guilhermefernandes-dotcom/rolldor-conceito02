@@ -903,77 +903,43 @@ function Landing() {
       </section>
 
       {/* LOSS AVERSION */}
-      <section className="relative overflow-hidden py-24 md:py-32" style={{ background: "oklch(0.22 0 0)" }}>
-        {/* gold radial accents */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
-          }}
-        />
-        {/* diagonal hairlines */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.08]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
-            maskImage:
-              "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
-            WebkitMaskImage:
-              "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
-          }}
-        />
-        {/* gold accent line sweep */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.18]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, color-mix(in oklab, var(--gold) 90%, transparent) 0 1px, transparent 1px 90px)",
-            maskImage:
-              "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
-            WebkitMaskImage:
-              "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
-          }}
-        />
-        {/* Gold halo */}
-        <div className="pointer-events-none absolute -left-40 top-1/2 -z-0 h-[500px] w-[500px] -translate-y-1/2 rounded-full bg-gold/15 blur-[160px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 -z-0 h-[400px] w-[400px] rounded-full bg-gold-deep/20 blur-[140px]" />
-
+      <section className="relative overflow-hidden bg-secondary/70 py-24 md:py-32">
+        {/* soft gold halos */}
+        <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold/15 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-soft/20 blur-[140px]" />
 
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-14 md:grid-cols-12 md:gap-16">
+          {/* Centered header — Clany-style */}
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <SectionLabel>por que entrar agora</SectionLabel>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2
+                className="font-display"
+                style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+              >
+                O que você perde<br />
+                ficando <span className="text-gold">de fora.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-xl text-[19px] leading-relaxed text-muted-foreground md:text-[21px]">
+                Cada semana fora do grupo é uma semana comprando depois da concorrência.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Content grid */}
+          <div className="mt-16 grid items-start gap-10 md:grid-cols-12 md:gap-12">
+            {/* Magnifier card — without internal heading */}
             <div className="md:col-span-5">
               <Reveal>
-                <div className="inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
-                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" />
-                  </span>
-                  <span className="font-display text-sm font-medium tracking-wide text-white/90">
-                    por que entrar agora
-                  </span>
-                </div>
-                <h2
-                  className="mt-6 font-display text-white"
-                  style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", letterSpacing: "-0.03em" }}
-                >
-                  O que você perde<br />
-                  ficando <span className="text-gold">de fora.</span>
-                </h2>
-                <p className="mt-6 max-w-md text-base leading-relaxed text-white/60 md:text-lg">
-                  Cada semana fora do grupo é uma semana comprando depois da concorrência.
-                </p>
-
-                {/* Magnifier showcase — animated lens over real WhatsApp screenshot */}
-                <div className="mt-10">
-                  <MagnifierCard />
-                </div>
+                <MagnifierCard />
               </Reveal>
             </div>
 
+            {/* Bento grid — light/site colors */}
             <div className="md:col-span-7">
               <ul className="grid gap-4 md:grid-cols-2">
                 {[
@@ -984,20 +950,20 @@ function Landing() {
                 ].map(({ Icon, title, desc }, i) => (
                   <Reveal key={i} delay={i * 0.06}>
                     <li
-                      className="group relative h-full overflow-hidden rounded-2xl border border-white/10 bg-white/[0.025] p-6 transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:bg-white/[0.04]"
+                      className="group relative h-full overflow-hidden rounded-2xl border border-border bg-card p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-gold/40 hover:shadow-[0_20px_50px_-20px_oklch(0.72_0.12_80_/_0.35)]"
                     >
                       {/* Number */}
-                      <div className="pointer-events-none absolute -right-2 -top-4 font-display text-[80px] font-black leading-none text-white/[0.04] transition-colors duration-300 group-hover:text-gold/15">
+                      <div className="pointer-events-none absolute -right-2 -top-4 font-display text-[80px] font-black leading-none text-foreground/[0.05] transition-colors duration-300 group-hover:text-gold/20">
                         0{i + 1}
                       </div>
                       <div className="relative">
                         <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-gold/10 ring-1 ring-gold/30 transition-colors group-hover:bg-gold/20">
-                          <Icon className="h-5 w-5 text-gold" />
+                          <Icon className="h-5 w-5 text-gold-deep" />
                         </div>
-                        <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-white">
+                        <h3 className="mt-5 font-display text-lg font-bold tracking-tight text-foreground">
                           {title}
                         </h3>
-                        <p className="mt-2 text-sm leading-relaxed text-white/60">
+                        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
                           {desc}
                         </p>
                       </div>
@@ -1007,7 +973,7 @@ function Landing() {
                   </Reveal>
                 ))}
               </ul>
-              <div className="mt-10">
+              <div className="mt-10 flex justify-center md:justify-start">
                 <CTA>Entrar no Grupo VIP</CTA>
               </div>
             </div>
