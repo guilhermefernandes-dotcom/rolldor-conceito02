@@ -28,6 +28,7 @@ import t2 from "@/assets/t2.jpg";
 import leeviMark from "@/assets/leevi-mark.png";
 import launchesImg from "@/assets/leevi-launches.jpg";
 import t3 from "@/assets/t3.jpg";
+import depoimentoMockup from "@/assets/depoimento-mockup.png";
 import logoUrl from "@/assets/logo.webp";
 import badgeVagas from "@/assets/badge-vagas.webp";
 import comoFuncionaRadar from "@/assets/como-funciona-radar.png";
@@ -772,13 +773,13 @@ function Landing() {
                   </a>
 
                   <div className="flex items-center gap-3">
-                    <div className="flex h-11 w-11 items-center justify-center rounded-full bg-background ring-1 ring-border">
-                      <span className="font-display text-lg font-black text-gold-deep">L</span>
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background ring-1 ring-border">
+                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" />
                     </div>
                     <div className="leading-tight">
-                      <div className="font-display text-lg font-black text-foreground">5.0</div>
-                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.18em] text-muted-foreground">
-                        Revendedoras<br />no grupo
+                      <div className="font-display text-2xl font-black text-foreground">5.0</div>
+                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        Depoimentos<br />no grupo
                       </div>
                     </div>
                   </div>
@@ -786,47 +787,15 @@ function Landing() {
               </Reveal>
             </div>
 
-            {/* RIGHT — testimonials card */}
+            {/* RIGHT — WhatsApp mockup */}
             <Reveal delay={0.1}>
-              <div className="rounded-[28px] border border-border bg-background p-8 md:p-10">
-                <Quote
-                  className="h-10 w-10 fill-gold-deep text-gold-deep"
-                  strokeWidth={0}
+              <div className="flex justify-center md:justify-end">
+                <img
+                  src={depoimentoMockup}
+                  alt="Depoimento de Mariana C. no grupo VIP da Leevi"
+                  className="w-full max-w-[420px] object-contain"
+                  loading="lazy"
                 />
-
-                <div className="mt-6 space-y-8">
-                  {[
-                    {
-                      img: t1,
-                      name: "Mariana C.",
-                      meta: "Fortaleza — CE",
-                      quote:
-                        "Triplicou meu faturamento em 3 meses. Antes eu comprava no escuro, hoje compro o que eu sei que vai vender.",
-                    },
-                  ].map((t, i) => (
-                    <div key={i}>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={t.img}
-                          alt={t.name}
-                          loading="lazy"
-                          className="h-12 w-12 rounded-full object-cover"
-                        />
-                        <div className="leading-tight">
-                          <div className="font-display text-base font-bold text-foreground">
-                            {t.name}
-                          </div>
-                          <div className="text-xs italic text-muted-foreground">
-                            {t.meta}
-                          </div>
-                        </div>
-                      </div>
-                      <blockquote className="mt-4 text-base italic leading-relaxed text-foreground/80 md:text-[17px]">
-                        "{t.quote}"
-                      </blockquote>
-                    </div>
-                  ))}
-                </div>
               </div>
             </Reveal>
           </div>
