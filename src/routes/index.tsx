@@ -787,47 +787,15 @@ function Landing() {
               </Reveal>
             </div>
 
-            {/* RIGHT — testimonials card */}
+            {/* RIGHT — WhatsApp mockup */}
             <Reveal delay={0.1}>
-              <div className="rounded-[28px] border border-border bg-background p-8 md:p-10">
-                <Quote
-                  className="h-10 w-10 fill-gold-deep text-gold-deep"
-                  strokeWidth={0}
+              <div className="flex justify-center md:justify-end">
+                <img
+                  src={depoimentoMockup}
+                  alt="Depoimento de Mariana C. no grupo VIP da Leevi"
+                  className="w-full max-w-[420px] object-contain"
+                  loading="lazy"
                 />
-
-                <div className="mt-6 space-y-8">
-                  {[
-                    {
-                      img: t1,
-                      name: "Mariana C.",
-                      meta: "Fortaleza — CE",
-                      quote:
-                        "Triplicou meu faturamento em 3 meses. Antes eu comprava no escuro, hoje compro o que eu sei que vai vender.",
-                    },
-                  ].map((t, i) => (
-                    <div key={i}>
-                      <div className="flex items-center gap-3">
-                        <img
-                          src={t.img}
-                          alt={t.name}
-                          loading="lazy"
-                          className="h-12 w-12 rounded-full object-cover"
-                        />
-                        <div className="leading-tight">
-                          <div className="font-display text-base font-bold text-foreground">
-                            {t.name}
-                          </div>
-                          <div className="text-xs italic text-muted-foreground">
-                            {t.meta}
-                          </div>
-                        </div>
-                      </div>
-                      <blockquote className="mt-4 text-base italic leading-relaxed text-foreground/80 md:text-[17px]">
-                        "{t.quote}"
-                      </blockquote>
-                    </div>
-                  ))}
-                </div>
               </div>
             </Reveal>
           </div>
