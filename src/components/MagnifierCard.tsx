@@ -12,12 +12,6 @@ export function MagnifierCard() {
   return (
     <>
       <div className="fpbentov6">
-        <div className="contentfpbentov6">
-          <h2 className="headfpbentov6">Your bento needs this</h2>
-          <p className="descriptionfpbentov6">
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry.
-          </p>
-        </div>
         <div className="content2fpbentov6">
           <div className="content2fpbentov6inside">
             <img className="mockupv6" src={iphoneMockup} alt="" />
