@@ -728,7 +728,7 @@ function Landing() {
       </section>
 
       {/* VITRINE — Orbit */}
-      <div className="bg-secondary/70 p-[20px]">
+      <div className="bg-secondary/70 p-[25px]">
         <VitrineOrbit />
       </div>
 
