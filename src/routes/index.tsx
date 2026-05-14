@@ -928,15 +928,12 @@ function Landing() {
                     Por que entrar agora
                   </span>
                 </div>
-                <h2 className="mt-6 font-display text-4xl font-black leading-[1.02] tracking-tight text-white md:text-6xl">
+                <h2
+                  className="mt-6 font-display text-white"
+                  style={{ fontWeight: 600, fontSize: "60px", lineHeight: "60px", letterSpacing: "-0.03em" }}
+                >
                   O que você perde<br />
-                  ficando{" "}
-                  <span className="relative inline-block italic">
-                    <span className="bg-gradient-to-r from-gold via-gold-soft to-gold-deep bg-clip-text text-transparent">
-                      de fora.
-                    </span>
-                    <span className="absolute -bottom-1 left-0 h-px w-full bg-gradient-to-r from-transparent via-gold to-transparent" />
-                  </span>
+                  ficando <span className="text-gold">de fora.</span>
                 </h2>
                 <p className="mt-6 max-w-md text-base leading-relaxed text-white/60 md:text-lg">
                   Cada semana fora do grupo é uma semana comprando depois da concorrência.
