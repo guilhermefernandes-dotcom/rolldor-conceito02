@@ -1040,8 +1040,7 @@ function Landing() {
                 <Reveal key={i} delay={i * 0.12}>
                   <li className={`relative flex flex-col items-center text-center ${align}`}>
                     <div className="relative">
-                      <div className="absolute inset-0 -m-3 rounded-full bg-gold/20 blur-md" />
-                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] shadow-md ring-1 ring-white/10 backdrop-blur">
+                      <div className="relative flex h-16 w-16 items-center justify-center rounded-2xl bg-white/[0.04] ring-1 ring-white/10 backdrop-blur">
                         <Icon className="h-7 w-7 text-gold" />
                         <span className="absolute -right-1 -top-1 text-gold">✦</span>
                       </div>
