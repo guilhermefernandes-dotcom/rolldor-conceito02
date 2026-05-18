@@ -15,6 +15,7 @@ import sandaliaVerde from "@/assets/sandalia-verde.webp";
 import sandaliaPerola from "@/assets/sandalia-perola.webp";
 import sandaliaPreta from "@/assets/sandalia-preta.webp";
 import leeviMark from "@/assets/leevi-mark.png";
+import badgeVagas from "@/assets/badge-vagas.webp";
 
 const WHATSAPP =
   "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
