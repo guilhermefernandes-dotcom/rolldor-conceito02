@@ -8,7 +8,7 @@ import {
   
   
 } from "motion/react";
-import { ArrowRight } from "lucide-react";
+
 import sandalia from "@/assets/sandalia-dourada.webp";
 import sandaliaCaramelo from "@/assets/sandalia-caramelo.webp";
 import sandaliaVerde from "@/assets/sandalia-verde.webp";
