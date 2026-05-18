@@ -132,11 +132,12 @@ export function VitrineOrbit() {
           </p>
 
           <div className="mt-8">
+          <div className="relative mt-8 w-full max-w-[640px] mx-auto lg:mx-0">
             <a
               href={WHATSAPP}
               target="_blank"
               rel="noopener noreferrer"
-              className="group inline-flex items-center gap-3 rounded-full px-10 py-5 font-display text-base font-bold uppercase tracking-wider text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
+              className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
               style={{
                 background:
                   "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
@@ -144,9 +145,18 @@ export function VitrineOrbit() {
                   "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
               }}
             >
-              Solicitar acesso
-              <ArrowRight className="h-5 w-5 transition-transform group-hover:translate-x-1" />
+              Quero participar da próxima turma
             </a>
+            <img
+              src={badgeVagas}
+              alt="Vagas limitadas - turma reduzida"
+              width={400}
+              height={400}
+              decoding="async"
+              loading="lazy"
+              className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+            />
+          </div>
 
             {/* Active item — minimal, photo + name */}
             <div className="relative mt-7 h-16 overflow-hidden">
