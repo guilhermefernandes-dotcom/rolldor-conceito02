@@ -221,13 +221,6 @@ function Landing() {
               fetchPriority="high"
               decoding="async"
             />
-            <div
-              className="absolute inset-0"
-              style={{
-                background:
-                  "linear-gradient(180deg, rgba(151,191,76,0.50) 0%, rgba(120,160,50,0.60) 50%, rgba(90,130,30,0.75) 100%)",
-              }}
-            />
           </div>
 
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
