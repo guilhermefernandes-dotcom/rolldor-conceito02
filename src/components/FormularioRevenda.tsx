@@ -279,7 +279,7 @@ function Field({
         {label}
       </span>
       {children}
-      {error && <span className="mt-1.5 block text-[13px] text-destructive">{error}</span>
+      {error && <span className="mt-1.5 block text-[13px] text-destructive">{error}</span>}
     </label>
   );
 }
