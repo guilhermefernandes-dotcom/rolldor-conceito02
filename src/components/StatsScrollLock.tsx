@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Building2, Layers, Award, MapPin } from "lucide-react";
+import { Building2, Layers, Award, MapPin, ArrowLeft, ArrowRight } from "lucide-react";
 import galeria1 from "@/assets/rd-galeria-1.jpg";
 import galeria2 from "@/assets/rd-galeria-2.jpg";
 import galeria3 from "@/assets/rd-galeria-3.jpg";
