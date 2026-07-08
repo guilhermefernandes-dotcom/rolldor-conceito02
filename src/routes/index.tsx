@@ -829,14 +829,14 @@ function Landing() {
         <div className="mx-auto max-w-[1200px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Sua empresa está pronta para vender uma das{" "}
                 <UnderlineWord delay={0}>marcas mais reconhecidas</UnderlineWord> do mercado
                 premium?
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[19px]">
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground md:text-[19px]">
                 Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem
                 design, engenharia e alto padrão. Preencha o formulário e fale com um especialista.
               </p>
@@ -870,7 +870,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
       >
-        <span className="font-display text-base font-semibold tracking-tight text-white md:text-lg">
+        <span className="font-display text-[18px] font-medium tracking-tight text-white md:text-lg">
           {q}
         </span>
         <span className="flex h-7 w-7 shrink-0 items-center justify-center text-white">
@@ -883,7 +883,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <p className="px-6 pb-5 text-sm leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-base">
+        <p className="px-6 pb-5 text-[18px] leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-[18px]">
           {a}
         </p>
       </motion.div>
