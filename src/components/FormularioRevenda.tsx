@@ -275,11 +275,11 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1.5 block font-display text-[13px] font-medium uppercase tracking-wider text-foreground/70">
+      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/60">
         {label}
       </span>
       {children}
-      {error && <span className="mt-1 block text-xs text-destructive">{error}</span>}
+      {error && <span className="mt-1.5 block text-[13px] text-destructive">{error}</span>
     </label>
   );
 }
