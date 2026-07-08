@@ -26,6 +26,7 @@ import portaDeslizante from "@/assets/rd-porta-deslizante.jpg";
 import janelaImg from "@/assets/rd-janela.jpg";
 import grandesVaos from "@/assets/rd-grandes-vaos.jpg";
 import personalizado from "@/assets/rd-personalizado.jpg";
+import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
@@ -121,23 +122,14 @@ function Reveal({
   );
 }
 
-function Wordmark({ className = "", priority = false }: { className?: string; priority?: boolean }) {
+function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <div
-      className={`inline-flex flex-col items-center leading-none ${className}`}
-      aria-label="Roll Door Company"
-    >
-      <span
-        className="font-display font-bold tracking-[0.02em] text-foreground"
-        style={{ fontSize: "clamp(28px, 5vw, 44px)" }}
-      >
-        ROLL DOOR
-      </span>
-      <span className="mt-1 font-display text-[10px] uppercase tracking-[0.4em] text-foreground/60 md:text-xs">
-        Company
-      </span>
-      {priority && <meta itemProp="brand" content="Roll Door Company" />}
-    </div>
+    <img
+      src={logoAsset.url}
+      alt="Roll Door Company"
+      className={`h-auto w-auto max-h-14 md:max-h-20 ${className}`}
+      style={{ maxWidth: "260px" }}
+    />
   );
 }
 
@@ -231,34 +223,33 @@ function Landing() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.88) 50%, rgba(255,255,255,0.96) 100%)",
+                  "linear-gradient(180deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.88) 100%)",
               }}
             />
           </div>
 
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
             <Reveal>
-              <Wordmark className="mb-8" priority />
+              <Wordmark className="mb-8" />
             </Reveal>
             <Reveal delay={0.15}>
               <h1
-                className="font-display"
+                className="font-display text-white"
                 style={{
                   fontWeight: 600,
-                  fontSize: "clamp(34px, 8vw, 68px)",
-                  lineHeight: "1.02",
-                  color: "oklch(0.18 0.005 250)",
+                  fontSize: "clamp(26px, 6.5vw, 60px)",
+                  lineHeight: "1.05",
                   letterSpacing: "-0.03em",
-                  maxWidth: "18ch",
+                  maxWidth: "20ch",
                 }}
               >
                 Torne-se um Revendedor Premium{" "}
-                <span className="text-foreground/60">Roll Door</span> e venda uma das marcas mais
+                <span className="text-white/70">Roll Door</span> e venda uma das marcas mais
                 desejadas do mercado de esquadrias.
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:mt-8 md:text-[21px]">
+              <p className="mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
                 Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba
                 oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu
                 portfólio.
@@ -272,8 +263,8 @@ function Landing() {
                   "Produtos de alto padrão",
                   "Programa exclusivo para parceiros",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[15px] text-foreground/85 md:text-[17px]">
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-foreground text-white">
+                  <li key={item} className="flex items-center gap-3 text-[15px] text-white/85 md:text-[17px]">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-foreground">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
                     {item}
