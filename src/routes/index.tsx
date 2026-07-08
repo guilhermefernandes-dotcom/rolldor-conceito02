@@ -231,7 +231,7 @@ function Landing() {
               <h1
                 className="font-display mx-auto text-white"
                 style={{
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: "clamp(24px, 5.2vw, 56px)",
                   lineHeight: "1.05",
                   letterSpacing: "-0.03em",
@@ -244,7 +244,7 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
+              <p className="mt-6 max-w-2xl text-[18px] leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
                 Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba
                 oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu
                 portfólio.
@@ -258,7 +258,7 @@ function Landing() {
                   "Produtos de alto padrão",
                   "Programa exclusivo para parceiros",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[15px] text-white/85 md:text-[17px]">
+                  <li key={item} className="flex items-center gap-3 text-[18px] text-white/85 md:text-[18px]">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-foreground">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
@@ -309,13 +309,13 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Mais de <UnderlineWord delay={0}>700 revendas</UnderlineWord> fazem parte da{" "}
                 <UnderlineWord delay={0.18}>rede Roll Door</UnderlineWord>.
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[21px]">
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground md:text-[21px]">
                 Há quase quatro décadas desenvolvendo soluções para grandes vãos, a Roll Door é
                 referência em portas e janelas de alto padrão em todo o Brasil. Nossa marca já está
                 presente em milhares de projetos residenciais e comerciais.
