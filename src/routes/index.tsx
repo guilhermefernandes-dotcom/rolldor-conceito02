@@ -16,6 +16,7 @@ import {
   Minus,
   Quote,
 } from "lucide-react";
+import polygonShape from "@/assets/polygon-13.svg";
 import { useState } from "react";
 import heroImg from "@/assets/rd-hero.jpg";
 import galeria1 from "@/assets/rd-galeria-1.jpg";
