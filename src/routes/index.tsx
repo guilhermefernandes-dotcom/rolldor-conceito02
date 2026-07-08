@@ -211,9 +211,9 @@ function Landing() {
       <JoinNotifications />
 
       {/* HERO */}
-      <motion.div className="bg-foreground" style={{ padding: heroPad }}>
+      <motion.div className="bg-brand-green" style={{ padding: heroPad }}>
         <motion.section
-          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-24"
+          className="relative w-full overflow-hidden bg-brand-green px-6 py-16 md:px-10 md:py-24"
           style={{ borderRadius: heroRadius }}
         >
           {/* Background image */}
@@ -221,7 +221,7 @@ function Landing() {
             <img
               src={heroImg}
               alt=""
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover mix-blend-multiply opacity-70"
               fetchPriority="high"
               decoding="async"
             />
@@ -229,7 +229,7 @@ function Landing() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.88) 100%)",
+                  "linear-gradient(180deg, rgba(92,122,42,0.55) 0%, rgba(60,85,25,0.75) 60%, rgba(30,50,10,0.9) 100%)",
               }}
             />
           </div>
