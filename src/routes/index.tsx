@@ -31,6 +31,7 @@ import janelaImg from "@/assets/rd-janela.jpg";
 import grandesVaos from "@/assets/rd-grandes-vaos.jpg";
 import personalizado from "@/assets/rd-personalizado.jpg";
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
+import rLogoAsset from "@/assets/roll-door-R.png.asset.json";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
