@@ -698,52 +698,6 @@ function Landing() {
         <VitrineOrbit />
       </div>
 
-      {/* PORTFÓLIO — lista de linhas */}
-      <section className="bg-secondary/60 pb-24 md:pb-32">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-[19px]">
-                Ofereça soluções para residências, condomínios, empreendimentos e projetos de
-                arquitetura de alto padrão.
-              </p>
-            </Reveal>
-          </div>
-
-          <div className="mt-14 grid gap-5 md:grid-cols-3">
-            {[
-              { title: "Portas deslizantes", img: portaDeslizante },
-              { title: "Janelas premium", img: janelaImg },
-              { title: "Grandes vãos", img: grandesVaos },
-              { title: "Sistemas de alumínio", img: personalizado },
-              { title: "Soluções personalizadas", img: galeria1 },
-              { title: "Fachadas arquitetônicas", img: galeria2 },
-            ].map((p, i) => (
-              <Reveal key={p.title} delay={i * 0.05}>
-                <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
-                  <img
-                    src={p.img}
-                    alt={p.title}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                  <div
-                    className="absolute inset-0"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, transparent 40%, rgba(15,15,20,0.85) 100%)",
-                    }}
-                  />
-                  <div className="absolute inset-x-0 bottom-0 p-6">
-                    <h3 className="font-display text-2xl font-bold text-white">{p.title}</h3>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* GALERIA — texto sobre projetos */}
       <section className="relative overflow-hidden bg-foreground py-24 text-white md:py-32">
