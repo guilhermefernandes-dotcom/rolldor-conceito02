@@ -545,14 +545,6 @@ function Landing() {
                           </li>
                         ))}
                       </ul>
-
-                      <a
-                        href="#cta-final"
-                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors bg-brand-green text-white hover:bg-brand-green-deep`}
-                      >
-                        Saiba mais
-                        <ArrowRight className="h-4 w-4" />
-                      </a>
                     </article>
                   </Reveal>
                 ))}
@@ -821,30 +813,77 @@ function Landing() {
 
       {/* CTA FINAL COM FORMULÁRIO */}
       <section id="cta-final" className="bg-secondary/60 py-24 md:py-32">
-        <div className="mx-auto max-w-[1200px] px-5 md:px-10">
-          <div className="mx-auto max-w-3xl text-center">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
+            {/* Painel esquerdo — copy */}
             <Reveal>
-              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
-                Sua empresa está pronta para vender uma das{" "}
-                <UnderlineWord delay={0}>marcas mais reconhecidas</UnderlineWord> do mercado
-                premium?
-              </h2>
-            </Reveal>
-            <Reveal delay={0.15}>
-              <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground md:text-[19px]">
-                Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem
-                design, engenharia e alto padrão. Preencha o formulário e fale com um especialista.
-              </p>
-            </Reveal>
-          </div>
+              <div
+                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-8 text-white md:p-12"
+                style={{
+                  background:
+                    "linear-gradient(160deg, #0f1b0a 0%, #1a2e10 45%, #2d4a1a 100%)",
+                }}
+              >
+                <div
+                  className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+                  style={{ background: "#97BF4C" }}
+                />
+                <span className="font-display text-xs font-medium uppercase tracking-[0.2em] text-brand-green">
+                  Fale com um especialista
+                </span>
+                <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-5xl">
+                  Sua empresa está pronta para vender uma das marcas mais reconhecidas do mercado
+                  premium?
+                </h2>
+                <p className="mt-6 max-w-md text-[18px] leading-relaxed text-white/75 md:text-[19px]">
+                  Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem
+                  design, engenharia e alto padrão.
+                </p>
 
-          <div className="mx-auto mt-14 max-w-3xl">
-            <Reveal delay={0.2}>
+                <div className="my-8 h-px w-full bg-white/15" />
+
+                <ul className="flex flex-col gap-4">
+                  {[
+                    "Análise personalizada da sua região",
+                    "Apresentação completa do programa",
+                    "Suporte técnico e comercial dedicado",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-3 text-[18px] text-white/90">
+                      <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-auto grid grid-cols-1 gap-3 pt-10 sm:grid-cols-2">
+                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                      WhatsApp
+                    </div>
+                    <div className="mt-1 font-display text-[18px] font-medium text-white">
+                      (11) 9 0000-0000
+                    </div>
+                  </div>
+                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                      E-mail
+                    </div>
+                    <div className="mt-1 font-display text-[18px] font-medium text-white">
+                      parcerias@rolldoor.com.br
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+
+            {/* Formulário */}
+            <Reveal delay={0.15}>
               <FormularioRevenda />
             </Reveal>
           </div>
         </div>
       </section>
+
 
       {/* STICKY MOBILE CTA */}
       <a
