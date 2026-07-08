@@ -231,7 +231,7 @@ function Landing() {
               <h1
                 className="font-display mx-auto text-white"
                 style={{
-                  fontWeight: 600,
+                  fontWeight: 500,
                   fontSize: "clamp(24px, 5.2vw, 56px)",
                   lineHeight: "1.05",
                   letterSpacing: "-0.03em",
@@ -244,7 +244,7 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
+              <p className="mt-6 max-w-2xl text-[18px] leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
                 Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba
                 oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu
                 portfólio.
@@ -258,7 +258,7 @@ function Landing() {
                   "Produtos de alto padrão",
                   "Programa exclusivo para parceiros",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[15px] text-white/85 md:text-[17px]">
+                  <li key={item} className="flex items-center gap-3 text-[18px] text-white/85 md:text-[18px]">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-foreground">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
@@ -309,13 +309,13 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Mais de <UnderlineWord delay={0}>700 revendas</UnderlineWord> fazem parte da{" "}
                 <UnderlineWord delay={0.18}>rede Roll Door</UnderlineWord>.
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[21px]">
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground md:text-[21px]">
                 Há quase quatro décadas desenvolvendo soluções para grandes vãos, a Roll Door é
                 referência em portas e janelas de alto padrão em todo o Brasil. Nossa marca já está
                 presente em milhares de projetos residenciais e comerciais.
@@ -392,7 +392,7 @@ function Landing() {
                       className="text-white"
                       style={{
                         fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
-                        fontWeight: 600,
+                        fontWeight: 500,
                         fontSize: "clamp(28px, 6.5vw, 48px)",
                         lineHeight: "1.05",
                       }}
@@ -403,7 +403,7 @@ function Landing() {
                         Um parceiro para crescer junto com você.
                       </span>
                     </h2>
-                    <p className="mt-6 max-w-xl text-white/70 md:text-lg">
+                    <p className="mt-6 max-w-xl text-[18px] text-white/70 md:text-[18px]">
                       Ao fazer parte da Rede Premium Roll Door, sua empresa conta com uma estrutura
                       pensada para impulsionar suas vendas.
                     </p>
@@ -524,7 +524,7 @@ function Landing() {
                         className={`h-7 w-7 ${highlight ? "text-[#e8c07a]" : "text-[#c9a84c]"}`}
                         strokeWidth={1.4}
                       />
-                      <h3 className="mt-6 font-display text-[19px] font-semibold leading-tight text-white md:text-[21px]">
+                      <h3 className="mt-6 font-display text-[19px] font-medium leading-tight text-white md:text-[21px]">
                         {title}
                       </h3>
 
@@ -534,7 +534,7 @@ function Landing() {
                         {bullets.map((b) => (
                           <li
                             key={b}
-                            className="flex items-start gap-2 text-[13.5px] leading-snug text-white/75 md:text-sm"
+                            className="flex items-start gap-2 text-[15px] leading-snug text-white/75 md:text-[16px]"
                           >
                             <Check
                               className={`mt-0.5 h-4 w-4 shrink-0 ${
@@ -576,7 +576,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Por que o mercado escolhe a{" "}
                 <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
               </h2>
@@ -627,10 +627,10 @@ function Landing() {
                     {cards.map((c, i) => (
                       <Reveal key={c.title} delay={i * 0.06}>
                         <div className="h-full rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)]">
-                          <h3 className="font-display text-lg font-bold" style={{ color: "var(--gold)" }}>
+                          <h3 className="font-display text-lg font-medium" style={{ color: "var(--gold)" }}>
                             {c.title}
                           </h3>
-                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                          <p className="mt-2 text-[18px] leading-relaxed text-muted-foreground">
                             {c.desc}
                           </p>
                         </div>
@@ -663,12 +663,12 @@ function Landing() {
                           className={`rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.3)] ${c.align}`}
                         >
                           <h3
-                            className="font-display text-lg font-bold xl:text-xl"
+                            className="font-display text-lg font-medium xl:text-xl"
                             style={{ color: "var(--gold)" }}
                           >
                             {c.title}
                           </h3>
-                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                          <p className="mt-2 text-[18px] leading-relaxed text-muted-foreground">
                             {c.desc}
                           </p>
                         </div>
@@ -693,7 +693,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-center md:gap-16">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-6xl">
                 Projetos que <span className="text-white/60">impressionam</span> seus clientes.
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-white/70 md:text-xl">
@@ -731,7 +731,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Quem já é <UnderlineWord delay={0}>parceiro</UnderlineWord> recomenda.
               </h2>
             </Reveal>
@@ -788,10 +788,10 @@ function Landing() {
           <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
             <div>
               <Reveal>
-                <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
+                <h2 className="font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                   Ficou com<br />dúvidas?
                 </h2>
-                <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60 md:text-base">
+                <p className="mt-5 max-w-sm text-[18px] leading-relaxed text-white/60 md:text-[18px]">
                   Aqui estão as perguntas mais comuns sobre o programa. Precisa de mais informações?
                   Preencha o formulário abaixo e nossa equipe entra em contato.
                 </p>
@@ -829,14 +829,14 @@ function Landing() {
         <div className="mx-auto max-w-[1200px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Sua empresa está pronta para vender uma das{" "}
                 <UnderlineWord delay={0}>marcas mais reconhecidas</UnderlineWord> do mercado
                 premium?
               </h2>
             </Reveal>
             <Reveal delay={0.15}>
-              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[19px]">
+              <p className="mx-auto mt-6 max-w-2xl text-[18px] text-muted-foreground md:text-[19px]">
                 Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem
                 design, engenharia e alto padrão. Preencha o formulário e fale com um especialista.
               </p>
@@ -870,7 +870,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
       >
-        <span className="font-display text-base font-semibold tracking-tight text-white md:text-lg">
+        <span className="font-display text-[18px] font-medium tracking-tight text-white md:text-lg">
           {q}
         </span>
         <span className="flex h-7 w-7 shrink-0 items-center justify-center text-white">
@@ -883,7 +883,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         transition={{ duration: 0.3 }}
         className="overflow-hidden"
       >
-        <p className="px-6 pb-5 text-sm leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-base">
+        <p className="px-6 pb-5 text-[18px] leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-[18px]">
           {a}
         </p>
       </motion.div>

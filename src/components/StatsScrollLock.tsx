@@ -192,7 +192,7 @@ export function StatsScrollLock() {
                             : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
                         }}
                         transition={{ duration: 0.6 }}
-                        className="mt-0.5 font-display text-xs font-bold leading-none"
+                        className="mt-0.5 font-display text-xs font-medium leading-none"
                       >
                         {s.label}
                       </motion.div>
@@ -292,7 +292,7 @@ export function StatsScrollLock() {
                             : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="font-display text-lg font-bold leading-none md:text-xl"
+                        className="font-display text-lg font-medium leading-none md:text-xl"
                       >
                         {s.label}
                       </motion.div>
@@ -380,7 +380,7 @@ export function StatsScrollLock() {
                     }}
                     className="absolute inset-0 flex flex-col gap-5 rounded-3xl bg-background p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
                   >
-                    <div className="absolute right-6 top-6 z-10 font-display text-2xl font-bold text-foreground/15 md:right-9 md:top-9 md:text-3xl">
+                    <div className="absolute right-6 top-6 z-10 font-display text-2xl font-medium text-foreground/15 md:right-9 md:top-9 md:text-3xl">
                       {s.n}
                     </div>
 
@@ -413,7 +413,7 @@ export function StatsScrollLock() {
                       <h3
                         className="font-display pr-10"
                         style={{
-                          fontWeight: 600,
+                          fontWeight: 500,
                           fontSize: "clamp(24px, 6.5vw, 44px)",
                           lineHeight: "0.95",
                           color: "oklch(0.18 0.005 250)",
@@ -422,10 +422,10 @@ export function StatsScrollLock() {
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-2 font-display text-3xl font-black leading-none text-foreground md:text-[44px]">
+                      <div className="mt-2 font-display text-3xl font-medium leading-none text-foreground md:text-[44px]">
                         {s.big}
                       </div>
-                      <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
+                      <p className="mt-3 text-[18px] leading-relaxed text-muted-foreground md:mt-4 md:text-[18px]">
                         {s.desc}
                       </p>
                     </motion.div>
