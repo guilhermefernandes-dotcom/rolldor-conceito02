@@ -593,44 +593,128 @@ function Landing() {
             </Reveal>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
-            {[
+          {(() => {
+            const items = [
               {
                 title: "Engenharia para grandes vãos",
                 desc: "Projetos desenvolvidos para entregar elegância, desempenho e segurança.",
-                icon: Building2,
+                icon: Compass,
+                corner: "tl" as const,
               },
               {
                 title: "Design que agrega valor",
                 desc: "Produtos que valorizam qualquer projeto arquitetônico.",
-                icon: Sparkles,
+                icon: PenLine,
+                corner: "tr" as const,
               },
               {
                 title: "Qualidade reconhecida",
                 desc: "Décadas de experiência desenvolvendo soluções premium para o mercado brasileiro.",
-                icon: Award,
+                icon: ShieldCheck,
+                corner: "bl" as const,
               },
               {
                 title: "Marca que gera confiança",
                 desc: "Seu cliente já reconhece a qualidade da Roll Door antes mesmo da primeira visita.",
-                icon: Handshake,
+                icon: Award,
+                corner: "br" as const,
               },
-            ].map(({ title, desc, icon: Icon }, i) => (
-              <Reveal key={i} delay={i * 0.06}>
-                <div className="flex h-full flex-col rounded-3xl border border-foreground/10 bg-white p-8 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.2)]">
-                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-foreground text-white">
-                    <Icon className="h-6 w-6" strokeWidth={1.6} />
-                  </div>
-                  <h3 className="font-display text-xl font-bold text-foreground md:text-2xl">
-                    {title}
-                  </h3>
-                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground md:text-base">
-                    {desc}
-                  </p>
+            ];
+
+            const cornerPos = {
+              tl: "-top-6 -left-6 md:-top-8 md:-left-8",
+              tr: "-top-6 -right-6 md:-top-8 md:-right-8",
+              bl: "-bottom-6 -left-6 md:-bottom-8 md:-left-8",
+              br: "-bottom-6 -right-6 md:-bottom-8 md:-right-8",
+            };
+
+            return (
+              <div className="relative mx-auto mt-16 flex max-w-[900px] items-center justify-center">
+                {/* rings decorativos */}
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+                  style={{
+                    width: "min(120%, 1100px)",
+                    aspectRatio: "1 / 1",
+                    borderColor: "color-mix(in oklab, var(--gold) 25%, transparent)",
+                  }}
+                />
+                <div
+                  aria-hidden
+                  className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full border"
+                  style={{
+                    width: "min(100%, 900px)",
+                    aspectRatio: "1 / 1",
+                    borderColor: "color-mix(in oklab, var(--gold) 35%, transparent)",
+                  }}
+                />
+
+                <div className="relative grid w-full grid-cols-2 gap-3 md:gap-4">
+                  {items.map(({ title, desc, icon: Icon, corner }, i) => (
+                    <Reveal key={title} delay={i * 0.08}>
+                      <div
+                        className="relative flex h-full min-h-[180px] flex-col items-center justify-center rounded-2xl p-6 text-center md:min-h-[220px] md:p-8"
+                        style={{
+                          background:
+                            "linear-gradient(135deg, color-mix(in oklab, var(--gold) 55%, white) 0%, color-mix(in oklab, var(--gold) 85%, white) 100%)",
+                          boxShadow:
+                            "inset 0 1px 0 rgba(255,255,255,0.4), 0 20px 40px -20px color-mix(in oklab, var(--gold) 50%, transparent)",
+                        }}
+                      >
+                        {/* ícone flutuante no canto externo */}
+                        <div
+                          className={`absolute ${cornerPos[corner]} z-10 flex h-14 w-14 items-center justify-center rounded-full border bg-white shadow-md md:h-16 md:w-16`}
+                          style={{
+                            borderColor: "color-mix(in oklab, var(--gold) 40%, transparent)",
+                          }}
+                        >
+                          <Icon
+                            className="h-6 w-6 md:h-7 md:w-7"
+                            strokeWidth={1.6}
+                            style={{ color: "var(--gold)" }}
+                          />
+                        </div>
+
+                        <h3
+                          className="font-display text-lg font-bold leading-tight md:text-2xl"
+                          style={{ color: "oklch(0.18 0.005 250)" }}
+                        >
+                          {title}
+                        </h3>
+                        <p
+                          className="mt-2 text-[13px] leading-snug md:text-sm"
+                          style={{ color: "oklch(0.28 0.02 60)" }}
+                        >
+                          {desc}
+                        </p>
+                      </div>
+                    </Reveal>
+                  ))}
                 </div>
-              </Reveal>
-            ))}
-          </div>
+
+                {/* logo R no centro */}
+                <div
+                  className="pointer-events-none absolute left-1/2 top-1/2 z-20 -translate-x-1/2 -translate-y-1/2"
+                  aria-hidden
+                >
+                  <div
+                    className="flex h-[120px] w-[120px] items-center justify-center rounded-full bg-white shadow-[0_20px_50px_-15px_rgba(0,0,0,0.25)] md:h-[150px] md:w-[150px]"
+                    style={{
+                      border: "1px solid color-mix(in oklab, var(--gold) 30%, transparent)",
+                    }}
+                  >
+                    <img
+                      src={rLogoAsset.url}
+                      alt="Roll Door"
+                      className="h-[70%] w-[70%] object-contain"
+                      draggable={false}
+                    />
+                  </div>
+                </div>
+              </div>
+            );
+          })()}
         </div>
       </section>
 
