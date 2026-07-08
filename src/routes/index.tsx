@@ -238,7 +238,7 @@ function Landing() {
                 }}
               >
                 Torne-se um Revendedor Premium{" "}
-                <span className="text-white/70">Roll Door</span> e venda uma das marcas mais
+                <span className="text-brand-green">Roll Door</span> e venda uma das marcas mais
                 desejadas do mercado de esquadrias.
               </h1>
             </Reveal>
