@@ -1,756 +1,1157 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight,
-  ArrowDown,
+  Tag,
+  Gift,
+  TrendingUp,
+  Zap,
+  Lock,
+  PackageCheck,
+  Flame,
+  CheckCircle2,
   Check,
-  ChevronDown,
-  Wrench,
-  Sparkles,
-  Award,
-  ShieldCheck,
-  Users,
-  Package,
-  Palette,
-  Building2,
-  Boxes,
-  Handshake,
-  MessageSquare,
-  Send,
-  Menu,
-  X,
+  Star,
+  Plus,
+  Minus,
+  Quote,
 } from "lucide-react";
+import { useState, useEffect } from "react";
+import heroImg from "@/assets/hero.webp";
+import productsImg from "@/assets/products.webp";
+import p1 from "@/assets/p1.jpg";
+import p2 from "@/assets/p2.jpg";
+import p3 from "@/assets/p3.jpg";
+import p4 from "@/assets/p4.jpg";
+import t1 from "@/assets/t1.jpg";
+import t2 from "@/assets/t2.jpg";
+import leeviMark from "@/assets/leevi-mark.png";
+import launchesImg from "@/assets/leevi-launches.webp";
+import t3 from "@/assets/t3.jpg";
+import depoimentoMockup from "@/assets/depoimento-mockup-mariana.webp";
 
-import logoAsset from "@/assets/rd/logo.webp.asset.json";
-import heroAsset from "@/assets/rd/hero.webp.asset.json";
-import banner2 from "@/assets/rd/banner2.webp.asset.json";
-import banner3 from "@/assets/rd/banner3.webp.asset.json";
-import banner4 from "@/assets/rd/banner4.webp.asset.json";
-import banner5 from "@/assets/rd/banner5.webp.asset.json";
-import proj1 from "@/assets/rd/proj1.webp.asset.json";
-import projA from "@/assets/rd/proj_HfU7aT.webp.asset.json";
-import projB from "@/assets/rd/proj_KjOj6S.webp.asset.json";
-import projC from "@/assets/rd/proj_U6LDX7.webp.asset.json";
-import projD from "@/assets/rd/proj_Uib9Yl.webp.asset.json";
-import projE from "@/assets/rd/proj_WBCNYK.webp.asset.json";
+import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.webp";
+import logoUrl from "@/assets/logo.webp";
+import badgeVagas from "@/assets/badge-vagas.webp";
+import comoFuncionaRadar from "@/assets/como-funciona-radar.webp";
+import cardShape1 from "@/assets/card-shape-1.png";
+import cardShape2 from "@/assets/card-shape-2.png";
+import cardShape3 from "@/assets/card-shape-3.png";
+import { StatsScrollLock } from "@/components/StatsScrollLock";
+import { VitrineOrbit } from "@/components/VitrineOrbit";
+import { JoinNotifications } from "@/components/JoinNotifications";
+import { MagnifierCard } from "@/components/MagnifierCard";
 
 export const Route = createFileRoute("/")({
-  component: RevendedorPage,
+  head: () => {
+    const url = "https://wireframe-leevi.lovable.app/";
+    const image = "https://wireframe-leevi.lovable.app/og-image.webp";
+    const title = "Grupo VIP de Revendedoras Leevi — Lançamentos antes de todo mundo";
+    const description =
+      "Entre no Grupo VIP de Revendedoras Leevi no WhatsApp. Lives semanais, lançamentos do atacado, ofertas exclusivas e curadoria de calçados e acessórios femininos de alto giro pra você lucrar mais.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { name: "keywords", content: "revendedora de calçados, atacado calçados femininos, grupo vip whatsapp, distribuidora calçados, leevi, revenda sandálias, atacado moda feminina" },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:url", content: url },
+        { property: "og:image", content: image },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { name: "twitter:title", content: title },
+        { name: "twitter:description", content: description },
+        { name: "twitter:image", content: image },
+      ],
+      links: [{ rel: "canonical", href: url }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: [
+              { q: "Preciso pagar para entrar?", a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar." },
+              { q: "Vão me mandar muita mensagem?", a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado." },
+              { q: "Preciso ter CNPJ?", a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ." },
+              { q: "Como funcionam as lives?", a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo." },
+              { q: "Posso sair quando quiser?", a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro." },
+            ].map((f) => ({
+              "@type": "Question",
+              name: f.q,
+              acceptedAnswer: { "@type": "Answer", text: f.a },
+            })),
+          }),
+        },
+      ],
+    };
+  },
+  component: Landing,
 });
 
-const BENEFITS = [
-  "Produtos exclusivos para o mercado de alto padrão",
-  "Marca reconhecida nacionalmente",
-  "Suporte técnico especializado",
-  "Materiais de marketing",
-  "Atendimento dedicado",
-  "Capacitação comercial",
-  "Indicação de oportunidades de negócio*",
-  "Condições comerciais diferenciadas para parceiros",
-];
+const WHATSAPP = "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
 
-const DIFFERENTIALS = [
-  { icon: Wrench, title: "Engenharia para grandes vãos", desc: "Projetos desenvolvidos para entregar elegância, desempenho e segurança." },
-  { icon: Sparkles, title: "Design que agrega valor", desc: "Produtos que valorizam qualquer projeto arquitetônico." },
-  { icon: Award, title: "Qualidade reconhecida", desc: "Décadas de experiência desenvolvendo soluções premium para o mercado brasileiro." },
-  { icon: ShieldCheck, title: "Marca que gera confiança", desc: "Seu cliente já reconhece a qualidade da Roll Door antes mesmo da primeira visita." },
-];
+const fadeUp = {
+  hidden: { opacity: 0, y: 24 },
+  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+};
 
-const PORTFOLIO = [
-  { icon: Boxes, title: "Portas deslizantes" },
-  { icon: Building2, title: "Janelas" },
-  { icon: Package, title: "Grandes vãos" },
-  { icon: Palette, title: "Sistemas de alumínio premium" },
-  { icon: Handshake, title: "Soluções personalizadas" },
-];
-
-const TESTIMONIALS = [
-  { quote: "Desde que começamos a trabalhar com a Roll Door conseguimos agregar muito mais valor aos nossos projetos.", author: "Revendedor Roll Door", role: "Vidraçaria — SP" },
-  { quote: "Hoje nossos clientes já chegam pedindo Roll Door.", author: "Revendedor Roll Door", role: "Esquadrias — MG" },
-  { quote: "Além do produto, o suporte faz toda diferença.", author: "Revendedor Roll Door", role: "Serralheria — PR" },
-];
-
-const STEPS = [
-  { n: "01", title: "Preencha o formulário.", desc: "Envie seus dados e conte um pouco sobre a sua empresa." },
-  { n: "02", title: "Nossa equipe analisa sua região e o perfil da empresa.", desc: "Avaliamos disponibilidade e sinergia com o programa." },
-  { n: "03", title: "Entramos em contato para apresentar a parceria.", desc: "Você recebe todas as condições e materiais do programa." },
-  { n: "04", title: "Você inicia sua jornada como Revendedor Premium Roll Door.", desc: "Começa a vender uma das marcas mais desejadas do mercado." },
-];
-
-const FAQ = [
-  { q: "Preciso já trabalhar com esquadrias?", a: "Sim. O programa é destinado para empresas do segmento, como vidraçarias, serralherias e fabricantes de esquadrias." },
-  { q: "Existe exclusividade?", a: "As condições são avaliadas conforme a região e o perfil do parceiro." },
-  { q: "Recebo suporte?", a: "Sim. Os parceiros contam com suporte técnico e comercial durante toda a parceria." },
-  { q: "Como funciona o processo de aprovação?", a: "Após o cadastro, nossa equipe entra em contato para avaliar o perfil da empresa e apresentar as condições do programa." },
-];
-
-const PARTNER_LABELS = [
-  "VIDRAÇARIA SAMPA",
-  "ALUMÍNIO SUL",
-  "ARQ. STUDIO",
-  "GLASS PREMIUM",
-  "SERRALHERIA REAL",
-  "BAHIA VIDROS",
-  "ATLÂNTICO",
-  "NORTE ESQUADRIAS",
-  "VITRAL DESIGN",
-  "URBANO VIDROS",
-  "TERRA FIRME",
-  "MARÍTIMA",
-];
-
-function RevendedorPage() {
+function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
-    <div className="min-h-screen bg-[#0d0d0d] text-white">
-      <Header />
-      <Hero />
-      <SocialProof />
-      <WhyBecome />
-      <Differentials />
-      <Portfolio />
-      <Gallery />
-      <Testimonials />
-      <HowItWorks />
-      <FinalCTA />
-      <FaqSection />
-      <Footer />
+    <img
+      src={logoUrl}
+      alt="Leevi Distribuidora"
+      width={800}
+      height={373}
+      decoding="async"
+      loading={priority ? "eager" : "lazy"}
+      fetchPriority={priority ? "high" : "auto"}
+      className={`h-16 w-auto md:h-24 ${className}`}
+    />
+  );
+}
+
+function CTA({
+  children = "Quero entrar no Grupo VIP",
+  size = "lg",
+  variant = "gold",
+}: {
+  children?: React.ReactNode;
+  size?: "lg" | "md";
+  variant?: "gold" | "outline";
+}) {
+  const base =
+    "group inline-flex items-center justify-center gap-2 font-display font-bold tracking-tight transition-all duration-300";
+  const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
+  const variants =
+    variant === "gold"
+      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
+      : "border border-gold/40 text-gold hover:bg-gold hover:text-foreground";
+  return (
+    <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${base} ${sizing} ${variants}`}>
+      {children}
+      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+    </a>
+  );
+}
+
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="mb-5 inline-flex items-center gap-2">
+      <span className="h-px w-8 bg-gold" />
+      <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">{children}</span>
     </div>
   );
 }
 
-/* ---------------- Header ---------------- */
-function Header() {
-  const [open, setOpen] = useState(false);
-  const nav = [
-    { href: "#programa", label: "O Programa" },
-    { href: "#diferenciais", label: "Diferenciais" },
-    { href: "#portfolio", label: "Portfólio" },
-    { href: "#depoimentos", label: "Depoimentos" },
-    { href: "#faq", label: "FAQ" },
-  ];
+function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
-    <header className="fixed top-0 z-50 w-full border-b border-white/5 bg-[#0d0d0d]/80 backdrop-blur-md">
-      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-5 md:px-8">
-        <a href="#top" className="flex items-center">
-          <img src={logoAsset.url} alt="Roll Door Company" className="h-8 w-auto" />
-        </a>
-        <nav className="hidden items-center gap-9 lg:flex">
-          {nav.map((l) => (
-            <a key={l.href} href={l.href} className="text-sm font-medium tracking-wide text-white/70 transition hover:text-white">
-              {l.label}
-            </a>
-          ))}
-        </nav>
-        <a
-          href="#formulario"
-          className="hidden items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white shadow-[0_10px_30px_-10px] shadow-accent/50 transition hover:bg-accent-light lg:inline-flex"
-        >
-          Ser revendedor
-          <ArrowRight className="h-4 w-4" />
-        </a>
-        <button className="rounded-md p-2 text-white lg:hidden" onClick={() => setOpen(!open)} aria-label="Menu">
-          {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
-        </button>
-      </div>
-      {open && (
-        <div className="border-t border-white/5 bg-[#0d0d0d] px-5 py-6 lg:hidden">
-          <div className="flex flex-col gap-4">
-            {nav.map((l) => (
-              <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-base font-medium text-white/80">
-                {l.label}
-              </a>
-            ))}
-            <a
-              href="#formulario"
-              onClick={() => setOpen(false)}
-              className="mt-2 inline-flex w-full items-center justify-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold uppercase tracking-wider text-white"
-            >
-              Ser revendedor
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      )}
-    </header>
-  );
-}
-
-/* ---------------- Hero ---------------- */
-function Hero() {
-  return (
-    <section id="top" className="relative flex min-h-[100svh] items-center overflow-hidden pt-32 md:pt-24">
-      <div className="absolute inset-0">
-        <img src={heroAsset.url} alt="" className="h-full w-full object-cover" />
-        <div className="absolute inset-0 bg-gradient-to-r from-[#0d0d0d] via-[#0d0d0d]/85 to-[#0d0d0d]/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0d0d0d] via-transparent to-transparent" />
-      </div>
-      <div className="relative mx-auto grid w-full max-w-7xl grid-cols-1 gap-14 px-5 pb-24 md:px-8 lg:grid-cols-[1.15fr_1fr] lg:items-center">
-        <div>
-          <span className="inline-flex items-center gap-2 rounded-full border border-accent/40 bg-accent/10 px-4 py-1.5 text-[11px] font-semibold uppercase tracking-[0.22em] text-accent-light">
-            <span className="h-1.5 w-1.5 rounded-full bg-accent-light" />
-            Rede Premium — inscrições abertas
-          </span>
-          <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-white sm:text-5xl lg:text-[64px]">
-            Torne-se um <span className="text-accent-light">Revendedor Premium</span> Roll Door.
-          </h1>
-          <p className="mt-6 max-w-xl text-base leading-relaxed text-white/70 md:text-lg">
-            Venda uma das marcas mais desejadas do mercado de esquadrias. Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu portfólio.
-          </p>
-
-          <ul className="mt-8 grid grid-cols-1 gap-3 sm:grid-cols-2">
-            {[
-              "Marca consolidada no mercado",
-              "Suporte técnico especializado",
-              "Produtos de alto padrão",
-              "Programa exclusivo para parceiros",
-            ].map((b) => (
-              <li key={b} className="flex items-start gap-3 text-sm text-white/85">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <Check className="h-3 w-3 text-white" strokeWidth={3} />
-                </span>
-                {b}
-              </li>
-            ))}
-          </ul>
-
-          <div className="mt-10 flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-            <a
-              href="#formulario"
-              className="group inline-flex items-center gap-3 rounded-full bg-accent px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-white shadow-[0_20px_50px_-15px] shadow-accent/60 transition hover:bg-accent-light"
-            >
-              Quero ser um Revendedor Premium
-              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
-            </a>
-            <div className="text-xs uppercase tracking-widest text-white/50">
-              +700 revendas · Presença nacional
-            </div>
-          </div>
-        </div>
-
-        <div className="relative hidden lg:block">
-          <div className="relative rounded-3xl border border-white/10 bg-white/[0.03] p-2 backdrop-blur-sm">
-            <img src={banner2.url} alt="Projeto Roll Door" className="aspect-[4/5] w-full rounded-2xl object-cover" />
-            <div className="absolute -bottom-6 -left-6 flex items-center gap-3 rounded-2xl border border-white/10 bg-[#0d0d0d]/90 px-5 py-4 backdrop-blur">
-              <div className="flex -space-x-2">
-                {[banner3.url, banner4.url, banner5.url].map((s) => (
-                  <img key={s} src={s} alt="" className="h-9 w-9 rounded-full border-2 border-[#0d0d0d] object-cover" />
-                ))}
-              </div>
-              <div className="text-xs">
-                <div className="font-semibold text-white">+700 revendas</div>
-                <div className="text-white/60">na Rede Roll Door</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Social proof ---------------- */
-function SocialProof() {
-  const row = [...PARTNER_LABELS, ...PARTNER_LABELS];
-  return (
-    <section className="border-y border-white/5 bg-[#0a0a0a] py-16 md:py-24">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.4fr] lg:items-center lg:gap-20">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Prova social</div>
-            <h2 className="mt-4 font-display text-3xl font-semibold leading-tight text-white md:text-4xl">
-              Mais de <span className="text-accent-light">700 revendas</span> fazem parte da rede Roll Door.
-            </h2>
-          </div>
-          <p className="text-white/70">
-            Há quase quatro décadas desenvolvendo soluções para grandes vãos, a Roll Door é referência em portas e janelas de alto padrão em todo o Brasil. Nossa marca já está presente em milhares de projetos residenciais e comerciais, atendendo arquitetos, construtoras e clientes que buscam design, tecnologia e qualidade.
-          </p>
-        </div>
-
-        <div className="relative mt-14 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex w-max animate-[leevi-marquee_45s_linear_infinite] gap-6">
-            {row.map((label, i) => (
-              <div
-                key={i}
-                className="flex h-16 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/[0.03] px-8 text-xs font-semibold uppercase tracking-[0.2em] text-white/60"
-              >
-                {label}
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Why Become ---------------- */
-function WhyBecome() {
-  return (
-    <section id="programa" className="relative py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="max-w-3xl">
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Por que ser um revendedor</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-            Muito mais do que um fornecedor. Um <span className="text-accent-light">parceiro para crescer</span> junto com você.
-          </h2>
-          <p className="mt-6 text-lg text-white/70">
-            Ao fazer parte da Rede Premium Roll Door, sua empresa conta com uma estrutura pensada para impulsionar suas vendas.
-          </p>
-        </div>
-
-        <div className="mt-14 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-          {BENEFITS.map((b, i) => (
-            <div
-              key={b}
-              className="group relative flex flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] p-6 transition hover:border-accent/40 hover:bg-white/[0.04]"
-            >
-              <div className="text-4xl font-semibold text-white/10">{String(i + 1).padStart(2, "0")}</div>
-              <div className="mt-8 flex items-start gap-3">
-                <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent">
-                  <Check className="h-3.5 w-3.5 text-white" strokeWidth={3} />
-                </span>
-                <p className="text-sm font-medium leading-relaxed text-white/90">{b}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <p className="mt-6 text-xs text-white/40">*Disponível conforme critérios do programa.</p>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Differentials ---------------- */
-function Differentials() {
-  return (
-    <section id="diferenciais" className="relative overflow-hidden bg-[#0a0a0a] py-24 md:py-32">
-      <div className="absolute inset-0 opacity-40">
-        <div className="absolute -left-40 top-20 h-96 w-96 rounded-full bg-accent/20 blur-[120px]" />
-        <div className="absolute -right-32 bottom-10 h-80 w-80 rounded-full bg-accent-dark/30 blur-[100px]" />
-      </div>
-      <div className="relative mx-auto max-w-7xl px-5 md:px-8">
-        <div className="flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Diferenciais</div>
-            <h2 className="mt-4 max-w-2xl font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-              Por que o mercado escolhe a <span className="text-accent-light">Roll Door</span>?
-            </h2>
-          </div>
-        </div>
-
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
-          {DIFFERENTIALS.map(({ icon: Icon, title, desc }, i) => (
-            <div
-              key={title}
-              className="group relative overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-white/[0.01] p-8 md:p-10"
-            >
-              <div className="flex items-start justify-between">
-                <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/15 text-accent-light">
-                  <Icon className="h-7 w-7" />
-                </div>
-                <span className="font-display text-6xl font-semibold text-white/5">0{i + 1}</span>
-              </div>
-              <h3 className="mt-8 font-display text-2xl font-semibold text-white md:text-3xl">{title}</h3>
-              <p className="mt-3 text-white/65">{desc}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Portfolio ---------------- */
-function Portfolio() {
-  return (
-    <section id="portfolio" className="py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr] lg:items-end">
-          <div>
-            <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Portfólio</div>
-            <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-              Um portfólio completo para atender <span className="text-accent-light">diferentes projetos</span>.
-            </h2>
-          </div>
-          <p className="text-white/70">
-            Ofereça soluções para residências, condomínios, empreendimentos e projetos de arquitetura de alto padrão.
-          </p>
-        </div>
-
-        <div className="mt-14 grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-5">
-          {PORTFOLIO.map(({ icon: Icon, title }, i) => (
-            <div
-              key={title}
-              className="group relative flex aspect-square flex-col justify-between overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition hover:border-accent/40 hover:bg-accent/5"
-            >
-              <span className="text-xs font-semibold uppercase tracking-widest text-white/40">0{i + 1}</span>
-              <div>
-                <Icon className="h-8 w-8 text-accent-light" />
-                <h3 className="mt-3 font-display text-lg font-semibold leading-tight text-white">{title}</h3>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Gallery ---------------- */
-function Gallery() {
-  const images = [banner2.url, projB.url, projA.url, proj1.url, banner4.url, projC.url, projD.url, projE.url];
-  return (
-    <section className="bg-[#0a0a0a] py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="mx-auto max-w-3xl text-center">
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Galeria</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-            Projetos que <span className="text-accent-light">impressionam</span> seus clientes.
-          </h2>
-        </div>
-
-        <div className="mt-14 grid grid-cols-2 gap-3 md:grid-cols-4 md:gap-4">
-          {images.map((src, i) => (
-            <div
-              key={i}
-              className={`group relative overflow-hidden rounded-2xl bg-white/5 ${i === 0 || i === 5 ? "col-span-2 row-span-2 aspect-square" : "aspect-square"}`}
-            >
-              <img src={src} alt={`Projeto Roll Door ${i + 1}`} className="h-full w-full object-cover transition duration-700 group-hover:scale-105" loading="lazy" />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 transition group-hover:opacity-100" />
-            </div>
-          ))}
-        </div>
-
-        <div className="mx-auto mt-16 max-w-3xl text-center text-lg leading-relaxed text-white/75">
-          <p>
-            Quando o cliente vê um projeto Roll Door, ele entende imediatamente o diferencial.
-          </p>
-          <p className="mt-4 font-display text-2xl text-white">
-            Você vende muito mais do que esquadrias. Você entrega <span className="text-accent-light">sofisticação, tecnologia e valorização</span> do imóvel.
-          </p>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Testimonials ---------------- */
-function Testimonials() {
-  return (
-    <section id="depoimentos" className="py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="max-w-3xl">
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Depoimentos</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-            Quem já é parceiro <span className="text-accent-light">recomenda</span>.
-          </h2>
-        </div>
-
-        <div className="mt-14 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t, i) => (
-            <figure
-              key={i}
-              className="relative flex flex-col justify-between overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-b from-white/[0.05] to-white/[0.01] p-8"
-            >
-              <span className="absolute right-6 top-4 font-display text-8xl leading-none text-accent/30">"</span>
-              <blockquote className="relative text-lg leading-relaxed text-white/90">
-                {t.quote}
-              </blockquote>
-              <figcaption className="mt-8 flex items-center gap-3">
-                <div className="flex h-11 w-11 items-center justify-center rounded-full bg-accent/20 text-accent-light">
-                  <Users className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="text-sm font-semibold text-white">{t.author}</div>
-                  <div className="text-xs text-white/50">{t.role}</div>
-                </div>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- How it works ---------------- */
-function HowItWorks() {
-  return (
-    <section className="relative overflow-hidden bg-[#0a0a0a] py-24 md:py-32">
-      <div className="mx-auto max-w-7xl px-5 md:px-8">
-        <div className="max-w-3xl">
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Como funciona</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.1] text-white md:text-5xl">
-            Faça parte da Rede Premium em <span className="text-accent-light">poucos passos</span>.
-          </h2>
-        </div>
-
-        <div className="mt-16 grid gap-4 lg:grid-cols-4">
-          {STEPS.map((s, i) => (
-            <div key={s.n} className="relative">
-              <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-7">
-                <div className="flex items-center justify-between">
-                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent font-display text-lg font-bold text-white">
-                    {s.n}
-                  </span>
-                  {i < STEPS.length - 1 && (
-                    <ArrowRight className="hidden h-5 w-5 text-white/20 lg:block" />
-                  )}
-                </div>
-                <h3 className="mt-6 font-display text-xl font-semibold leading-snug text-white">{s.title}</h3>
-                <p className="mt-3 text-sm text-white/60">{s.desc}</p>
-              </div>
-              {i < STEPS.length - 1 && (
-                <div className="my-3 flex justify-center lg:hidden">
-                  <ArrowDown className="h-5 w-5 text-white/30" />
-                </div>
-              )}
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ---------------- Final CTA + Form ---------------- */
-function FinalCTA() {
-  return (
-    <section id="formulario" className="relative overflow-hidden py-24 md:py-32">
-      <div className="absolute inset-0 opacity-60">
-        <div className="absolute left-1/2 top-0 h-[500px] w-[900px] -translate-x-1/2 rounded-full bg-accent/20 blur-[160px]" />
-      </div>
-      <div className="relative mx-auto grid max-w-7xl gap-14 px-5 md:px-8 lg:grid-cols-[1fr_1.15fr] lg:gap-20">
-        <div>
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">Vamos conversar</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-[1.05] text-white md:text-5xl lg:text-[52px]">
-            Sua empresa está pronta para vender uma das marcas mais reconhecidas do mercado de <span className="text-accent-light">esquadrias premium</span>?
-          </h2>
-          <p className="mt-6 text-lg leading-relaxed text-white/70">
-            Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem design, engenharia e alto padrão. Preencha o formulário e fale com um especialista.
-          </p>
-
-          <div className="mt-10 grid gap-5">
-            {[
-              { icon: MessageSquare, title: "Análise personalizada", desc: "Avaliamos sua região e perfil comercial." },
-              { icon: Handshake, title: "Condições diferenciadas", desc: "Programa exclusivo para empresas parceiras." },
-              { icon: ShieldCheck, title: "Suporte contínuo", desc: "Atendimento técnico e comercial dedicado." },
-            ].map(({ icon: Icon, title, desc }) => (
-              <div key={title} className="flex items-start gap-4">
-                <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/15 text-accent-light">
-                  <Icon className="h-5 w-5" />
-                </div>
-                <div>
-                  <div className="font-semibold text-white">{title}</div>
-                  <div className="text-sm text-white/60">{desc}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <LeadForm />
-      </div>
-    </section>
-  );
-}
-
-function LeadForm() {
-  const [submitted, setSubmitted] = useState(false);
-
-  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setSubmitted(true);
-  };
-
-  if (submitted) {
-    return (
-      <div className="flex flex-col items-center justify-center rounded-3xl border border-accent/40 bg-gradient-to-br from-accent/10 to-white/[0.02] p-10 text-center">
-        <div className="flex h-16 w-16 items-center justify-center rounded-full bg-accent">
-          <Check className="h-8 w-8 text-white" strokeWidth={3} />
-        </div>
-        <h3 className="mt-6 font-display text-2xl font-semibold text-white">Recebemos seu cadastro!</h3>
-        <p className="mt-3 max-w-md text-white/70">
-          Nossa equipe entrará em contato em breve para apresentar as condições do programa Roll Door Premium.
-        </p>
-      </div>
-    );
-  }
-
-  return (
-    <form
-      onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm md:p-9"
+    <motion.div
+      className={className}
+      variants={fadeUp}
+      initial="hidden"
+      whileInView="show"
+      viewport={{ once: true, margin: "-80px" }}
+      transition={{ delay }}
     >
-      <div className="mb-6">
-        <div className="text-xs font-semibold uppercase tracking-[0.25em] text-accent-light">Formulário</div>
-        <h3 className="mt-2 font-display text-2xl font-semibold text-white">Quero fazer parte da Rede Premium</h3>
-      </div>
-
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
-        <Field label="Nome" name="nome" required />
-        <Field label="Empresa" name="empresa" required />
-        <Field label="CNPJ" name="cnpj" required placeholder="00.000.000/0000-00" />
-        <Field label="WhatsApp" name="whatsapp" required placeholder="(00) 00000-0000" />
-        <Field label="E-mail" name="email" type="email" required />
-        <Field label="Cidade" name="cidade" required />
-        <Field label="Estado" name="estado" required maxLength={2} placeholder="UF" />
-        <SelectField label="Segmento" name="segmento" required options={["Vidraçaria", "Esquadrias", "Serralheria", "Outro"]} />
-        <SelectField
-          label="Faturamento mensal (opcional)"
-          name="faturamento"
-          options={["Até R$ 50 mil", "R$ 50 mil – R$ 150 mil", "R$ 150 mil – R$ 500 mil", "Acima de R$ 500 mil"]}
-        />
-      </div>
-
-      <div className="mt-4">
-        <label className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/70">Mensagem</label>
-        <textarea
-          name="mensagem"
-          rows={4}
-          className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-          placeholder="Conte um pouco sobre sua empresa e sua região de atuação."
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="group mt-7 inline-flex w-full items-center justify-center gap-3 rounded-full bg-accent px-8 py-4 text-sm font-semibold uppercase tracking-[0.15em] text-white shadow-[0_20px_50px_-15px] shadow-accent/60 transition hover:bg-accent-light"
-      >
-        Quero fazer parte da Rede Premium
-        <Send className="h-4 w-4 transition group-hover:translate-x-1" />
-      </button>
-
-      <p className="mt-4 text-center text-xs text-white/40">
-        Ao enviar, você concorda em ser contatado pela equipe Roll Door.
-      </p>
-    </form>
+      {children}
+    </motion.div>
   );
 }
 
-function Field({
-  label,
-  name,
-  type = "text",
-  required,
-  placeholder,
-  maxLength,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  placeholder?: string;
-  maxLength?: number;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/70">
-        {label}
-        {required && <span className="text-accent-light"> *</span>}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        maxLength={maxLength}
-        className="w-full rounded-xl border border-white/10 bg-white/[0.04] px-4 py-3 text-sm text-white placeholder:text-white/30 focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-      />
-    </div>
-  );
-}
+const DEPOIMENTOS = [
+  { src: depoimentoMockup, alt: "Depoimento de Mariana C. no grupo VIP da Leevi" },
+  { src: depoimentoMockup3, alt: "Depoimento de Patrícia S. no grupo VIP da Leevi" },
+];
 
-function SelectField({
-  label,
-  name,
-  required,
-  options,
-}: {
-  label: string;
-  name: string;
-  required?: boolean;
-  options: string[];
-}) {
+function DepoimentoCarousel() {
+  const [index, setIndex] = useState(0);
+  useEffect(() => {
+    const id = setInterval(() => setIndex((i) => (i + 1) % DEPOIMENTOS.length), 3200);
+    return () => clearInterval(id);
+  }, []);
   return (
-    <div>
-      <label htmlFor={name} className="mb-2 block text-xs font-semibold uppercase tracking-wider text-white/70">
-        {label}
-        {required && <span className="text-accent-light"> *</span>}
-      </label>
-      <select
-        id={name}
-        name={name}
-        required={required}
-        defaultValue=""
-        className="w-full appearance-none rounded-xl border border-white/10 bg-white/[0.04] bg-[url('data:image/svg+xml;charset=UTF-8,%3csvg%20xmlns%3d%22http%3a//www.w3.org/2000/svg%22%20viewBox%3d%220%200%2020%2020%22%20fill%3d%22%23ffffff88%22%3e%3cpath%20d%3d%22M5.5%207.5L10%2012l4.5-4.5%22%20stroke%3d%22%23ffffff88%22%20stroke-width%3d%221.5%22%20fill%3d%22none%22/%3e%3c/svg%3e')] bg-[right_0.75rem_center] bg-[length:1.25rem] bg-no-repeat px-4 py-3 pr-10 text-sm text-white focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/30"
-      >
-        <option value="" disabled className="bg-[#0d0d0d]">Selecione</option>
-        {options.map((o) => (
-          <option key={o} value={o} className="bg-[#0d0d0d]">{o}</option>
+    <div className="relative w-full max-w-[460px]" style={{ aspectRatio: "660 / 1080" }}>
+      {DEPOIMENTOS.map((d, i) => (
+        <motion.img
+          key={i}
+          src={d.src}
+          alt={d.alt}
+          className="absolute inset-0 h-full w-full object-contain"
+          style={{
+            filter:
+              "drop-shadow(0 40px 50px rgba(0,0,0,0.28)) drop-shadow(0 18px 22px rgba(0,0,0,0.18))",
+          }}
+          loading="eager"
+          decoding="async"
+          initial={false}
+          animate={{
+            opacity: i === index ? 1 : 0,
+            scale: i === index ? 1 : 0.97,
+          }}
+          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
+        />
+      ))}
+      {/* Pagination dots */}
+      <div className="pointer-events-none absolute -bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        {DEPOIMENTOS.map((_, i) => (
+          <span
+            key={i}
+            className="h-1.5 rounded-full transition-all duration-500"
+            style={{
+              width: i === index ? 24 : 8,
+              background: i === index ? "var(--gold)" : "color-mix(in oklab, var(--gold) 30%, transparent)",
+            }}
+          />
         ))}
-      </select>
+      </div>
     </div>
   );
 }
 
-/* ---------------- FAQ ---------------- */
-function FaqSection() {
-  const [open, setOpen] = useState<number | null>(0);
+function FloatingStepCard({
+  title,
+  desc,
+}: {
+  title: string;
+  desc: string;
+  align?: "left" | "right";
+}) {
   return (
-    <section id="faq" className="bg-[#0a0a0a] py-24 md:py-32">
-      <div className="mx-auto max-w-4xl px-5 md:px-8">
-        <div className="text-center">
-          <div className="text-xs font-semibold uppercase tracking-[0.3em] text-accent-light">FAQ</div>
-          <h2 className="mt-4 font-display text-4xl font-semibold leading-tight text-white md:text-5xl">
-            Perguntas frequentes
-          </h2>
+    <div className="relative rounded-2xl border border-border/60 bg-card p-6 text-left md:p-7">
+      <h4 className="font-display text-xl font-bold tracking-tight text-gold-deep md:text-2xl">
+        {title}
+      </h4>
+      <p className="mt-3 text-lg leading-relaxed text-muted-foreground md:text-xl">{desc}</p>
+    </div>
+  );
+}
+
+function UnderlineWord({
+  children,
+  delay = 0,
+}: {
+  children: React.ReactNode;
+  delay?: number;
+}) {
+  return (
+    <span className="relative inline-block whitespace-nowrap">
+      <span className="relative z-10">{children}</span>
+      <motion.span
+        aria-hidden
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.5 + delay, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full bg-gold md:h-[4px]"
+      />
+    </span>
+  );
+}
+
+// HandPhoneReveal removed — not in use
+
+function Landing() {
+  const { scrollY } = useScroll();
+  const heroPad = useTransform(scrollY, [0, 120], [13, 0]);
+  const heroRadius = useTransform(scrollY, [0, 120], [28, 0]);
+  return (
+    <main className="min-h-screen bg-background text-foreground antialiased">
+      <JoinNotifications />
+      {/* HERO — full width inside gold padded frame that collapses on scroll */}
+      <motion.div className="bg-gold" style={{ padding: heroPad }}>
+        <motion.section
+          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-20"
+          style={{ borderRadius: heroRadius }}
+        >
+          {/* Decorative background effects */}
+          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
+            {/* Soft golden blobs */}
+            <div className="absolute -left-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-gold/25 blur-[120px]" />
+            <div className="absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-gold-soft/30 blur-[140px]" />
+            <div className="absolute bottom-0 left-1/3 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]" />
+            {/* Subtle grid */}
+            <div
+              className="absolute inset-0 opacity-[0.04]"
+              style={{
+                backgroundImage:
+                  "linear-gradient(to right, rgb(56,56,56) 1px, transparent 1px), linear-gradient(to bottom, rgb(56,56,56) 1px, transparent 1px)",
+                backgroundSize: "56px 56px",
+                maskImage:
+                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
+              }}
+            />
+            {/* Vignette to focus the center */}
+            <div
+              className="absolute inset-0"
+              style={{
+                background:
+                  "radial-gradient(ellipse at center, transparent 50%, color-mix(in oklab, var(--secondary) 60%, transparent) 100%)",
+              }}
+            />
+          </div>
+          <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
+            <Reveal>
+              <Logo className="mb-4" priority />
+            </Reveal>
+            <Reveal delay={0.05}>
+              <div className="mb-2" />
+            </Reveal>
+            <Reveal delay={0.15}>
+              <h1
+                className="font-display"
+                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+              >
+                Veja os lançamentos do atacado
+                <br />
+                <span className="text-gold">antes da sua concorrente.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <p className="mt-5 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:mt-7 md:text-[23px]">
+                Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
+                maior giro selecionados pra você lucrar mais — antes de todo mundo.
+              </p>
+            </Reveal>
+            <Reveal delay={0.35} className="w-full max-w-[640px]">
+              <div className="relative mt-10 w-full">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                    boxShadow:
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                  }}
+                >
+                  Quero participar da próxima turma
+                </a>
+                <img
+                  src={badgeVagas}
+                  alt="Vagas limitadas - turma reduzida"
+                  width={400}
+                  height={400}
+                  decoding="async"
+                  fetchPriority="high"
+                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+                loading="lazy" />
+              </div>
+            </Reveal>
+            <Reveal delay={0.45}>
+              <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
+                <Flame className="h-4 w-4 text-destructive" />
+                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
+                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
+                  posições para esta semana.
+                </p>
+              </div>
+            </Reveal>
+          </div>
+        </motion.section>
+      </motion.div>
+
+      {/* MARQUEE */}
+      <div className="overflow-hidden bg-gold py-4">
+        <div
+          className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display"
+          style={{ fontWeight: 500, fontSize: "clamp(15px, 4.5vw, 24px)", lineHeight: "1.3", color: "rgb(255,255,255)", letterSpacing: "-0.01em" }}
+        >
+          {Array.from({ length: 6 }).flatMap((_, i) =>
+            ["Vagas limitadas", "Lives toda semana", "Lançamentos antes de todo mundo", "Grupo VIP Leevi"].map((item, j) => (
+              <span key={`${i}-${j}`} className="inline-flex items-center">
+                <span className="px-8">{item}</span>
+                <span className="opacity-60">•</span>
+              </span>
+            ))
+          )}
+        </div>
+        <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
+      </div>
+
+      {/* AUTORIDADE */}
+      <section className="border-t border-border bg-secondary/70 pt-24 md:pt-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          {/* Centered heading with animated underlines on key words */}
+          <div className="mx-auto max-w-4xl text-center">
+            <Reveal>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                  quem é a Leevi
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Referência em <UnderlineWord delay={0}>calçados</UnderlineWord> e{" "}
+                <UnderlineWord delay={0.18}>acessórios</UnderlineWord> para revenda em todo o{" "}
+                <UnderlineWord delay={0.36}>Brasil</UnderlineWord>.
+              </h2>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[23px]">
+                Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
+              </p>
+            </Reveal>
+          </div>
         </div>
 
-        <div className="mt-14 space-y-3">
-          {FAQ.map((f, i) => {
-            const isOpen = open === i;
-            return (
-              <div
-                key={f.q}
-                className={`overflow-hidden rounded-2xl border transition ${isOpen ? "border-accent/40 bg-white/[0.04]" : "border-white/10 bg-white/[0.02]"}`}
-              >
-                <button
-                  onClick={() => setOpen(isOpen ? null : i)}
-                  className="flex w-full items-center justify-between gap-6 px-6 py-5 text-left"
+        <StatsScrollLock />
+      </section>
+
+      {/* VANTAGENS */}
+      <section className="bg-secondary/70 pt-4 pb-28">
+        <div className="w-full" style={{ padding: "20px" }}>
+          <div
+            className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
+            style={{ background: "oklch(0.22 0 0)" }}
+          >
+            {/* decorative bg details */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px]"
+              style={{
+                background:
+                  "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
+              }}
+            />
+            {/* diagonal hairlines */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.08]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
+                maskImage:
+                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
+                WebkitMaskImage:
+                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
+              }}
+            />
+            {/* gold accent line sweep */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, color-mix(in oklab, var(--gold) 90%, transparent) 0 1px, transparent 1px 90px)",
+                maskImage:
+                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
+                WebkitMaskImage:
+                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
+              }}
+            />
+            {/* SVG noise grain */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18] mix-blend-overlay"
+              style={{
+                backgroundImage:
+                  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
+                backgroundSize: "220px 220px",
+              }}
+            />
+            {/* long thin gold stroke top-right */}
+            <svg
+              aria-hidden
+              className="pointer-events-none absolute right-0 top-0 h-full w-[55%] opacity-[0.22]"
+              viewBox="0 0 600 400"
+              fill="none"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M -20 380 Q 200 280 380 200 T 620 -20"
+                stroke="var(--gold)"
+                strokeWidth="1"
+                fill="none"
+              />
+              <path
+                d="M -20 420 Q 240 320 420 240 T 660 20"
+                stroke="var(--gold)"
+                strokeWidth="0.6"
+                fill="none"
+              />
+            </svg>
+            <div className="relative z-10">
+            {/* Header row */}
+            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+              <div className="max-w-2xl">
+                <Reveal>
+                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
+                      <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
+                    </span>
+                    <span className="font-display text-sm font-medium tracking-wide text-white/90">
+                      vantagens exclusivas
+                    </span>
+                  </div>
+                  <h2
+                    className="text-white"
+                    style={{
+                      fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
+                      fontWeight: 600,
+                      fontSize: "clamp(28px, 7vw, 44px)",
+                      lineHeight: "1.05",
+                    }}
+                  >
+                    O que você ganha por estar{" "}
+                    <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
+                  </h2>
+                </Reveal>
+              </div>
+              <Reveal delay={0.1}>
+                <a
+                  href="#cta"
+                  className="group relative inline-flex items-center gap-3 rounded-2xl px-8 py-4 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                    boxShadow:
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow)",
+                  }}
                 >
-                  <span className="font-display text-lg font-semibold text-white md:text-xl">{f.q}</span>
-                  <ChevronDown className={`h-5 w-5 shrink-0 text-accent-light transition ${isOpen ? "rotate-180" : ""}`} />
-                </button>
-                {isOpen && (
-                  <div className="px-6 pb-6 text-white/70">{f.a}</div>
-                )}
+                  Quero entrar
+                  <ArrowRight className="h-5 w-5" />
+                </a>
+              </Reveal>
+            </div>
+
+            {/* Cards grid */}
+            <div className="mt-10 grid gap-[13px] md:mt-14 md:grid-cols-4">
+              {[
+                {
+                  icon: Zap,
+                  title: "Lançamentos antes de todo mundo",
+                  bullets: [
+                    "Novidades 24h antes do público",
+                    "Avisos exclusivos no grupo",
+                    "Acesso prioritário às coleções",
+                  ],
+                },
+                {
+                  icon: Tag,
+                  title: "Preços que só existem no grupo",
+                  bullets: [
+                    "Descontos reservados",
+                    "Cupons relâmpago",
+                    "Condições especiais de revenda",
+                  ],
+                },
+                {
+                  icon: Gift,
+                  title: "Sorteios e bônus toda semana",
+                  bullets: [
+                    "Brindes para participantes",
+                    "Kits exclusivos das lives",
+                    "Ações relâmpago ao vivo",
+                  ],
+                  highlight: true,
+                },
+                {
+                  icon: TrendingUp,
+                  title: "Curadoria de alto giro",
+                  bullets: [
+                    "Produtos validados na loja",
+                    "Foco em alto giro",
+                    "Sem apostar no escuro",
+                  ],
+                },
+              ].map(({ icon: Icon, title, bullets, highlight }, i) => (
+                <Reveal key={i} delay={i * 0.05} className="h-full">
+                  <article
+                    className="group relative flex h-full flex-col gap-2 rounded-[24px] p-2 backdrop-blur-xl transition-colors"
+                    style={
+                      highlight
+                        ? {
+                            background:
+                              "linear-gradient(180deg, color-mix(in oklab, var(--gold) 22%, transparent) 0%, color-mix(in oklab, var(--gold) 10%, transparent) 100%)",
+                            border:
+                              "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
+                          }
+                        : {
+                            background: "rgba(255,255,255,0.04)",
+                            border: "1px solid rgba(255,255,255,0.08)",
+                          }
+                    }
+                  >
+                    {/* TOP — icon + title */}
+                    <div
+                      className="flex flex-1 flex-col rounded-[18px] p-6"
+                      style={{
+                        background: highlight
+                          ? "color-mix(in oklab, var(--gold) 14%, rgba(255,255,255,0.04))"
+                          : "rgba(255,255,255,0.05)",
+                        border: "1px solid rgba(255,255,255,0.06)",
+                      }}
+                    >
+                      <Icon
+                        className="h-9 w-9"
+                        style={{ color: "var(--gold)" }}
+                        strokeWidth={1.3}
+                      />
+
+                      <h3 className="mt-10 font-display text-[22px] font-medium leading-[1.1] tracking-tight text-white md:mt-14 md:text-[26px]">
+                        {title}
+                      </h3>
+                    </div>
+
+                    {/* BOTTOM — bullets + CTA pill */}
+                    <div
+                      className="flex flex-col gap-5 rounded-[18px] p-6"
+                      style={{
+                        background: highlight
+                          ? "color-mix(in oklab, var(--gold) 8%, rgba(0,0,0,0.25))"
+                          : "rgba(255,255,255,0.025)",
+                        border: "1px solid rgba(255,255,255,0.05)",
+                      }}
+                    >
+                      <ul className="space-y-2">
+                        {bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex items-start gap-2.5 text-[16px] leading-relaxed text-white/75 md:text-[21px]"
+                          >
+                            <Check
+                              className="mt-0.5 h-4 w-4 shrink-0"
+                              style={{ color: "var(--gold)" }}
+                              strokeWidth={2.5}
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href="#cta"
+                        className="group/btn flex w-full items-center justify-between gap-3 rounded-md px-4 py-3.5 font-display text-base font-medium transition-colors"
+                        style={
+                          highlight
+                            ? {
+                                background: "oklch(0.16 0 0)",
+                                color: "#ffffff",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                              }
+                            : {
+                                background: "rgba(255,255,255,0.04)",
+                                color: "rgba(255,255,255,0.95)",
+                                border: "1px solid rgba(255,255,255,0.08)",
+                              }
+                        }
+                      >
+                        Saiba mais
+                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                      </a>
+                    </div>
+                  </article>
+                </Reveal>
+              ))}
+            </div>
+
+            </div>
+            {/* tail — polygon pointer */}
+            <svg
+              aria-hidden
+              className="absolute left-16 z-0 h-[70px] w-[110px] bottom-[calc(-2.5rem+13px)] md:left-40 md:bottom-[calc(-5rem+13px)] md:h-[149px] md:w-[190px]"
+              viewBox="0 0 2137 1681"
+              fill="none"
+              preserveAspectRatio="xMidYMid meet"
+            >
+              <path
+                d="M2006.04 652.34C2180.53 716.618 2180.53 963.406 2006.04 1027.68L269.133 1667.52C138.564 1715.62 7.69499e-05 1618.99 7.69499e-05 1479.85L7.69499e-05 200.178C7.69499e-05 61.0311 138.564 -35.592 269.134 12.5066L2006.04 652.34Z"
+                fill="oklch(0.22 0 0)"
+              />
+            </svg>
+          </div>
+        </div>
+      </section>
+
+      {/* COMO FUNCIONA */}
+      <section className="relative bg-secondary/70 py-24 md:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="text-center">
+            <Reveal>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                  como funciona
+                </span>
+              </div>
+              <h2 className="mx-auto max-w-2xl font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Em 4 passos <br className="hidden md:block" />
+                você já está <span className="text-gold">dentro</span>.
+              </h2>
+            </Reveal>
+          </div>
+
+          {(() => {
+            const steps = [
+              {
+                key: "tl",
+                title: "Clique no botão",
+                desc: "Entra direto pelo WhatsApp, sem cadastro nem espera.",
+                center: "Clique no botão",
+              },
+              {
+                key: "tr",
+                title: "Receba os avisos",
+                desc: "Avisamos toda live com antecedência pra você não perder.",
+                center: "Receba os avisos",
+              },
+              {
+                key: "bl",
+                title: "Participe ao vivo",
+                desc: "Vê os lançamentos e tira dúvidas em tempo real com a curadoria.",
+                center: "Participe ao vivo",
+              },
+              {
+                key: "br",
+                title: "Aproveite as ofertas",
+                desc: "Condições exclusivas do grupo pra você lucrar mais em cada peça.",
+                center: "Aproveite as ofertas",
+              },
+            ];
+
+            return (
+              <div className="relative mx-auto mt-20 max-w-[1400px]">
+                {/* Desktop: radar centered with cards overlapping on top */}
+                <div className="relative hidden md:block">
+                  <Reveal>
+                    <div className="relative mx-auto flex justify-center">
+                      <img
+                        src={comoFuncionaRadar}
+                        alt="4 passos para entrar no grupo VIP"
+                        className="h-auto w-[620px] lg:w-[760px]"
+                      loading="lazy" decoding="async" />
+                    </div>
+                  </Reveal>
+
+                  {/* Top-left */}
+                  <div className="absolute left-0 top-4 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[0].title} desc={steps[0].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Top-right */}
+                  <div className="absolute right-0 top-4 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[1].title} desc={steps[1].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Bottom-left */}
+                  <div className="absolute bottom-4 left-0 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[2].title} desc={steps[2].desc} />
+                    </Reveal>
+                  </div>
+                  {/* Bottom-right */}
+                  <div className="absolute bottom-4 right-0 z-10 w-[340px] lg:w-[380px]">
+                    <Reveal>
+                      <FloatingStepCard title={steps[3].title} desc={steps[3].desc} />
+                    </Reveal>
+                  </div>
+                </div>
+
+                {/* Mobile floating cards (stacked) */}
+                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:hidden">
+                  {steps.map((s) => (
+                    <Reveal key={s.key}>
+                      <FloatingStepCard title={s.title} desc={s.desc} align="left" />
+                    </Reveal>
+                  ))}
+                </div>
               </div>
             );
-          })}
+          })()}
+
+          <Reveal>
+            <p className="mx-auto mt-16 max-w-3xl text-center text-base text-muted-foreground md:text-xl">
+              Quando esses <strong className="font-semibold text-foreground">4 passos</strong>{" "}
+              acontecem juntos, entrar no grupo deixa de ser curiosidade e passa a ser{" "}
+              <strong className="font-semibold text-foreground">decisão de venda</strong>.
+            </p>
+          </Reveal>
+
+          <div className="mt-10 flex justify-center">
+            <Reveal className="w-full max-w-[640px]">
+              <div className="relative w-full">
+                <a
+                  href={WHATSAPP}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
+                  style={{
+                    background:
+                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                    boxShadow:
+                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                  }}
+                >
+                  Quero participar da próxima turma
+                </a>
+                <img
+                  src={badgeVagas}
+                  alt="Vagas limitadas - turma reduzida"
+                  width={400}
+                  height={400}
+                  decoding="async"
+                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+                loading="lazy" />
+              </div>
+            </Reveal>
+          </div>
         </div>
+      </section>
+
+      {/* VITRINE — Orbit */}
+      <div className="bg-secondary/70 p-[25px]">
+        <VitrineOrbit />
       </div>
-    </section>
+
+      {/* PROVA SOCIAL */}
+      <section className="bg-secondary/70 pt-24 md:pt-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-12 md:grid-cols-2 md:items-stretch md:gap-16">
+            {/* LEFT — pill, headline, CTA */}
+            <div className="flex flex-col justify-between gap-12 md:py-4">
+              <Reveal>
+                <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
+                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
+                  </span>
+                  <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
+                    depoimentos
+                  </span>
+                </div>
+                <h2 className="mt-7 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                  O que <UnderlineWord delay={0}>dizem</UnderlineWord>{" "}
+                  <UnderlineWord delay={0.18}>nossas</UnderlineWord> revendedoras no grupo.
+                </h2>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <div className="flex flex-wrap items-center gap-5">
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-base font-bold tracking-tight text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                      boxShadow:
+                        "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                    }}
+                  >
+                    Entrar no Grupo VIP
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </a>
+
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background ring-1 ring-border">
+                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" loading="lazy" decoding="async" />
+                    </div>
+                    <div className="leading-tight">
+                      <div className="font-display text-2xl font-black text-foreground">5.0</div>
+                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
+                        Depoimentos<br />no grupo
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* RIGHT — WhatsApp mockup */}
+            <Reveal delay={0.1}>
+              <div className="flex justify-center md:justify-end">
+                <DepoimentoCarousel />
+              </div>
+            </Reveal>
+          </div>
+        </div>
+
+        {/* Full-width gold ticker */}
+        <Reveal delay={0.2}>
+          <div className="relative mt-16 flex w-full items-stretch overflow-hidden bg-gold py-4 font-display">
+            {/* EM LIVE badge */}
+            <div className="z-10 -my-4 flex shrink-0 items-center gap-3 self-stretch rounded-r-3xl bg-gold-deep px-7 text-base font-black uppercase tracking-[0.25em] text-white">
+              <span className="relative flex h-2.5 w-2.5">
+                <span
+                  className="absolute inset-0 rounded-full bg-white"
+                  style={{ animation: "leevi-pulse-ring 1.4s ease-out infinite" }}
+                />
+                <span
+                  className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"
+                  style={{ animation: "leevi-pulse-dot 1.4s ease-in-out infinite" }}
+                />
+              </span>
+              em live
+            </div>
+
+            {/* Marquee track */}
+            <div className="flex flex-1 overflow-hidden">
+              <div
+                className="flex shrink-0 items-center whitespace-nowrap text-white"
+                style={{
+                  animation: "leevi-marquee 38s linear infinite",
+                  fontWeight: 600,
+                  fontSize: "18px",
+                  letterSpacing: "-0.01em",
+                }}
+              >
+                {Array.from({ length: 6 }).flatMap((_, group) =>
+                  [
+                    "Algumas peças esgotam ainda durante a live",
+                    "Estoque limitado",
+                    "Quem chega primeiro leva",
+                    "Curadoria semanal",
+                    "Compre antes do site",
+                    "Lançamentos antes de todo mundo",
+                  ].map((t, i) => (
+                    <span key={`${group}-${i}`} className="inline-flex items-center">
+                      <span className="px-8">{t}</span>
+                      <span className="opacity-60">•</span>
+                    </span>
+                  )),
+                )}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* LOSS AVERSION */}
+      <section
+        className="relative overflow-hidden py-24 md:py-32"
+        style={{ background: "oklch(0.18 0.005 80)" }}
+      >
+        {/* Diagonal line pattern */}
+        <div
+          aria-hidden
+          className="pointer-events-none absolute inset-0"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, oklch(0.95 0.02 85 / 0.06) 0px, oklch(0.95 0.02 85 / 0.06) 1px, transparent 1px, transparent 22px)",
+          }}
+        />
+        {/* soft gold halos */}
+        <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold/10 blur-[160px]" />
+        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-soft/10 blur-[140px]" />
+
+        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
+          {/* Centered header */}
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
+                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
+                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
+                </span>
+                <span className="font-display text-sm font-medium tracking-wide text-white/90">
+                  por que entrar agora
+                </span>
+              </div>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h2
+                className="font-display text-white"
+                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", letterSpacing: "-0.03em" }}
+              >
+                O que você perde<br />
+                ficando <span className="text-gold">de fora.</span>
+              </h2>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 md:text-[21px]">
+                Cada semana fora do grupo é uma semana comprando depois da concorrência.
+              </p>
+            </Reveal>
+          </div>
+
+          {/* Top benefit cards — gold gradient with check badges */}
+          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
+            {[
+              { kicker: "Acesso semanal", title: "Lançamentos antes do site", img: cardShape1 },
+              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", img: cardShape3 },
+              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", img: cardShape2 },
+            ].map((c, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="relative h-full">
+                  {/* Check badge */}
+                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card ring-1 ring-white/10">
+                    <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
+                  </div>
+                  <div className="relative flex h-[210px] flex-col items-center justify-center px-10 text-center">
+                    <img
+                      src={c.img}
+                      alt=""
+                      aria-hidden
+                      className="pointer-events-none absolute inset-0 h-full w-full object-fill"
+                    loading="lazy" decoding="async" />
+                    <div className="relative font-display text-[17px] font-semibold tracking-normal text-foreground/70">
+                      {c.kicker}
+                    </div>
+                    <div className="relative mt-2 font-display text-[28px] font-bold leading-tight text-foreground md:text-[30px]">
+                      {c.title}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+
+          {/* CTA + Vagas limitadas stamp */}
+          <Reveal delay={0.2}>
+            <div className="relative mx-auto mt-14 w-full max-w-[640px]">
+              <a
+                href={WHATSAPP}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
+                style={{
+                  background:
+                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                  boxShadow:
+                    "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                }}
+              >
+                Quero participar da próxima turma
+              </a>
+              <img
+                src={badgeVagas}
+                alt="Vagas limitadas - turma reduzida"
+                width={400}
+                height={400}
+                decoding="async"
+                loading="lazy"
+                className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
+              />
+            </div>
+          </Reveal>
+
+        </div>
+
+        {/* FAQ (continues in same section to avoid background seam) */}
+        <div className="relative mx-auto mt-24 max-w-[1400px] px-5 md:mt-32 md:px-10">
+          <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
+            {/* LEFT — Title + contact cards */}
+            <div>
+              <Reveal>
+                <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
+                  Ficou com<br />dúvidas?
+                </h2>
+                <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60 md:text-base">
+                  Aqui colocamos as perguntas mais comuns e você também pode falar com o nosso time pelos canais abaixo.
+                </p>
+
+                <div className="mt-8 space-y-3">
+                  <a
+                    href="mailto:contato@leevi.com.br"
+                    className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
+                  >
+                    <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
+                      E-mail
+                    </div>
+                    <div className="mt-1 text-sm text-white/80">
+                      contato@leevi.com.br
+                    </div>
+                  </a>
+                  <a
+                    href={WHATSAPP}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
+                  >
+                    <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
+                      WhatsApp
+                    </div>
+                    <div className="mt-1 text-sm text-white/80">
+                      Conversar agora
+                    </div>
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* RIGHT — FAQ items */}
+            <div className="space-y-3">
+              {[
+                {
+                  q: "Preciso pagar para entrar?",
+                  a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar.",
+                },
+                {
+                  q: "Vão me mandar muita mensagem?",
+                  a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado.",
+                },
+                {
+                  q: "Preciso ter CNPJ?",
+                  a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ.",
+                },
+                {
+                  q: "Como funcionam as lives?",
+                  a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo.",
+                },
+                {
+                  q: "Posso sair quando quiser?",
+                  a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro.",
+                },
+              ].map((item, i) => (
+                <FaqItem key={i} q={item.q} a={item.a} />
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+
+      {/* STICKY MOBILE CTA */}
+      <a
+        href={WHATSAPP}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#16a34a] px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(22,163,74,0.6)] transition-colors hover:bg-[#15803d] md:hidden"
+      >
+        Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
+      </a>
+    </main>
   );
 }
 
-/* ---------------- Footer ---------------- */
-function Footer() {
+function FaqItem({ q, a }: { q: string; a: string }) {
+  const [open, setOpen] = useState(false);
   return (
-    <footer className="border-t border-white/10 bg-[#0a0a0a] py-14">
-      <div className="mx-auto flex max-w-7xl flex-col items-center gap-8 px-5 text-center md:flex-row md:justify-between md:text-left">
-        <div className="flex items-center gap-4">
-          <img src={logoAsset.url} alt="Roll Door Company" className="h-8 w-auto" />
-        </div>
-        <p className="max-w-md text-sm text-white/50">
-          Roll Door Company — soluções em movimento para projetos com bom gosto. Programa Rede Premium para revendedores.
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-gold/30">
+      <button
+        onClick={() => setOpen(!open)}
+        className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
+      >
+        <span className="font-display text-base font-semibold tracking-tight text-white md:text-lg">
+          {q}
+        </span>
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center text-gold">
+          {open ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
+        </span>
+      </button>
+      <motion.div
+        initial={false}
+        animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
+      >
+        <p className="px-6 pb-5 text-sm leading-relaxed text-white/70 md:px-7 md:pb-6 md:text-base">
+          {a}
         </p>
-        <div className="text-xs uppercase tracking-widest text-white/40">
-          © {new Date().getFullYear()} Roll Door
-        </div>
-      </div>
-    </footer>
+      </motion.div>
+    </div>
   );
 }
