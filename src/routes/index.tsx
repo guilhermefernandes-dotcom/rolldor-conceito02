@@ -234,13 +234,13 @@ function Landing() {
             </Reveal>
             <Reveal delay={0.15}>
               <h1
-                className="font-display text-white"
+                className="font-display mx-auto text-white"
                 style={{
                   fontWeight: 600,
-                  fontSize: "clamp(26px, 6.5vw, 60px)",
+                  fontSize: "clamp(24px, 5.2vw, 56px)",
                   lineHeight: "1.05",
                   letterSpacing: "-0.03em",
-                  maxWidth: "20ch",
+                  maxWidth: "26ch",
                 }}
               >
                 Torne-se um Revendedor Premium{" "}
