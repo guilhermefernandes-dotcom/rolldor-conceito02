@@ -595,70 +595,99 @@ function Landing() {
           </div>
 
           {(() => {
-            const left = [
+            const cards = [
               {
                 title: "Engenharia para grandes vãos",
                 desc: "Projetos desenvolvidos para entregar elegância, desempenho e segurança.",
+                pos: "top-0 left-0 lg:-translate-x-4",
+                align: "text-left",
+              },
+              {
+                title: "Design que agrega valor",
+                desc: "Produtos que valorizam qualquer projeto arquitetônico.",
+                pos: "top-0 right-0 lg:translate-x-4",
+                align: "text-left",
               },
               {
                 title: "Qualidade reconhecida",
                 desc: "Décadas de experiência desenvolvendo soluções premium para o mercado brasileiro.",
-              },
-            ];
-            const right = [
-              {
-                title: "Design que agrega valor",
-                desc: "Produtos que valorizam qualquer projeto arquitetônico.",
+                pos: "bottom-0 left-0 lg:-translate-x-4",
+                align: "text-left",
               },
               {
                 title: "Marca que gera confiança",
                 desc: "Seu cliente já reconhece a qualidade da Roll Door antes mesmo da primeira visita.",
+                pos: "bottom-0 right-0 lg:translate-x-4",
+                align: "text-left",
               },
             ];
 
-            const Card = ({ title, desc, delay }: { title: string; desc: string; delay: number }) => (
-              <Reveal delay={delay}>
-                <div className="rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)] md:p-7">
-                  <h3 className="font-display text-lg font-bold md:text-xl" style={{ color: "var(--gold)" }}>
-                    {title}
-                  </h3>
-                  <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">{desc}</p>
-                </div>
-              </Reveal>
-            );
-
             return (
-              <div className="mt-14 grid items-center gap-8 lg:grid-cols-[1fr_auto_1fr] lg:gap-6">
-                {/* coluna esquerda */}
-                <div className="flex flex-col gap-5 lg:items-end lg:text-right">
-                  {left.map((c, i) => (
-                    <div key={c.title} className="w-full max-w-sm">
-                      <Card {...c} delay={i * 0.08} />
-                    </div>
-                  ))}
-                </div>
-
-                {/* imagem central */}
-                <Reveal delay={0.1}>
+              <>
+                {/* MOBILE / TABLET: empilhado */}
+                <div className="mt-14 flex flex-col items-center gap-8 lg:hidden">
                   <img
                     src={diferenciaisImg.url}
                     alt="Diferenciais Roll Door"
-                    className="mx-auto w-full max-w-[520px] lg:max-w-[560px]"
+                    className="w-full max-w-[520px]"
                     draggable={false}
                     loading="lazy"
                     decoding="async"
                   />
-                </Reveal>
+                  <div className="grid w-full max-w-xl gap-4 sm:grid-cols-2">
+                    {cards.map((c, i) => (
+                      <Reveal key={c.title} delay={i * 0.06}>
+                        <div className="h-full rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)]">
+                          <h3 className="font-display text-lg font-bold" style={{ color: "var(--gold)" }}>
+                            {c.title}
+                          </h3>
+                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                            {c.desc}
+                          </p>
+                        </div>
+                      </Reveal>
+                    ))}
+                  </div>
+                </div>
 
-                {/* coluna direita */}
-                <div className="flex flex-col gap-5 lg:items-start lg:text-left">
-                  {right.map((c, i) => (
-                    <div key={c.title} className="w-full max-w-sm">
-                      <Card {...c} delay={i * 0.08} />
+                {/* DESKTOP: imagem grande com cards sobrepostos nos cantos */}
+                <div className="relative mx-auto mt-16 hidden lg:block" style={{ maxWidth: 1200 }}>
+                  <Reveal delay={0.1}>
+                    <img
+                      src={diferenciaisImg.url}
+                      alt="Diferenciais Roll Door"
+                      className="mx-auto block w-full"
+                      style={{ maxWidth: 820 }}
+                      draggable={false}
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </Reveal>
+
+                  {cards.map((c, i) => (
+                    <div
+                      key={c.title}
+                      className={`absolute ${c.pos} z-10 w-[300px] xl:w-[340px]`}
+                    >
+                      <Reveal delay={0.15 + i * 0.08}>
+                        <div
+                          className={`rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.3)] ${c.align}`}
+                        >
+                          <h3
+                            className="font-display text-lg font-bold xl:text-xl"
+                            style={{ color: "var(--gold)" }}
+                          >
+                            {c.title}
+                          </h3>
+                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                            {c.desc}
+                          </p>
+                        </div>
+                      </Reveal>
                     </div>
                   ))}
                 </div>
-              </div>
+              </>
             );
           })()}
         </div>
