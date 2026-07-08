@@ -1,10 +1,10 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { Users, Building2, Sparkles, Truck, ArrowLeft, ArrowRight } from "lucide-react";
-import leeviStore from "@/assets/leevi-store.webp";
-import curadoria from "@/assets/curadoria.webp";
-import logistica from "@/assets/logistica.webp";
-import community from "@/assets/community.webp";
+import { Building2, Layers, Award, MapPin } from "lucide-react";
+import galeria1 from "@/assets/rd-galeria-1.jpg";
+import galeria2 from "@/assets/rd-galeria-2.jpg";
+import galeria3 from "@/assets/rd-galeria-3.jpg";
+import heroImg from "@/assets/rd-hero.jpg";
 
 type Step = {
   n: string;
@@ -19,46 +19,42 @@ type Step = {
 const STEPS: Step[] = [
   {
     n: "01",
-    label: "Comunidade",
-    big: "+50 mil",
-    desc: "revendedoras acompanham a Leevi todos os dias, criando uma das maiores redes de moda feminina do país, com engajamento real, conversas vivas e oportunidade de venda diária.",
-    Icon: Users,
-    image: community,
+    label: "Rede",
+    big: "+700 revendas",
+    desc: "Uma das maiores redes de esquadrias premium do Brasil, com parceiros ativos em todas as regiões e projetos entregues em milhares de empreendimentos residenciais e comerciais.",
+    Icon: Building2,
+    image: heroImg,
   },
   {
     n: "02",
-    label: "Origem",
-    big: "Atacado & Varejo",
-    desc: "com sede própria em São Luís, MA, mais de uma década de mercado e estrutura completa de showroom, estoque e logística para abastecer revendedoras em todo o Brasil.",
-    Icon: Building2,
-    image: leeviStore,
+    label: "Experiência",
+    big: "Quase 4 décadas",
+    desc: "Desenvolvendo soluções em portas, janelas e sistemas de alumínio para grandes vãos, com engenharia própria e produtos de alto padrão reconhecidos por arquitetos e construtoras.",
+    Icon: Award,
+    image: galeria1,
   },
   {
     n: "03",
-    label: "Curadoria",
-    big: "+300 por mês",
-    desc: "calçados e acessórios selecionados a dedo, com lançamentos constantes que antecipam tendências e garantem novidade pra você oferecer toda semana.",
-    Icon: Sparkles,
-    image: curadoria,
-    imagePosition: "30% center",
+    label: "Portfólio",
+    big: "Portas & Janelas",
+    desc: "Portas deslizantes, sistemas folding, pivotantes, janelas premium e soluções sob medida — tudo pensado para atender projetos residenciais, comerciais e arquitetura de alto padrão.",
+    Icon: Layers,
+    image: galeria2,
+    imagePosition: "50% center",
   },
   {
     n: "04",
-    label: "Logística",
+    label: "Alcance",
     big: "Brasil todo",
-    desc: "envios diários para todos os estados com agilidade, embalagem caprichada e códigos de rastreio — sua revenda gira rápido, sem dor de cabeça.",
-    Icon: Truck,
-    image: logistica,
-    imagePosition: "35% center",
+    desc: "Presença nacional com atendimento e suporte comercial dedicado, indicando oportunidades de negócio para revendedores em regiões estratégicas de todo o país.",
+    Icon: MapPin,
+    image: galeria3,
+    imagePosition: "50% center",
   },
 ];
 
 const INTERVAL_MS = 4000;
 
-/**
- * Auto-cycling card progression. Every 4s the active card advances; after the
- * last card it loops back to the first.
- */
 export function StatsScrollLock() {
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
@@ -71,25 +67,12 @@ export function StatsScrollLock() {
     return () => window.clearInterval(id);
   }, []);
 
-  const goPrev = () => {
-    stoppedRef.current = true;
-    setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
-  };
-  const goNext = () => {
-    stoppedRef.current = true;
-    setActive((prev) => (prev + 1) % STEPS.length);
-  };
-
-
-
-
-  // Curve geometry — list lives inside a 60x440 SVG, dots evenly spaced.
   const RAIL_W = 60;
   const RAIL_H = 440;
-  const STEP_GAP = RAIL_H / STEPS.length; // 110
+  const STEP_GAP = RAIL_H / STEPS.length;
   const dotY = (i: number) => STEP_GAP / 2 + i * STEP_GAP;
-  const baseX = 6; // resting line x (kept on the left)
-  const apexX = 48; // bulge x (rightward) at active dot
+  const baseX = 6;
+  const apexX = 48;
 
   const buildPath = (activeIdx: number) => {
     const y = dotY(activeIdx);
@@ -102,20 +85,16 @@ export function StatsScrollLock() {
             L ${baseX} ${RAIL_H}`;
   };
 
-
-
-
   return (
-    <section
-      className="relative"
-      style={{ backgroundColor: "transparent" }}
-    >
+    <section className="relative" style={{ backgroundColor: "transparent" }}>
       <div className="flex items-center py-12 md:py-16">
-        <div className="mx-auto grid w-full grid-cols-12 gap-8 pl-5 pr-5 md:pl-32 md:pr-10" style={{ maxWidth: "1300px" }}>
-          {/* MOBILE — horizontal stepper above cards */}
+        <div
+          className="mx-auto grid w-full grid-cols-12 gap-8 pl-5 pr-5 md:pl-32 md:pr-10"
+          style={{ maxWidth: "1300px" }}
+        >
+          {/* MOBILE — horizontal stepper */}
           <div className="col-span-12 md:hidden">
             <div className="relative w-full" style={{ height: 70 }}>
-              {/* Horizontal curved rail */}
               <svg
                 width="100%"
                 height={70}
@@ -167,15 +146,21 @@ export function StatsScrollLock() {
                         strokeWidth={1.2}
                         strokeDasharray="2 4"
                         opacity={0.85}
-                        style={{ transformBox: "fill-box", transformOrigin: "center", animation: "spin-ring 8s linear infinite" }}
+                        style={{
+                          transformBox: "fill-box",
+                          transformOrigin: "center",
+                          animation: "spin-ring 8s linear infinite",
+                        }}
                       />
                     </>
                   );
                 })()}
               </svg>
 
-              {/* Labels distributed horizontally */}
-              <div className="absolute inset-x-0 bottom-0 grid" style={{ gridTemplateColumns: `repeat(${STEPS.length}, 1fr)` }}>
+              <div
+                className="absolute inset-x-0 bottom-0 grid"
+                style={{ gridTemplateColumns: `repeat(${STEPS.length}, 1fr)` }}
+              >
                 {STEPS.map((s, i) => {
                   const isActive = i === active;
                   return (
@@ -203,8 +188,8 @@ export function StatsScrollLock() {
                         initial={false}
                         animate={{
                           color: isActive
-                            ? "rgb(56,56,56)"
-                            : "color-mix(in oklab, rgb(56,56,56) 25%, transparent)",
+                            ? "oklch(0.18 0.005 250)"
+                            : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
                         }}
                         transition={{ duration: 0.6 }}
                         className="mt-0.5 font-display text-xs font-bold leading-none"
@@ -219,13 +204,9 @@ export function StatsScrollLock() {
             </div>
           </div>
 
-          {/* DESKTOP — vertical step rail with curving line */}
+          {/* DESKTOP rail */}
           <div className="hidden md:col-span-3 md:block">
-            <div
-              className="relative"
-              style={{ height: RAIL_H, paddingLeft: RAIL_W + 4 }}
-            >
-              {/* Curved rail SVG */}
+            <div className="relative" style={{ height: RAIL_H, paddingLeft: RAIL_W + 4 }}>
               <svg
                 width={RAIL_W}
                 height={RAIL_H}
@@ -262,7 +243,11 @@ export function StatsScrollLock() {
                   strokeWidth={1.2}
                   strokeDasharray="2 4"
                   opacity={0.85}
-                  style={{ transformBox: "fill-box", transformOrigin: "center", animation: "spin-ring 8s linear infinite" }}
+                  style={{
+                    transformBox: "fill-box",
+                    transformOrigin: "center",
+                    animation: "spin-ring 8s linear infinite",
+                  }}
                 />
                 <style>{`@keyframes spin-ring { to { transform: rotate(360deg); } }`}</style>
               </svg>
@@ -303,8 +288,8 @@ export function StatsScrollLock() {
                         initial={false}
                         animate={{
                           color: isActive
-                            ? "rgb(56,56,56)"
-                            : "color-mix(in oklab, rgb(56,56,56) 25%, transparent)",
+                            ? "oklch(0.18 0.005 250)"
+                            : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="font-display text-lg font-bold leading-none md:text-xl"
@@ -318,7 +303,7 @@ export function StatsScrollLock() {
             </div>
           </div>
 
-          {/* RIGHT — active card + dramatic 3D peek */}
+          {/* Active card */}
           <div className="col-span-12 md:col-span-9">
             <div
               className="relative mx-auto min-h-[520px] w-full max-w-xl md:h-[460px] md:min-h-0"
@@ -399,7 +384,6 @@ export function StatsScrollLock() {
                       {s.n}
                     </div>
 
-                    {/* Desktop image — absolute right side */}
                     {s.image && (
                       <div
                         aria-hidden
@@ -418,7 +402,6 @@ export function StatsScrollLock() {
                       </div>
                     )}
 
-                    {/* Text block */}
                     <motion.div
                       animate={{
                         opacity: isActive ? 1 : 0.4,
@@ -429,11 +412,17 @@ export function StatsScrollLock() {
                     >
                       <h3
                         className="font-display pr-10"
-                        style={{ fontWeight: 600, fontSize: "clamp(24px, 6.5vw, 44px)", lineHeight: "0.95", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                        style={{
+                          fontWeight: 600,
+                          fontSize: "clamp(24px, 6.5vw, 44px)",
+                          lineHeight: "0.95",
+                          color: "oklch(0.18 0.005 250)",
+                          letterSpacing: "-0.03em",
+                        }}
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-2 font-display text-3xl font-black leading-none text-gold md:text-[44px]">
+                      <div className="mt-2 font-display text-3xl font-black leading-none text-foreground md:text-[44px]">
                         {s.big}
                       </div>
                       <p className="mt-3 text-[17px] leading-relaxed text-muted-foreground md:mt-4 md:text-[17px]">
@@ -441,7 +430,6 @@ export function StatsScrollLock() {
                       </p>
                     </motion.div>
 
-                    {/* Mobile image — below text */}
                     {s.image && (
                       <div
                         aria-hidden
@@ -461,24 +449,6 @@ export function StatsScrollLock() {
                   </motion.div>
                 );
               })}
-
-              {/* Carousel arrows — pinned to card bottom */}
-              <button
-                type="button"
-                onClick={goPrev}
-                aria-label="Card anterior"
-                className="absolute bottom-5 left-5 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:left-8"
-              >
-                <ArrowLeft className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                onClick={goNext}
-                aria-label="Próximo card"
-                className="absolute bottom-5 right-5 z-[200] flex h-11 w-11 items-center justify-center rounded-full bg-foreground/5 text-foreground/70 backdrop-blur transition-all hover:scale-110 hover:bg-gold hover:text-background md:bottom-8 md:right-8"
-              >
-                <ArrowRight className="h-5 w-5" />
-              </button>
             </div>
           </div>
         </div>

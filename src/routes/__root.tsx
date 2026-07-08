@@ -72,10 +72,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "theme-color", content: "#0a0a0a" },
+      { name: "theme-color", content: "#111214" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
-      { property: "og:site_name", content: "Leevi Distribuidora" },
+      { property: "og:site_name", content: "Roll Door Company" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
     ],
@@ -83,6 +83,17 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "stylesheet", href: appCss },
       { rel: "icon", type: "image/webp", href: "/favicon.webp" },
       { rel: "apple-touch-icon", href: "/favicon.webp" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "preconnect", href: "https://api.fontshare.com" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;900&display=swap",
+      },
+      {
+        rel: "stylesheet",
+        href: "https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap",
+      },
     ],
     scripts: [
       {
@@ -90,18 +101,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         children: JSON.stringify({
           "@context": "https://schema.org",
           "@type": "Organization",
-          name: "Leevi Distribuidora",
-          url: "https://wireframe-leevi.lovable.app",
-          logo: "https://wireframe-leevi.lovable.app/favicon.webp",
+          name: "Roll Door Company",
           description:
-            "Distribuidora de calçados e acessórios femininos com sede em São Luís (MA). Atende revendedoras em todo o Brasil com lançamentos do atacado e curadoria de alto giro.",
-          address: {
-            "@type": "PostalAddress",
-            addressLocality: "São Luís",
-            addressRegion: "MA",
-            addressCountry: "BR",
-          },
-          sameAs: ["https://wa.me/5599999999999"],
+            "Fabricante brasileira de esquadrias de alto padrão — portas deslizantes, janelas premium e sistemas de alumínio para grandes vãos. Rede Premium de revendedores em todo o Brasil.",
+          sameAs: [],
         }),
       },
     ],
