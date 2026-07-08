@@ -5,30 +5,23 @@ import {
   useMotionValue,
   useSpring,
   useTransform,
-  
-  
 } from "motion/react";
 
-import sandalia from "@/assets/sandalia-dourada.webp";
-import sandaliaCaramelo from "@/assets/sandalia-caramelo.webp";
-import sandaliaVerde from "@/assets/sandalia-verde.webp";
-import sandaliaPerola from "@/assets/sandalia-perola.webp";
-import sandaliaPreta from "@/assets/sandalia-preta.webp";
-import leeviMark from "@/assets/leevi-mark.png";
-import badgeVagas from "@/assets/badge-vagas.webp";
-
-const WHATSAPP =
-  "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
+import portaProduto from "@/assets/rd-produto-porta.png";
+import janelaProduto from "@/assets/rd-produto-janela.png";
+import foldingProduto from "@/assets/rd-produto-folding.png";
+import pivotProduto from "@/assets/rd-produto-pivot.png";
+import rdMark from "@/assets/rd-mark.png";
 
 const ITEMS = [
-  { src: sandalia, name: "Sandália Vizzano", tag: "Mais vendida" },
-  { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Lançamento" },
-  { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Alto giro" },
-  { src: sandaliaPerola, name: "Sandália Pérola Vizzano", tag: "Sai rápido" },
-  { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Top giro" },
-  { src: sandaliaCaramelo, name: "Papete Vizzano", tag: "Novidade" },
-  { src: sandaliaVerde, name: "Mule Verde Vizzano", tag: "Vitrine" },
-  { src: sandaliaPreta, name: "Rasteira Preta Moleca", tag: "Procurada" },
+  { src: portaProduto, name: "Portas Deslizantes", tag: "Alto padrão" },
+  { src: janelaProduto, name: "Janelas Premium", tag: "Linha residencial" },
+  { src: foldingProduto, name: "Sistemas Folding", tag: "Grandes vãos" },
+  { src: pivotProduto, name: "Portas Pivotantes", tag: "Design" },
+  { src: portaProduto, name: "Sistemas de Alumínio", tag: "Engenharia" },
+  { src: janelaProduto, name: "Fachadas", tag: "Arquitetura" },
+  { src: foldingProduto, name: "Soluções Personalizadas", tag: "Sob medida" },
+  { src: pivotProduto, name: "Portas de Entrada", tag: "Assinatura" },
 ];
 
 export function VitrineOrbit() {
@@ -44,7 +37,6 @@ export function VitrineOrbit() {
     return () => clearInterval(id);
   }, []);
 
-  // Mouse parallax
   const containerRef = useRef<HTMLDivElement>(null);
   const mx = useMotionValue(0.5);
   const my = useMotionValue(0.5);
@@ -67,16 +59,15 @@ export function VitrineOrbit() {
     <section
       ref={containerRef}
       onMouseMove={onMove}
-      className="relative w-full overflow-hidden rounded-[20px] border border-gold/70 py-10 md:py-32"
-      style={{ background: "oklch(0.99 0.003 85)" }}
+      className="relative w-full overflow-hidden rounded-[20px] border border-foreground/10 py-10 md:py-32"
+      style={{ background: "oklch(1 0 0)" }}
     >
-      {/* Subtle line grid pattern */}
       <motion.div
         aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(to right, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.55 0.04 80 / 0.08) 1px, transparent 1px)",
+            "linear-gradient(to right, oklch(0.18 0.005 250 / 0.05) 1px, transparent 1px), linear-gradient(to bottom, oklch(0.18 0.005 250 / 0.05) 1px, transparent 1px)",
           backgroundSize: "64px 64px",
           rotateX: rotX,
           rotateY: rotY,
@@ -85,15 +76,13 @@ export function VitrineOrbit() {
         }}
       />
       <div className="relative mx-auto grid max-w-[1400px] grid-cols-1 items-center gap-12 px-6 lg:grid-cols-[1fr_1fr] lg:gap-0">
-        {/* LEFT — text */}
         <div className="relative z-30 text-center lg:text-left">
-          {/* Protective radial backdrop for legibility */}
           <div
             aria-hidden
             className="pointer-events-none absolute -inset-10 -z-10"
             style={{
               background:
-                "radial-gradient(ellipse at center, oklch(0.99 0.003 85 / 0.92) 0%, oklch(0.99 0.003 85 / 0.6) 45%, transparent 75%)",
+                "radial-gradient(ellipse at center, oklch(1 0 0 / 0.92) 0%, oklch(1 0 0 / 0.6) 45%, transparent 75%)",
             }}
           />
 
@@ -103,62 +92,50 @@ export function VitrineOrbit() {
               fontWeight: 600,
               fontSize: "clamp(34px, 9vw, 60px)",
               lineHeight: "1.02",
-              color: "rgb(56,56,56)",
+              color: "oklch(0.18 0.005 250)",
               letterSpacing: "-0.03em",
               maxWidth: "16ch",
             }}
           >
-            As peças que costumam{" "}
+            Um portfólio completo pra{" "}
             <span
-              className="text-gold-deep"
+              className="text-foreground"
               style={{
-                background: "oklch(0.85 0.10 85 / 0.28)",
+                background: "oklch(0.18 0.005 250 / 0.08)",
                 padding: "0 0.18em",
                 borderRadius: "6px",
                 boxDecorationBreak: "clone",
                 WebkitBoxDecorationBreak: "clone",
               }}
             >
-              esgotar primeiro
+              atender qualquer projeto
             </span>{" "}
-            dentro do grupo.
+            de alto padrão.
           </h2>
 
           <p className="mx-auto mt-6 max-w-lg text-lg leading-relaxed text-muted-foreground lg:mx-0 md:text-xl">
-            Você não precisa garimpar 10 fornecedores.{" "}
+            Você oferece ao seu cliente soluções para residências, condomínios e empreendimentos —{" "}
             <strong className="font-semibold text-foreground">
-              Você só precisa do Grupo VIP Leevi.
+              tudo com a assinatura Roll Door.
             </strong>
           </p>
 
           <div className="mt-8">
-          <div className="relative mt-8 w-full max-w-[640px] mx-auto lg:mx-0">
-            <a
-              href={WHATSAPP}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
-              style={{
-                background:
-                  "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                boxShadow:
-                  "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
-              }}
-            >
-              Quero participar da próxima turma
-            </a>
-            <img
-              src={badgeVagas}
-              alt="Vagas limitadas - turma reduzida"
-              width={400}
-              height={400}
-              decoding="async"
-              loading="lazy"
-              className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-            />
-          </div>
+            <div className="relative mt-8 w-full max-w-[640px] mx-auto lg:mx-0">
+              <a
+                href="#cta-final"
+                className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl"
+                style={{
+                  background:
+                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+                  boxShadow:
+                    "inset 0 2px 0 hsl(0 0% 100% / 0.15), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+                }}
+              >
+                Quero ser um Revendedor Premium
+              </a>
+            </div>
 
-            {/* Active item — minimal, photo + name */}
             <div className="relative mt-7 h-16 overflow-hidden">
               <AnimatePresence mode="wait">
                 <motion.div
@@ -173,7 +150,9 @@ export function VitrineOrbit() {
                     src={current.src}
                     alt=""
                     className="h-16 w-16 object-contain"
-                  loading="lazy" decoding="async" />
+                    loading="lazy"
+                    decoding="async"
+                  />
                   <span className="font-display text-lg font-bold text-foreground md:text-xl">
                     {current.name}
                   </span>
@@ -183,9 +162,7 @@ export function VitrineOrbit() {
           </div>
         </div>
 
-        {/* RIGHT — orbit */}
         <div className="relative mx-auto aspect-square w-[230px] sm:w-[420px] md:w-[620px] lg:-ml-40 lg:w-[820px]">
-          {/* Orbit rings */}
           <svg
             aria-hidden
             viewBox="0 0 820 820"
@@ -197,7 +174,7 @@ export function VitrineOrbit() {
               rx="310"
               ry="310"
               fill="none"
-              stroke="oklch(0.55 0.12 80 / 0.45)"
+              stroke="oklch(0.32 0.008 250 / 0.4)"
               strokeWidth="1"
             />
             <ellipse
@@ -206,13 +183,12 @@ export function VitrineOrbit() {
               rx="210"
               ry="210"
               fill="none"
-              stroke="oklch(0.55 0.12 80 / 0.35)"
+              stroke="oklch(0.32 0.008 250 / 0.3)"
               strokeWidth="1"
               strokeDasharray="4 6"
             />
           </svg>
 
-          {/* Rotating orbit */}
           <motion.div
             className="absolute inset-0"
             animate={{ rotate: -(active * ANGLE_STEP) }}
@@ -220,10 +196,10 @@ export function VitrineOrbit() {
           >
             {ITEMS.map((item, i) => {
               const angle = (i * ANGLE_STEP * Math.PI) / 180;
-              const radiusPct = 38; // % of container
+              const radiusPct = 38;
               const x = 50 + radiusPct * Math.cos(angle);
               const y = 50 + radiusPct * Math.sin(angle);
-              
+
               return (
                 <motion.div
                   key={i}
@@ -232,9 +208,7 @@ export function VitrineOrbit() {
                   animate={{ rotate: active * ANGLE_STEP }}
                   transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
                 >
-                  <div
-                    className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36"
-                  >
+                  <div className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36">
                     <img
                       src={item.src}
                       alt={item.name}
@@ -247,7 +221,6 @@ export function VitrineOrbit() {
             })}
           </motion.div>
 
-          {/* Center brand — white background, gold mark, animates on each tick */}
           <div className="pointer-events-none absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
             <motion.div
               className="relative flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40"
@@ -257,18 +230,16 @@ export function VitrineOrbit() {
               transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
               style={{
                 background: "#ffffff",
-                border: "1px solid oklch(0.72 0.12 80 / 0.35)",
+                border: "1px solid oklch(0.32 0.008 250 / 0.35)",
               }}
             >
               <img
-                src={leeviMark}
-                alt="Leevi"
+                src={rdMark}
+                alt="Roll Door"
                 className="h-10 w-10 object-contain sm:h-16 sm:w-16 md:h-20 md:w-20"
-                style={{
-                  filter:
-                    "brightness(0) saturate(100%) invert(62%) sepia(48%) saturate(560%) hue-rotate(2deg) brightness(92%) contrast(88%)",
-                }}
-              loading="lazy" decoding="async" />
+                loading="lazy"
+                decoding="async"
+              />
             </motion.div>
           </div>
         </div>

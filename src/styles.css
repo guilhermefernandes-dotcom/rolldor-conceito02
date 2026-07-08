@@ -8,17 +8,10 @@
 @custom-variant dark (&:is(.dark *));
 
 /*
- * Design system definition.
- *
- * The @theme inline block maps CSS custom properties to Tailwind utility
- * classes (e.g. --color-primary -> bg-primary, text-primary).
- *
- * The :root and .dark blocks define the actual color values using oklch.
- * All colors MUST use oklch format.
- *
- * To add a new semantic color:
- * 1. Add the variable to :root (light value) and .dark (dark value)
- * 2. Register it in @theme inline as --color-<name>: var(--<name>)
+ * Roll Door Rede Premium — design tokens.
+ * Paleta minimalista arquitetônica: branco, preto suave, grafite metálico.
+ * Os nomes das variáveis --gold* foram preservados por compatibilidade com
+ * componentes existentes; hoje apontam para tons de grafite/champagne.
  */
 
 @theme inline {
@@ -71,35 +64,37 @@
 
 :root {
   --radius: 1rem;
-  --background: oklch(0.99 0.003 85);
-  --foreground: oklch(0.14 0.01 85);
+  --background: oklch(1 0 0);
+  --foreground: oklch(0.18 0.005 250);
   --card: oklch(1 0 0);
-  --card-foreground: oklch(0.14 0.01 85);
+  --card-foreground: oklch(0.18 0.005 250);
   --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.14 0.01 85);
-  --primary: oklch(0.14 0.01 85);
-  --primary-foreground: oklch(0.99 0.003 85);
-  --secondary: oklch(0.96 0.006 85);
-  --secondary-foreground: oklch(0.14 0.01 85);
-  --muted: oklch(0.96 0.006 85);
-  --muted-foreground: oklch(0.45 0.015 85);
-  --accent: hsl(142 55% 42%);
-  --accent-foreground: hsl(140 40% 98%);
-  --accent-light: hsl(142 60% 52%);
-  --accent-dark: hsl(142 60% 32%);
-  --accent-shadow: hsl(142 70% 20%);
+  --popover-foreground: oklch(0.18 0.005 250);
+  --primary: oklch(0.18 0.005 250);
+  --primary-foreground: oklch(1 0 0);
+  --secondary: oklch(0.97 0.002 250);
+  --secondary-foreground: oklch(0.18 0.005 250);
+  --muted: oklch(0.96 0.002 250);
+  --muted-foreground: oklch(0.42 0.008 250);
+  /* Botão premium: preto profundo em vez do verde */
+  --accent: hsl(220 8% 16%);
+  --accent-foreground: hsl(0 0% 100%);
+  --accent-light: hsl(220 8% 26%);
+  --accent-dark: hsl(220 10% 8%);
+  --accent-shadow: hsl(220 12% 4%);
   --destructive: oklch(0.58 0.22 25);
   --destructive-foreground: oklch(0.99 0.003 85);
-  --border: oklch(0.91 0.008 85);
-  --input: oklch(0.91 0.008 85);
-  --ring: oklch(0.72 0.12 80);
-  --gold: oklch(0.72 0.12 80);
-  --gold-soft: oklch(0.80 0.10 85);
-  --gold-deep: oklch(0.55 0.11 70);
-  --gradient-gold: linear-gradient(135deg, oklch(0.82 0.12 90), oklch(0.58 0.11 70));
-  --gradient-dark: radial-gradient(ellipse at top, oklch(0.97 0.02 85) 0%, oklch(0.99 0.003 85) 70%);
-  --shadow-gold: 0 20px 60px -20px oklch(0.72 0.12 80 / 0.35);
-  --shadow-elegant: 0 30px 80px -30px oklch(0.14 0.01 85 / 0.18);
+  --border: oklch(0.92 0.003 250);
+  --input: oklch(0.92 0.003 250);
+  --ring: oklch(0.32 0.008 250);
+  /* Tokens "gold" mantidos para compatibilidade — hoje são grafite/champagne */
+  --gold: oklch(0.32 0.008 250);
+  --gold-soft: oklch(0.85 0.005 250);
+  --gold-deep: oklch(0.18 0.005 250);
+  --gradient-gold: linear-gradient(135deg, oklch(0.42 0.008 250), oklch(0.18 0.005 250));
+  --gradient-dark: radial-gradient(ellipse at top, oklch(0.98 0.002 250) 0%, oklch(1 0 0) 70%);
+  --shadow-gold: 0 20px 60px -20px oklch(0.18 0.005 250 / 0.35);
+  --shadow-elegant: 0 30px 80px -30px oklch(0.14 0.005 250 / 0.22);
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
@@ -166,7 +161,7 @@
     font-weight: 500;
     font-size: 17px;
     line-height: 25px;
-    color: rgba(56, 56, 56, 0.8);
+    color: oklch(0.28 0.005 250);
     letter-spacing: -0.01em;
     position: relative;
   }
@@ -183,14 +178,14 @@
     height: auto;
   }
 
-  /* Subtle noise overlay across the whole site */
+  /* Sutil textura arquitetônica */
   body::before {
     content: "";
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 9999;
-    opacity: 0.06;
+    opacity: 0.04;
     mix-blend-mode: multiply;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.6 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
     background-size: 160px 160px;
@@ -199,7 +194,7 @@
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
     font-weight: 600;
-    color: rgb(56, 56, 56);
+    color: oklch(0.18 0.005 250);
     letter-spacing: -0.03em;
   }
 }
