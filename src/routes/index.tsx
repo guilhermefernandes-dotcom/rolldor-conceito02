@@ -16,6 +16,7 @@ import {
   Minus,
   Quote,
 } from "lucide-react";
+import polygonShape from "@/assets/polygon-13.svg";
 import { useState } from "react";
 import heroImg from "@/assets/rd-hero.jpg";
 import galeria1 from "@/assets/rd-galeria-1.jpg";
@@ -364,6 +365,22 @@ function Landing() {
               }}
             />
 
+            {/* polygon decorativo */}
+            <img
+              src={polygonShape}
+              alt=""
+              aria-hidden
+              className="pointer-events-none absolute -bottom-24 -left-20 w-[420px] opacity-[0.22] md:-bottom-32 md:-left-24 md:w-[560px]"
+              style={{ filter: "brightness(1.6) contrast(0.9)" }}
+            />
+            <img
+              src={polygonShape}
+              alt=""
+              aria-hidden
+              className="pointer-events-none absolute -top-20 -right-16 hidden w-[360px] rotate-180 opacity-[0.18] md:block"
+              style={{ filter: "brightness(1.6) contrast(0.9)" }}
+            />
+
             <div className="relative z-10">
               <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
                 <div className="max-w-2xl">
@@ -414,59 +431,99 @@ function Landing() {
                 </Reveal>
               </div>
 
-              <div className="mt-12 grid gap-[13px] md:mt-16 md:grid-cols-4">
+              <div className="mt-12 grid gap-[13px] md:mt-16 md:grid-cols-2 lg:grid-cols-4">
                 {[
                   {
                     icon: Layers,
                     title: "Produtos exclusivos",
                     desc: "Portfólio pensado para o mercado de alto padrão.",
+                    bullets: [
+                      "Linha completa premium",
+                      "Design exclusivo Roll Door",
+                      "Foco em alto padrão",
+                    ],
                   },
                   {
                     icon: Award,
                     title: "Marca reconhecida nacionalmente",
                     desc: "Décadas de reputação a favor da sua venda.",
+                    bullets: [
+                      "Presença em todo o Brasil",
+                      "Autoridade no segmento",
+                      "Credibilidade que vende",
+                    ],
                   },
                   {
                     icon: Headphones,
                     title: "Suporte técnico especializado",
                     desc: "Atendimento próximo em cada etapa do projeto.",
                     highlight: true,
+                    bullets: [
+                      "Consultoria em projeto",
+                      "Suporte pós-venda",
+                      "Equipe técnica dedicada",
+                    ],
                   },
                   {
                     icon: MegaphoneIcon,
                     title: "Materiais de marketing",
                     desc: "Recursos prontos para você vender mais e melhor.",
+                    bullets: [
+                      "Catálogos e mídias prontas",
+                      "Campanhas sazonais",
+                      "Kit de identidade visual",
+                    ],
                   },
                   {
                     icon: Handshake,
                     title: "Atendimento dedicado",
                     desc: "Um canal direto com a equipe Roll Door.",
+                    bullets: [
+                      "Canal direto de contato",
+                      "Resposta prioritária",
+                      "Gestor de conta parceiro",
+                    ],
                   },
                   {
                     icon: Sparkles,
                     title: "Capacitação comercial",
                     desc: "Treinamentos e materiais para sua equipe.",
+                    bullets: [
+                      "Treinamentos periódicos",
+                      "Materiais de produto",
+                      "Argumentos de venda",
+                    ],
                   },
                   {
                     icon: Target,
                     title: "Indicação de oportunidades*",
                     desc: "Leads e projetos direcionados por região.",
+                    bullets: [
+                      "Leads por região",
+                      "Projetos qualificados",
+                      "Encaminhamento ativo",
+                    ],
                   },
                   {
                     icon: Building2,
                     title: "Condições diferenciadas",
                     desc: "Comerciais especiais para parceiros da rede.",
+                    bullets: [
+                      "Política de preço parceira",
+                      "Prazos diferenciados",
+                      "Benefícios exclusivos",
+                    ],
                   },
-                ].map(({ icon: Icon, title, desc, highlight }, i) => (
+                ].map(({ icon: Icon, title, bullets, highlight }, i) => (
                   <Reveal key={i} delay={i * 0.04} className="h-full">
                     <article
-                      className="group relative flex h-full flex-col gap-4 rounded-[20px] p-6"
+                      className="group relative flex h-full flex-col rounded-[20px] p-6"
                       style={
                         highlight
                           ? {
                               background:
-                                "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)",
-                              border: "1px solid rgba(255,255,255,0.18)",
+                                "linear-gradient(180deg, rgba(201,168,76,0.22) 0%, rgba(201,168,76,0.06) 100%)",
+                              border: "1px solid rgba(201,168,76,0.45)",
                             }
                           : {
                               background: "rgba(255,255,255,0.04)",
@@ -474,13 +531,44 @@ function Landing() {
                             }
                       }
                     >
-                      <Icon className="h-9 w-9 text-white/90" strokeWidth={1.3} />
-                      <h3 className="font-display text-[19px] font-semibold leading-tight text-white md:text-[21px]">
+                      <Icon
+                        className={`h-7 w-7 ${highlight ? "text-[#e8c07a]" : "text-[#c9a84c]"}`}
+                        strokeWidth={1.4}
+                      />
+                      <h3 className="mt-6 font-display text-[19px] font-semibold leading-tight text-white md:text-[21px]">
                         {title}
                       </h3>
-                      <p className="text-sm leading-relaxed text-white/60 md:text-[15px]">
-                        {desc}
-                      </p>
+
+                      <div className="my-5 h-px w-full bg-white/10" />
+
+                      <ul className="flex flex-col gap-2.5">
+                        {bullets.map((b) => (
+                          <li
+                            key={b}
+                            className="flex items-start gap-2 text-[13.5px] leading-snug text-white/75 md:text-sm"
+                          >
+                            <Check
+                              className={`mt-0.5 h-4 w-4 shrink-0 ${
+                                highlight ? "text-[#e8c07a]" : "text-[#c9a84c]"
+                              }`}
+                              strokeWidth={2.5}
+                            />
+                            <span>{b}</span>
+                          </li>
+                        ))}
+                      </ul>
+
+                      <a
+                        href="#cta-final"
+                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors ${
+                          highlight
+                            ? "bg-black/40 text-white hover:bg-black/55"
+                            : "bg-white/[0.04] text-white/85 hover:bg-white/[0.08] border border-white/10"
+                        }`}
+                      >
+                        Saiba mais
+                        <ArrowRight className="h-4 w-4" />
+                      </a>
                     </article>
                   </Reveal>
                 ))}
