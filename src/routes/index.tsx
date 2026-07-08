@@ -121,23 +121,14 @@ function Reveal({
   );
 }
 
-function Wordmark({ className = "", priority = false }: { className?: string; priority?: boolean }) {
+function Wordmark({ className = "" }: { className?: string }) {
   return (
-    <div
-      className={`inline-flex flex-col items-center leading-none ${className}`}
-      aria-label="Roll Door Company"
-    >
-      <span
-        className="font-display font-bold tracking-[0.02em] text-foreground"
-        style={{ fontSize: "clamp(28px, 5vw, 44px)" }}
-      >
-        ROLL DOOR
-      </span>
-      <span className="mt-1 font-display text-[10px] uppercase tracking-[0.4em] text-foreground/60 md:text-xs">
-        Company
-      </span>
-      {priority && <meta itemProp="brand" content="Roll Door Company" />}
-    </div>
+    <img
+      src={logoAsset.url}
+      alt="Roll Door Company"
+      className={`h-auto w-auto max-h-14 md:max-h-20 ${className}`}
+      style={{ maxWidth: "260px" }}
+    />
   );
 }
 
