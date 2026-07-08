@@ -548,11 +548,7 @@ function Landing() {
 
                       <a
                         href="#cta-final"
-                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors ${
-                          highlight
-                            ? "bg-black/40 text-white hover:bg-black/55"
-                            : "bg-white/[0.04] text-white/85 hover:bg-white/[0.08] border border-white/10"
-                        }`}
+                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors bg-brand-green text-white hover:bg-brand-green-deep`}
                       >
                         Saiba mais
                         <ArrowRight className="h-4 w-4" />
