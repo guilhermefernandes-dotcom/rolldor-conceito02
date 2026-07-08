@@ -392,7 +392,7 @@ function Landing() {
                       className="text-white"
                       style={{
                         fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
-                        fontWeight: 600,
+                        fontWeight: 500,
                         fontSize: "clamp(28px, 6.5vw, 48px)",
                         lineHeight: "1.05",
                       }}
@@ -403,7 +403,7 @@ function Landing() {
                         Um parceiro para crescer junto com você.
                       </span>
                     </h2>
-                    <p className="mt-6 max-w-xl text-white/70 md:text-lg">
+                    <p className="mt-6 max-w-xl text-[18px] text-white/70 md:text-[18px]">
                       Ao fazer parte da Rede Premium Roll Door, sua empresa conta com uma estrutura
                       pensada para impulsionar suas vendas.
                     </p>
@@ -524,7 +524,7 @@ function Landing() {
                         className={`h-7 w-7 ${highlight ? "text-[#e8c07a]" : "text-[#c9a84c]"}`}
                         strokeWidth={1.4}
                       />
-                      <h3 className="mt-6 font-display text-[19px] font-semibold leading-tight text-white md:text-[21px]">
+                      <h3 className="mt-6 font-display text-[19px] font-medium leading-tight text-white md:text-[21px]">
                         {title}
                       </h3>
 
@@ -534,7 +534,7 @@ function Landing() {
                         {bullets.map((b) => (
                           <li
                             key={b}
-                            className="flex items-start gap-2 text-[13.5px] leading-snug text-white/75 md:text-sm"
+                            className="flex items-start gap-2 text-[15px] leading-snug text-white/75 md:text-[16px]"
                           >
                             <Check
                               className={`mt-0.5 h-4 w-4 shrink-0 ${
@@ -576,7 +576,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Por que o mercado escolhe a{" "}
                 <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
               </h2>
@@ -627,10 +627,10 @@ function Landing() {
                     {cards.map((c, i) => (
                       <Reveal key={c.title} delay={i * 0.06}>
                         <div className="h-full rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)]">
-                          <h3 className="font-display text-lg font-bold" style={{ color: "var(--gold)" }}>
+                          <h3 className="font-display text-lg font-medium" style={{ color: "var(--gold)" }}>
                             {c.title}
                           </h3>
-                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                          <p className="mt-2 text-[18px] leading-relaxed text-muted-foreground">
                             {c.desc}
                           </p>
                         </div>
