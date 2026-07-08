@@ -288,7 +288,7 @@ function Landing() {
       </motion.div>
 
       {/* MARQUEE — prova social topo */}
-      <div className="overflow-hidden bg-foreground py-4">
+      <div className="overflow-hidden bg-brand-green py-4">
         <div
           className="flex animate-[leevi-marquee_30s_linear_infinite] whitespace-nowrap font-display"
           style={{
