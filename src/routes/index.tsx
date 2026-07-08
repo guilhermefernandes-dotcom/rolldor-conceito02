@@ -2,69 +2,57 @@ import { createFileRoute } from "@tanstack/react-router";
 import { motion, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight,
-  Tag,
-  Gift,
-  TrendingUp,
-  Zap,
-  Lock,
-  PackageCheck,
-  Flame,
-  CheckCircle2,
+  Building2,
+  Wrench,
+  Sparkles,
+  Award,
+  Headphones,
+  MegaphoneIcon,
+  Target,
+  Handshake,
+  Layers,
   Check,
-  Star,
   Plus,
   Minus,
   Quote,
 } from "lucide-react";
-import { useState, useEffect } from "react";
-import heroImg from "@/assets/hero.webp";
-import productsImg from "@/assets/products.webp";
-import p1 from "@/assets/p1.jpg";
-import p2 from "@/assets/p2.jpg";
-import p3 from "@/assets/p3.jpg";
-import p4 from "@/assets/p4.jpg";
-import t1 from "@/assets/t1.jpg";
-import t2 from "@/assets/t2.jpg";
-import leeviMark from "@/assets/leevi-mark.png";
-import launchesImg from "@/assets/leevi-launches.webp";
-import t3 from "@/assets/t3.jpg";
-import depoimentoMockup from "@/assets/depoimento-mockup-mariana.webp";
-
-import depoimentoMockup3 from "@/assets/depoimento-mockup-patricia.webp";
-import logoUrl from "@/assets/logo.webp";
-import badgeVagas from "@/assets/badge-vagas.webp";
-import comoFuncionaRadar from "@/assets/como-funciona-radar.webp";
-import cardShape1 from "@/assets/card-shape-1.png";
-import cardShape2 from "@/assets/card-shape-2.png";
-import cardShape3 from "@/assets/card-shape-3.png";
+import { useState } from "react";
+import heroImg from "@/assets/rd-hero.jpg";
+import galeria1 from "@/assets/rd-galeria-1.jpg";
+import galeria2 from "@/assets/rd-galeria-2.jpg";
+import galeria3 from "@/assets/rd-galeria-3.jpg";
+import rdMark from "@/assets/rd-mark.png";
+import portaDeslizante from "@/assets/rd-porta-deslizante.jpg";
+import janelaImg from "@/assets/rd-janela.jpg";
+import grandesVaos from "@/assets/rd-grandes-vaos.jpg";
+import personalizado from "@/assets/rd-personalizado.jpg";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
-import { MagnifierCard } from "@/components/MagnifierCard";
+import { FormularioRevenda } from "@/components/FormularioRevenda";
 
 export const Route = createFileRoute("/")({
   head: () => {
-    const url = "https://wireframe-leevi.lovable.app/";
-    const image = "https://wireframe-leevi.lovable.app/og-image.webp";
-    const title = "Grupo VIP de Revendedoras Leevi — Lançamentos antes de todo mundo";
+    const title =
+      "Rede Premium Roll Door — Torne-se um Revendedor de Esquadrias de Alto Padrão";
     const description =
-      "Entre no Grupo VIP de Revendedoras Leevi no WhatsApp. Lives semanais, lançamentos do atacado, ofertas exclusivas e curadoria de calçados e acessórios femininos de alto giro pra você lucrar mais.";
+      "Seja um Revendedor Premium Roll Door e venda uma das marcas mais desejadas do mercado de esquadrias. Suporte técnico, oportunidades de negócio e produtos de alto padrão pra impulsionar suas vendas.";
     return {
       meta: [
         { title },
         { name: "description", content: description },
-        { name: "keywords", content: "revendedora de calçados, atacado calçados femininos, grupo vip whatsapp, distribuidora calçados, leevi, revenda sandálias, atacado moda feminina" },
+        {
+          name: "keywords",
+          content:
+            "revenda esquadrias, roll door, portas deslizantes, janelas premium, revendedor premium, alumínio de alto padrão, esquadrias de alto padrão, rede de revendas",
+        },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
-        { property: "og:url", content: url },
-        { property: "og:image", content: image },
-        { property: "og:image:width", content: "1200" },
-        { property: "og:image:height", content: "630" },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
-        { name: "twitter:image", content: image },
       ],
-      links: [{ rel: "canonical", href: url }],
       scripts: [
         {
           type: "application/ld+json",
@@ -72,11 +60,22 @@ export const Route = createFileRoute("/")({
             "@context": "https://schema.org",
             "@type": "FAQPage",
             mainEntity: [
-              { q: "Preciso pagar para entrar?", a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar." },
-              { q: "Vão me mandar muita mensagem?", a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado." },
-              { q: "Preciso ter CNPJ?", a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ." },
-              { q: "Como funcionam as lives?", a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo." },
-              { q: "Posso sair quando quiser?", a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro." },
+              {
+                q: "Preciso já trabalhar com esquadrias?",
+                a: "Sim. O programa é destinado para empresas do segmento, como vidraçarias, serralherias e fabricantes de esquadrias.",
+              },
+              {
+                q: "Existe exclusividade?",
+                a: "As condições são avaliadas conforme a região e o perfil do parceiro.",
+              },
+              {
+                q: "Recebo suporte?",
+                a: "Sim. Os parceiros contam com suporte técnico e comercial durante toda a parceria.",
+              },
+              {
+                q: "Como funciona o processo de aprovação?",
+                a: "Após o cadastro, nossa equipe entra em contato para avaliar o perfil da empresa e apresentar as condições do programa.",
+              },
             ].map((f) => ({
               "@type": "Question",
               name: f.q,
@@ -90,62 +89,24 @@ export const Route = createFileRoute("/")({
   component: Landing,
 });
 
-const WHATSAPP = "https://wa.me/5599999999999?text=Quero%20entrar%20no%20Grupo%20VIP%20Leevi";
-
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
-  show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const } },
+  show: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const },
+  },
 };
 
-function Logo({ className = "", priority = false }: { className?: string; priority?: boolean }) {
-  return (
-    <img
-      src={logoUrl}
-      alt="Leevi Distribuidora"
-      width={800}
-      height={373}
-      decoding="async"
-      loading={priority ? "eager" : "lazy"}
-      fetchPriority={priority ? "high" : "auto"}
-      className={`h-16 w-auto md:h-24 ${className}`}
-    />
-  );
-}
-
-function CTA({
-  children = "Quero entrar no Grupo VIP",
-  size = "lg",
-  variant = "gold",
+function Reveal({
+  children,
+  delay = 0,
+  className = "",
 }: {
-  children?: React.ReactNode;
-  size?: "lg" | "md";
-  variant?: "gold" | "outline";
+  children: React.ReactNode;
+  delay?: number;
+  className?: string;
 }) {
-  const base =
-    "group inline-flex items-center justify-center gap-2 font-display font-bold tracking-tight transition-all duration-300";
-  const sizing = size === "lg" ? "px-8 py-4 text-sm md:text-base" : "px-6 py-3 text-xs md:text-sm";
-  const variants =
-    variant === "gold"
-      ? "bg-gradient-to-r from-gold via-gold to-gold-deep text-foreground shadow-[0_20px_60px_-20px_oklch(0.80_0.13_85_/_0.5)] hover:shadow-[0_24px_70px_-15px_oklch(0.80_0.13_85_/_0.7)] hover:-translate-y-0.5"
-      : "border border-gold/40 text-gold hover:bg-gold hover:text-foreground";
-  return (
-    <a href={WHATSAPP} target="_blank" rel="noopener noreferrer" className={`${base} ${sizing} ${variants}`}>
-      {children}
-      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-    </a>
-  );
-}
-
-function SectionLabel({ children }: { children: React.ReactNode }) {
-  return (
-    <div className="mb-5 inline-flex items-center gap-2">
-      <span className="h-px w-8 bg-gold" />
-      <span className="font-display text-[11px] uppercase tracking-[0.3em] text-gold">{children}</span>
-    </div>
-  );
-}
-
-function Reveal({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
     <motion.div
       className={className}
@@ -160,70 +121,22 @@ function Reveal({ children, delay = 0, className = "" }: { children: React.React
   );
 }
 
-const DEPOIMENTOS = [
-  { src: depoimentoMockup, alt: "Depoimento de Mariana C. no grupo VIP da Leevi" },
-  { src: depoimentoMockup3, alt: "Depoimento de Patrícia S. no grupo VIP da Leevi" },
-];
-
-function DepoimentoCarousel() {
-  const [index, setIndex] = useState(0);
-  useEffect(() => {
-    const id = setInterval(() => setIndex((i) => (i + 1) % DEPOIMENTOS.length), 3200);
-    return () => clearInterval(id);
-  }, []);
+function Wordmark({ className = "", priority = false }: { className?: string; priority?: boolean }) {
   return (
-    <div className="relative w-full max-w-[460px]" style={{ aspectRatio: "660 / 1080" }}>
-      {DEPOIMENTOS.map((d, i) => (
-        <motion.img
-          key={i}
-          src={d.src}
-          alt={d.alt}
-          className="absolute inset-0 h-full w-full object-contain"
-          style={{
-            filter:
-              "drop-shadow(0 40px 50px rgba(0,0,0,0.28)) drop-shadow(0 18px 22px rgba(0,0,0,0.18))",
-          }}
-          loading="eager"
-          decoding="async"
-          initial={false}
-          animate={{
-            opacity: i === index ? 1 : 0,
-            scale: i === index ? 1 : 0.97,
-          }}
-          transition={{ duration: 0.55, ease: [0.22, 1, 0.36, 1] }}
-        />
-      ))}
-      {/* Pagination dots */}
-      <div className="pointer-events-none absolute -bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
-        {DEPOIMENTOS.map((_, i) => (
-          <span
-            key={i}
-            className="h-1.5 rounded-full transition-all duration-500"
-            style={{
-              width: i === index ? 24 : 8,
-              background: i === index ? "var(--gold)" : "color-mix(in oklab, var(--gold) 30%, transparent)",
-            }}
-          />
-        ))}
-      </div>
-    </div>
-  );
-}
-
-function FloatingStepCard({
-  title,
-  desc,
-}: {
-  title: string;
-  desc: string;
-  align?: "left" | "right";
-}) {
-  return (
-    <div className="relative rounded-2xl border border-border/60 bg-card p-6 text-left md:p-7">
-      <h4 className="font-display text-xl font-bold tracking-tight text-gold-deep md:text-2xl">
-        {title}
-      </h4>
-      <p className="mt-3 text-lg leading-relaxed text-muted-foreground md:text-xl">{desc}</p>
+    <div
+      className={`inline-flex flex-col items-center leading-none ${className}`}
+      aria-label="Roll Door Company"
+    >
+      <span
+        className="font-display font-bold tracking-[0.02em] text-foreground"
+        style={{ fontSize: "clamp(28px, 5vw, 44px)" }}
+      >
+        ROLL DOOR
+      </span>
+      <span className="mt-1 font-display text-[10px] uppercase tracking-[0.4em] text-foreground/60 md:text-xs">
+        Company
+      </span>
+      {priority && <meta itemProp="brand" content="Roll Door Company" />}
     </div>
   );
 }
@@ -244,866 +157,634 @@ function UnderlineWord({
         whileInView={{ scaleX: 1 }}
         viewport={{ once: true, margin: "-80px" }}
         transition={{ duration: 0.7, delay: 0.5 + delay, ease: [0.22, 1, 0.36, 1] }}
-        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full bg-gold md:h-[4px]"
+        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full bg-foreground md:h-[4px]"
       />
     </span>
   );
 }
 
-// HandPhoneReveal removed — not in use
+const LOGOS_REVENDAS = [
+  "Vidraçaria Alpha",
+  "Esquadrias Prime",
+  "Serralheria Vitral",
+  "Vidros & Cia",
+  "Alumínio Nobre",
+  "Vidraçaria Cristal",
+  "Esquadrias do Vale",
+  "Vidraçaria Real",
+  "Serralheria Aço Sul",
+  "Vidraçaria Atlântico",
+  "Esquadrias Modena",
+  "Vidraçaria Central",
+];
+
+function CtaPrimary({
+  children,
+  href = "#cta-final",
+  className = "",
+}: {
+  children: React.ReactNode;
+  href?: string;
+  className?: string;
+}) {
+  return (
+    <a
+      href={href}
+      className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
+      style={{
+        background:
+          "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
+        boxShadow:
+          "inset 0 2px 0 hsl(0 0% 100% / 0.15), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+      }}
+    >
+      {children}
+    </a>
+  );
+}
 
 function Landing() {
   const { scrollY } = useScroll();
   const heroPad = useTransform(scrollY, [0, 120], [13, 0]);
   const heroRadius = useTransform(scrollY, [0, 120], [28, 0]);
+
   return (
     <main className="min-h-screen bg-background text-foreground antialiased">
       <JoinNotifications />
-      {/* HERO — full width inside gold padded frame that collapses on scroll */}
-      <motion.div className="bg-gold" style={{ padding: heroPad }}>
+
+      {/* HERO */}
+      <motion.div className="bg-foreground" style={{ padding: heroPad }}>
         <motion.section
-          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-20"
+          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-24"
           style={{ borderRadius: heroRadius }}
         >
-          {/* Decorative background effects */}
-          <div aria-hidden className="pointer-events-none absolute inset-0 overflow-hidden">
-            {/* Soft golden blobs */}
-            <div className="absolute -left-32 -top-32 h-[28rem] w-[28rem] rounded-full bg-gold/25 blur-[120px]" />
-            <div className="absolute -right-40 top-1/3 h-[32rem] w-[32rem] rounded-full bg-gold-soft/30 blur-[140px]" />
-            <div className="absolute bottom-0 left-1/3 h-[24rem] w-[24rem] -translate-x-1/2 rounded-full bg-accent/15 blur-[120px]" />
-            {/* Subtle grid */}
-            <div
-              className="absolute inset-0 opacity-[0.04]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(to right, rgb(56,56,56) 1px, transparent 1px), linear-gradient(to bottom, rgb(56,56,56) 1px, transparent 1px)",
-                backgroundSize: "56px 56px",
-                maskImage:
-                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse at center, black 40%, transparent 75%)",
-              }}
+          {/* Background image */}
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            <img
+              src={heroImg}
+              alt=""
+              className="h-full w-full object-cover"
+              fetchPriority="high"
+              decoding="async"
             />
-            {/* Vignette to focus the center */}
             <div
               className="absolute inset-0"
               style={{
                 background:
-                  "radial-gradient(ellipse at center, transparent 50%, color-mix(in oklab, var(--secondary) 60%, transparent) 100%)",
+                  "linear-gradient(180deg, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.88) 50%, rgba(255,255,255,0.96) 100%)",
               }}
             />
           </div>
+
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
             <Reveal>
-              <Logo className="mb-4" priority />
-            </Reveal>
-            <Reveal delay={0.05}>
-              <div className="mb-2" />
+              <Wordmark className="mb-8" priority />
             </Reveal>
             <Reveal delay={0.15}>
               <h1
                 className="font-display"
-                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", color: "rgb(56,56,56)", letterSpacing: "-0.03em" }}
+                style={{
+                  fontWeight: 600,
+                  fontSize: "clamp(34px, 8vw, 68px)",
+                  lineHeight: "1.02",
+                  color: "oklch(0.18 0.005 250)",
+                  letterSpacing: "-0.03em",
+                  maxWidth: "18ch",
+                }}
               >
-                Veja os lançamentos do atacado
-                <br />
-                <span className="text-gold">antes da sua concorrente.</span>
+                Torne-se um Revendedor Premium{" "}
+                <span className="text-foreground/60">Roll Door</span> e venda uma das marcas mais
+                desejadas do mercado de esquadrias.
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-5 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:mt-7 md:text-[23px]">
-                Toda semana tem live com novidades, ofertas que não saem do grupo e os produtos de
-                maior giro selecionados pra você lucrar mais — antes de todo mundo.
+              <p className="mt-6 max-w-2xl text-base leading-relaxed tracking-[-0.01em] text-muted-foreground md:mt-8 md:text-[21px]">
+                Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba
+                oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu
+                portfólio.
               </p>
             </Reveal>
-            <Reveal delay={0.35} className="w-full max-w-[640px]">
-              <div className="relative mt-10 w-full">
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                    boxShadow:
-                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
-                  }}
-                >
-                  Quero participar da próxima turma
-                </a>
-                <img
-                  src={badgeVagas}
-                  alt="Vagas limitadas - turma reduzida"
-                  width={400}
-                  height={400}
-                  decoding="async"
-                  fetchPriority="high"
-                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-                loading="lazy" />
-              </div>
+            <Reveal delay={0.35}>
+              <ul className="mt-8 grid gap-3 text-left sm:grid-cols-2 md:mt-10">
+                {[
+                  "Marca consolidada no mercado",
+                  "Suporte técnico especializado",
+                  "Produtos de alto padrão",
+                  "Programa exclusivo para parceiros",
+                ].map((item) => (
+                  <li key={item} className="flex items-center gap-3 text-[15px] text-foreground/85 md:text-[17px]">
+                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-foreground text-white">
+                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                    </span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
             </Reveal>
-            <Reveal delay={0.45}>
-              <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-destructive/30 bg-destructive/5 px-4 py-2">
-                <Flame className="h-4 w-4 text-destructive" />
-                <p className="text-xs tracking-[-0.01em] text-foreground/80 md:text-sm">
-                  <span className="font-bold text-destructive">Vagas limitadas.</span> Restam poucas
-                  posições para esta semana.
-                </p>
+            <Reveal delay={0.5} className="w-full max-w-[640px]">
+              <div className="relative mt-10 w-full">
+                <CtaPrimary>Quero ser um Revendedor Premium</CtaPrimary>
               </div>
             </Reveal>
           </div>
         </motion.section>
       </motion.div>
 
-      {/* MARQUEE */}
-      <div className="overflow-hidden bg-gold py-4">
+      {/* MARQUEE — prova social topo */}
+      <div className="overflow-hidden bg-foreground py-4">
         <div
-          className="flex animate-[marquee_30s_linear_infinite] whitespace-nowrap font-display"
-          style={{ fontWeight: 500, fontSize: "clamp(15px, 4.5vw, 24px)", lineHeight: "1.3", color: "rgb(255,255,255)", letterSpacing: "-0.01em" }}
+          className="flex animate-[leevi-marquee_30s_linear_infinite] whitespace-nowrap font-display"
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(15px, 4.5vw, 22px)",
+            lineHeight: "1.3",
+            color: "rgba(255,255,255,0.95)",
+            letterSpacing: "-0.01em",
+          }}
         >
           {Array.from({ length: 6 }).flatMap((_, i) =>
-            ["Vagas limitadas", "Lives toda semana", "Lançamentos antes de todo mundo", "Grupo VIP Leevi"].map((item, j) => (
+            [
+              "+700 revendas na Rede Roll Door",
+              "Quase 4 décadas de mercado",
+              "Suporte técnico dedicado",
+              "Esquadrias de alto padrão",
+            ].map((item, j) => (
               <span key={`${i}-${j}`} className="inline-flex items-center">
                 <span className="px-8">{item}</span>
                 <span className="opacity-60">•</span>
               </span>
-            ))
+            )),
           )}
         </div>
-        <style>{`@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }`}</style>
       </div>
 
-      {/* AUTORIDADE */}
-      <section className="border-t border-border bg-secondary/70 pt-24 md:pt-32">
+      {/* PROVA SOCIAL — logos + autoridade */}
+      <section className="border-t border-border bg-secondary/60 py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          {/* Centered heading with animated underlines on key words */}
           <div className="mx-auto max-w-4xl text-center">
             <Reveal>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
-                </span>
-                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
-                  quem é a Leevi
-                </span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
               <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
-                Referência em <UnderlineWord delay={0}>calçados</UnderlineWord> e{" "}
-                <UnderlineWord delay={0.18}>acessórios</UnderlineWord> para revenda em todo o{" "}
-                <UnderlineWord delay={0.36}>Brasil</UnderlineWord>.
+                Mais de <UnderlineWord delay={0}>700 revendas</UnderlineWord> fazem parte da{" "}
+                <UnderlineWord delay={0.18}>rede Roll Door</UnderlineWord>.
               </h2>
             </Reveal>
-            <Reveal delay={0.25}>
-              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[23px]">
-                Quem conhece a Leevi sabe da curadoria. Quem está no GRUPO VIP, sai na frente.
+            <Reveal delay={0.2}>
+              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[21px]">
+                Há quase quatro décadas desenvolvendo soluções para grandes vãos, a Roll Door é
+                referência em portas e janelas de alto padrão em todo o Brasil. Nossa marca já está
+                presente em milhares de projetos residenciais e comerciais.
               </p>
             </Reveal>
           </div>
+
+          {/* Carrossel de logos (nomes fictícios estilizados) */}
+          <Reveal delay={0.3}>
+            <div className="mt-14 overflow-hidden">
+              <div className="flex animate-[leevi-marquee_45s_linear_infinite] whitespace-nowrap">
+                {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((nome, i) => (
+                  <div
+                    key={i}
+                    className="mx-6 inline-flex h-16 items-center justify-center rounded-lg border border-foreground/10 bg-white px-8 font-display text-base font-bold tracking-wide text-foreground/70 shadow-sm md:mx-8 md:text-lg"
+                  >
+                    {nome}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </Reveal>
         </div>
 
         <StatsScrollLock />
       </section>
 
-      {/* VANTAGENS */}
-      <section className="bg-secondary/70 pt-4 pb-28">
+      {/* POR QUE SER REVENDEDOR — cards em fundo escuro */}
+      <section className="bg-secondary/60 pt-4 pb-28">
         <div className="w-full" style={{ padding: "20px" }}>
           <div
-            className="relative w-full rounded-[32px] px-6 py-12 md:px-12 md:py-16"
-            style={{ background: "oklch(0.22 0 0)" }}
+            className="relative w-full overflow-hidden rounded-[32px] px-6 py-14 md:px-12 md:py-20"
+            style={{ background: "oklch(0.14 0.005 250)" }}
           >
-            {/* decorative bg details */}
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px]"
-              style={{
-                background:
-                  "radial-gradient(600px 320px at 85% -10%, color-mix(in oklab, var(--gold) 22%, transparent), transparent 60%), radial-gradient(500px 280px at -5% 110%, color-mix(in oklab, var(--gold) 14%, transparent), transparent 60%)",
-              }}
-            />
-            {/* diagonal hairlines */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.08]"
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.06]"
               style={{
                 backgroundImage:
                   "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
-                maskImage:
-                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
-                WebkitMaskImage:
-                  "linear-gradient(180deg, black 0%, black 70%, transparent 100%)",
               }}
             />
-            {/* gold accent line sweep */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18]"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(115deg, color-mix(in oklab, var(--gold) 90%, transparent) 0 1px, transparent 1px 90px)",
-                maskImage:
-                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
-                WebkitMaskImage:
-                  "radial-gradient(ellipse 70% 60% at 80% 30%, black, transparent 75%)",
-              }}
-            />
-            {/* SVG noise grain */}
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.18] mix-blend-overlay"
-              style={{
-                backgroundImage:
-                  "url(\"data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.55 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>\")",
-                backgroundSize: "220px 220px",
-              }}
-            />
-            {/* long thin gold stroke top-right */}
-            <svg
-              aria-hidden
-              className="pointer-events-none absolute right-0 top-0 h-full w-[55%] opacity-[0.22]"
-              viewBox="0 0 600 400"
-              fill="none"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M -20 380 Q 200 280 380 200 T 620 -20"
-                stroke="var(--gold)"
-                strokeWidth="1"
-                fill="none"
-              />
-              <path
-                d="M -20 420 Q 240 320 420 240 T 660 20"
-                stroke="var(--gold)"
-                strokeWidth="0.6"
-                fill="none"
-              />
-            </svg>
+
             <div className="relative z-10">
-            {/* Header row */}
-            <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
-              <div className="max-w-2xl">
-                <Reveal>
-                  <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
-                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
-                      <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
-                    </span>
-                    <span className="font-display text-sm font-medium tracking-wide text-white/90">
-                      vantagens exclusivas
-                    </span>
-                  </div>
-                  <h2
-                    className="text-white"
-                    style={{
-                      fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
-                      fontWeight: 600,
-                      fontSize: "clamp(28px, 7vw, 44px)",
-                      lineHeight: "1.05",
-                    }}
+              <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
+                <div className="max-w-2xl">
+                  <Reveal>
+                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
+                      <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
+                        <img
+                          src={rdMark}
+                          alt="Roll Door"
+                          className="h-5 w-5 object-contain"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </span>
+                      <span className="font-display text-sm font-medium tracking-wide text-white/90">
+                        por que ser um revendedor
+                      </span>
+                    </div>
+                    <h2
+                      className="text-white"
+                      style={{
+                        fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
+                        fontWeight: 600,
+                        fontSize: "clamp(28px, 6.5vw, 48px)",
+                        lineHeight: "1.05",
+                      }}
+                    >
+                      Muito mais do que um fornecedor.
+                      <br />
+                      <span className="text-white/60">
+                        Um parceiro para crescer junto com você.
+                      </span>
+                    </h2>
+                    <p className="mt-6 max-w-xl text-white/70 md:text-lg">
+                      Ao fazer parte da Rede Premium Roll Door, sua empresa conta com uma estrutura
+                      pensada para impulsionar suas vendas.
+                    </p>
+                  </Reveal>
+                </div>
+                <Reveal delay={0.1}>
+                  <a
+                    href="#cta-final"
+                    className="group inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-white/15"
                   >
-                    O que você ganha por estar{" "}
-                    <span style={{ color: "var(--gold)" }}>dentro do grupo</span>.
-                  </h2>
+                    Quero fazer parte
+                    <ArrowRight className="h-5 w-5" />
+                  </a>
                 </Reveal>
               </div>
-              <Reveal delay={0.1}>
-                <a
-                  href="#cta"
-                  className="group relative inline-flex items-center gap-3 rounded-2xl px-8 py-4 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                    boxShadow:
-                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow)",
-                  }}
-                >
-                  Quero entrar
-                  <ArrowRight className="h-5 w-5" />
-                </a>
-              </Reveal>
-            </div>
 
-            {/* Cards grid */}
-            <div className="mt-10 grid gap-[13px] md:mt-14 md:grid-cols-4">
-              {[
-                {
-                  icon: Zap,
-                  title: "Lançamentos antes de todo mundo",
-                  bullets: [
-                    "Novidades 24h antes do público",
-                    "Avisos exclusivos no grupo",
-                    "Acesso prioritário às coleções",
-                  ],
-                },
-                {
-                  icon: Tag,
-                  title: "Preços que só existem no grupo",
-                  bullets: [
-                    "Descontos reservados",
-                    "Cupons relâmpago",
-                    "Condições especiais de revenda",
-                  ],
-                },
-                {
-                  icon: Gift,
-                  title: "Sorteios e bônus toda semana",
-                  bullets: [
-                    "Brindes para participantes",
-                    "Kits exclusivos das lives",
-                    "Ações relâmpago ao vivo",
-                  ],
-                  highlight: true,
-                },
-                {
-                  icon: TrendingUp,
-                  title: "Curadoria de alto giro",
-                  bullets: [
-                    "Produtos validados na loja",
-                    "Foco em alto giro",
-                    "Sem apostar no escuro",
-                  ],
-                },
-              ].map(({ icon: Icon, title, bullets, highlight }, i) => (
-                <Reveal key={i} delay={i * 0.05} className="h-full">
-                  <article
-                    className="group relative flex h-full flex-col gap-2 rounded-[24px] p-2 backdrop-blur-xl transition-colors"
-                    style={
-                      highlight
-                        ? {
-                            background:
-                              "linear-gradient(180deg, color-mix(in oklab, var(--gold) 22%, transparent) 0%, color-mix(in oklab, var(--gold) 10%, transparent) 100%)",
-                            border:
-                              "1px solid color-mix(in oklab, var(--gold) 45%, transparent)",
-                          }
-                        : {
-                            background: "rgba(255,255,255,0.04)",
-                            border: "1px solid rgba(255,255,255,0.08)",
-                          }
-                    }
-                  >
-                    {/* TOP — icon + title */}
-                    <div
-                      className="flex flex-1 flex-col rounded-[18px] p-6"
-                      style={{
-                        background: highlight
-                          ? "color-mix(in oklab, var(--gold) 14%, rgba(255,255,255,0.04))"
-                          : "rgba(255,255,255,0.05)",
-                        border: "1px solid rgba(255,255,255,0.06)",
-                      }}
+              <div className="mt-12 grid gap-[13px] md:mt-16 md:grid-cols-4">
+                {[
+                  {
+                    icon: Layers,
+                    title: "Produtos exclusivos",
+                    desc: "Portfólio pensado para o mercado de alto padrão.",
+                  },
+                  {
+                    icon: Award,
+                    title: "Marca reconhecida nacionalmente",
+                    desc: "Décadas de reputação a favor da sua venda.",
+                  },
+                  {
+                    icon: Headphones,
+                    title: "Suporte técnico especializado",
+                    desc: "Atendimento próximo em cada etapa do projeto.",
+                    highlight: true,
+                  },
+                  {
+                    icon: MegaphoneIcon,
+                    title: "Materiais de marketing",
+                    desc: "Recursos prontos para você vender mais e melhor.",
+                  },
+                  {
+                    icon: Handshake,
+                    title: "Atendimento dedicado",
+                    desc: "Um canal direto com a equipe Roll Door.",
+                  },
+                  {
+                    icon: Sparkles,
+                    title: "Capacitação comercial",
+                    desc: "Treinamentos e materiais para sua equipe.",
+                  },
+                  {
+                    icon: Target,
+                    title: "Indicação de oportunidades*",
+                    desc: "Leads e projetos direcionados por região.",
+                  },
+                  {
+                    icon: Building2,
+                    title: "Condições diferenciadas",
+                    desc: "Comerciais especiais para parceiros da rede.",
+                  },
+                ].map(({ icon: Icon, title, desc, highlight }, i) => (
+                  <Reveal key={i} delay={i * 0.04} className="h-full">
+                    <article
+                      className="group relative flex h-full flex-col gap-4 rounded-[20px] p-6"
+                      style={
+                        highlight
+                          ? {
+                              background:
+                                "linear-gradient(180deg, rgba(255,255,255,0.12) 0%, rgba(255,255,255,0.04) 100%)",
+                              border: "1px solid rgba(255,255,255,0.18)",
+                            }
+                          : {
+                              background: "rgba(255,255,255,0.04)",
+                              border: "1px solid rgba(255,255,255,0.08)",
+                            }
+                      }
                     >
-                      <Icon
-                        className="h-9 w-9"
-                        style={{ color: "var(--gold)" }}
-                        strokeWidth={1.3}
-                      />
-
-                      <h3 className="mt-10 font-display text-[22px] font-medium leading-[1.1] tracking-tight text-white md:mt-14 md:text-[26px]">
+                      <Icon className="h-9 w-9 text-white/90" strokeWidth={1.3} />
+                      <h3 className="font-display text-[19px] font-semibold leading-tight text-white md:text-[21px]">
                         {title}
                       </h3>
-                    </div>
+                      <p className="text-sm leading-relaxed text-white/60 md:text-[15px]">
+                        {desc}
+                      </p>
+                    </article>
+                  </Reveal>
+                ))}
+              </div>
 
-                    {/* BOTTOM — bullets + CTA pill */}
-                    <div
-                      className="flex flex-col gap-5 rounded-[18px] p-6"
-                      style={{
-                        background: highlight
-                          ? "color-mix(in oklab, var(--gold) 8%, rgba(0,0,0,0.25))"
-                          : "rgba(255,255,255,0.025)",
-                        border: "1px solid rgba(255,255,255,0.05)",
-                      }}
-                    >
-                      <ul className="space-y-2">
-                        {bullets.map((b) => (
-                          <li
-                            key={b}
-                            className="flex items-start gap-2.5 text-[16px] leading-relaxed text-white/75 md:text-[21px]"
-                          >
-                            <Check
-                              className="mt-0.5 h-4 w-4 shrink-0"
-                              style={{ color: "var(--gold)" }}
-                              strokeWidth={2.5}
-                            />
-                            <span>{b}</span>
-                          </li>
-                        ))}
-                      </ul>
-
-                      <a
-                        href="#cta"
-                        className="group/btn flex w-full items-center justify-between gap-3 rounded-md px-4 py-3.5 font-display text-base font-medium transition-colors"
-                        style={
-                          highlight
-                            ? {
-                                background: "oklch(0.16 0 0)",
-                                color: "#ffffff",
-                                border: "1px solid rgba(255,255,255,0.08)",
-                              }
-                            : {
-                                background: "rgba(255,255,255,0.04)",
-                                color: "rgba(255,255,255,0.95)",
-                                border: "1px solid rgba(255,255,255,0.08)",
-                              }
-                        }
-                      >
-                        Saiba mais
-                        <ArrowRight className="h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                      </a>
-                    </div>
-                  </article>
-                </Reveal>
-              ))}
+              <p className="relative z-10 mt-8 text-xs text-white/40">
+                *Disponível conforme critérios do programa.
+              </p>
             </div>
-
-            </div>
-            {/* tail — polygon pointer */}
-            <svg
-              aria-hidden
-              className="absolute left-16 z-0 h-[70px] w-[110px] bottom-[calc(-2.5rem+13px)] md:left-40 md:bottom-[calc(-5rem+13px)] md:h-[149px] md:w-[190px]"
-              viewBox="0 0 2137 1681"
-              fill="none"
-              preserveAspectRatio="xMidYMid meet"
-            >
-              <path
-                d="M2006.04 652.34C2180.53 716.618 2180.53 963.406 2006.04 1027.68L269.133 1667.52C138.564 1715.62 7.69499e-05 1618.99 7.69499e-05 1479.85L7.69499e-05 200.178C7.69499e-05 61.0311 138.564 -35.592 269.134 12.5066L2006.04 652.34Z"
-                fill="oklch(0.22 0 0)"
-              />
-            </svg>
           </div>
         </div>
       </section>
 
-      {/* COMO FUNCIONA */}
-      <section className="relative bg-secondary/70 py-24 md:py-32">
+      {/* DIFERENCIAIS */}
+      <section className="bg-secondary/60 py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="text-center">
+          <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
-                </span>
-                <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
-                  como funciona
-                </span>
-              </div>
-              <h2 className="mx-auto max-w-2xl font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
-                Em 4 passos <br className="hidden md:block" />
-                você já está <span className="text-gold">dentro</span>.
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Por que o mercado escolhe a{" "}
+                <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
               </h2>
             </Reveal>
           </div>
 
-          {(() => {
-            const steps = [
+          <div className="mt-14 grid gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-4">
+            {[
               {
-                key: "tl",
-                title: "Clique no botão",
-                desc: "Entra direto pelo WhatsApp, sem cadastro nem espera.",
-                center: "Clique no botão",
+                title: "Engenharia para grandes vãos",
+                desc: "Projetos desenvolvidos para entregar elegância, desempenho e segurança.",
+                icon: Building2,
               },
               {
-                key: "tr",
-                title: "Receba os avisos",
-                desc: "Avisamos toda live com antecedência pra você não perder.",
-                center: "Receba os avisos",
+                title: "Design que agrega valor",
+                desc: "Produtos que valorizam qualquer projeto arquitetônico.",
+                icon: Sparkles,
               },
               {
-                key: "bl",
-                title: "Participe ao vivo",
-                desc: "Vê os lançamentos e tira dúvidas em tempo real com a curadoria.",
-                center: "Participe ao vivo",
+                title: "Qualidade reconhecida",
+                desc: "Décadas de experiência desenvolvendo soluções premium para o mercado brasileiro.",
+                icon: Award,
               },
               {
-                key: "br",
-                title: "Aproveite as ofertas",
-                desc: "Condições exclusivas do grupo pra você lucrar mais em cada peça.",
-                center: "Aproveite as ofertas",
+                title: "Marca que gera confiança",
+                desc: "Seu cliente já reconhece a qualidade da Roll Door antes mesmo da primeira visita.",
+                icon: Handshake,
               },
-            ];
-
-            return (
-              <div className="relative mx-auto mt-20 max-w-[1400px]">
-                {/* Desktop: radar centered with cards overlapping on top */}
-                <div className="relative hidden md:block">
-                  <Reveal>
-                    <div className="relative mx-auto flex justify-center">
-                      <img
-                        src={comoFuncionaRadar}
-                        alt="4 passos para entrar no grupo VIP"
-                        className="h-auto w-[620px] lg:w-[760px]"
-                      loading="lazy" decoding="async" />
-                    </div>
-                  </Reveal>
-
-                  {/* Top-left */}
-                  <div className="absolute left-0 top-4 z-10 w-[340px] lg:w-[380px]">
-                    <Reveal>
-                      <FloatingStepCard title={steps[0].title} desc={steps[0].desc} />
-                    </Reveal>
+            ].map(({ title, desc, icon: Icon }, i) => (
+              <Reveal key={i} delay={i * 0.06}>
+                <div className="flex h-full flex-col rounded-3xl border border-foreground/10 bg-white p-8 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.2)]">
+                  <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-xl bg-foreground text-white">
+                    <Icon className="h-6 w-6" strokeWidth={1.6} />
                   </div>
-                  {/* Top-right */}
-                  <div className="absolute right-0 top-4 z-10 w-[340px] lg:w-[380px]">
-                    <Reveal>
-                      <FloatingStepCard title={steps[1].title} desc={steps[1].desc} />
-                    </Reveal>
-                  </div>
-                  {/* Bottom-left */}
-                  <div className="absolute bottom-4 left-0 z-10 w-[340px] lg:w-[380px]">
-                    <Reveal>
-                      <FloatingStepCard title={steps[2].title} desc={steps[2].desc} />
-                    </Reveal>
-                  </div>
-                  {/* Bottom-right */}
-                  <div className="absolute bottom-4 right-0 z-10 w-[340px] lg:w-[380px]">
-                    <Reveal>
-                      <FloatingStepCard title={steps[3].title} desc={steps[3].desc} />
-                    </Reveal>
-                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground md:text-2xl">
+                    {title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground md:text-base">
+                    {desc}
+                  </p>
                 </div>
-
-                {/* Mobile floating cards (stacked) */}
-                <div className="mt-10 grid grid-cols-1 gap-4 sm:grid-cols-2 md:hidden">
-                  {steps.map((s) => (
-                    <Reveal key={s.key}>
-                      <FloatingStepCard title={s.title} desc={s.desc} align="left" />
-                    </Reveal>
-                  ))}
-                </div>
-              </div>
-            );
-          })()}
-
-          <Reveal>
-            <p className="mx-auto mt-16 max-w-3xl text-center text-base text-muted-foreground md:text-xl">
-              Quando esses <strong className="font-semibold text-foreground">4 passos</strong>{" "}
-              acontecem juntos, entrar no grupo deixa de ser curiosidade e passa a ser{" "}
-              <strong className="font-semibold text-foreground">decisão de venda</strong>.
-            </p>
-          </Reveal>
-
-          <div className="mt-10 flex justify-center">
-            <Reveal className="w-full max-w-[640px]">
-              <div className="relative w-full">
-                <a
-                  href={WHATSAPP}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
-                  style={{
-                    background:
-                      "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                    boxShadow:
-                      "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
-                  }}
-                >
-                  Quero participar da próxima turma
-                </a>
-                <img
-                  src={badgeVagas}
-                  alt="Vagas limitadas - turma reduzida"
-                  width={400}
-                  height={400}
-                  decoding="async"
-                  className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-                loading="lazy" />
-              </div>
-            </Reveal>
+              </Reveal>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* VITRINE — Orbit */}
-      <div className="bg-secondary/70 p-[25px]">
+      {/* PORTFÓLIO — VitrineOrbit */}
+      <div className="bg-secondary/60 p-[25px]">
         <VitrineOrbit />
       </div>
 
-      {/* PROVA SOCIAL */}
-      <section className="bg-secondary/70 pt-24 md:pt-32">
+      {/* PORTFÓLIO — lista de linhas */}
+      <section className="bg-secondary/60 pb-24 md:pb-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-12 md:grid-cols-2 md:items-stretch md:gap-16">
-            {/* LEFT — pill, headline, CTA */}
-            <div className="flex flex-col justify-between gap-12 md:py-4">
-              <Reveal>
-                <div className="inline-flex items-center gap-2 rounded-full border border-gold/20 bg-gold/10 py-2 pl-2 pr-5 shadow-sm backdrop-blur">
-                  <span className="flex h-7 w-7 items-center justify-center rounded-full bg-background/80">
-                    <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
-                  </span>
-                  <span className="font-display text-sm font-medium tracking-wide text-foreground/80">
-                    depoimentos
-                  </span>
-                </div>
-                <h2 className="mt-7 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
-                  O que <UnderlineWord delay={0}>dizem</UnderlineWord>{" "}
-                  <UnderlineWord delay={0.18}>nossas</UnderlineWord> revendedoras no grupo.
-                </h2>
-              </Reveal>
-
-              <Reveal delay={0.15}>
-                <div className="flex flex-wrap items-center gap-5">
-                  <a
-                    href={WHATSAPP}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group inline-flex items-center gap-3 rounded-full px-8 py-4 font-display text-base font-bold tracking-tight text-accent-foreground transition-transform hover:-translate-y-0.5 active:translate-y-0 md:text-lg"
-                    style={{
-                      background:
-                        "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                      boxShadow:
-                        "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
-                    }}
-                  >
-                    Entrar no Grupo VIP
-                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </a>
-
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-full bg-background ring-1 ring-border">
-                      <img src={leeviMark} alt="Leevi" className="h-7 w-7 object-contain" loading="lazy" decoding="async" />
-                    </div>
-                    <div className="leading-tight">
-                      <div className="font-display text-2xl font-black text-foreground">5.0</div>
-                      <div className="font-display text-[10px] font-bold uppercase tracking-[0.2em] text-muted-foreground">
-                        Depoimentos<br />no grupo
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-
-            {/* RIGHT — WhatsApp mockup */}
-            <Reveal delay={0.1}>
-              <div className="flex justify-center md:justify-end">
-                <DepoimentoCarousel />
-              </div>
-            </Reveal>
-          </div>
-        </div>
-
-        {/* Full-width gold ticker */}
-        <Reveal delay={0.2}>
-          <div className="relative mt-16 flex w-full items-stretch overflow-hidden bg-gold py-4 font-display">
-            {/* EM LIVE badge */}
-            <div className="z-10 -my-4 flex shrink-0 items-center gap-3 self-stretch rounded-r-3xl bg-gold-deep px-7 text-base font-black uppercase tracking-[0.25em] text-white">
-              <span className="relative flex h-2.5 w-2.5">
-                <span
-                  className="absolute inset-0 rounded-full bg-white"
-                  style={{ animation: "leevi-pulse-ring 1.4s ease-out infinite" }}
-                />
-                <span
-                  className="relative inline-flex h-2.5 w-2.5 rounded-full bg-white"
-                  style={{ animation: "leevi-pulse-dot 1.4s ease-in-out infinite" }}
-                />
-              </span>
-              em live
-            </div>
-
-            {/* Marquee track */}
-            <div className="flex flex-1 overflow-hidden">
-              <div
-                className="flex shrink-0 items-center whitespace-nowrap text-white"
-                style={{
-                  animation: "leevi-marquee 38s linear infinite",
-                  fontWeight: 600,
-                  fontSize: "18px",
-                  letterSpacing: "-0.01em",
-                }}
-              >
-                {Array.from({ length: 6 }).flatMap((_, group) =>
-                  [
-                    "Algumas peças esgotam ainda durante a live",
-                    "Estoque limitado",
-                    "Quem chega primeiro leva",
-                    "Curadoria semanal",
-                    "Compre antes do site",
-                    "Lançamentos antes de todo mundo",
-                  ].map((t, i) => (
-                    <span key={`${group}-${i}`} className="inline-flex items-center">
-                      <span className="px-8">{t}</span>
-                      <span className="opacity-60">•</span>
-                    </span>
-                  )),
-                )}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </section>
-
-      {/* LOSS AVERSION */}
-      <section
-        className="relative overflow-hidden py-24 md:py-32"
-        style={{ background: "oklch(0.18 0.005 80)" }}
-      >
-        {/* Diagonal line pattern */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, oklch(0.95 0.02 85 / 0.06) 0px, oklch(0.95 0.02 85 / 0.06) 1px, transparent 1px, transparent 22px)",
-          }}
-        />
-        {/* soft gold halos */}
-        <div className="pointer-events-none absolute -left-40 top-1/3 h-[500px] w-[500px] rounded-full bg-gold/10 blur-[160px]" />
-        <div className="pointer-events-none absolute -right-40 bottom-0 h-[400px] w-[400px] rounded-full bg-gold-soft/10 blur-[140px]" />
-
-        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
-          {/* Centered header */}
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 py-2 pl-2 pr-5 backdrop-blur">
-                <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white/95">
-                  <img src={leeviMark} alt="Leevi" className="h-5 w-5 object-contain" loading="lazy" decoding="async" />
-                </span>
-                <span className="font-display text-sm font-medium tracking-wide text-white/90">
-                  por que entrar agora
-                </span>
-              </div>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <h2
-                className="font-display text-white"
-                style={{ fontWeight: 600, fontSize: "clamp(34px, 9vw, 60px)", lineHeight: "1.02", letterSpacing: "-0.03em" }}
-              >
-                O que você perde<br />
-                ficando <span className="text-gold">de fora.</span>
-              </h2>
-            </Reveal>
-            <Reveal delay={0.2}>
-              <p className="mx-auto mt-6 max-w-xl text-base leading-relaxed text-white/60 md:text-[21px]">
-                Cada semana fora do grupo é uma semana comprando depois da concorrência.
+              <p className="mx-auto mt-4 max-w-2xl text-base text-muted-foreground md:text-[19px]">
+                Ofereça soluções para residências, condomínios, empreendimentos e projetos de
+                arquitetura de alto padrão.
               </p>
             </Reveal>
           </div>
 
-          {/* Top benefit cards — gold gradient with check badges */}
-          <div className="mt-14 grid gap-6 md:grid-cols-3 md:gap-7">
+          <div className="mt-14 grid gap-5 md:grid-cols-3">
             {[
-              { kicker: "Acesso semanal", title: "Lançamentos antes do site", img: cardShape1 },
-              { kicker: "Vantagem exclusiva", title: "Preços e bônus do VIP", img: cardShape3 },
-              { kicker: "Curadoria Leevi", title: "Produtos de alto giro", img: cardShape2 },
-            ].map((c, i) => (
-              <Reveal key={i} delay={i * 0.08}>
-                <div className="relative h-full">
-                  {/* Check badge */}
-                  <div className="absolute left-1/2 -top-5 z-10 flex h-10 w-10 -translate-x-1/2 items-center justify-center rounded-full bg-card ring-1 ring-white/10">
-                    <Check className="h-5 w-5 text-gold-deep" strokeWidth={3} />
-                  </div>
-                  <div className="relative flex h-[210px] flex-col items-center justify-center px-10 text-center">
-                    <img
-                      src={c.img}
-                      alt=""
-                      aria-hidden
-                      className="pointer-events-none absolute inset-0 h-full w-full object-fill"
-                    loading="lazy" decoding="async" />
-                    <div className="relative font-display text-[17px] font-semibold tracking-normal text-foreground/70">
-                      {c.kicker}
-                    </div>
-                    <div className="relative mt-2 font-display text-[28px] font-bold leading-tight text-foreground md:text-[30px]">
-                      {c.title}
-                    </div>
+              { title: "Portas deslizantes", img: portaDeslizante },
+              { title: "Janelas premium", img: janelaImg },
+              { title: "Grandes vãos", img: grandesVaos },
+              { title: "Sistemas de alumínio", img: personalizado },
+              { title: "Soluções personalizadas", img: galeria1 },
+              { title: "Fachadas arquitetônicas", img: galeria2 },
+            ].map((p, i) => (
+              <Reveal key={p.title} delay={i * 0.05}>
+                <div className="group relative aspect-[4/3] overflow-hidden rounded-2xl">
+                  <img
+                    src={p.img}
+                    alt={p.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                  <div
+                    className="absolute inset-0"
+                    style={{
+                      background:
+                        "linear-gradient(180deg, transparent 40%, rgba(15,15,20,0.85) 100%)",
+                    }}
+                  />
+                  <div className="absolute inset-x-0 bottom-0 p-6">
+                    <h3 className="font-display text-2xl font-bold text-white">{p.title}</h3>
                   </div>
                 </div>
               </Reveal>
             ))}
           </div>
-
-          {/* CTA + Vagas limitadas stamp */}
-          <Reveal delay={0.2}>
-            <div className="relative mx-auto mt-14 w-full max-w-[640px]">
-              <a
-                href={WHATSAPP}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 pr-20 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:pr-28 sm:text-xl"
-                style={{
-                  background:
-                    "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-                  boxShadow:
-                    "inset 0 2px 0 hsl(0 0% 100% / 0.35), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
-                }}
-              >
-                Quero participar da próxima turma
-              </a>
-              <img
-                src={badgeVagas}
-                alt="Vagas limitadas - turma reduzida"
-                width={400}
-                height={400}
-                decoding="async"
-                loading="lazy"
-                className="absolute -right-4 -top-6 sm:-right-10 sm:-top-8 h-24 w-24 sm:h-32 sm:w-32 rotate-12 drop-shadow-xl"
-              />
-            </div>
-          </Reveal>
-
         </div>
+      </section>
 
-        {/* FAQ (continues in same section to avoid background seam) */}
-        <div className="relative mx-auto mt-24 max-w-[1400px] px-5 md:mt-32 md:px-10">
+      {/* GALERIA — texto sobre projetos */}
+      <section className="relative overflow-hidden bg-foreground py-24 text-white md:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-center md:gap-16">
+            <Reveal>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl">
+                Projetos que <span className="text-white/60">impressionam</span> seus clientes.
+              </h2>
+              <p className="mt-6 text-lg leading-relaxed text-white/70 md:text-xl">
+                Quando o cliente vê um projeto Roll Door, ele entende imediatamente o diferencial.
+              </p>
+              <p className="mt-4 text-lg leading-relaxed text-white/70 md:text-xl">
+                Você vende muito mais do que esquadrias.{" "}
+                <strong className="font-semibold text-white">
+                  Você entrega sofisticação, tecnologia e valorização do imóvel.
+                </strong>
+              </p>
+            </Reveal>
+
+            <Reveal delay={0.15}>
+              <div className="grid gap-4">
+                <div className="aspect-[16/10] overflow-hidden rounded-3xl">
+                  <img src={galeria2} alt="Residência premium Roll Door" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="aspect-square overflow-hidden rounded-2xl">
+                    <img src={galeria1} alt="Projeto residencial Roll Door" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                  <div className="aspect-square overflow-hidden rounded-2xl">
+                    <img src={galeria3} alt="Empreendimento de alto padrão Roll Door" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+                  </div>
+                </div>
+              </div>
+            </Reveal>
+          </div>
+        </div>
+      </section>
+
+      {/* DEPOIMENTOS */}
+      <section className="bg-secondary/60 py-24 md:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Quem já é <UnderlineWord delay={0}>parceiro</UnderlineWord> recomenda.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                quote:
+                  "Desde que começamos a trabalhar com a Roll Door conseguimos agregar muito mais valor aos nossos projetos.",
+                autor: "Vidraçaria parceira",
+                cidade: "São Paulo, SP",
+              },
+              {
+                quote: "Hoje nossos clientes já chegam pedindo Roll Door.",
+                autor: "Esquadrias parceira",
+                cidade: "Curitiba, PR",
+              },
+              {
+                quote: "Além do produto, o suporte faz toda diferença.",
+                autor: "Serralheria parceira",
+                cidade: "Belo Horizonte, MG",
+              },
+            ].map((d, i) => (
+              <Reveal key={i} delay={i * 0.08}>
+                <div className="flex h-full flex-col rounded-3xl border border-foreground/10 bg-white p-8 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.2)]">
+                  <Quote className="h-8 w-8 text-foreground/25" strokeWidth={1.5} />
+                  <p className="mt-4 flex-1 font-display text-lg font-medium leading-relaxed text-foreground md:text-xl">
+                    "{d.quote}"
+                  </p>
+                  <div className="mt-6 border-t border-foreground/10 pt-4">
+                    <div className="font-display text-sm font-bold text-foreground">{d.autor}</div>
+                    <div className="text-xs text-muted-foreground">{d.cidade}</div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* COMO FUNCIONA */}
+      <section className="bg-secondary/60 pb-24 md:pb-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Faça parte da Rede Premium em{" "}
+                <UnderlineWord delay={0}>poucos passos</UnderlineWord>.
+              </h2>
+            </Reveal>
+          </div>
+
+          <div className="mt-14 grid gap-6 md:grid-cols-4">
+            {[
+              {
+                n: "1",
+                title: "Preencha o formulário",
+                desc: "Deixe seus dados e conte um pouco sobre sua empresa e região.",
+              },
+              {
+                n: "2",
+                title: "Nossa equipe analisa",
+                desc: "Avaliamos sua região e o perfil da empresa cadastrada.",
+              },
+              {
+                n: "3",
+                title: "Apresentamos o programa",
+                desc: "Entramos em contato para apresentar as condições da parceria.",
+              },
+              {
+                n: "4",
+                title: "Você começa a vender",
+                desc: "Inicie sua jornada como Revendedor Premium Roll Door.",
+              },
+            ].map((s, i) => (
+              <Reveal key={s.n} delay={i * 0.06}>
+                <div className="relative flex h-full flex-col rounded-3xl border border-foreground/10 bg-white p-8">
+                  <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-foreground font-display text-2xl font-black text-white">
+                    {s.n}
+                  </div>
+                  <h3 className="font-display text-xl font-bold text-foreground md:text-2xl">
+                    {s.title}
+                  </h3>
+                  <p className="mt-3 text-[15px] leading-relaxed text-muted-foreground">
+                    {s.desc}
+                  </p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="relative overflow-hidden bg-foreground py-24 text-white md:py-32">
+        <div className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 22px)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
-            {/* LEFT — Title + contact cards */}
             <div>
               <Reveal>
                 <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
                   Ficou com<br />dúvidas?
                 </h2>
                 <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60 md:text-base">
-                  Aqui colocamos as perguntas mais comuns e você também pode falar com o nosso time pelos canais abaixo.
+                  Aqui estão as perguntas mais comuns sobre o programa. Precisa de mais informações?
+                  Preencha o formulário abaixo e nossa equipe entra em contato.
                 </p>
-
-                <div className="mt-8 space-y-3">
-                  <a
-                    href="mailto:contato@leevi.com.br"
-                    className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
-                  >
-                    <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
-                      E-mail
-                    </div>
-                    <div className="mt-1 text-sm text-white/80">
-                      contato@leevi.com.br
-                    </div>
-                  </a>
-                  <a
-                    href={WHATSAPP}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block rounded-2xl border border-white/10 bg-white/[0.02] px-5 py-4 transition-colors hover:border-gold/40 hover:bg-white/[0.04]"
-                  >
-                    <div className="font-display text-sm font-bold uppercase tracking-wider text-gold">
-                      WhatsApp
-                    </div>
-                    <div className="mt-1 text-sm text-white/80">
-                      Conversar agora
-                    </div>
-                  </a>
-                </div>
               </Reveal>
             </div>
 
-            {/* RIGHT — FAQ items */}
             <div className="space-y-3">
               {[
                 {
-                  q: "Preciso pagar para entrar?",
-                  a: "Não. A entrada no Grupo VIP de Revendedoras Leevi é 100% gratuita. Você só investe nos produtos quando quiser comprar.",
+                  q: "Preciso já trabalhar com esquadrias?",
+                  a: "Sim. O programa é destinado para empresas do segmento, como vidraçarias, serralherias e fabricantes de esquadrias.",
                 },
                 {
-                  q: "Vão me mandar muita mensagem?",
-                  a: "Não. O grupo é silencioso. Apenas a equipe Leevi posta — lançamentos, lives e ofertas. Sem spam, sem grupo bagunçado.",
+                  q: "Existe exclusividade?",
+                  a: "As condições são avaliadas conforme a região e o perfil do parceiro.",
                 },
                 {
-                  q: "Preciso ter CNPJ?",
-                  a: "Não é obrigatório. Atendemos revendedoras com e sem CNPJ. Algumas condições especiais são para CNPJ.",
+                  q: "Recebo suporte?",
+                  a: "Sim. Os parceiros contam com suporte técnico e comercial durante toda a parceria.",
                 },
                 {
-                  q: "Como funcionam as lives?",
-                  a: "Acontecem dentro do WhatsApp em horários divulgados no grupo. Você assiste, escolhe e fecha ali mesmo.",
-                },
-                {
-                  q: "Posso sair quando quiser?",
-                  a: "Claro. É só sair do grupo. Mas a maioria fica — porque é onde a oportunidade aparece primeiro.",
+                  q: "Como funciona o processo de aprovação?",
+                  a: "Após o cadastro, nossa equipe entra em contato para avaliar o perfil da empresa e apresentar as condições do programa.",
                 },
               ].map((item, i) => (
                 <FaqItem key={i} q={item.q} a={item.a} />
@@ -1113,15 +794,39 @@ function Landing() {
         </div>
       </section>
 
+      {/* CTA FINAL COM FORMULÁRIO */}
+      <section id="cta-final" className="bg-secondary/60 py-24 md:py-32">
+        <div className="mx-auto max-w-[1200px] px-5 md:px-10">
+          <div className="mx-auto max-w-3xl text-center">
+            <Reveal>
+              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+                Sua empresa está pronta para vender uma das{" "}
+                <UnderlineWord delay={0}>marcas mais reconhecidas</UnderlineWord> do mercado
+                premium?
+              </h2>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <p className="mx-auto mt-6 max-w-2xl text-base text-muted-foreground md:text-[19px]">
+                Junte-se à Rede Premium Roll Door e ofereça aos seus clientes produtos que unem
+                design, engenharia e alto padrão. Preencha o formulário e fale com um especialista.
+              </p>
+            </Reveal>
+          </div>
+
+          <div className="mx-auto mt-14 max-w-3xl">
+            <Reveal delay={0.2}>
+              <FormularioRevenda />
+            </Reveal>
+          </div>
+        </div>
+      </section>
 
       {/* STICKY MOBILE CTA */}
       <a
-        href={WHATSAPP}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-[#16a34a] px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(22,163,74,0.6)] transition-colors hover:bg-[#15803d] md:hidden"
+        href="#cta-final"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-foreground px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] transition-colors hover:bg-foreground/90 md:hidden"
       >
-        Entrar no Grupo VIP <ArrowRight className="h-4 w-4" />
+        Quero ser Revendedor Premium <ArrowRight className="h-4 w-4" />
       </a>
     </main>
   );
@@ -1130,7 +835,7 @@ function Landing() {
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.02] transition-colors hover:border-gold/30">
+    <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/25">
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
@@ -1138,7 +843,7 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         <span className="font-display text-base font-semibold tracking-tight text-white md:text-lg">
           {q}
         </span>
-        <span className="flex h-7 w-7 shrink-0 items-center justify-center text-gold">
+        <span className="flex h-7 w-7 shrink-0 items-center justify-center text-white">
           {open ? <Minus className="h-5 w-5" /> : <Plus className="h-5 w-5" />}
         </span>
       </button>
