@@ -89,7 +89,7 @@ export function VitrineOrbit() {
           <h2
             className="font-display mx-auto lg:mx-0"
             style={{
-              fontWeight: 600,
+              fontWeight: 500,
               fontSize: "clamp(34px, 9vw, 60px)",
               lineHeight: "1.02",
               color: "oklch(0.18 0.005 250)",
@@ -153,7 +153,7 @@ export function VitrineOrbit() {
                     loading="lazy"
                     decoding="async"
                   />
-                  <span className="font-display text-lg font-bold text-foreground md:text-xl">
+                  <span className="font-display text-lg font-medium text-foreground md:text-xl">
                     {current.name}
                   </span>
                 </motion.div>

@@ -95,10 +95,10 @@ export function FormularioRevenda() {
         <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-foreground text-white">
           <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
         </div>
-        <h3 className="font-display text-3xl font-bold text-foreground md:text-4xl">
+        <h3 className="font-display text-3xl font-medium text-foreground md:text-4xl">
           Cadastro recebido!
         </h3>
-        <p className="mx-auto mt-4 max-w-lg text-base text-muted-foreground md:text-lg">
+        <p className="mx-auto mt-4 max-w-lg text-[18px] text-muted-foreground md:text-lg">
           Nossa equipe vai analisar sua região e o perfil da sua empresa e entrará em contato em
           breve para apresentar o programa de parceria Roll Door.
         </p>
@@ -259,7 +259,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1.5 block font-display text-[13px] font-semibold uppercase tracking-wider text-foreground/70">
+      <span className="mb-1.5 block font-display text-[13px] font-medium uppercase tracking-wider text-foreground/70">
         {label}
       </span>
       {children}
