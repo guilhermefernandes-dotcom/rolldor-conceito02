@@ -184,12 +184,10 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
+      className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-white transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
       style={{
-        background:
-          "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-        boxShadow:
-          "inset 0 2px 0 hsl(0 0% 100% / 0.15), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+        background: "#97BF4C",
+        boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
       }}
     >
       {children}
@@ -221,6 +219,7 @@ function Landing() {
               fetchPriority="high"
               decoding="async"
             />
+            <div className="absolute inset-0 bg-black/45" />
           </div>
 
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
@@ -239,7 +238,7 @@ function Landing() {
                 }}
               >
                 Torne-se um Revendedor Premium{" "}
-                <span className="text-white/70">Roll Door</span> e venda uma das marcas mais
+                <span className="text-brand-green">Roll Door</span> e venda uma das marcas mais
                 desejadas do mercado de esquadrias.
               </h1>
             </Reveal>
@@ -412,7 +411,7 @@ function Landing() {
                 <Reveal delay={0.1}>
                   <a
                     href="#cta-final"
-                    className="group inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-white/15"
+                    className="group inline-flex items-center gap-3 rounded-2xl bg-brand-green px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-brand-green-deep"
                   >
                     Quero fazer parte
                     <ArrowRight className="h-5 w-5" />
@@ -549,11 +548,7 @@ function Landing() {
 
                       <a
                         href="#cta-final"
-                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors ${
-                          highlight
-                            ? "bg-black/40 text-white hover:bg-black/55"
-                            : "bg-white/[0.04] text-white/85 hover:bg-white/[0.08] border border-white/10"
-                        }`}
+                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors bg-brand-green text-white hover:bg-brand-green-deep`}
                       >
                         Saiba mais
                         <ArrowRight className="h-4 w-4" />
@@ -854,7 +849,7 @@ function Landing() {
       {/* STICKY MOBILE CTA */}
       <a
         href="#cta-final"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-foreground px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] transition-colors hover:bg-foreground/90 md:hidden"
+        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-green px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] transition-colors hover:bg-brand-green-deep md:hidden"
       >
         Quero ser Revendedor Premium <ArrowRight className="h-4 w-4" />
       </a>

@@ -222,12 +222,9 @@ export function FormularioRevenda() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-7 flex h-[60px] w-full items-center justify-center gap-2 rounded-2xl font-display text-lg font-bold text-accent-foreground transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-[68px] sm:text-xl"
+        className="mt-7 flex h-[60px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green font-display text-lg font-bold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-[68px] sm:text-xl"
         style={{
-          background:
-            "linear-gradient(180deg, var(--accent-light) 0%, var(--accent) 50%, var(--accent-dark) 100%)",
-          boxShadow:
-            "inset 0 2px 0 hsl(0 0% 100% / 0.15), inset 0 -3px 0 var(--accent-shadow), 0 18px 40px -12px color-mix(in oklab, var(--accent) 70%, transparent)",
+          boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
         }}
       >
         {status === "loading" ? (
