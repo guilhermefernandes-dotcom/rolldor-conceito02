@@ -221,7 +221,7 @@ function Landing() {
             <img
               src={heroImg}
               alt=""
-              className="h-full w-full object-cover mix-blend-multiply opacity-70"
+              className="h-full w-full object-cover"
               fetchPriority="high"
               decoding="async"
             />
@@ -229,7 +229,7 @@ function Landing() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(92,122,42,0.55) 0%, rgba(60,85,25,0.75) 60%, rgba(30,50,10,0.9) 100%)",
+                  "linear-gradient(180deg, rgba(151,191,76,0.50) 0%, rgba(120,160,50,0.60) 50%, rgba(90,130,30,0.75) 100%)",
               }}
             />
           </div>
@@ -288,7 +288,7 @@ function Landing() {
       </motion.div>
 
       {/* MARQUEE — prova social topo */}
-      <div className="overflow-hidden bg-foreground py-4">
+      <div className="overflow-hidden bg-brand-green py-4">
         <div
           className="flex animate-[leevi-marquee_30s_linear_infinite] whitespace-nowrap font-display"
           style={{
