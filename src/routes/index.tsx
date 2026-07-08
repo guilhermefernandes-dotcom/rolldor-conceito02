@@ -663,12 +663,12 @@ function Landing() {
                           className={`rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.3)] ${c.align}`}
                         >
                           <h3
-                            className="font-display text-lg font-bold xl:text-xl"
+                            className="font-display text-lg font-medium xl:text-xl"
                             style={{ color: "var(--gold)" }}
                           >
                             {c.title}
                           </h3>
-                          <p className="mt-2 text-[15px] leading-relaxed text-muted-foreground">
+                          <p className="mt-2 text-[18px] leading-relaxed text-muted-foreground">
                             {c.desc}
                           </p>
                         </div>
@@ -693,7 +693,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-10 md:grid-cols-[1fr_1.4fr] md:items-center md:gap-16">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight text-white md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-6xl">
                 Projetos que <span className="text-white/60">impressionam</span> seus clientes.
               </h2>
               <p className="mt-6 text-lg leading-relaxed text-white/70 md:text-xl">
@@ -731,7 +731,7 @@ function Landing() {
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <h2 className="font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
+              <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Quem já é <UnderlineWord delay={0}>parceiro</UnderlineWord> recomenda.
               </h2>
             </Reveal>
@@ -788,10 +788,10 @@ function Landing() {
           <div className="grid gap-10 md:grid-cols-[minmax(0,1fr)_minmax(0,1.6fr)] md:gap-12">
             <div>
               <Reveal>
-                <h2 className="font-display text-3xl font-black leading-[1.05] tracking-tight text-white md:text-5xl">
+                <h2 className="font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                   Ficou com<br />dúvidas?
                 </h2>
-                <p className="mt-5 max-w-sm text-sm leading-relaxed text-white/60 md:text-base">
+                <p className="mt-5 max-w-sm text-[18px] leading-relaxed text-white/60 md:text-[18px]">
                   Aqui estão as perguntas mais comuns sobre o programa. Precisa de mais informações?
                   Preencha o formulário abaixo e nossa equipe entra em contato.
                 </p>
