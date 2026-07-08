@@ -365,20 +365,15 @@ function Landing() {
               }}
             />
 
-            {/* polygon decorativo — triângulo fora do card (efeito caixa de mensagem) */}
-            <img
-              src={polygonShape}
-              alt=""
+            {/* triângulo decorativo fora do card — efeito caixa de mensagem */}
+            <div
               aria-hidden
-            className="pointer-events-none absolute top-1/2 -left-14 w-[140px] opacity-[0.28] md:-left-20 md:w-[180px]"
-              style={{ filter: "brightness(1.6) contrast(0.9)", transform: "translate(-80%, -50%) rotate(180deg)" }}
-            />
-            <img
-              src={polygonShape}
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute top-1/2 -right-20 hidden w-[160px] -translate-y-1/2 opacity-[0.20] md:block"
-              style={{ filter: "brightness(1.6) contrast(0.9)", transform: "translate(60%, -50%)" }}
+              className="pointer-events-none absolute top-[60%] -left-6 z-10 h-0 w-0 md:top-[55%] md:-left-8"
+              style={{
+                borderTop: "28px solid transparent",
+                borderBottom: "28px solid transparent",
+                borderRight: "28px solid oklch(0.14 0.005 250)",
+              }}
             />
 
             <div className="relative z-10">
