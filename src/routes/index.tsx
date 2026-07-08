@@ -545,14 +545,6 @@ function Landing() {
                           </li>
                         ))}
                       </ul>
-
-                      <a
-                        href="#cta-final"
-                        className={`mt-6 inline-flex items-center justify-between rounded-xl px-4 py-3 font-display text-sm font-medium transition-colors bg-brand-green text-white hover:bg-brand-green-deep`}
-                      >
-                        Saiba mais
-                        <ArrowRight className="h-4 w-4" />
-                      </a>
                     </article>
                   </Reveal>
                 ))}
