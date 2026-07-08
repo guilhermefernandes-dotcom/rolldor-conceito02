@@ -411,7 +411,7 @@ function Landing() {
                 <Reveal delay={0.1}>
                   <a
                     href="#cta-final"
-                    className="group inline-flex items-center gap-3 rounded-2xl border border-white/20 bg-white/10 px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-white/15"
+                    className="group inline-flex items-center gap-3 rounded-2xl bg-brand-green px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-brand-green-deep"
                   >
                     Quero fazer parte
                     <ArrowRight className="h-5 w-5" />
