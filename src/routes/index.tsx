@@ -219,6 +219,7 @@ function Landing() {
               fetchPriority="high"
               decoding="async"
             />
+            <div className="absolute inset-0 bg-black/45" />
           </div>
 
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
