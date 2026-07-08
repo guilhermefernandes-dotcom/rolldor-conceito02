@@ -446,34 +446,36 @@ export function StatsScrollLock() {
                         />
                       </div>
                     )}
+
+                    {isActive && (
+                      <div className="absolute bottom-6 right-6 z-20 flex items-center gap-3 md:bottom-10 md:right-10">
+                        <button
+                          type="button"
+                          aria-label="Anterior"
+                          onClick={() => {
+                            stoppedRef.current = true;
+                            setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
+                          }}
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                        >
+                          <ArrowLeft className="h-4 w-4" />
+                        </button>
+                        <button
+                          type="button"
+                          aria-label="Próximo"
+                          onClick={() => {
+                            stoppedRef.current = true;
+                            setActive((prev) => (prev + 1) % STEPS.length);
+                          }}
+                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                        >
+                          <ArrowRight className="h-4 w-4" />
+                        </button>
+                      </div>
+                    )}
                   </motion.div>
                 );
               })}
-            </div>
-
-            <div className="mt-6 flex items-center justify-end gap-3">
-              <button
-                type="button"
-                aria-label="Anterior"
-                onClick={() => {
-                  stoppedRef.current = true;
-                  setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
-                }}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
-              >
-                <ArrowLeft className="h-4 w-4" />
-              </button>
-              <button
-                type="button"
-                aria-label="Próximo"
-                onClick={() => {
-                  stoppedRef.current = true;
-                  setActive((prev) => (prev + 1) % STEPS.length);
-                }}
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
-              >
-                <ArrowRight className="h-4 w-4" />
-              </button>
             </div>
           </div>
         </div>
