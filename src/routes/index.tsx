@@ -211,9 +211,9 @@ function Landing() {
       <JoinNotifications />
 
       {/* HERO */}
-      <motion.div className="bg-foreground" style={{ padding: heroPad }}>
+      <motion.div className="bg-brand-green" style={{ padding: heroPad }}>
         <motion.section
-          className="relative w-full overflow-hidden bg-secondary px-6 py-16 md:px-10 md:py-24"
+          className="relative w-full overflow-hidden bg-brand-green px-6 py-16 md:px-10 md:py-24"
           style={{ borderRadius: heroRadius }}
         >
           {/* Background image */}
@@ -221,7 +221,7 @@ function Landing() {
             <img
               src={heroImg}
               alt=""
-              className="h-full w-full object-cover"
+              className="h-full w-full object-cover mix-blend-multiply opacity-70"
               fetchPriority="high"
               decoding="async"
             />
@@ -229,7 +229,7 @@ function Landing() {
               className="absolute inset-0"
               style={{
                 background:
-                  "linear-gradient(180deg, rgba(0,0,0,0.60) 0%, rgba(0,0,0,0.75) 50%, rgba(0,0,0,0.88) 100%)",
+                  "linear-gradient(180deg, rgba(92,122,42,0.55) 0%, rgba(60,85,25,0.75) 60%, rgba(30,50,10,0.9) 100%)",
               }}
             />
           </div>
@@ -830,124 +830,8 @@ function Landing() {
         </div>
       </section>
 
-      {/* COMO FUNCIONA — 4 passos */}
-      <section className="bg-secondary/60 py-24 md:py-32">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <span className="inline-flex items-center gap-2 rounded-full border border-foreground/15 bg-white px-4 py-1.5 text-xs font-semibold tracking-wide text-foreground/70">
-                <Sparkles className="h-3.5 w-3.5 text-[#C9A84C]" /> como funciona
-              </span>
-            </Reveal>
-            <Reveal delay={0.05}>
-              <h2 className="mt-5 font-display text-4xl font-black leading-[1.05] tracking-tight md:text-6xl">
-                Em 4 passos<br />
-                você já está <UnderlineWord delay={0}>dentro</UnderlineWord>.
-              </h2>
-            </Reveal>
-          </div>
 
-          {/* Diagrama central + cards laterais */}
-          <div className="relative mx-auto mt-16 grid max-w-[1200px] items-center gap-8 md:mt-20 md:grid-cols-[minmax(0,1fr)_minmax(0,520px)_minmax(0,1fr)] md:gap-6">
-            {/* Cards esquerda */}
-            <div className="flex flex-col gap-6 md:gap-10">
-              {[
-                { t: "Preencha o formulário", d: "Deixe seus dados e conte sobre sua empresa e região — leva menos de 2 minutos." },
-                { t: "Apresentamos o programa", d: "Entramos em contato para mostrar condições, produtos e diferenciais da parceria." },
-              ].map((c, i) => (
-                <Reveal key={i} delay={i * 0.08}>
-                  <div className="rounded-2xl border border-foreground/10 bg-white p-5 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)] md:p-6">
-                    <h3 className="font-display text-base font-bold text-foreground md:text-lg">{c.t}</h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground md:text-sm">{c.d}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
 
-            {/* Centro: 2x2 grid dourado com anéis */}
-            <div className="relative mx-auto flex aspect-square w-full max-w-[440px] items-center justify-center">
-              {/* Anéis concêntricos */}
-              <div className="pointer-events-none absolute inset-0 rounded-full border border-[#C9A84C]/25" />
-              <div className="pointer-events-none absolute inset-[8%] rounded-full border border-[#C9A84C]/20" />
-              <div className="pointer-events-none absolute inset-[18%] rounded-full border border-[#C9A84C]/15" />
-
-              {/* Ícones flutuantes nos 4 cantos do anel */}
-              {[
-                { pos: "top-2 left-1/2 -translate-x-1/2", icon: <Handshake className="h-4 w-4" /> },
-                { pos: "top-1/2 right-2 -translate-y-1/2", icon: <MegaphoneIcon className="h-4 w-4" /> },
-                { pos: "bottom-2 left-1/2 -translate-x-1/2", icon: <Target className="h-4 w-4" /> },
-                { pos: "top-1/2 left-2 -translate-y-1/2", icon: <Check className="h-4 w-4" /> },
-              ].map((f, i) => (
-                <div
-                  key={i}
-                  className={`absolute ${f.pos} flex h-9 w-9 items-center justify-center rounded-full border border-[#C9A84C]/40 bg-white text-[#8a6d1f] shadow-sm`}
-                >
-                  {f.icon}
-                </div>
-              ))}
-
-              {/* Grid 2x2 */}
-              <div className="relative grid h-[70%] w-[70%] grid-cols-2 grid-rows-2 gap-2">
-                {[
-                  { n: "1", t: "Preencha o formulário" },
-                  { n: "2", t: "Análise da equipe" },
-                  { n: "3", t: "Apresentação do programa" },
-                  { n: "4", t: "Comece a vender" },
-                ].map((s) => (
-                  <div
-                    key={s.n}
-                    className="flex flex-col items-center justify-center rounded-xl p-3 text-center text-[11px] font-semibold leading-tight text-[#3a2d0a] md:text-[13px]"
-                    style={{
-                      background:
-                        "linear-gradient(135deg, #d9b45c 0%, #C9A84C 55%, #a8862f 100%)",
-                      boxShadow: "inset 0 1px 0 rgba(255,255,255,0.35), 0 10px 22px -14px rgba(168,134,47,0.55)",
-                    }}
-                  >
-                    {s.t}
-                  </div>
-                ))}
-              </div>
-
-              {/* Círculo central com marca */}
-              <div className="absolute left-1/2 top-1/2 flex h-[26%] w-[26%] -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-foreground shadow-[0_10px_30px_-8px_rgba(0,0,0,0.55)] ring-4 ring-secondary/60">
-                <img src={rdMark} alt="Roll Door" className="h-[55%] w-[55%] object-contain" />
-              </div>
-            </div>
-
-            {/* Cards direita */}
-            <div className="flex flex-col gap-6 md:gap-10">
-              {[
-                { t: "Nossa equipe analisa", d: "Avaliamos sua região e o perfil da empresa cadastrada para garantir a melhor parceria." },
-                { t: "Você começa a vender", d: "Inicie sua jornada como Revendedor Premium Roll Door com suporte técnico e comercial." },
-              ].map((c, i) => (
-                <Reveal key={i} delay={i * 0.08}>
-                  <div className="rounded-2xl border border-foreground/10 bg-white p-5 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)] md:p-6">
-                    <h3 className="font-display text-base font-bold text-foreground md:text-lg">{c.t}</h3>
-                    <p className="mt-2 text-[13px] leading-relaxed text-muted-foreground md:text-sm">{c.d}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-          </div>
-
-          {/* Rodapé com CTA */}
-          <Reveal delay={0.15}>
-            <p className="mx-auto mt-14 max-w-2xl text-center text-sm leading-relaxed text-muted-foreground md:text-base">
-              Quando esses <strong className="text-foreground">4 passos</strong> acontecem juntos, virar
-              revendedor deixa de ser dúvida e vira <strong className="text-foreground">decisão estratégica</strong>.
-            </p>
-          </Reveal>
-          <div className="mt-6 flex justify-center">
-            <a
-              href="#cta-final"
-              className="inline-flex items-center gap-2 rounded-full bg-[#C9A84C] px-7 py-3.5 font-display text-sm font-bold text-[#2a2007] shadow-[0_18px_40px_-16px_rgba(201,168,76,0.75)] transition hover:brightness-105 md:text-base"
-            >
-              Quero fazer parte da próxima turma
-              <ArrowRight className="h-4 w-4" />
-            </a>
-          </div>
-        </div>
-      </section>
 
       {/* FAQ */}
       <section className="relative overflow-hidden bg-foreground py-24 text-white md:py-32">

@@ -44,6 +44,9 @@
   --color-gold: var(--gold);
   --color-gold-soft: var(--gold-soft);
   --color-gold-deep: var(--gold-deep);
+  --color-brand-green: var(--brand-green);
+  --color-brand-green-soft: var(--brand-green-soft);
+  --color-brand-green-deep: var(--brand-green-deep);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -88,6 +91,10 @@
   --gold: oklch(0.32 0.008 250);
   --gold-soft: oklch(0.85 0.005 250);
   --gold-deep: oklch(0.18 0.005 250);
+  /* Verde institucional Roll Door */
+  --brand-green: #97BF4C;
+  --brand-green-soft: #c7e08a;
+  --brand-green-deep: #5c7a2a;
   --gradient-gold: linear-gradient(135deg, oklch(0.42 0.008 250), oklch(0.18 0.005 250));
   --gradient-dark: radial-gradient(ellipse at top, oklch(0.98 0.002 250) 0%, oklch(1 0 0) 70%);
   --shadow-gold: 0 20px 60px -20px oklch(0.18 0.005 250 / 0.35);
