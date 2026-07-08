@@ -353,7 +353,7 @@ function Landing() {
       <section className="bg-secondary/60 pt-4 pb-28">
         <div className="w-full" style={{ padding: "20px" }}>
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-14 md:px-12 md:py-20"
+            className="relative w-full rounded-[32px] px-6 py-14 md:px-12 md:py-20"
             style={{ background: "oklch(0.14 0.005 250)" }}
           >
             <div
@@ -365,20 +365,15 @@ function Landing() {
               }}
             />
 
-            {/* polygon decorativo */}
-            <img
-              src={polygonShape}
-              alt=""
+            {/* triângulo decorativo fora do card — efeito caixa de mensagem */}
+            <div
               aria-hidden
-              className="pointer-events-none absolute -bottom-24 -left-20 w-[420px] opacity-[0.22] md:-bottom-32 md:-left-24 md:w-[560px]"
-              style={{ filter: "brightness(1.6) contrast(0.9)" }}
-            />
-            <img
-              src={polygonShape}
-              alt=""
-              aria-hidden
-              className="pointer-events-none absolute -top-20 -right-16 hidden w-[360px] rotate-180 opacity-[0.18] md:block"
-              style={{ filter: "brightness(1.6) contrast(0.9)" }}
+              className="pointer-events-none absolute top-[60%] -left-6 z-10 h-0 w-0 md:top-[55%] md:-left-8"
+              style={{
+                borderTop: "28px solid transparent",
+                borderBottom: "28px solid transparent",
+                borderRight: "28px solid oklch(0.14 0.005 250)",
+              }}
             />
 
             <div className="relative z-10">
