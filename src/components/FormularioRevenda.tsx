@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, Loader2, PhoneCall, ArrowRight } from "lucide-react";
+import { CheckCircle2, Loader2, PhoneCall, ArrowRight, ChevronDown } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
@@ -39,6 +39,7 @@ export function FormularioRevenda() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
+  const [segmentOpen, setSegmentOpen] = useState(false);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -197,16 +198,57 @@ export function FormularioRevenda() {
           />
         </Field>
         <Field label="Segmento" error={errors.segmento}>
-          <select
-            className={`${inputBase} ${errors.segmento ? "border-destructive" : "border-white/15"}`}
-            value={values.segmento}
-            onChange={(e) => update("segmento", e.target.value as FormState["segmento"])}
-          >
-            <option value="vidracaria">Vidraçaria</option>
-            <option value="esquadrias">Esquadrias</option>
-            <option value="serralheria">Serralheria</option>
-            <option value="outro">Outro</option>
-          </select>
+          <div className="relative">
+            <button
+              type="button"
+              onClick={() => setSegmentOpen((s) => !s)}
+              className={`${inputBase} ${errors.segmento ? "border-destructive" : "border-white/15"} inline-flex items-center justify-between`}
+              aria-haspopup="listbox"
+              aria-expanded={segmentOpen}
+            >
+              <span className={values.segmento ? "text-white" : "text-white/40"}>
+                {{
+                  vidracaria: "Vidraçaria",
+                  esquadrias: "Esquadrias",
+                  serralheria: "Serralheria",
+                  outro: "Outro",
+                }[values.segmento]}
+              </span>
+              <ChevronDown
+                className={`h-4 w-4 text-white/50 transition-transform ${segmentOpen ? "rotate-180" : ""}`}
+              />
+            </button>
+            {segmentOpen && (
+              <motion.ul
+                initial={{ opacity: 0, y: -8 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -8 }}
+                transition={{ duration: 0.15 }}
+                className="absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-white/15 bg-[#1a1a1a] py-1 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]"
+                role="listbox"
+              >
+                {[
+                  { value: "vidracaria", label: "Vidraçaria" },
+                  { value: "esquadrias", label: "Esquadrias" },
+                  { value: "serralheria", label: "Serralheria" },
+                  { value: "outro", label: "Outro" },
+                ].map((opt) => (
+                  <li key={opt.value} role="option" aria-selected={values.segmento === opt.value}>
+                    <button
+                      type="button"
+                      onClick={() => {
+                        update("segmento", opt.value as FormState["segmento"]);
+                        setSegmentOpen(false);
+                      }}
+                      className={`w-full px-4 py-3 text-left text-[16px] transition-colors hover:bg-white/10 ${values.segmento === opt.value ? "bg-brand-green/15 text-brand-green" : "text-white"}`}
+                    >
+                      {opt.label}
+                    </button>
+                  </li>
+                ))}
+              </motion.ul>
+            )}
+          </div>
         </Field>
         <Field
           label="Faturamento mensal (opcional)"
