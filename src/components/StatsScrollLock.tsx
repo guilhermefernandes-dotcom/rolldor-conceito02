@@ -93,7 +93,7 @@ export function StatsScrollLock() {
           style={{ maxWidth: "1300px" }}
         >
           {/* MOBILE — horizontal stepper */}
-          <div className="col-span-12 md:hidden">
+          <div className="col-span-12 min-w-0 md:hidden">
             <div className="relative w-full" style={{ height: 70 }}>
               <svg
                 width="100%"
@@ -304,9 +304,9 @@ export function StatsScrollLock() {
           </div>
 
           {/* Active card */}
-          <div className="col-span-12 md:col-span-9">
+          <div className="col-span-12 min-w-0 md:col-span-9">
             <div
-              className="relative mx-auto min-h-[520px] w-full max-w-xl md:h-[460px] md:min-h-0"
+              className="relative mx-auto min-h-[520px] w-full max-w-xl overflow-hidden md:h-[460px] md:min-h-0 md:overflow-visible"
               style={{ perspective: 1600 }}
             >
               {STEPS.map((s, i) => {
