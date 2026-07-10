@@ -90,22 +90,22 @@ export function FormularioRevenda() {
       <motion.div
         initial={{ opacity: 0, y: 12 }}
         animate={{ opacity: 1, y: 0 }}
-        className="rounded-3xl border border-foreground/10 bg-white p-10 text-center shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] md:p-14"
+        className="rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-14"
       >
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-foreground text-white">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-white">
           <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
         </div>
-        <h3 className="font-display text-3xl font-medium text-foreground md:text-4xl">
+        <h3 className="font-display text-3xl font-medium text-white md:text-4xl">
           Cadastro recebido!
         </h3>
-        <p className="mx-auto mt-4 max-w-lg text-[18px] text-muted-foreground md:text-lg">
+        <p className="mx-auto mt-4 max-w-lg text-[18px] text-white/70 md:text-lg">
           Nossa equipe vai analisar sua região e o perfil da sua empresa e entrará em contato em
           breve para apresentar o programa de parceria Roll Door.
         </p>
         <button
           type="button"
           onClick={() => setStatus("idle")}
-          className="mt-8 inline-flex items-center gap-2 rounded-xl border border-foreground/15 px-6 py-3 font-display text-sm font-bold text-foreground transition-colors hover:bg-foreground/5"
+          className="mt-8 inline-flex items-center gap-2 rounded-xl border border-white/15 px-6 py-3 font-display text-sm font-bold text-white transition-colors hover:bg-white/5"
         >
           Enviar outro cadastro
         </button>
@@ -114,22 +114,22 @@ export function FormularioRevenda() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white px-4 py-3.5 font-sans text-[16px] text-foreground transition-colors placeholder:text-foreground/35 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
+    "w-full rounded-xl border bg-white/[0.03] px-4 py-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
 
   return (
     <form
       onSubmit={onSubmit}
-      className="rounded-3xl border border-foreground/10 bg-white p-8 shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] md:p-12"
+      className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-12"
       noValidate
     >
       <div className="mb-8 text-center">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/10">
           <PhoneCall className="h-6 w-6 text-brand-green" strokeWidth={1.8} />
         </div>
-        <h3 className="font-display text-3xl font-medium text-foreground md:text-4xl">
+        <h3 className="font-display text-3xl font-medium text-white md:text-4xl">
           Cadastre sua empresa
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-[18px] leading-relaxed text-muted-foreground">
+        <p className="mx-auto mt-3 max-w-md text-[18px] leading-relaxed text-white/70">
           Preencha o formulário abaixo e nossa equipe entrará em contato para apresentar o programa
           de parceria.
         </p>
@@ -138,7 +138,7 @@ export function FormularioRevenda() {
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Nome" error={errors.nome}>
           <input
-            className={`${inputBase} ${errors.nome ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
             value={values.nome}
             onChange={(e) => update("nome", e.target.value)}
             autoComplete="name"
@@ -146,7 +146,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Empresa" error={errors.empresa}>
           <input
-            className={`${inputBase} ${errors.empresa ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.empresa ? "border-destructive" : "border-white/15"}`}
             value={values.empresa}
             onChange={(e) => update("empresa", e.target.value)}
             autoComplete="organization"
@@ -154,7 +154,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="WhatsApp" error={errors.whatsapp}>
           <input
-            className={`${inputBase} ${errors.whatsapp ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.whatsapp ? "border-destructive" : "border-white/15"}`}
             value={values.whatsapp}
             onChange={(e) => update("whatsapp", e.target.value)}
             placeholder="(11) 90000-0000"
@@ -165,7 +165,7 @@ export function FormularioRevenda() {
         <Field label="E-mail" error={errors.email}>
           <input
             type="email"
-            className={`${inputBase} ${errors.email ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.email ? "border-destructive" : "border-white/15"}`}
             value={values.email}
             onChange={(e) => update("email", e.target.value)}
             autoComplete="email"
@@ -173,7 +173,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Cidade" error={errors.cidade}>
           <input
-            className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
             value={values.cidade}
             onChange={(e) => update("cidade", e.target.value)}
             autoComplete="address-level2"
@@ -181,7 +181,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Estado" error={errors.estado}>
           <input
-            className={`${inputBase} ${errors.estado ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.estado ? "border-destructive" : "border-white/15"}`}
             value={values.estado}
             onChange={(e) => update("estado", e.target.value)}
             placeholder="Ex: SP"
@@ -190,7 +190,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="CNPJ (opcional)" error={errors.cnpj}>
           <input
-            className={`${inputBase} border-foreground/15`}
+            className={`${inputBase} border-white/15`}
             value={values.cnpj}
             onChange={(e) => update("cnpj", e.target.value)}
             placeholder="00.000.000/0000-00"
@@ -198,7 +198,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Segmento" error={errors.segmento}>
           <select
-            className={`${inputBase} ${errors.segmento ? "border-destructive" : "border-foreground/15"}`}
+            className={`${inputBase} ${errors.segmento ? "border-destructive" : "border-white/15"}`}
             value={values.segmento}
             onChange={(e) => update("segmento", e.target.value as FormState["segmento"])}
           >
@@ -214,7 +214,7 @@ export function FormularioRevenda() {
           className="md:col-span-2"
         >
           <input
-            className={`${inputBase} border-foreground/15`}
+            className={`${inputBase} border-white/15`}
             value={values.faturamento}
             onChange={(e) => update("faturamento", e.target.value)}
             placeholder="Ex: R$ 50-100 mil"
@@ -222,7 +222,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
           <textarea
-            className={`${inputBase} min-h-[120px] resize-y border-foreground/15`}
+            className={`${inputBase} min-h-[120px] resize-y border-white/15`}
             value={values.mensagem}
             onChange={(e) => update("mensagem", e.target.value)}
             placeholder="Conte um pouco sobre sua empresa e sua região."
@@ -239,7 +239,7 @@ export function FormularioRevenda() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-8 inline-flex h-[62px] items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-8 inline-flex h-[62px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         style={{
           boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
         }}
@@ -254,7 +254,7 @@ export function FormularioRevenda() {
           </>
         )}
       </button>
-      <p className="mt-4 text-[14px] text-muted-foreground">
+      <p className="mt-4 text-[14px] text-white/50">
         Usamos seus dados apenas para responder ao seu contato sobre a parceria Roll Door.
       </p>
     </form>
@@ -275,7 +275,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.14em] text-foreground/60">
+      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.14em] text-white/60">
         {label}
       </span>
       {children}

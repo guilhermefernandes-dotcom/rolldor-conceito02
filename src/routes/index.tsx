@@ -812,7 +812,7 @@ function Landing() {
       </section>
 
       {/* CTA FINAL COM FORMULÁRIO */}
-      <section id="cta-final" className="bg-secondary/60 py-24 md:py-32">
+      <section id="cta-final" className="bg-foreground py-24 text-white md:py-32">
         <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
             {/* Painel esquerdo — copy */}
@@ -821,7 +821,7 @@ function Landing() {
                 className="relative flex h-full flex-col overflow-hidden rounded-3xl p-8 text-white md:p-12"
                 style={{
                   background:
-                    "linear-gradient(160deg, #0f1b0a 0%, #1a2e10 45%, #2d4a1a 100%)",
+                    "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.18 0.005 250) 45%, oklch(0.14 0.005 250) 100%)",
                 }}
               >
                 <div
@@ -831,7 +831,7 @@ function Landing() {
                 <span className="font-display text-xs font-medium uppercase tracking-[0.2em] text-brand-green">
                   Fale com um especialista
                 </span>
-                <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-5xl">
+                <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                   Sua empresa está pronta para vender uma das marcas mais reconhecidas do mercado
                   premium?
                 </h2>
