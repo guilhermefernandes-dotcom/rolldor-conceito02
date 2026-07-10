@@ -812,8 +812,15 @@ function Landing() {
       </section>
 
       {/* CTA FINAL COM FORMULÁRIO */}
-      <section id="cta-final" className="bg-foreground py-24 text-white md:py-32">
-        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
+      <section id="cta-final" className="relative overflow-hidden bg-foreground py-24 text-white md:py-32">
+        <div
+          className="pointer-events-none absolute inset-0 opacity-[0.08]"
+          style={{
+            backgroundImage:
+              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 22px)",
+          }}
+        />
+        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
             {/* Painel esquerdo — copy */}
             <Reveal>
