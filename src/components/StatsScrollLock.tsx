@@ -93,7 +93,7 @@ export function StatsScrollLock() {
           style={{ maxWidth: "1300px" }}
         >
           {/* MOBILE — horizontal stepper */}
-          <div className="col-span-12 md:hidden">
+          <div className="col-span-12 min-w-0 md:hidden">
             <div className="relative w-full" style={{ height: 70 }}>
               <svg
                 width="100%"
