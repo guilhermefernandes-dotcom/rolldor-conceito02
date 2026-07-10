@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, Loader2, PhoneCall, ArrowRight } from "lucide-react";
+import { CheckCircle2, Loader2, PhoneCall, ArrowRight, ChevronDown } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 
