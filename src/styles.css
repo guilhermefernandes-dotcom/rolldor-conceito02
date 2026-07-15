@@ -12,8 +12,9 @@
  */
 
 @theme inline {
-  --font-display: "DM Sans", ui-sans-serif, system-ui, sans-serif;
-  --font-sans: "Satoshi", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Manrope", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
+
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
