@@ -126,7 +126,7 @@ export function VitrineOrbit() {
                 href="#cta-final"
                 className="group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-white transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl"
                 style={{
-                  background: "#97BF4C",
+                  background: "#9CCB3B",
                   boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
                 }}
               >
