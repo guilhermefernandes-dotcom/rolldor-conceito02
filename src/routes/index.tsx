@@ -186,7 +186,7 @@ function CtaPrimary({
       href={href}
       className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-white transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
       style={{
-        background: "#97BF4C",
+        background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
       }}
     >
@@ -390,7 +390,7 @@ function Landing() {
                     <h2
                       className="text-white"
                       style={{
-                        fontFamily: '"DM Sans", ui-sans-serif, system-ui, sans-serif',
+                        fontFamily: '"Manrope", ui-sans-serif, system-ui, sans-serif',
                         fontWeight: 500,
                         fontSize: "clamp(28px, 6.5vw, 48px)",
                         lineHeight: "1.05",
@@ -833,7 +833,7 @@ function Landing() {
               >
                 <div
                   className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
-                  style={{ background: "#97BF4C" }}
+                  style={{ background: "#9CCB3B" }}
                 />
                 <span className="font-display text-xs font-medium uppercase tracking-[0.2em] text-brand-green">
                   Fale com um especialista

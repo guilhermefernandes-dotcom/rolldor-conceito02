@@ -78,12 +78,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:site_name", content: "Roll Door Company" },
       { property: "og:locale", content: "pt_BR" },
       { name: "twitter:card", content: "summary_large_image" },
-      { title: "Lovable App" },
-      { property: "og:title", content: "Lovable App" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "description", content: "Access wholesale fashion launches and exclusive deals via a private WhatsApp group." },
-      { property: "og:description", content: "Access wholesale fashion launches and exclusive deals via a private WhatsApp group." },
-      { name: "twitter:description", content: "Access wholesale fashion launches and exclusive deals via a private WhatsApp group." },
+      { title: "Roll Door Company — Rede Premium de Revendedores" },
+      { property: "og:title", content: "Roll Door Company — Rede Premium de Revendedores" },
+      { name: "twitter:title", content: "Roll Door Company — Rede Premium de Revendedores" },
+      { name: "description", content: "Engenharia de vãos: invisibilidade estrutural, tecnologia Lift-Slide e acabamento de alto padrão. Torne-se um revendedor premium Roll Door." },
+      { property: "og:description", content: "Engenharia de vãos: invisibilidade estrutural, tecnologia Lift-Slide e acabamento de alto padrão. Torne-se um revendedor premium Roll Door." },
+      { name: "twitter:description", content: "Engenharia de vãos: invisibilidade estrutural, tecnologia Lift-Slide e acabamento de alto padrão. Torne-se um revendedor premium Roll Door." },
       { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f219c9a8-1b71-414c-805b-a7629d581227/id-preview-7a6ae7c5--37156343-f341-4e88-a1bc-75b8b7c0659b.lovable.app-1783544094290.png" },
       { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/f219c9a8-1b71-414c-805b-a7629d581227/id-preview-7a6ae7c5--37156343-f341-4e88-a1bc-75b8b7c0659b.lovable.app-1783544094290.png" },
     ],
@@ -93,15 +93,11 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/favicon.webp" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "preconnect", href: "https://api.fontshare.com" },
       {
         rel: "stylesheet",
-        href: "https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;900&display=swap",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&display=swap",
       },
-      {
-        rel: "stylesheet",
-        href: "https://api.fontshare.com/v2/css?f[]=satoshi@300,400,500,700,900&display=swap",
-      },
+
     ],
     scripts: [
       {
