@@ -201,10 +201,11 @@
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-display);
-    font-weight: 600;
-    color: oklch(0.18 0.005 250);
-    letter-spacing: -0.03em;
+    font-weight: 500;
+    color: #0E1111;
+    letter-spacing: -0.035em;
   }
+
 }
 
 @keyframes leevi-marquee {
