@@ -29,6 +29,44 @@ import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 
+const residencialSteps: ScrollStep[] = [
+  {
+    n: "01",
+    label: "Grandes vãos",
+    big: "Integração total",
+    desc: "Integre ambientes internos e externos com elegância e leveza, ampliando a sensação de espaço e trazendo a natureza para dentro do projeto.",
+    Icon: Layers,
+    image: project1Asset.url,
+  },
+  {
+    n: "02",
+    label: "Design minimalista",
+    big: "Perfis discretos",
+    desc: "Perfis finos e discretos que desaparecem na arquitetura, valorizando a paisagem e cada linha do seu projeto residencial.",
+    Icon: Compass,
+    image: project2Asset.url,
+  },
+  {
+    n: "03",
+    label: "Alto desempenho",
+    big: "Durabilidade real",
+    desc: "Projetados para oferecer durabilidade, segurança, isolamento acústico e excelente desempenho técnico em uso residencial de alto padrão.",
+    Icon: ShieldCheck,
+    image: project3Asset.url,
+    imagePosition: "50% center",
+  },
+  {
+    n: "04",
+    label: "Acabamento premium",
+    big: "Detalhes que ficam",
+    desc: "Cada detalhe pensado para entregar sofisticação em todos os ambientes — do puxador ao encaixe, tudo em padrão de arquitetura premium.",
+    Icon: Sparkles,
+    image: project4Asset.url,
+    imagePosition: "50% center",
+  },
+];
+
+
 export const Route = createFileRoute("/residencial")({
   head: () => {
     const title =
