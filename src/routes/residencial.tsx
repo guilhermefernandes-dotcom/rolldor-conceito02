@@ -578,15 +578,15 @@ function LandingCliente() {
 
 
       {/* SESSÃO 7 — Da inspiração ao seu projeto */}
-      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
                 Como funciona
               </span>
               <h2
-                className="mt-5 font-display text-white"
+                className="mt-5 font-display text-[#0E1111]"
                 style={{
                   fontWeight: 500,
                   fontSize: "clamp(28px, 5vw, 52px)",
@@ -596,7 +596,7 @@ function LandingCliente() {
               >
                 Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
-              <p className="mx-auto mt-6 text-[18px] text-white/60 md:text-[20px]">
+              <p className="mx-auto mt-6 text-[18px] text-[#0E1111]/60 md:text-[20px]">
                 Nosso processo é simples.
               </p>
             </Reveal>
@@ -611,25 +611,23 @@ function LandingCliente() {
             ].map((step, i) => (
               <Reveal key={i} delay={i * 0.08} className="h-full">
                 <div
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/40"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#0E1111]/10 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/50"
                   style={{
-                    background:
-                      "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 55%, oklch(0.11 0.005 250) 100%)",
                     boxShadow:
-                      "inset 0 1px 0 0 rgba(255,255,255,0.06), 0 20px 50px -30px rgba(0,0,0,0.8)",
+                      "0 20px 50px -30px rgba(14,17,17,0.15)",
                   }}
                 >
                   {/* subtle brand-green glow */}
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-40 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
                     style={{ background: "radial-gradient(circle, #9CCB3B 0%, transparent 70%)" }}
                   />
-                  <span className="relative font-display text-4xl font-medium text-brand-green md:text-5xl">
+                  <span className="relative font-display text-4xl font-medium text-[#2F3D30] md:text-5xl">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div className="relative my-5 h-px w-10 bg-brand-green/70" />
-                  <p className="relative text-[18px] leading-relaxed text-white/85">{step}</p>
+                  <div className="relative my-5 h-px w-10 bg-brand-green" />
+                  <p className="relative text-[18px] leading-relaxed text-[#0E1111]/80">{step}</p>
                 </div>
               </Reveal>
             ))}
@@ -637,6 +635,7 @@ function LandingCliente() {
 
         </div>
       </section>
+
 
       {/* SESSÃO 8 — Depoimentos */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
