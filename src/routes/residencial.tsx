@@ -291,16 +291,16 @@ function LandingCliente() {
 
 
       {/* SESSÃO 2 — Muito mais do que esquadrias */}
-      <section className="relative overflow-hidden bg-foreground py-28 md:py-40">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-28 md:py-40">
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
           <Reveal>
-            <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+            <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
               Um novo padrão
             </span>
           </Reveal>
           <Reveal delay={0.1}>
             <h2
-              className="mt-6 font-display text-white"
+              className="mt-6 font-display text-[#0E1111]"
               style={{
                 fontWeight: 500,
                 fontSize: "clamp(30px, 5.6vw, 60px)",
@@ -310,17 +310,17 @@ function LandingCliente() {
             >
               Muito mais do que esquadrias.
               <br />
-              <span className="text-white/50">Um novo padrão para viver sua casa.</span>
+              <span className="text-[#0E1111]/50">Um novo padrão para viver sua casa.</span>
             </h2>
           </Reveal>
           <Reveal delay={0.2}>
-            <div className="mx-auto mt-10 max-w-2xl space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
+            <div className="mx-auto mt-10 max-w-2xl space-y-5 text-[18px] leading-relaxed text-[#0E1111]/70 md:text-[20px]">
               <p>Cada detalhe de um projeto transmite uma sensação.</p>
               <p>
                 Com a Roll Door, você cria ambientes mais amplos, iluminados e sofisticados,
                 utilizando sistemas desenvolvidos para unir estética, engenharia e desempenho.
               </p>
-              <p className="text-white">
+              <p className="text-[#0E1111]">
                 Porque uma casa extraordinária merece soluções à altura.
               </p>
             </div>
@@ -328,8 +328,9 @@ function LandingCliente() {
         </div>
       </section>
 
+
       {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
-      <div className="bg-foreground px-5 pb-6 md:px-10">
+      <div className="bg-[#F2F0EA] px-5 pb-6 md:px-10">
         <Reveal>
           <div className="relative mx-auto aspect-[21/9] w-full max-w-[1600px] overflow-hidden rounded-3xl">
             <img
@@ -372,15 +373,15 @@ function LandingCliente() {
 
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section className="relative overflow-hidden bg-foreground py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-center md:gap-16">
             <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
                 Galeria
               </span>
               <h2
-                className="mt-5 font-display text-white"
+                className="mt-5 font-display text-[#0E1111]"
                 style={{
                   fontWeight: 500,
                   fontSize: "clamp(30px, 5.2vw, 56px)",
@@ -388,16 +389,17 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Projetos que <span className="text-white/50">inspiram.</span>
+                Projetos que <span className="text-[#0E1111]/50">inspiram.</span>
               </h2>
-              <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
-                <p className="text-white">Mais do que produtos.</p>
+              <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-[#0E1111]/70 md:text-[20px]">
+                <p className="text-[#0E1111]">Mais do que produtos.</p>
                 <p>
                   Criamos soluções que transformam residências em espaços exclusivos, modernos e
                   cheios de personalidade.
                 </p>
               </div>
             </Reveal>
+
 
             <Reveal delay={0.15}>
               <div className="grid gap-4">
@@ -576,15 +578,15 @@ function LandingCliente() {
 
 
       {/* SESSÃO 7 — Da inspiração ao seu projeto */}
-      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
         <div className="mx-auto max-w-[1200px] px-6 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
                 Como funciona
               </span>
               <h2
-                className="mt-5 font-display text-white"
+                className="mt-5 font-display text-[#0E1111]"
                 style={{
                   fontWeight: 500,
                   fontSize: "clamp(28px, 5vw, 52px)",
@@ -594,7 +596,7 @@ function LandingCliente() {
               >
                 Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
-              <p className="mx-auto mt-6 text-[18px] text-white/60 md:text-[20px]">
+              <p className="mx-auto mt-6 text-[18px] text-[#0E1111]/60 md:text-[20px]">
                 Nosso processo é simples.
               </p>
             </Reveal>
@@ -609,25 +611,23 @@ function LandingCliente() {
             ].map((step, i) => (
               <Reveal key={i} delay={i * 0.08} className="h-full">
                 <div
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/40"
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#0E1111]/10 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/50"
                   style={{
-                    background:
-                      "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 55%, oklch(0.11 0.005 250) 100%)",
                     boxShadow:
-                      "inset 0 1px 0 0 rgba(255,255,255,0.06), 0 20px 50px -30px rgba(0,0,0,0.8)",
+                      "0 20px 50px -30px rgba(14,17,17,0.15)",
                   }}
                 >
                   {/* subtle brand-green glow */}
                   <div
                     aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-40 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
                     style={{ background: "radial-gradient(circle, #9CCB3B 0%, transparent 70%)" }}
                   />
-                  <span className="relative font-display text-4xl font-medium text-brand-green md:text-5xl">
+                  <span className="relative font-display text-4xl font-medium text-[#2F3D30] md:text-5xl">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div className="relative my-5 h-px w-10 bg-brand-green/70" />
-                  <p className="relative text-[18px] leading-relaxed text-white/85">{step}</p>
+                  <div className="relative my-5 h-px w-10 bg-brand-green" />
+                  <p className="relative text-[18px] leading-relaxed text-[#0E1111]/80">{step}</p>
                 </div>
               </Reveal>
             ))}
@@ -635,6 +635,7 @@ function LandingCliente() {
 
         </div>
       </section>
+
 
       {/* SESSÃO 8 — Depoimentos */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
