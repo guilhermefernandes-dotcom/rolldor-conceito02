@@ -197,10 +197,8 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                         }}
                         transition={{ duration: 0.6 }}
                         className="mt-0.5 font-display text-xs font-medium leading-none"
-                      
-                        transition={{ duration: 0.6 }}
-                        className="mt-0.5 font-display text-xs font-medium leading-none"
                       >
+
                         {s.label}
                       </motion.div>
                     </motion.div>
