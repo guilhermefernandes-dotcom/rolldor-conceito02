@@ -185,7 +185,7 @@ function LandingCliente() {
       {/* HERO — imagem full com overlay escuro, tipografia elegante */}
       <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
         <motion.section
-          className="relative w-full overflow-hidden px-6 py-20 md:px-10 md:py-32"
+          className="relative w-full overflow-hidden px-6 py-16 md:px-10 md:py-16 lg:py-20"
           style={{ borderRadius: heroRadius, background: "#0b0b0c" }}
         >
           <div aria-hidden className="pointer-events-none absolute inset-0">
@@ -206,8 +206,8 @@ function LandingCliente() {
               <img
                 src={logoAsset.url}
                 alt="Roll Door Company"
-                className="mb-10 h-auto w-auto max-h-14 md:max-h-20"
-                style={{ maxWidth: "260px", filter: "brightness(0) invert(1)" }}
+                className="mb-6 h-auto w-auto max-h-12 md:mb-8 md:max-h-16"
+                style={{ maxWidth: "220px", filter: "brightness(0) invert(1)" }}
               />
             </Reveal>
 
@@ -216,8 +216,8 @@ function LandingCliente() {
                 className="font-display mx-auto text-white"
                 style={{
                   fontWeight: 500,
-                  fontSize: "clamp(28px, 5.8vw, 64px)",
-                  lineHeight: "1.03",
+                  fontSize: "clamp(28px, 4.4vw, 54px)",
+                  lineHeight: "1.05",
                   letterSpacing: "-0.035em",
                   maxWidth: "22ch",
                 }}
@@ -228,21 +228,21 @@ function LandingCliente() {
             </Reveal>
 
             <Reveal delay={0.25}>
-              <p className="mt-8 max-w-2xl text-[18px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[21px]">
+              <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
                 Sistemas de esquadrias premium desenvolvidos para quem busca arquitetura
                 contemporânea, grandes vãos, design minimalista e máxima valorização do imóvel.
               </p>
             </Reveal>
 
             <Reveal delay={0.35}>
-              <ul className="mt-10 grid gap-3 text-left sm:grid-cols-2">
+              <ul className="mt-7 grid gap-3 text-left sm:grid-cols-2">
                 {[
                   "Design sofisticado",
                   "Grandes vãos e integração dos ambientes",
                   "Tecnologia e alto desempenho",
                   "Rede de especialistas em todo o Brasil",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[18px] text-white/85">
+                  <li key={item} className="flex items-center gap-3 text-[17px] text-white/85">
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
@@ -253,10 +253,13 @@ function LandingCliente() {
             </Reveal>
 
             <Reveal delay={0.5}>
-              <div className="mt-12">
+              <div className="mt-8">
                 <CtaPrimary>Solicitar um orçamento</CtaPrimary>
               </div>
             </Reveal>
+          </div>
+        </motion.section>
+
           </div>
         </motion.section>
       </motion.div>
