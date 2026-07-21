@@ -643,14 +643,17 @@ function LandingCliente() {
                 <React.Fragment key={s.n}>
                   <Reveal delay={i * 0.08}>
                     <div className="flex flex-col items-center text-center">
-                      <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full">
+                      <div
+                        className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full"
+                        style={{ backgroundColor: "#2F3D30" }}
+                      >
                         <img
                           src={s.img}
                           alt={`Ilustração etapa ${s.n} — ${s.title}`}
                           loading="lazy"
                           width={1024}
                           height={1024}
-                          className="h-full w-full object-cover"
+                          className="absolute inset-0 h-full w-full object-contain p-8"
                         />
                       </div>
                       <div className="mt-6 flex items-center gap-3">
