@@ -477,7 +477,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                             stoppedRef.current = true;
                             setActive((prev) => (prev - 1 + STEPS_LIST.length) % STEPS_LIST.length);
                           }}
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                          className={arrowBtn}
                         >
                           <ArrowLeft className="h-4 w-4" />
                         </button>
@@ -488,7 +488,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                             stoppedRef.current = true;
                             setActive((prev) => (prev + 1) % STEPS_LIST.length);
                           }}
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                          className={arrowBtn}
                         >
                           <ArrowRight className="h-4 w-4" />
                         </button>
