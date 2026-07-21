@@ -373,15 +373,15 @@ function LandingCliente() {
 
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section className="relative overflow-hidden bg-foreground py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-center md:gap-16">
             <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
                 Galeria
               </span>
               <h2
-                className="mt-5 font-display text-white"
+                className="mt-5 font-display text-[#0E1111]"
                 style={{
                   fontWeight: 500,
                   fontSize: "clamp(30px, 5.2vw, 56px)",
@@ -389,16 +389,17 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Projetos que <span className="text-white/50">inspiram.</span>
+                Projetos que <span className="text-[#0E1111]/50">inspiram.</span>
               </h2>
-              <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
-                <p className="text-white">Mais do que produtos.</p>
+              <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-[#0E1111]/70 md:text-[20px]">
+                <p className="text-[#0E1111]">Mais do que produtos.</p>
                 <p>
                   Criamos soluções que transformam residências em espaços exclusivos, modernos e
                   cheios de personalidade.
                 </p>
               </div>
             </Reveal>
+
 
             <Reveal delay={0.15}>
               <div className="grid gap-4">
