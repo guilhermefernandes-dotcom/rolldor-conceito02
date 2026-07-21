@@ -28,6 +28,8 @@ const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
+import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
+
 
 const residencialSteps: ScrollStep[] = [
   {
@@ -292,43 +294,9 @@ function LandingCliente() {
       </div>
 
 
-      {/* SESSÃO 2 — Muito mais do que esquadrias */}
-      <section className="relative overflow-hidden bg-[#F2F0EA] py-28 md:py-40">
-        <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
-          <Reveal>
-            <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
-              Um novo padrão
-            </span>
-          </Reveal>
-          <Reveal delay={0.1}>
-            <h2
-              className="mt-6 font-display text-[#0E1111]"
-              style={{
-                fontWeight: 500,
-                fontSize: "clamp(30px, 5.6vw, 60px)",
-                lineHeight: "1.05",
-                letterSpacing: "-0.035em",
-              }}
-            >
-              Muito mais do que esquadrias.
-              <br />
-              <span className="text-[#0E1111]/50">Um novo padrão para viver sua casa.</span>
-            </h2>
-          </Reveal>
-          <Reveal delay={0.2}>
-            <div className="mx-auto mt-10 max-w-2xl space-y-5 text-[18px] leading-relaxed text-[#0E1111]/70 md:text-[20px]">
-              <p>Cada detalhe de um projeto transmite uma sensação.</p>
-              <p>
-                Com a Roll Door, você cria ambientes mais amplos, iluminados e sofisticados,
-                utilizando sistemas desenvolvidos para unir estética, engenharia e desempenho.
-              </p>
-              <p className="text-[#0E1111]">
-                Porque uma casa extraordinária merece soluções à altura.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
+      {/* SESSÃO 2 — "Um novo padrão" (Apple-style pinned reveal) */}
+      <NovoPadraoPinned />
+
 
 
       {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
