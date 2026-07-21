@@ -55,7 +55,8 @@ const STEPS: Step[] = [
 
 const INTERVAL_MS = 4000;
 
-export function StatsScrollLock() {
+export function StatsScrollLock({ steps }: { steps?: Step[] } = {}) {
+  const STEPS_LIST = steps && steps.length > 0 ? steps : STEPS;
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
 
