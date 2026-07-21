@@ -55,8 +55,13 @@ const STEPS: Step[] = [
 
 const INTERVAL_MS = 4000;
 
-export function StatsScrollLock({ steps }: { steps?: Step[] } = {}) {
+export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; variant?: "light" | "dark" } = {}) {
   const STEPS_LIST = steps && steps.length > 0 ? steps : STEPS;
+  const labelActive = variant === "dark" ? "#ffffff" : "oklch(0.18 0.005 250)";
+  const labelIdle =
+    variant === "dark"
+      ? "color-mix(in oklab, #ffffff 35%, transparent)"
+      : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)";
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
 
@@ -188,13 +193,12 @@ export function StatsScrollLock({ steps }: { steps?: Step[] } = {}) {
                       <motion.div
                         initial={false}
                         animate={{
-                          color: isActive
-                            ? "oklch(0.18 0.005 250)"
-                            : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
+                          color: isActive ? labelActive : labelIdle,
                         }}
                         transition={{ duration: 0.6 }}
                         className="mt-0.5 font-display text-xs font-medium leading-none"
                       >
+
                         {s.label}
                       </motion.div>
                     </motion.div>
@@ -288,9 +292,7 @@ export function StatsScrollLock({ steps }: { steps?: Step[] } = {}) {
                       <motion.div
                         initial={false}
                         animate={{
-                          color: isActive
-                            ? "oklch(0.18 0.005 250)"
-                            : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
+                          color: isActive ? labelActive : labelIdle,
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="font-display text-lg font-medium leading-none md:text-xl"
