@@ -349,15 +349,14 @@ function LandingCliente() {
       <section className="bg-foreground py-6 md:py-8">
         <div className="mx-auto w-full px-5 md:px-8">
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-16 md:px-12 md:py-24"
-            style={{ background: "oklch(0.18 0.005 250)" }}
+            className="relative w-full overflow-hidden rounded-[32px] bg-[#F2F0EA] px-6 py-16 md:px-12 md:py-24"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.05]"
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.06]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 18px)",
+                  "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 18px)",
               }}
             />
             <div className="relative z-10 mx-auto max-w-[1400px]">
@@ -367,7 +366,7 @@ function LandingCliente() {
                     Galeria
                   </span>
                   <h2
-                    className="mt-5 font-display text-white"
+                    className="mt-5 font-display text-foreground"
                     style={{
                       fontWeight: 500,
                       fontSize: "clamp(30px, 5.2vw, 56px)",
@@ -375,10 +374,10 @@ function LandingCliente() {
                       letterSpacing: "-0.035em",
                     }}
                   >
-                    Projetos que <span className="text-white/45">inspiram.</span>
+                    Projetos que <span className="text-foreground/45">inspiram.</span>
                   </h2>
-                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
-                    <p className="text-white">Mais do que produtos.</p>
+                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-foreground/70 md:text-[20px]">
+                    <p className="text-foreground">Mais do que produtos.</p>
                     <p>
                       Criamos soluções que transformam residências em espaços exclusivos, modernos e
                       cheios de personalidade.
@@ -387,55 +386,15 @@ function LandingCliente() {
                 </Reveal>
 
                 <Reveal delay={0.15}>
-                  <div className="grid gap-4">
-                    <div className="aspect-[16/10] overflow-hidden rounded-3xl">
-                      <img
-                        src={galeria2}
-                        alt="Residência de alto padrão com esquadrias Roll Door"
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria1}
-                          alt="Projeto residencial contemporâneo"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria4}
-                          alt="Ambiente integrado com esquadrias Roll Door"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria3}
-                          alt="Grandes vãos com integração externa"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div className="aspect-[21/9] overflow-hidden rounded-2xl">
-                      <img
-                        src={galeria5}
-                        alt="Projeto Roll Door — grandes vãos e integração"
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  </div>
+                  <ProjetosCarousel
+                    slides={[
+                      { src: galeria2, alt: "Residência de alto padrão com esquadrias Roll Door" },
+                      { src: galeria1, alt: "Projeto residencial contemporâneo" },
+                      { src: galeria4, alt: "Ambiente integrado com esquadrias Roll Door" },
+                      { src: galeria3, alt: "Grandes vãos com integração externa" },
+                      { src: galeria5, alt: "Projeto Roll Door — grandes vãos e integração" },
+                    ]}
+                  />
                 </Reveal>
               </div>
             </div>
