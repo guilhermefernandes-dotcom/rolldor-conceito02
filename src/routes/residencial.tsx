@@ -14,7 +14,6 @@ import {
 } from "lucide-react";
 import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
 import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
-import banner4Asset from "@/assets/rd-banner-4.webp.asset.json";
 import project1Asset from "@/assets/rd-project-2.webp.asset.json";
 import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
@@ -27,7 +26,6 @@ const galeria3 = project3Asset.url;
 const galeria4 = project4Asset.url;
 const galeria5 = project5Asset.url;
 const pullQuoteBg = banner2Asset.url;
-const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import step01Img from "@/assets/step-01-solicite.png";
 import step02Img from "@/assets/step-02-diagnostico.png";
@@ -385,21 +383,6 @@ function LandingCliente() {
 
 
 
-      {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
-      <div className="bg-[#F2F0EA] px-5 pb-6 md:px-10">
-        <Reveal>
-          <div className="relative mx-auto aspect-[21/9] w-full max-w-[1600px] overflow-hidden rounded-3xl">
-            <img
-              src={session2Img}
-              alt="Residência de alto padrão com sistema Roll Door"
-              className="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          </div>
-        </Reveal>
-      </div>
 
       {/* SESSÃO 3 — Arquitetura, design e engenharia (4 cards) */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
