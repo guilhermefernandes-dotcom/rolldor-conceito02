@@ -75,6 +75,31 @@ function Reveal({
   );
 }
 
+function UnderlineWord({
+  children,
+  delay = 0,
+  color = "#9CCB3B",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  color?: string;
+}) {
+  return (
+    <span className="relative inline-block whitespace-nowrap">
+      <span className="relative z-10">{children}</span>
+      <motion.span
+        aria-hidden
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.5 + delay, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full md:h-[4px]"
+        style={{ background: color }}
+      />
+    </span>
+  );
+}
+
 function CtaPrimary({
   children,
   href = "#cta-final",
@@ -183,6 +208,35 @@ function LandingCliente() {
         </motion.section>
       </motion.div>
 
+      {/* MARQUEE — faixa de destaque verde */}
+      <div className="overflow-hidden bg-brand-green py-4">
+        <div
+          className="flex animate-[leevi-marquee_35s_linear_infinite] whitespace-nowrap font-display"
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(15px, 4.5vw, 22px)",
+            lineHeight: "1.3",
+            color: "rgba(255,255,255,0.95)",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {Array.from({ length: 6 }).flatMap((_, i) =>
+            [
+              "Design sofisticado",
+              "Grandes vãos",
+              "Arquitetura contemporânea",
+              "Rede de especialistas no Brasil",
+            ].map((item, j) => (
+              <span key={`${i}-${j}`} className="inline-flex items-center">
+                <span className="px-8">{item}</span>
+                <span className="opacity-60">•</span>
+              </span>
+            )),
+          )}
+        </div>
+      </div>
+
+
       {/* SESSÃO 2 — Muito mais do que esquadrias */}
       <section className="relative overflow-hidden bg-foreground py-28 md:py-40">
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
@@ -235,7 +289,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Quando <span className="text-brand-green">arquitetura</span>, design e engenharia
+                Quando <UnderlineWord delay={0}>arquitetura</UnderlineWord>, design e engenharia
                 trabalham juntos.
               </h2>
             </Reveal>
@@ -366,7 +420,7 @@ function LandingCliente() {
                 letterSpacing: "-0.035em",
               }}
             >
-              O <span className="text-brand-green">detalhe</span> que valoriza todo o seu imóvel.
+              O <UnderlineWord delay={0}>detalhe</UnderlineWord> que valoriza todo o seu imóvel.
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
@@ -381,51 +435,80 @@ function LandingCliente() {
         </div>
       </section>
 
-      {/* SESSÃO 6 — Por que escolher a Roll Door */}
-      <section className="relative overflow-hidden bg-foreground py-24 md:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
-          <div className="grid gap-16 md:grid-cols-[1fr_1.2fr] md:items-center">
-            <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
-                Por que Roll Door
-              </span>
-              <h2
-                className="mt-5 font-display text-white"
-                style={{
-                  fontWeight: 500,
-                  fontSize: "clamp(30px, 5vw, 56px)",
-                  lineHeight: "1.05",
-                  letterSpacing: "-0.035em",
-                }}
-              >
-                Por que escolher a{" "}
-                <span className="text-brand-green">Roll Door</span>?
-              </h2>
-            </Reveal>
+      {/* SESSÃO 6 — Por que escolher a Roll Door (caixa de mensagem) */}
+      <section className="bg-foreground pt-4 pb-24 md:pb-32">
+        <div className="w-full" style={{ padding: "20px" }}>
+          <div
+            className="relative w-full overflow-hidden rounded-[32px] px-6 py-14 md:px-12 md:py-20"
+            style={{ background: "oklch(0.18 0.005 250)" }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.06]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 14px)",
+              }}
+            />
+            {/* triângulo — efeito caixa de mensagem */}
+            <div
+              aria-hidden
+              className="pointer-events-none absolute top-[55%] -left-6 z-10 h-0 w-0 md:-left-8"
+              style={{
+                borderTop: "28px solid transparent",
+                borderBottom: "28px solid transparent",
+                borderRight: "28px solid oklch(0.18 0.005 250)",
+              }}
+            />
 
-            <Reveal delay={0.15}>
-              <ul className="flex flex-col divide-y divide-white/10">
-                {[
-                  "Quase quatro décadas de experiência no mercado.",
-                  "Marca reconhecida nacionalmente.",
-                  "Soluções para projetos de alto padrão.",
-                  "Rede de parceiros especializados em todo o Brasil.",
-                  "Produtos desenvolvidos para arquitetura contemporânea.",
-                ].map((item) => (
-                  <li key={item} className="flex items-start gap-4 py-5">
-                    <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    <span className="text-[18px] leading-relaxed text-white/85 md:text-[20px]">
-                      {item}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
+            <div className="relative z-10 mx-auto grid max-w-[1100px] gap-14 md:grid-cols-[1fr_1.2fr] md:items-center md:gap-20">
+              <Reveal>
+                <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                  Por que Roll Door
+                </span>
+                <h2
+                  className="mt-5 font-display text-white"
+                  style={{
+                    fontWeight: 500,
+                    fontSize: "clamp(30px, 5vw, 56px)",
+                    lineHeight: "1.05",
+                    letterSpacing: "-0.035em",
+                  }}
+                >
+                  Por que escolher a{" "}
+                  <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
+                </h2>
+                <p className="mt-6 max-w-md text-[18px] leading-relaxed text-white/65">
+                  Uma marca construída sobre décadas de engenharia, design e presença nacional em
+                  projetos de alto padrão.
+                </p>
+              </Reveal>
+
+              <Reveal delay={0.15}>
+                <ul className="flex flex-col divide-y divide-white/10">
+                  {[
+                    "Quase quatro décadas de experiência no mercado.",
+                    "Marca reconhecida nacionalmente.",
+                    "Soluções para projetos de alto padrão.",
+                    "Rede de parceiros especializados em todo o Brasil.",
+                    "Produtos desenvolvidos para arquitetura contemporânea.",
+                  ].map((item) => (
+                    <li key={item} className="flex items-start gap-4 py-5">
+                      <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
+                        <Check className="h-3.5 w-3.5" strokeWidth={3} />
+                      </span>
+                      <span className="text-[18px] leading-relaxed text-white/85 md:text-[20px]">
+                        {item}
+                      </span>
+                    </li>
+                  ))}
+                </ul>
+              </Reveal>
+            </div>
           </div>
         </div>
       </section>
+
 
       {/* SESSÃO 7 — Da inspiração ao seu projeto */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
@@ -444,7 +527,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Da <span className="text-brand-green">inspiração</span> ao seu projeto.
+                Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
               <p className="mx-auto mt-6 text-[18px] text-white/60 md:text-[20px]">
                 Nosso processo é simples.
@@ -490,7 +573,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Quem escolheu <span className="text-brand-green">Roll Door</span> recomenda.
+                Quem escolheu <UnderlineWord delay={0}>Roll Door</UnderlineWord> recomenda.
               </h2>
             </Reveal>
           </div>
