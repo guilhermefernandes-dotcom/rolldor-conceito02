@@ -431,16 +431,22 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                           fontWeight: 500,
                           fontSize: "clamp(24px, 6.5vw, 44px)",
                           lineHeight: "0.95",
-                          color: "oklch(0.18 0.005 250)",
+                          color: cardText,
                           letterSpacing: "-0.03em",
                         }}
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-2 font-display text-3xl font-medium leading-none text-foreground md:text-[44px]">
+                      <div
+                        className="mt-2 font-display text-3xl font-medium leading-none md:text-[44px]"
+                        style={{ color: cardText }}
+                      >
                         {s.big}
                       </div>
-                      <p className="mt-3 text-[18px] leading-relaxed text-muted-foreground md:mt-4 md:text-[18px]">
+                      <p
+                        className="mt-3 text-[18px] leading-relaxed md:mt-4 md:text-[18px]"
+                        style={{ color: cardMuted }}
+                      >
                         {s.desc}
                       </p>
                     </motion.div>
