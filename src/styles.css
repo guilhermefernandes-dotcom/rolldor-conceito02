@@ -221,7 +221,4 @@
   100% { transform: scale(2.4); opacity: 0; }
 }
 
-.novo-padrao-stage {
-  position: fixed !important;
-  left: 0;
-}
+

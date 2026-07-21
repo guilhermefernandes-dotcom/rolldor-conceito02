@@ -1,111 +1,187 @@
-import { useRef } from "react";
-import { motion, useScroll, useTransform, useSpring } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 /**
- * Scroll-locked reveal:
- * - Section is pinned (sticky) for a longer scroll window
- * - "UM NOVO PADRÃO" starts huge on a single line, shrinks as user scrolls
- * - Sub-headline + paragraphs fade/slide in while the title shrinks
+ * "Um novo padrão" — entrada cinematográfica, sem scroll-lock.
+ * Animações disparadas pela entrada na viewport (whileInView).
  */
+
+const EASE = [0.22, 1, 0.36, 1] as const;
+
+const container: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.12, delayChildren: 0.15 },
+  },
+};
+
+const fadeUp: Variants = {
+  hidden: { opacity: 0, y: 16 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: EASE },
+  },
+};
+
+const paragraphs: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.1, delayChildren: 0.05 },
+  },
+};
+
 export function NovoPadraoPinned() {
-  const ref = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start start", "end end"],
-  });
-
-  const p = useSpring(scrollYProgress, {
-    stiffness: 140,
-    damping: 26,
-    mass: 0.3,
-  });
-
-  // Title shrinks early, then the section keeps the revealed copy locked on screen
-  const titleScale = useTransform(p, [0, 0.32], [1, 0.3]);
-  const titleY = useTransform(p, [0, 0.32], ["0vh", "-20vh"]);
-  const titleOpacity = useTransform(p, [0.78, 0.94], [1, 0]);
-
-  // Revealed content appears earlier and stays visible for most of the lock
-  const subOpacity = useTransform(p, [0.18, 0.34], [0, 1]);
-  const subY = useTransform(p, [0.18, 0.34], [36, 0]);
-
-  const paraOpacity = useTransform(p, [0.28, 0.46, 0.84, 0.96], [0, 1, 1, 0]);
-  const contentOpacity = useTransform(p, [0.18, 0.36, 0.86, 0.96], [0, 1, 1, 0]);
-  const contentY = useTransform(p, [0.18, 0.36], [72, 0]);
-  const stageTop = useTransform(p, [0, 0.001, 0.999, 1], ["100%", "0%", "0%", "-100%"]);
-
   return (
     <section
-      ref={ref}
-      data-novo-padrao-section
-      className="relative bg-[#F2F0EA]"
-      style={{ height: "380vh" }}
+      className="relative overflow-hidden py-28 md:py-40"
+      style={{
+        background:
+          "radial-gradient(120% 90% at 50% 20%, #F7F5EF 0%, #F2F0EA 45%, #ECE9E1 100%)",
+      }}
     >
+      {/* Textura diagonal muito sutil, coerente com o resto da LP */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage:
+            "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 22px)",
+        }}
+      />
+      {/* Vinheta suave nas bordas verticais */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(14,17,17,0.05), transparent 15%, transparent 85%, rgba(14,17,17,0.05))",
+        }}
+      />
+
       <motion.div
-        data-novo-padrao-sticky
-        style={{ top: stageTop }}
-        className="novo-padrao-stage z-10 h-screen w-full overflow-hidden bg-[#F2F0EA]"
+        variants={container}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.35 }}
+        className="relative z-10 mx-auto flex max-w-[1400px] flex-col items-center px-6 text-center md:px-10"
       >
-        {/* Huge single-line title */}
-        <div className="pointer-events-none absolute inset-0 flex items-center justify-center">
+        {/* Selo */}
+        <motion.span
+          variants={fadeUp}
+          className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green md:text-xs"
+        >
+          O padrão Roll Door
+        </motion.span>
+
+        {/* Título com mask reveal */}
+        <div className="mt-8 overflow-hidden md:mt-10">
           <motion.h2
+            variants={{
+              hidden: { clipPath: "inset(0 0 100% 0)", y: "0.15em", filter: "blur(6px)" },
+              visible: {
+                clipPath: "inset(0 0 0% 0)",
+                y: "0em",
+                filter: "blur(0px)",
+                transition: { duration: 1.05, ease: EASE, delay: 0.05 },
+              },
+            }}
+            className="whitespace-nowrap font-display text-[#0E1111]"
             style={{
-              scale: titleScale,
-              y: titleY,
-              opacity: titleOpacity,
               fontWeight: 500,
-              fontSize: "clamp(42px, 10.2vw, 190px)",
+              fontSize: "clamp(42px, 11vw, 200px)",
               lineHeight: 1,
               letterSpacing: "-0.03em",
             }}
-            data-novo-padrao-title
-            className="whitespace-nowrap text-center font-display text-[#0E1111]"
           >
-            UM NOVO PADRÃO
+            UM NOVO <span className="text-[#2F3D30]/80">PADRÃO</span>
+            <motion.span
+              aria-hidden
+              className="ml-[0.12em] inline-block align-middle"
+              style={{
+                width: "0.06em",
+                height: "0.78em",
+                background: "#9CCB3B",
+                borderRadius: "1px",
+              }}
+              variants={{
+                hidden: { opacity: 0 },
+                visible: {
+                  opacity: [0, 1, 1, 0.2, 1],
+                  transition: { duration: 1.6, delay: 1.0, times: [0, 0.2, 0.5, 0.75, 1], repeat: Infinity, repeatType: "loop", repeatDelay: 0.4 },
+                },
+              }}
+            />
           </motion.h2>
         </div>
 
-        {/* Revealed content — sits below the shrunken title */}
+        {/* Divider que expande */}
         <motion.div
-          style={{ opacity: contentOpacity, y: contentY }}
-          data-novo-padrao-content
-          className="absolute inset-x-0 top-1/2 mx-auto flex max-w-4xl flex-col items-center px-6 text-center md:px-10"
+          variants={{
+            hidden: { scaleX: 0, opacity: 0 },
+            visible: {
+              scaleX: 1,
+              opacity: 1,
+              transition: { duration: 0.9, ease: EASE, delay: 0.2 },
+            },
+          }}
+          style={{ transformOrigin: "center" }}
+          className="mt-10 h-px w-24 bg-[#0E1111]/25 md:mt-14 md:w-40"
+        />
+
+        {/* Sub-headline em duas linhas */}
+        <motion.h3
+          variants={paragraphs}
+          className="mt-10 font-display text-[#0E1111] md:mt-14"
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(24px, 4.2vw, 48px)",
+            lineHeight: "1.1",
+            letterSpacing: "-0.03em",
+          }}
         >
+          <motion.span variants={fadeUp} className="block">
+            Muito mais do que esquadrias.
+          </motion.span>
+          <motion.span variants={fadeUp} className="block text-[#0E1111]/50">
+            Um novo padrão para viver sua casa.
+          </motion.span>
+        </motion.h3>
 
-          <motion.h3
-            style={{ opacity: subOpacity, y: subY }}
-            className="font-display text-[#0E1111]"
+        {/* Parágrafos */}
+        <motion.div
+          variants={paragraphs}
+          className="mx-auto mt-10 max-w-2xl space-y-4 text-[17px] leading-relaxed text-[#0E1111]/70 md:mt-14 md:text-[19px]"
+        >
+          <motion.p variants={fadeUp}>
+            Cada detalhe de um projeto transmite uma sensação.
+          </motion.p>
+          <motion.p variants={fadeUp}>
+            Com a Roll Door, você cria ambientes mais amplos, iluminados e sofisticados,
+            utilizando sistemas desenvolvidos para unir estética, engenharia e desempenho.
+          </motion.p>
+          <motion.p
+            variants={fadeUp}
+            className="text-[#0E1111]"
+            style={{ fontWeight: 500 }}
           >
-            <span
-              style={{
-                fontWeight: 500,
-                fontSize: "clamp(24px, 4.2vw, 48px)",
-                lineHeight: "1.08",
-                letterSpacing: "-0.03em",
-                display: "block",
-              }}
-            >
-              Muito mais do que esquadrias.
-              <br />
-              <span className="text-[#0E1111]/50">
-                Um novo padrão para viver sua casa.
-              </span>
-            </span>
-          </motion.h3>
-
-          <motion.div
-            style={{ opacity: paraOpacity }}
-            className="mx-auto mt-6 max-w-2xl space-y-3 text-[17px] leading-relaxed text-[#0E1111]/70 md:mt-8 md:text-[19px]"
-          >
-            <p>Cada detalhe de um projeto transmite uma sensação.</p>
-            <p>
-              Com a Roll Door, você cria ambientes mais amplos, iluminados e sofisticados,
-              utilizando sistemas desenvolvidos para unir estética, engenharia e desempenho.
-            </p>
-            <p className="text-[#0E1111]">
-              Porque uma casa extraordinária merece soluções à altura.
-            </p>
-          </motion.div>
+            Porque uma casa{" "}
+            <span className="relative inline-block">
+              <span className="relative z-10">extraordinária</span>
+              <motion.span
+                aria-hidden
+                className="absolute inset-x-0 bottom-0 h-[0.35em] rounded-sm"
+                style={{ background: "#9CCB3B", opacity: 0.35, transformOrigin: "left" }}
+                variants={{
+                  hidden: { scaleX: 0 },
+                  visible: {
+                    scaleX: 1,
+                    transition: { duration: 0.7, ease: EASE, delay: 0.35 },
+                  },
+                }}
+              />
+            </span>{" "}
+            merece soluções à altura.
+          </motion.p>
         </motion.div>
       </motion.div>
     </section>
