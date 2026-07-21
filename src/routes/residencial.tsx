@@ -29,6 +29,7 @@ const galeria5 = project5Asset.url;
 const pullQuoteBg = banner2Asset.url;
 const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
+import comoFuncionaCenterAsset from "@/assets/como-funciona-center.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
@@ -652,7 +653,7 @@ function LandingCliente() {
                 <div aria-hidden className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle at center, rgba(156,203,59,0.14) 0%, transparent 65%)" }} />
                 <div aria-hidden className="absolute inset-6 rounded-full border border-[#0E1111]/10" />
                 <img
-                  src={new URL("../assets/como-funciona-center.png", import.meta.url).href}
+                  src={comoFuncionaCenterAsset.url}
                   alt="Ilustração editorial de uma fachada residencial com esquadria Roll Door"
                   loading="lazy"
                   width={1024}
