@@ -208,6 +208,35 @@ function LandingCliente() {
         </motion.section>
       </motion.div>
 
+      {/* MARQUEE — faixa de destaque verde */}
+      <div className="overflow-hidden bg-brand-green py-4">
+        <div
+          className="flex animate-[leevi-marquee_35s_linear_infinite] whitespace-nowrap font-display"
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(15px, 4.5vw, 22px)",
+            lineHeight: "1.3",
+            color: "rgba(255,255,255,0.95)",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {Array.from({ length: 6 }).flatMap((_, i) =>
+            [
+              "Design sofisticado",
+              "Grandes vãos",
+              "Arquitetura contemporânea",
+              "Rede de especialistas no Brasil",
+            ].map((item, j) => (
+              <span key={`${i}-${j}`} className="inline-flex items-center">
+                <span className="px-8">{item}</span>
+                <span className="opacity-60">•</span>
+              </span>
+            )),
+          )}
+        </div>
+      </div>
+
+
       {/* SESSÃO 2 — Muito mais do que esquadrias */}
       <section className="relative overflow-hidden bg-foreground py-28 md:py-40">
         <div className="mx-auto max-w-4xl px-6 text-center md:px-10">
