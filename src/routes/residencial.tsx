@@ -9,10 +9,22 @@ import {
   Layers,
   Quote,
 } from "lucide-react";
-import heroImg from "@/assets/rd-hero.jpg";
-import galeria1 from "@/assets/rd-galeria-1.jpg";
-import galeria2 from "@/assets/rd-galeria-2.jpg";
-import galeria3 from "@/assets/rd-galeria-3.jpg";
+import heroBannerAsset from "@/assets/rd-banner-3.webp.asset.json";
+import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
+import banner4Asset from "@/assets/rd-banner-4.webp.asset.json";
+import project1Asset from "@/assets/rd-project-2.webp.asset.json";
+import project2Asset from "@/assets/rd-project-3.webp.asset.json";
+import project3Asset from "@/assets/rd-project-6.webp.asset.json";
+import project4Asset from "@/assets/rd-project-4.webp.asset.json";
+import project5Asset from "@/assets/rd-project-5.webp.asset.json";
+const heroImg = heroBannerAsset.url;
+const galeria1 = project1Asset.url;
+const galeria2 = project2Asset.url;
+const galeria3 = project3Asset.url;
+const galeria4 = project4Asset.url;
+const galeria5 = project5Asset.url;
+const pullQuoteBg = banner2Asset.url;
+const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 
@@ -275,6 +287,22 @@ function LandingCliente() {
         </div>
       </section>
 
+      {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
+      <div className="bg-foreground px-5 pb-6 md:px-10">
+        <Reveal>
+          <div className="relative mx-auto aspect-[21/9] w-full max-w-[1600px] overflow-hidden rounded-3xl">
+            <img
+              src={session2Img}
+              alt="Residência de alto padrão com sistema Roll Door"
+              className="h-full w-full object-cover"
+              loading="lazy"
+              decoding="async"
+            />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+          </div>
+        </Reveal>
+      </div>
+
       {/* SESSÃO 3 — Arquitetura, design e engenharia (4 cards) */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
@@ -373,11 +401,20 @@ function LandingCliente() {
                     decoding="async"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div className="aspect-square overflow-hidden rounded-2xl">
                     <img
                       src={galeria1}
                       alt="Projeto residencial contemporâneo"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="aspect-square overflow-hidden rounded-2xl">
+                    <img
+                      src={galeria4}
+                      alt="Ambiente integrado com esquadrias Roll Door"
                       className="h-full w-full object-cover"
                       loading="lazy"
                       decoding="async"
@@ -393,6 +430,15 @@ function LandingCliente() {
                     />
                   </div>
                 </div>
+                <div className="aspect-[21/9] overflow-hidden rounded-2xl">
+                  <img
+                    src={galeria5}
+                    alt="Projeto Roll Door — grandes vãos e integração"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </div>
               </div>
             </Reveal>
           </div>
@@ -401,6 +447,16 @@ function LandingCliente() {
 
       {/* SESSÃO 5 — O detalhe que valoriza (pull quote) */}
       <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-28 md:py-36">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <img
+            src={pullQuoteBg}
+            alt=""
+            className="h-full w-full object-cover opacity-25"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground via-foreground/85 to-foreground" />
+        </div>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
