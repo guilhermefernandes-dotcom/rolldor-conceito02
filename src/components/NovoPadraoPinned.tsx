@@ -1,11 +1,17 @@
+import { useEffect, useState } from "react";
 import { motion, type Variants } from "motion/react";
 
 /**
- * "Um novo padrão" — entrada cinematográfica, sem scroll-lock.
- * Animações disparadas pela entrada na viewport (whileInView).
+ * "Um novo padrão" — entrada cinematográfica.
+ * O título é digitado (typing effect) e reescreve a cada 5s.
  */
 
 const EASE = [0.22, 1, 0.36, 1] as const;
+
+const FULL_TEXT = "UM NOVO PADRÃO";
+const TYPE_MS = 90;      // tempo por caractere
+const HOLD_MS = 5000;    // tempo com o texto completo antes de reescrever
+const ERASE_MS = 35;     // tempo por caractere ao apagar
 
 const container: Variants = {
   hidden: {},
@@ -30,7 +36,51 @@ const paragraphs: Variants = {
   },
 };
 
+function useTypingLoop(text: string) {
+  const [displayed, setDisplayed] = useState("");
+
+  useEffect(() => {
+    let cancelled = false;
+    let timeoutId: ReturnType<typeof setTimeout>;
+
+    const type = (i: number) => {
+      if (cancelled) return;
+      if (i <= text.length) {
+        setDisplayed(text.slice(0, i));
+        timeoutId = setTimeout(() => type(i + 1), TYPE_MS);
+      } else {
+        timeoutId = setTimeout(() => erase(text.length), HOLD_MS);
+      }
+    };
+
+    const erase = (i: number) => {
+      if (cancelled) return;
+      if (i >= 0) {
+        setDisplayed(text.slice(0, i));
+        timeoutId = setTimeout(() => erase(i - 1), ERASE_MS);
+      } else {
+        timeoutId = setTimeout(() => type(1), 250);
+      }
+    };
+
+    type(1);
+    return () => {
+      cancelled = true;
+      clearTimeout(timeoutId);
+    };
+  }, [text]);
+
+  return displayed;
+}
+
 export function NovoPadraoPinned() {
+  const typed = useTypingLoop(FULL_TEXT);
+
+  // Divide o texto digitado em "UM NOVO " + "PADRÃO" para manter o segundo verde
+  const splitIdx = "UM NOVO ".length;
+  const first = typed.slice(0, Math.min(splitIdx, typed.length));
+  const second = typed.length > splitIdx ? typed.slice(splitIdx) : "";
+
   return (
     <section
       className="relative overflow-hidden py-28 md:py-40"
@@ -39,7 +89,6 @@ export function NovoPadraoPinned() {
           "radial-gradient(120% 90% at 50% 20%, #F7F5EF 0%, #F2F0EA 45%, #ECE9E1 100%)",
       }}
     >
-      {/* Textura diagonal muito sutil, coerente com o resto da LP */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0 opacity-[0.04]"
@@ -48,7 +97,6 @@ export function NovoPadraoPinned() {
             "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 22px)",
         }}
       />
-      {/* Vinheta suave nas bordas verticais */}
       <div
         aria-hidden
         className="pointer-events-none absolute inset-0"
@@ -65,7 +113,6 @@ export function NovoPadraoPinned() {
         viewport={{ once: true, amount: 0.35 }}
         className="relative z-10 mx-auto flex max-w-[1400px] flex-col items-center px-6 text-center md:px-10"
       >
-        {/* Selo */}
         <motion.span
           variants={fadeUp}
           className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green md:text-xs"
@@ -73,48 +120,38 @@ export function NovoPadraoPinned() {
           O padrão Roll Door
         </motion.span>
 
-        {/* Título com mask reveal */}
-        <div className="mt-8 overflow-hidden md:mt-10">
-          <motion.h2
-            variants={{
-              hidden: { clipPath: "inset(0 0 100% 0)", y: "0.15em", filter: "blur(6px)" },
-              visible: {
-                clipPath: "inset(0 0 0% 0)",
-                y: "0em",
-                filter: "blur(0px)",
-                transition: { duration: 1.05, ease: EASE, delay: 0.05 },
-              },
-            }}
-            className="whitespace-nowrap font-display text-[#0E1111]"
+        {/* Título com typing effect — sempre em uma linha, sem overflow */}
+        <motion.h2
+          variants={fadeUp}
+          aria-label={FULL_TEXT}
+          className="mt-8 whitespace-nowrap font-display text-[#0E1111] md:mt-10"
+          style={{
+            fontWeight: 500,
+            // ajustado para NUNCA estourar horizontalmente
+            fontSize: "clamp(36px, 8.2vw, 150px)",
+            lineHeight: 1.05,
+            letterSpacing: "-0.03em",
+            minHeight: "1.05em",
+          }}
+        >
+          <span aria-hidden>{first}</span>
+          <span aria-hidden className="text-[#2F3D30]/80">
+            {second}
+          </span>
+          {/* Cursor piscando */}
+          <span
+            aria-hidden
+            className="ml-[0.06em] inline-block align-middle animate-pulse"
             style={{
-              fontWeight: 500,
-              fontSize: "clamp(42px, 11vw, 200px)",
-              lineHeight: 1,
-              letterSpacing: "-0.03em",
+              width: "0.055em",
+              height: "0.78em",
+              background: "#9CCB3B",
+              borderRadius: "1px",
+              transform: "translateY(-0.05em)",
             }}
-          >
-            UM NOVO <span className="text-[#2F3D30]/80">PADRÃO</span>
-            <motion.span
-              aria-hidden
-              className="ml-[0.12em] inline-block align-middle"
-              style={{
-                width: "0.06em",
-                height: "0.78em",
-                background: "#9CCB3B",
-                borderRadius: "1px",
-              }}
-              variants={{
-                hidden: { opacity: 0 },
-                visible: {
-                  opacity: [0, 1, 1, 0.2, 1],
-                  transition: { duration: 1.6, delay: 1.0, times: [0, 0.2, 0.5, 0.75, 1], repeat: Infinity, repeatType: "loop", repeatDelay: 0.4 },
-                },
-              }}
-            />
-          </motion.h2>
-        </div>
+          />
+        </motion.h2>
 
-        {/* Divider que expande */}
         <motion.div
           variants={{
             hidden: { scaleX: 0, opacity: 0 },
@@ -128,7 +165,6 @@ export function NovoPadraoPinned() {
           className="mt-10 h-px w-24 bg-[#0E1111]/25 md:mt-14 md:w-40"
         />
 
-        {/* Sub-headline em duas linhas */}
         <motion.h3
           variants={paragraphs}
           className="mt-10 font-display text-[#0E1111] md:mt-14"
@@ -147,7 +183,6 @@ export function NovoPadraoPinned() {
           </motion.span>
         </motion.h3>
 
-        {/* Parágrafos */}
         <motion.div
           variants={paragraphs}
           className="mx-auto mt-10 max-w-2xl space-y-4 text-[17px] leading-relaxed text-[#0E1111]/70 md:mt-14 md:text-[19px]"
