@@ -221,4 +221,13 @@
   100% { transform: scale(2.4); opacity: 0; }
 }
 
+/* Cursor piscando padrão (estilo terminal) */
+@keyframes caret-blink {
+  0%, 45% { opacity: 1; }
+  55%, 100% { opacity: 0; }
+}
+.caret-blink {
+  animation: caret-blink 1.05s steps(1) infinite;
+}
+
 
