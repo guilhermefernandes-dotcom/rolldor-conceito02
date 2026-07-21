@@ -598,7 +598,7 @@ function LandingCliente() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-4">
+          <div className="mt-16 grid gap-5 md:grid-cols-4">
             {[
               "Solicite seu atendimento.",
               "Nossa equipe identifica a melhor solução para seu projeto.",
@@ -606,16 +606,31 @@ function LandingCliente() {
               "Seu projeto ganha vida com a qualidade Roll Door.",
             ].map((step, i) => (
               <Reveal key={i} delay={i * 0.08} className="h-full">
-                <div className="relative flex h-full flex-col rounded-2xl border border-white/10 bg-white/[0.03] p-7">
-                  <span className="font-display text-4xl font-medium text-brand-green md:text-5xl">
+                <div
+                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/10 p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/40"
+                  style={{
+                    background:
+                      "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 55%, oklch(0.11 0.005 250) 100%)",
+                    boxShadow:
+                      "inset 0 1px 0 0 rgba(255,255,255,0.06), 0 20px 50px -30px rgba(0,0,0,0.8)",
+                  }}
+                >
+                  {/* subtle brand-green glow */}
+                  <div
+                    aria-hidden
+                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-40 blur-3xl transition-opacity duration-500 group-hover:opacity-70"
+                    style={{ background: "radial-gradient(circle, #9CCB3B 0%, transparent 70%)" }}
+                  />
+                  <span className="relative font-display text-4xl font-medium text-brand-green md:text-5xl">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <div className="my-5 h-px w-8 bg-brand-green/60" />
-                  <p className="text-[18px] leading-relaxed text-white/85">{step}</p>
+                  <div className="relative my-5 h-px w-10 bg-brand-green/70" />
+                  <p className="relative text-[18px] leading-relaxed text-white/85">{step}</p>
                 </div>
               </Reveal>
             ))}
           </div>
+
         </div>
       </section>
 
