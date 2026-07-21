@@ -27,6 +27,7 @@ const pullQuoteBg = banner2Asset.url;
 const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
+import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 
 export const Route = createFileRoute("/residencial")({
   head: () => {
