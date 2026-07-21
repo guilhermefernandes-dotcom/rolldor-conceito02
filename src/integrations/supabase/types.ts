@@ -14,6 +14,45 @@ export type Database = {
   }
   public: {
     Tables: {
+      cliente_leads: {
+        Row: {
+          cidade: string
+          created_at: string
+          email: string
+          estado: string
+          fase_obra: Database["public"]["Enums"]["cliente_fase_obra"]
+          id: string
+          mensagem: string | null
+          nome: string
+          tipo_projeto: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          whatsapp: string
+        }
+        Insert: {
+          cidade: string
+          created_at?: string
+          email: string
+          estado: string
+          fase_obra: Database["public"]["Enums"]["cliente_fase_obra"]
+          id?: string
+          mensagem?: string | null
+          nome: string
+          tipo_projeto: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          whatsapp: string
+        }
+        Update: {
+          cidade?: string
+          created_at?: string
+          email?: string
+          estado?: string
+          fase_obra?: Database["public"]["Enums"]["cliente_fase_obra"]
+          id?: string
+          mensagem?: string | null
+          nome?: string
+          tipo_projeto?: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          whatsapp?: string
+        }
+        Relationships: []
+      }
       revenda_leads: {
         Row: {
           cidade: string
@@ -95,6 +134,8 @@ export type Database = {
     }
     Enums: {
       app_role: "admin" | "moderator" | "user"
+      cliente_fase_obra: "projeto" | "construcao" | "reforma" | "finalizacao"
+      cliente_tipo_projeto: "casa" | "apartamento" | "reforma" | "construcao"
       revenda_segmento: "vidracaria" | "esquadrias" | "serralheria" | "outro"
     }
     CompositeTypes: {
@@ -224,6 +265,8 @@ export const Constants = {
   public: {
     Enums: {
       app_role: ["admin", "moderator", "user"],
+      cliente_fase_obra: ["projeto", "construcao", "reforma", "finalizacao"],
+      cliente_tipo_projeto: ["casa", "apartamento", "reforma", "construcao"],
       revenda_segmento: ["vidracaria", "esquadrias", "serralheria", "outro"],
     },
   },
