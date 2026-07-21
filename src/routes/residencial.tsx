@@ -29,7 +29,10 @@ const galeria5 = project5Asset.url;
 const pullQuoteBg = banner2Asset.url;
 const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
-import comoFuncionaCenterAsset from "@/assets/como-funciona-center.png.asset.json";
+import step01Img from "@/assets/step-01-solicite.png";
+import step02Img from "@/assets/step-02-diagnostico.png";
+import step03Img from "@/assets/step-03-parceiro.png";
+import step04Img from "@/assets/step-04-instalacao.png";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
@@ -628,55 +631,49 @@ function LandingCliente() {
             </Reveal>
           </div>
 
-          {/* Editorial layout: 2 topics | center image | 2 topics */}
-          <div className="mt-16 grid grid-cols-1 items-center gap-10 md:mt-24 md:grid-cols-[1fr_1.1fr_1fr] md:gap-12">
-            {/* Left column — topics 1 & 2 */}
-            <div className="flex flex-col gap-10 md:gap-16 md:text-right">
+          {/* Horizontal 4-step layout with icon circles + arrows */}
+          <div className="mt-16 md:mt-24">
+            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:items-start md:gap-4">
               {[
-                { n: "01", title: "Solicite", desc: "Você inicia o contato e conta sobre o seu projeto." },
-                { n: "02", title: "Diagnóstico", desc: "Nossa equipe identifica a melhor solução para o seu ambiente." },
+                { n: "01", title: "Solicite", desc: "Você inicia o contato e conta sobre o seu projeto.", img: step01Img },
+                { n: "02", title: "Diagnóstico", desc: "Nossa equipe identifica a melhor solução para o seu ambiente.", img: step02Img },
+                { n: "03", title: "Parceiro local", desc: "Você é direcionado a um parceiro especializado da sua região.", img: step03Img },
+                { n: "04", title: "Instalação", desc: "Seu projeto ganha vida com a qualidade e o acabamento Roll Door.", img: step04Img },
               ].map((s, i) => (
-                <Reveal key={s.n} delay={i * 0.08}>
-                  <div className="flex flex-col gap-3 md:items-end">
-                    <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
-                    <div className="h-px w-10 bg-brand-green" />
-                    <h3 className="font-display text-[#0E1111]" style={{ fontWeight: 500, fontSize: "clamp(22px, 2.4vw, 30px)", letterSpacing: "-0.02em" }}>{s.title}</h3>
-                    <p className="max-w-[320px] text-[18px] leading-relaxed text-[#0E1111]/65 md:ml-auto">{s.desc}</p>
-                  </div>
-                </Reveal>
-              ))}
-            </div>
-
-            {/* Center — editorial illustration */}
-            <Reveal delay={0.15}>
-              <div className="relative mx-auto flex aspect-square w-full max-w-[440px] items-center justify-center">
-                <div aria-hidden className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle at center, rgba(156,203,59,0.14) 0%, transparent 65%)" }} />
-                <div aria-hidden className="absolute inset-6 rounded-full border border-[#0E1111]/10" />
-                <img
-                  src={comoFuncionaCenterAsset.url}
-                  alt="Ilustração editorial de uma fachada residencial com esquadria Roll Door"
-                  loading="lazy"
-                  width={1024}
-                  height={1024}
-                  className="relative z-10 h-[80%] w-[80%] object-contain"
-                />
-              </div>
-            </Reveal>
-
-            {/* Right column — topics 3 & 4 */}
-            <div className="flex flex-col gap-10 md:gap-16 md:text-left">
-              {[
-                { n: "03", title: "Parceiro local", desc: "Você é direcionado a um parceiro especializado da sua região." },
-                { n: "04", title: "Instalação", desc: "Seu projeto ganha vida com a qualidade e o acabamento Roll Door." },
-              ].map((s, i) => (
-                <Reveal key={s.n} delay={i * 0.08 + 0.1}>
-                  <div className="flex flex-col gap-3 md:items-start">
-                    <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
-                    <div className="h-px w-10 bg-brand-green" />
-                    <h3 className="font-display text-[#0E1111]" style={{ fontWeight: 500, fontSize: "clamp(22px, 2.4vw, 30px)", letterSpacing: "-0.02em" }}>{s.title}</h3>
-                    <p className="max-w-[320px] text-[18px] leading-relaxed text-[#0E1111]/65">{s.desc}</p>
-                  </div>
-                </Reveal>
+                <React.Fragment key={s.n}>
+                  <Reveal delay={i * 0.08}>
+                    <div className="flex flex-col items-center text-center">
+                      <div className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full">
+                        <img
+                          src={s.img}
+                          alt={`Ilustração etapa ${s.n} — ${s.title}`}
+                          loading="lazy"
+                          width={1024}
+                          height={1024}
+                          className="h-full w-full object-cover"
+                        />
+                      </div>
+                      <div className="mt-6 flex items-center gap-3">
+                        <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
+                        <span className="h-px w-8 bg-brand-green" />
+                      </div>
+                      <h3
+                        className="mt-3 font-display text-[#0E1111]"
+                        style={{ fontWeight: 500, fontSize: "clamp(20px, 1.8vw, 26px)", letterSpacing: "-0.02em" }}
+                      >
+                        {s.title}
+                      </h3>
+                      <p className="mt-2 max-w-[260px] text-[18px] leading-relaxed text-[#0E1111]/65">{s.desc}</p>
+                    </div>
+                  </Reveal>
+                  {i < 3 && (
+                    <div className="hidden self-center md:flex md:items-center md:justify-center">
+                      <svg width="32" height="16" viewBox="0 0 32 16" fill="none" aria-hidden className="text-[#0E1111]/40">
+                        <path d="M1 8h28m0 0l-6-6m6 6l-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
+                      </svg>
+                    </div>
+                  )}
+                </React.Fragment>
               ))}
             </div>
           </div>
