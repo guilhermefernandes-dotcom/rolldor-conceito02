@@ -138,10 +138,10 @@ export function NovoPadraoPinned() {
           <span aria-hidden className="text-[#2F3D30]/80">
             {second}
           </span>
-          {/* Cursor piscando */}
+          {/* Cursor piscando padrão */}
           <span
             aria-hidden
-            className="ml-[0.06em] inline-block align-middle animate-pulse"
+            className="caret-blink ml-[0.06em] inline-block align-middle"
             style={{
               width: "0.055em",
               height: "0.78em",
