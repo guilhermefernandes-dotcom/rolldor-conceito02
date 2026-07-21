@@ -180,6 +180,85 @@ function CtaPrimary({
   );
 }
 
+function ProjetosCarousel({ slides }: { slides: { src: string; alt: string }[] }) {
+  const [index, setIndex] = useState(0);
+  const total = slides.length;
+  const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
+
+  return (
+    <div className="relative">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-foreground/5 md:aspect-[16/11]">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.img
+            key={index}
+            src={slides[index].src}
+            alt={slides[index].alt}
+            className="absolute inset-0 h-full w-full object-cover"
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            loading="lazy"
+            decoding="async"
+          />
+        </AnimatePresence>
+
+        <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3">
+          <div className="flex gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Ir para o slide ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Slide anterior"
+              onClick={() => go(-1)}
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Próximo slide"
+              onClick={() => go(1)}
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-5 gap-2">
+        {slides.map((s, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Selecionar projeto ${i + 1}`}
+            className={`aspect-[4/3] overflow-hidden rounded-lg transition ${
+              i === index ? "ring-2 ring-brand-green ring-offset-2 ring-offset-[#F2F0EA]" : "opacity-70 hover:opacity-100"
+            }`}
+          >
+            <img src={s.src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
+
 function LandingCliente() {
   const { scrollY } = useScroll();
   const heroPad = useTransform(scrollY, [0, 120], [13, 0]);
