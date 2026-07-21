@@ -383,21 +383,6 @@ function LandingCliente() {
 
 
 
-      {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
-      <div className="bg-[#F2F0EA] px-5 pb-6 md:px-10">
-        <Reveal>
-          <div className="relative mx-auto aspect-[21/9] w-full max-w-[1600px] overflow-hidden rounded-3xl">
-            <img
-              src={session2Img}
-              alt="Residência de alto padrão com sistema Roll Door"
-              className="h-full w-full object-cover"
-              loading="lazy"
-              decoding="async"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-          </div>
-        </Reveal>
-      </div>
 
       {/* SESSÃO 3 — Arquitetura, design e engenharia (4 cards) */}
       <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
