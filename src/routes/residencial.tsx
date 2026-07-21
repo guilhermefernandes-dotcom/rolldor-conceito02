@@ -447,6 +447,16 @@ function LandingCliente() {
 
       {/* SESSÃO 5 — O detalhe que valoriza (pull quote) */}
       <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-28 md:py-36">
+        <div aria-hidden className="pointer-events-none absolute inset-0">
+          <img
+            src={pullQuoteBg}
+            alt=""
+            className="h-full w-full object-cover opacity-25"
+            loading="lazy"
+            decoding="async"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-foreground via-foreground/85 to-foreground" />
+        </div>
         <div
           aria-hidden
           className="pointer-events-none absolute inset-0 opacity-[0.05]"
