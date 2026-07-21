@@ -28,6 +28,8 @@ const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
+import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
+
 
 const residencialSteps: ScrollStep[] = [
   {
