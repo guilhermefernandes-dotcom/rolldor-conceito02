@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight,
   Check,
@@ -8,6 +9,8 @@ import {
   ShieldCheck,
   Layers,
   Quote,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
 import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
@@ -176,6 +179,85 @@ function CtaPrimary({
     </a>
   );
 }
+
+function ProjetosCarousel({ slides }: { slides: { src: string; alt: string }[] }) {
+  const [index, setIndex] = useState(0);
+  const total = slides.length;
+  const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
+
+  return (
+    <div className="relative">
+      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-foreground/5 md:aspect-[16/11]">
+        <AnimatePresence initial={false} mode="wait">
+          <motion.img
+            key={index}
+            src={slides[index].src}
+            alt={slides[index].alt}
+            className="absolute inset-0 h-full w-full object-cover"
+            initial={{ opacity: 0, scale: 1.03 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+            loading="lazy"
+            decoding="async"
+          />
+        </AnimatePresence>
+
+        <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3">
+          <div className="flex gap-1.5">
+            {slides.map((_, i) => (
+              <button
+                key={i}
+                type="button"
+                aria-label={`Ir para o slide ${i + 1}`}
+                onClick={() => setIndex(i)}
+                className={`h-1.5 rounded-full transition-all ${
+                  i === index ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white/80"
+                }`}
+              />
+            ))}
+          </div>
+          <div className="flex gap-2">
+            <button
+              type="button"
+              aria-label="Slide anterior"
+              onClick={() => go(-1)}
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+            >
+              <ChevronLeft className="h-5 w-5" />
+            </button>
+            <button
+              type="button"
+              aria-label="Próximo slide"
+              onClick={() => go(1)}
+              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+            >
+              <ChevronRight className="h-5 w-5" />
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-4 grid grid-cols-5 gap-2">
+        {slides.map((s, i) => (
+          <button
+            key={i}
+            type="button"
+            onClick={() => setIndex(i)}
+            aria-label={`Selecionar projeto ${i + 1}`}
+            className={`aspect-[4/3] overflow-hidden rounded-lg transition ${
+              i === index ? "ring-2 ring-brand-green ring-offset-2 ring-offset-[#F2F0EA]" : "opacity-70 hover:opacity-100"
+            }`}
+          >
+            <img src={s.src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
+          </button>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+
 
 function LandingCliente() {
   const { scrollY } = useScroll();
@@ -346,15 +428,14 @@ function LandingCliente() {
       <section className="bg-foreground py-6 md:py-8">
         <div className="mx-auto w-full px-5 md:px-8">
           <div
-            className="relative w-full overflow-hidden rounded-[32px] px-6 py-16 md:px-12 md:py-24"
-            style={{ background: "oklch(0.18 0.005 250)" }}
+            className="relative w-full overflow-hidden rounded-[32px] bg-[#F2F0EA] px-6 py-16 md:px-12 md:py-24"
           >
             <div
               aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.05]"
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.06]"
               style={{
                 backgroundImage:
-                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 18px)",
+                  "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 18px)",
               }}
             />
             <div className="relative z-10 mx-auto max-w-[1400px]">
@@ -364,7 +445,7 @@ function LandingCliente() {
                     Galeria
                   </span>
                   <h2
-                    className="mt-5 font-display text-white"
+                    className="mt-5 font-display text-foreground"
                     style={{
                       fontWeight: 500,
                       fontSize: "clamp(30px, 5.2vw, 56px)",
@@ -372,10 +453,10 @@ function LandingCliente() {
                       letterSpacing: "-0.035em",
                     }}
                   >
-                    Projetos que <span className="text-white/45">inspiram.</span>
+                    Projetos que <span className="text-foreground/45">inspiram.</span>
                   </h2>
-                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
-                    <p className="text-white">Mais do que produtos.</p>
+                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-foreground/70 md:text-[20px]">
+                    <p className="text-foreground">Mais do que produtos.</p>
                     <p>
                       Criamos soluções que transformam residências em espaços exclusivos, modernos e
                       cheios de personalidade.
@@ -384,55 +465,15 @@ function LandingCliente() {
                 </Reveal>
 
                 <Reveal delay={0.15}>
-                  <div className="grid gap-4">
-                    <div className="aspect-[16/10] overflow-hidden rounded-3xl">
-                      <img
-                        src={galeria2}
-                        alt="Residência de alto padrão com esquadrias Roll Door"
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                    <div className="grid grid-cols-3 gap-4">
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria1}
-                          alt="Projeto residencial contemporâneo"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria4}
-                          alt="Ambiente integrado com esquadrias Roll Door"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                      <div className="aspect-square overflow-hidden rounded-2xl">
-                        <img
-                          src={galeria3}
-                          alt="Grandes vãos com integração externa"
-                          className="h-full w-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
-                      </div>
-                    </div>
-                    <div className="aspect-[21/9] overflow-hidden rounded-2xl">
-                      <img
-                        src={galeria5}
-                        alt="Projeto Roll Door — grandes vãos e integração"
-                        className="h-full w-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                    </div>
-                  </div>
+                  <ProjetosCarousel
+                    slides={[
+                      { src: galeria2, alt: "Residência de alto padrão com esquadrias Roll Door" },
+                      { src: galeria1, alt: "Projeto residencial contemporâneo" },
+                      { src: galeria4, alt: "Ambiente integrado com esquadrias Roll Door" },
+                      { src: galeria3, alt: "Grandes vãos com integração externa" },
+                      { src: galeria5, alt: "Projeto Roll Door — grandes vãos e integração" },
+                    ]}
+                  />
                 </Reveal>
               </div>
             </div>
