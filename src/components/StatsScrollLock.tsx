@@ -62,6 +62,14 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
     variant === "dark"
       ? "color-mix(in oklab, #ffffff 35%, transparent)"
       : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)";
+  const isDark = variant === "dark";
+  const cardBg = isDark ? "#9CCB3B" : "var(--background)";
+  const cardText = isDark ? "#000000" : "var(--foreground)";
+  const cardMuted = isDark ? "rgba(0,0,0,0.65)" : "var(--muted-foreground)";
+  const cardNumber = isDark ? "rgba(0,0,0,0.12)" : "var(--foreground)";
+  const arrowBtn = isDark
+    ? "flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-white text-black transition-colors hover:bg-black hover:text-white"
+    : "flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background";
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
 
