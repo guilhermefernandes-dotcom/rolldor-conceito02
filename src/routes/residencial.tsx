@@ -289,7 +289,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Quando <span className="text-brand-green">arquitetura</span>, design e engenharia
+                Quando <UnderlineWord delay={0}>arquitetura</UnderlineWord>, design e engenharia
                 trabalham juntos.
               </h2>
             </Reveal>
