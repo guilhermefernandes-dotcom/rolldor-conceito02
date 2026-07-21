@@ -365,7 +365,7 @@ function LandingCliente() {
           </div>
 
           <div className="mt-10 md:mt-14">
-            <StatsScrollLock steps={residencialSteps} />
+            <StatsScrollLock steps={residencialSteps} variant="dark" />
           </div>
         </div>
       </section>
