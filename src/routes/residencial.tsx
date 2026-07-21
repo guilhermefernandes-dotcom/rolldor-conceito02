@@ -9,7 +9,7 @@ import {
   Layers,
   Quote,
 } from "lucide-react";
-import heroBannerAsset from "@/assets/rd-banner-3.webp.asset.json";
+import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
 import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
 import banner4Asset from "@/assets/rd-banner-4.webp.asset.json";
 import project1Asset from "@/assets/rd-project-2.webp.asset.json";
