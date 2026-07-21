@@ -6,7 +6,7 @@ import galeria2 from "@/assets/rd-galeria-2.jpg";
 import galeria3 from "@/assets/rd-galeria-3.jpg";
 import heroImg from "@/assets/rd-hero.jpg";
 
-type Step = {
+export type Step = {
   n: string;
   label: string;
   big: string;
