@@ -260,8 +260,7 @@ function LandingCliente() {
           </div>
         </motion.section>
 
-          </div>
-        </motion.section>
+
       </motion.div>
 
       {/* MARQUEE — faixa de destaque verde */}
