@@ -401,11 +401,20 @@ function LandingCliente() {
                     decoding="async"
                   />
                 </div>
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-3 gap-4">
                   <div className="aspect-square overflow-hidden rounded-2xl">
                     <img
                       src={galeria1}
                       alt="Projeto residencial contemporâneo"
+                      className="h-full w-full object-cover"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                  </div>
+                  <div className="aspect-square overflow-hidden rounded-2xl">
+                    <img
+                      src={galeria4}
+                      alt="Ambiente integrado com esquadrias Roll Door"
                       className="h-full w-full object-cover"
                       loading="lazy"
                       decoding="async"
@@ -420,6 +429,15 @@ function LandingCliente() {
                       decoding="async"
                     />
                   </div>
+                </div>
+                <div className="aspect-[21/9] overflow-hidden rounded-2xl">
+                  <img
+                    src={galeria5}
+                    alt="Projeto Roll Door — grandes vãos e integração"
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    decoding="async"
+                  />
                 </div>
               </div>
             </Reveal>
