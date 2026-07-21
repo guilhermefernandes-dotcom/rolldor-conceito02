@@ -6,7 +6,7 @@ import galeria2 from "@/assets/rd-galeria-2.jpg";
 import galeria3 from "@/assets/rd-galeria-3.jpg";
 import heroImg from "@/assets/rd-hero.jpg";
 
-type Step = {
+export type Step = {
   n: string;
   label: string;
   big: string;
@@ -55,21 +55,22 @@ const STEPS: Step[] = [
 
 const INTERVAL_MS = 4000;
 
-export function StatsScrollLock() {
+export function StatsScrollLock({ steps }: { steps?: Step[] } = {}) {
+  const STEPS_LIST = steps && steps.length > 0 ? steps : STEPS;
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
 
   useEffect(() => {
     const id = window.setInterval(() => {
       if (stoppedRef.current) return;
-      setActive((prev) => (prev + 1) % STEPS.length);
+      setActive((prev) => (prev + 1) % STEPS_LIST.length);
     }, INTERVAL_MS);
     return () => window.clearInterval(id);
   }, []);
 
   const RAIL_W = 60;
   const RAIL_H = 440;
-  const STEP_GAP = RAIL_H / STEPS.length;
+  const STEP_GAP = RAIL_H / STEPS_LIST.length;
   const dotY = (i: number) => STEP_GAP / 2 + i * STEP_GAP;
   const baseX = 6;
   const apexX = 48;
@@ -105,7 +106,7 @@ export function StatsScrollLock() {
               >
                 {(() => {
                   const W = 400;
-                  const stepGap = W / STEPS.length;
+                  const stepGap = W / STEPS_LIST.length;
                   const dotX = (i: number) => stepGap / 2 + i * stepGap;
                   const baseY = 12;
                   const apexY = 44;
@@ -159,9 +160,9 @@ export function StatsScrollLock() {
 
               <div
                 className="absolute inset-x-0 bottom-0 grid"
-                style={{ gridTemplateColumns: `repeat(${STEPS.length}, 1fr)` }}
+                style={{ gridTemplateColumns: `repeat(${STEPS_LIST.length}, 1fr)` }}
               >
-                {STEPS.map((s, i) => {
+                {STEPS_LIST.map((s, i) => {
                   const isActive = i === active;
                   return (
                     <motion.div
@@ -252,7 +253,7 @@ export function StatsScrollLock() {
                 <style>{`@keyframes spin-ring { to { transform: rotate(360deg); } }`}</style>
               </svg>
 
-              {STEPS.map((s, i) => {
+              {STEPS_LIST.map((s, i) => {
                 const isActive = i === active;
                 return (
                   <motion.div
@@ -309,7 +310,7 @@ export function StatsScrollLock() {
               className="relative mx-auto min-h-[520px] w-full max-w-xl overflow-hidden md:h-[460px] md:min-h-0 md:overflow-visible"
               style={{ perspective: 1600 }}
             >
-              {STEPS.map((s, i) => {
+              {STEPS_LIST.map((s, i) => {
                 const offset = i - active;
                 const isActive = offset === 0;
 
@@ -454,7 +455,7 @@ export function StatsScrollLock() {
                           aria-label="Anterior"
                           onClick={() => {
                             stoppedRef.current = true;
-                            setActive((prev) => (prev - 1 + STEPS.length) % STEPS.length);
+                            setActive((prev) => (prev - 1 + STEPS_LIST.length) % STEPS_LIST.length);
                           }}
                           className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
                         >
@@ -465,7 +466,7 @@ export function StatsScrollLock() {
                           aria-label="Próximo"
                           onClick={() => {
                             stoppedRef.current = true;
-                            setActive((prev) => (prev + 1) % STEPS.length);
+                            setActive((prev) => (prev + 1) % STEPS_LIST.length);
                           }}
                           className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
                         >

@@ -27,6 +27,45 @@ const pullQuoteBg = banner2Asset.url;
 const session2Img = banner4Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
+import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
+
+const residencialSteps: ScrollStep[] = [
+  {
+    n: "01",
+    label: "Grandes vãos",
+    big: "Integração total",
+    desc: "Integre ambientes internos e externos com elegância e leveza, ampliando a sensação de espaço e trazendo a natureza para dentro do projeto.",
+    Icon: Layers,
+    image: project1Asset.url,
+  },
+  {
+    n: "02",
+    label: "Design minimalista",
+    big: "Perfis discretos",
+    desc: "Perfis finos e discretos que desaparecem na arquitetura, valorizando a paisagem e cada linha do seu projeto residencial.",
+    Icon: Compass,
+    image: project2Asset.url,
+  },
+  {
+    n: "03",
+    label: "Alto desempenho",
+    big: "Durabilidade real",
+    desc: "Projetados para oferecer durabilidade, segurança, isolamento acústico e excelente desempenho técnico em uso residencial de alto padrão.",
+    Icon: ShieldCheck,
+    image: project3Asset.url,
+    imagePosition: "50% center",
+  },
+  {
+    n: "04",
+    label: "Acabamento premium",
+    big: "Detalhes que ficam",
+    desc: "Cada detalhe pensado para entregar sofisticação em todos os ambientes — do puxador ao encaixe, tudo em padrão de arquitetura premium.",
+    Icon: Sparkles,
+    image: project4Asset.url,
+    imagePosition: "50% center",
+  },
+];
+
 
 export const Route = createFileRoute("/residencial")({
   head: () => {
@@ -323,44 +362,12 @@ function LandingCliente() {
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                icon: Layers,
-                title: "Grandes vãos",
-                desc: "Integre ambientes internos e externos com elegância e leveza.",
-              },
-              {
-                icon: Compass,
-                title: "Design minimalista",
-                desc: "Perfis discretos que valorizam a arquitetura do seu projeto.",
-              },
-              {
-                icon: ShieldCheck,
-                title: "Alto desempenho",
-                desc: "Projetados para oferecer durabilidade, segurança e excelente desempenho técnico.",
-              },
-              {
-                icon: Sparkles,
-                title: "Acabamento premium",
-                desc: "Cada detalhe pensado para entregar sofisticação em todos os ambientes.",
-              },
-            ].map(({ icon: Icon, title, desc }, i) => (
-              <Reveal key={title} delay={i * 0.06} className="h-full">
-                <article
-                  className="flex h-full flex-col rounded-[20px] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-sm transition-colors hover:border-brand-green/40"
-                >
-                  <Icon className="h-8 w-8 text-brand-green" strokeWidth={1.4} />
-                  <h3 className="mt-8 font-display text-[22px] font-medium leading-tight text-white">
-                    {title}
-                  </h3>
-                  <p className="mt-4 text-[18px] leading-relaxed text-white/65">{desc}</p>
-                </article>
-              </Reveal>
-            ))}
+          <div className="mt-10 md:mt-14">
+            <StatsScrollLock steps={residencialSteps} />
           </div>
         </div>
       </section>
+
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
       <section className="relative overflow-hidden bg-foreground py-24 md:py-32">
