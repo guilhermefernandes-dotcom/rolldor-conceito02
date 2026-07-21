@@ -2,10 +2,10 @@ import { useRef } from "react";
 import { motion, useScroll, useTransform, useSpring } from "motion/react";
 
 /**
- * Apple-style pinned reveal:
- * - Section is 250vh tall, inner is sticky h-screen
- * - "Um novo padrão" starts huge & centered, shrinks + moves up as user scrolls
- * - Sub-headline + paragraph fade+slide in during the second half
+ * Scroll-locked reveal:
+ * - Section is pinned (sticky) for ~180vh of scroll
+ * - "UM NOVO PADRÃO" starts huge on a single line, shrinks as user scrolls
+ * - Sub-headline + paragraphs fade/slide in while the title shrinks
  */
 export function NovoPadraoPinned() {
   const ref = useRef<HTMLDivElement>(null);
@@ -14,53 +14,57 @@ export function NovoPadraoPinned() {
     offset: ["start start", "end end"],
   });
 
-  const p = useSpring(scrollYProgress, { stiffness: 120, damping: 24, mass: 0.35 });
+  const p = useSpring(scrollYProgress, {
+    stiffness: 140,
+    damping: 26,
+    mass: 0.3,
+  });
 
-  // "Um novo padrão" — big -> small
-  const bigScale = useTransform(p, [0, 0.5], [1, 0.18]);
-  const bigY = useTransform(p, [0, 0.5], ["0vh", "-24vh"]);
-  const bigOpacity = useTransform(p, [0.45, 0.6], [1, 0.55]);
-  const bigLetter = useTransform(p, [0, 0.5], ["-0.04em", "-0.02em"]);
+  // Title shrinks quickly in the first ~40% of the scroll
+  const titleScale = useTransform(p, [0, 0.45], [1, 0.32]);
+  const titleY = useTransform(p, [0, 0.45], ["0vh", "-22vh"]);
+  const titleOpacity = useTransform(p, [0.7, 0.95], [1, 0]);
 
-  // Sub-content — fades/slides in
-  const subOpacity = useTransform(p, [0.4, 0.7], [0, 1]);
-  const subY = useTransform(p, [0.4, 0.7], [40, 0]);
+  // Revealed content appears as title shrinks
+  const subOpacity = useTransform(p, [0.25, 0.55], [0, 1]);
+  const subY = useTransform(p, [0.25, 0.55], [40, 0]);
 
-  const paraOpacity = useTransform(p, [0.55, 0.85], [0, 1]);
-  const paraY = useTransform(p, [0.55, 0.85], [40, 0]);
+  const paraOpacity = useTransform(p, [0.45, 0.75], [0, 1]);
+  const paraY = useTransform(p, [0.45, 0.75], [40, 0]);
 
   return (
     <section
       ref={ref}
       className="relative bg-[#F2F0EA]"
-      style={{ height: "260vh" }}
+      style={{ height: "200vh" }}
     >
-      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden px-6 md:px-10">
-        {/* Huge word */}
+      <div className="sticky top-0 flex h-screen w-full items-center justify-center overflow-hidden">
+        {/* Huge single-line title */}
         <motion.h2
           style={{
-            scale: bigScale,
-            y: bigY,
-            opacity: bigOpacity,
-            letterSpacing: bigLetter,
+            scale: titleScale,
+            y: titleY,
+            opacity: titleOpacity,
             fontWeight: 500,
-            lineHeight: 0.9,
+            lineHeight: 1,
+            letterSpacing: "-0.04em",
           }}
-          className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 text-center font-display text-[#0E1111]"
+          className="pointer-events-none absolute inset-x-0 top-1/2 -translate-y-1/2 whitespace-nowrap text-center font-display text-[#0E1111]"
         >
           <span
             style={{
-              fontSize: "clamp(80px, 22vw, 320px)",
+              // 15 chars incl. spaces -> ~6.2vw keeps it on one line at all widths
+              fontSize: "clamp(48px, 12vw, 220px)",
               display: "inline-block",
             }}
           >
-            Um novo padrão
+            UM NOVO PADRÃO
           </span>
         </motion.h2>
 
-        {/* Revealed content */}
-        <div className="relative mx-auto flex max-w-4xl flex-col items-center text-center">
-          <div className="h-[16vh] md:h-[18vh]" />
+        {/* Revealed content — sits below the shrunken title */}
+        <div className="relative mx-auto flex max-w-4xl flex-col items-center px-6 text-center md:px-10">
+          <div className="h-[14vh] md:h-[16vh]" />
 
           <motion.h3
             style={{ opacity: subOpacity, y: subY }}
@@ -69,9 +73,9 @@ export function NovoPadraoPinned() {
             <span
               style={{
                 fontWeight: 500,
-                fontSize: "clamp(28px, 5vw, 56px)",
-                lineHeight: "1.05",
-                letterSpacing: "-0.035em",
+                fontSize: "clamp(24px, 4.2vw, 48px)",
+                lineHeight: "1.08",
+                letterSpacing: "-0.03em",
                 display: "block",
               }}
             >
@@ -85,7 +89,7 @@ export function NovoPadraoPinned() {
 
           <motion.div
             style={{ opacity: paraOpacity, y: paraY }}
-            className="mx-auto mt-8 max-w-2xl space-y-4 text-[17px] leading-relaxed text-[#0E1111]/70 md:text-[19px]"
+            className="mx-auto mt-6 max-w-2xl space-y-3 text-[17px] leading-relaxed text-[#0E1111]/70 md:mt-8 md:text-[19px]"
           >
             <p>Cada detalhe de um projeto transmite uma sensação.</p>
             <p>
