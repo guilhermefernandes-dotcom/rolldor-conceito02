@@ -343,85 +343,99 @@ function LandingCliente() {
 
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10">
-          <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-center md:gap-16">
-            <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
-                Galeria
-              </span>
-              <h2
-                className="mt-5 font-display text-[#0E1111]"
-                style={{
-                  fontWeight: 500,
-                  fontSize: "clamp(30px, 5.2vw, 56px)",
-                  lineHeight: "1.05",
-                  letterSpacing: "-0.035em",
-                }}
-              >
-                Projetos que <span className="text-[#0E1111]/50">inspiram.</span>
-              </h2>
-              <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-[#0E1111]/70 md:text-[20px]">
-                <p className="text-[#0E1111]">Mais do que produtos.</p>
-                <p>
-                  Criamos soluções que transformam residências em espaços exclusivos, modernos e
-                  cheios de personalidade.
-                </p>
-              </div>
-            </Reveal>
+      <section className="bg-foreground py-6 md:py-8">
+        <div className="mx-auto w-full px-5 md:px-8">
+          <div
+            className="relative w-full overflow-hidden rounded-[32px] px-6 py-16 md:px-12 md:py-24"
+            style={{ background: "oklch(0.18 0.005 250)" }}
+          >
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.05]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 18px)",
+              }}
+            />
+            <div className="relative z-10 mx-auto max-w-[1400px]">
+              <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-center md:gap-16">
+                <Reveal>
+                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                    Galeria
+                  </span>
+                  <h2
+                    className="mt-5 font-display text-white"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "clamp(30px, 5.2vw, 56px)",
+                      lineHeight: "1.05",
+                      letterSpacing: "-0.035em",
+                    }}
+                  >
+                    Projetos que <span className="text-white/45">inspiram.</span>
+                  </h2>
+                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
+                    <p className="text-white">Mais do que produtos.</p>
+                    <p>
+                      Criamos soluções que transformam residências em espaços exclusivos, modernos e
+                      cheios de personalidade.
+                    </p>
+                  </div>
+                </Reveal>
 
-
-            <Reveal delay={0.15}>
-              <div className="grid gap-4">
-                <div className="aspect-[16/10] overflow-hidden rounded-3xl">
-                  <img
-                    src={galeria2}
-                    alt="Residência de alto padrão com esquadrias Roll Door"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="aspect-square overflow-hidden rounded-2xl">
-                    <img
-                      src={galeria1}
-                      alt="Projeto residencial contemporâneo"
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
+                <Reveal delay={0.15}>
+                  <div className="grid gap-4">
+                    <div className="aspect-[16/10] overflow-hidden rounded-3xl">
+                      <img
+                        src={galeria2}
+                        alt="Residência de alto padrão com esquadrias Roll Door"
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+                    <div className="grid grid-cols-3 gap-4">
+                      <div className="aspect-square overflow-hidden rounded-2xl">
+                        <img
+                          src={galeria1}
+                          alt="Projeto residencial contemporâneo"
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <div className="aspect-square overflow-hidden rounded-2xl">
+                        <img
+                          src={galeria4}
+                          alt="Ambiente integrado com esquadrias Roll Door"
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                      <div className="aspect-square overflow-hidden rounded-2xl">
+                        <img
+                          src={galeria3}
+                          alt="Grandes vãos com integração externa"
+                          className="h-full w-full object-cover"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                      </div>
+                    </div>
+                    <div className="aspect-[21/9] overflow-hidden rounded-2xl">
+                      <img
+                        src={galeria5}
+                        alt="Projeto Roll Door — grandes vãos e integração"
+                        className="h-full w-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
                   </div>
-                  <div className="aspect-square overflow-hidden rounded-2xl">
-                    <img
-                      src={galeria4}
-                      alt="Ambiente integrado com esquadrias Roll Door"
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                  <div className="aspect-square overflow-hidden rounded-2xl">
-                    <img
-                      src={galeria3}
-                      alt="Grandes vãos com integração externa"
-                      className="h-full w-full object-cover"
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </div>
-                </div>
-                <div className="aspect-[21/9] overflow-hidden rounded-2xl">
-                  <img
-                    src={galeria5}
-                    alt="Projeto Roll Door — grandes vãos e integração"
-                    className="h-full w-full object-cover"
-                    loading="lazy"
-                    decoding="async"
-                  />
-                </div>
+                </Reveal>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
