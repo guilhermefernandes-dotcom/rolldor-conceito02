@@ -183,21 +183,22 @@ function LandingCliente() {
   return (
     <main className="min-h-screen bg-foreground text-white antialiased">
       {/* HERO — imagem full com overlay escuro, tipografia elegante */}
-      <motion.div className="bg-foreground" style={{ padding: heroPad }}>
+      <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
         <motion.section
           className="relative w-full overflow-hidden px-6 py-20 md:px-10 md:py-32"
-          style={{ borderRadius: heroRadius, background: "#9CCB3B" }}
+          style={{ borderRadius: heroRadius, background: "#0b0b0c" }}
         >
           <div aria-hidden className="pointer-events-none absolute inset-0">
             <img
               src={heroImg}
               alt=""
-              className="h-full w-full object-cover mix-blend-luminosity opacity-60"
+              className="h-full w-full object-cover"
               fetchPriority="high"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-[#9CCB3B]/40 via-[#0E1111]/50 to-[#0E1111]/75" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/75" />
           </div>
+
 
 
           <div className="relative mx-auto flex max-w-5xl flex-col items-center text-center">
