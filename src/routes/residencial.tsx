@@ -604,7 +604,7 @@ function LandingCliente() {
 
       {/* SESSÃO 7 — Da inspiração ao seu projeto */}
       <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
-        <div className="mx-auto max-w-[1200px] px-6 md:px-10">
+        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
@@ -622,44 +622,66 @@ function LandingCliente() {
                 Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
               <p className="mx-auto mt-6 text-[18px] text-[#0E1111]/60 md:text-[20px]">
-                Nosso processo é simples.
+                Quatro passos entre a sua ideia e um ambiente Roll Door.
               </p>
             </Reveal>
           </div>
 
-          <div className="mt-16 grid gap-5 md:grid-cols-4">
-            {[
-              "Solicite seu atendimento.",
-              "Nossa equipe identifica a melhor solução para seu projeto.",
-              "Você é direcionado para um parceiro especializado da sua região.",
-              "Seu projeto ganha vida com a qualidade Roll Door.",
-            ].map((step, i) => (
-              <Reveal key={i} delay={i * 0.08} className="h-full">
-                <div
-                  className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[#0E1111]/10 bg-white p-7 transition-all duration-500 hover:-translate-y-1 hover:border-brand-green/50"
-                  style={{
-                    boxShadow:
-                      "0 20px 50px -30px rgba(14,17,17,0.15)",
-                  }}
-                >
-                  {/* subtle brand-green glow */}
-                  <div
-                    aria-hidden
-                    className="pointer-events-none absolute -right-16 -top-16 h-40 w-40 rounded-full opacity-30 blur-3xl transition-opacity duration-500 group-hover:opacity-60"
-                    style={{ background: "radial-gradient(circle, #9CCB3B 0%, transparent 70%)" }}
-                  />
-                  <span className="relative font-display text-4xl font-medium text-[#2F3D30] md:text-5xl">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <div className="relative my-5 h-px w-10 bg-brand-green" />
-                  <p className="relative text-[18px] leading-relaxed text-[#0E1111]/80">{step}</p>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          {/* Editorial layout: 2 topics | center image | 2 topics */}
+          <div className="mt-16 grid grid-cols-1 items-center gap-10 md:mt-24 md:grid-cols-[1fr_1.1fr_1fr] md:gap-12">
+            {/* Left column — topics 1 & 2 */}
+            <div className="flex flex-col gap-10 md:gap-16 md:text-right">
+              {[
+                { n: "01", title: "Solicite", desc: "Você inicia o contato e conta sobre o seu projeto." },
+                { n: "02", title: "Diagnóstico", desc: "Nossa equipe identifica a melhor solução para o seu ambiente." },
+              ].map((s, i) => (
+                <Reveal key={s.n} delay={i * 0.08}>
+                  <div className="flex flex-col gap-3 md:items-end">
+                    <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
+                    <div className="h-px w-10 bg-brand-green" />
+                    <h3 className="font-display text-[#0E1111]" style={{ fontWeight: 500, fontSize: "clamp(22px, 2.4vw, 30px)", letterSpacing: "-0.02em" }}>{s.title}</h3>
+                    <p className="max-w-[320px] text-[18px] leading-relaxed text-[#0E1111]/65 md:ml-auto">{s.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
 
+            {/* Center — editorial illustration */}
+            <Reveal delay={0.15}>
+              <div className="relative mx-auto flex aspect-square w-full max-w-[440px] items-center justify-center">
+                <div aria-hidden className="absolute inset-0 rounded-full" style={{ background: "radial-gradient(circle at center, rgba(156,203,59,0.14) 0%, transparent 65%)" }} />
+                <div aria-hidden className="absolute inset-6 rounded-full border border-[#0E1111]/10" />
+                <img
+                  src={new URL("../assets/como-funciona-center.png", import.meta.url).href}
+                  alt="Ilustração editorial de uma fachada residencial com esquadria Roll Door"
+                  loading="lazy"
+                  width={1024}
+                  height={1024}
+                  className="relative z-10 h-[80%] w-[80%] object-contain"
+                />
+              </div>
+            </Reveal>
+
+            {/* Right column — topics 3 & 4 */}
+            <div className="flex flex-col gap-10 md:gap-16 md:text-left">
+              {[
+                { n: "03", title: "Parceiro local", desc: "Você é direcionado a um parceiro especializado da sua região." },
+                { n: "04", title: "Instalação", desc: "Seu projeto ganha vida com a qualidade e o acabamento Roll Door." },
+              ].map((s, i) => (
+                <Reveal key={s.n} delay={i * 0.08 + 0.1}>
+                  <div className="flex flex-col gap-3 md:items-start">
+                    <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
+                    <div className="h-px w-10 bg-brand-green" />
+                    <h3 className="font-display text-[#0E1111]" style={{ fontWeight: 500, fontSize: "clamp(22px, 2.4vw, 30px)", letterSpacing: "-0.02em" }}>{s.title}</h3>
+                    <p className="max-w-[320px] text-[18px] leading-relaxed text-[#0E1111]/65">{s.desc}</p>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
+
 
 
       {/* SESSÃO 8 — Depoimentos */}
