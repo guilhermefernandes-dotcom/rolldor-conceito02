@@ -527,7 +527,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Da <span className="text-brand-green">inspiração</span> ao seu projeto.
+                Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
               <p className="mx-auto mt-6 text-[18px] text-white/60 md:text-[20px]">
                 Nosso processo é simples.
