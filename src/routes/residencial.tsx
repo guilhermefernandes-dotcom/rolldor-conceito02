@@ -573,7 +573,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Quem escolheu <span className="text-brand-green">Roll Door</span> recomenda.
+                Quem escolheu <UnderlineWord delay={0}>Roll Door</UnderlineWord> recomenda.
               </h2>
             </Reveal>
           </div>
