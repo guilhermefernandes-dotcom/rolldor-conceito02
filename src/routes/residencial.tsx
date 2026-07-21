@@ -645,7 +645,7 @@ function LandingCliente() {
                     <div className="flex flex-col items-center text-center">
                       <div
                         className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full"
-                        style={{ backgroundColor: "#2F3D30" }}
+                        style={{ backgroundColor: "#9CCB3B" }}
                       >
                         <img
                           src={s.img}
@@ -653,7 +653,7 @@ function LandingCliente() {
                           loading="lazy"
                           width={1024}
                           height={1024}
-                          className="absolute inset-0 h-full w-full object-contain p-8"
+                          className="absolute inset-0 h-full w-full object-contain p-10"
                         />
                       </div>
                       <div className="mt-6 flex items-center gap-3">
