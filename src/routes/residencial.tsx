@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { motion, useScroll, useTransform } from "motion/react";
+import { useState } from "react";
+import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
   ArrowRight,
   Check,
@@ -8,6 +9,8 @@ import {
   ShieldCheck,
   Layers,
   Quote,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
 import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
