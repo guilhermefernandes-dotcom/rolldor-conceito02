@@ -62,6 +62,14 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
     variant === "dark"
       ? "color-mix(in oklab, #ffffff 35%, transparent)"
       : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)";
+  const isDark = variant === "dark";
+  const cardBg = isDark ? "#9CCB3B" : "var(--background)";
+  const cardText = isDark ? "#000000" : "var(--foreground)";
+  const cardMuted = isDark ? "rgba(0,0,0,0.65)" : "var(--muted-foreground)";
+  const cardNumber = isDark ? "rgba(0,0,0,0.12)" : "var(--foreground)";
+  const arrowBtn = isDark
+    ? "flex h-11 w-11 items-center justify-center rounded-full border border-black/15 bg-white text-black transition-colors hover:bg-black hover:text-white"
+    : "flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background";
   const [active, setActive] = useState(0);
   const stoppedRef = useRef(false);
 
@@ -380,10 +388,14 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                       zIndex: 100 - Math.abs(offset),
                       transformStyle: "preserve-3d",
                       transformOrigin: "left center",
+                      backgroundColor: cardBg,
                     }}
-                    className="absolute inset-0 flex flex-col gap-5 rounded-3xl bg-background p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
+                    className="absolute inset-0 flex flex-col gap-5 rounded-3xl p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
                   >
-                    <div className="absolute right-6 top-6 z-10 font-display text-2xl font-medium text-foreground/15 md:right-9 md:top-9 md:text-3xl">
+                    <div
+                      className="absolute right-6 top-6 z-10 font-display text-2xl font-medium md:right-9 md:top-9 md:text-3xl"
+                      style={{ color: cardNumber }}
+                    >
                       {s.n}
                     </div>
 
@@ -419,16 +431,22 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                           fontWeight: 500,
                           fontSize: "clamp(24px, 6.5vw, 44px)",
                           lineHeight: "0.95",
-                          color: "oklch(0.18 0.005 250)",
+                          color: cardText,
                           letterSpacing: "-0.03em",
                         }}
                       >
                         {s.label}
                       </h3>
-                      <div className="mt-2 font-display text-3xl font-medium leading-none text-foreground md:text-[44px]">
+                      <div
+                        className="mt-2 font-display text-3xl font-medium leading-none md:text-[44px]"
+                        style={{ color: cardText }}
+                      >
                         {s.big}
                       </div>
-                      <p className="mt-3 text-[18px] leading-relaxed text-muted-foreground md:mt-4 md:text-[18px]">
+                      <p
+                        className="mt-3 text-[18px] leading-relaxed md:mt-4 md:text-[18px]"
+                        style={{ color: cardMuted }}
+                      >
                         {s.desc}
                       </p>
                     </motion.div>
@@ -459,7 +477,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                             stoppedRef.current = true;
                             setActive((prev) => (prev - 1 + STEPS_LIST.length) % STEPS_LIST.length);
                           }}
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                          className={arrowBtn}
                         >
                           <ArrowLeft className="h-4 w-4" />
                         </button>
@@ -470,7 +488,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                             stoppedRef.current = true;
                             setActive((prev) => (prev + 1) % STEPS_LIST.length);
                           }}
-                          className="flex h-11 w-11 items-center justify-center rounded-full border border-foreground/15 bg-background text-foreground transition-colors hover:border-foreground hover:bg-foreground hover:text-background"
+                          className={arrowBtn}
                         >
                           <ArrowRight className="h-4 w-4" />
                         </button>
