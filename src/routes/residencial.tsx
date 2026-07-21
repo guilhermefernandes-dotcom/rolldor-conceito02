@@ -330,7 +330,7 @@ function LandingCliente() {
 
 
       {/* IMAGEM FULL-BLEED — respiro visual entre seções */}
-      <div className="bg-foreground px-5 pb-6 md:px-10">
+      <div className="bg-[#F2F0EA] px-5 pb-6 md:px-10">
         <Reveal>
           <div className="relative mx-auto aspect-[21/9] w-full max-w-[1600px] overflow-hidden rounded-3xl">
             <img
