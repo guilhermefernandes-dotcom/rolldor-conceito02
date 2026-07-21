@@ -392,7 +392,10 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                     }}
                     className="absolute inset-0 flex flex-col gap-5 rounded-3xl p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
                   >
-                    <div className="absolute right-6 top-6 z-10 font-display text-2xl font-medium text-foreground/15 md:right-9 md:top-9 md:text-3xl">
+                    <div
+                      className="absolute right-6 top-6 z-10 font-display text-2xl font-medium md:right-9 md:top-9 md:text-3xl"
+                      style={{ color: cardNumber }}
+                    >
                       {s.n}
                     </div>
 
