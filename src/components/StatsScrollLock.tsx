@@ -292,9 +292,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                       <motion.div
                         initial={false}
                         animate={{
-                          color: isActive
-                            ? "oklch(0.18 0.005 250)"
-                            : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)",
+                          color: isActive ? labelActive : labelIdle,
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                         className="font-display text-lg font-medium leading-none md:text-xl"
