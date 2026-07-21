@@ -75,6 +75,31 @@ function Reveal({
   );
 }
 
+function UnderlineWord({
+  children,
+  delay = 0,
+  color = "#9CCB3B",
+}: {
+  children: React.ReactNode;
+  delay?: number;
+  color?: string;
+}) {
+  return (
+    <span className="relative inline-block whitespace-nowrap">
+      <span className="relative z-10">{children}</span>
+      <motion.span
+        aria-hidden
+        initial={{ scaleX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true, margin: "-80px" }}
+        transition={{ duration: 0.7, delay: 0.5 + delay, ease: [0.22, 1, 0.36, 1] }}
+        className="absolute -bottom-1 left-0 right-0 h-[3px] origin-left rounded-full md:h-[4px]"
+        style={{ background: color }}
+      />
+    </span>
+  );
+}
+
 function CtaPrimary({
   children,
   href = "#cta-final",
