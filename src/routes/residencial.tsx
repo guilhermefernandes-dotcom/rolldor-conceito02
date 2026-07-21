@@ -420,7 +420,7 @@ function LandingCliente() {
                 letterSpacing: "-0.035em",
               }}
             >
-              O <span className="text-brand-green">detalhe</span> que valoriza todo o seu imóvel.
+              O <UnderlineWord delay={0}>detalhe</UnderlineWord> que valoriza todo o seu imóvel.
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
