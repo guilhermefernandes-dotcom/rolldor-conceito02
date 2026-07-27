@@ -65,7 +65,7 @@ export function AntesDepois() {
           >
             O que muda para a{" "}
             <span className="relative inline-block whitespace-nowrap">
-              <span className="relative z-10">sua vidraçaria?</span>
+              <span className="relative z-10">sua empresa?</span>
               <motion.span
                 aria-hidden
                 variants={{
@@ -107,7 +107,7 @@ export function AntesDepois() {
                   "repeating-linear-gradient(45deg, rgba(14,17,17,1) 0 1px, transparent 1px 10px)",
               }}
             />
-            <span className="relative font-display text-[11px] font-medium uppercase tracking-[0.32em] text-foreground/40">
+            <span className="relative font-display text-xs font-medium uppercase tracking-[0.32em] text-foreground/40">
               Antes
             </span>
             <motion.ul
@@ -115,13 +115,13 @@ export function AntesDepois() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
-              className="relative mt-8 space-y-4"
+              className="relative mt-8 space-y-5"
             >
               {ANTES.map((t) => (
                 <motion.li
                   key={t}
                   variants={item}
-                  className="flex items-start gap-3 text-lg leading-snug text-foreground/45 md:text-xl"
+                  className="flex items-start gap-3 text-xl leading-snug text-foreground/45 md:text-2xl"
                 >
                   <span
                     aria-hidden
@@ -189,7 +189,7 @@ export function AntesDepois() {
                   "radial-gradient(circle, rgba(156,203,59,0.35) 0%, transparent 70%)",
               }}
             />
-            <span className="relative font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green">
+            <span className="relative font-display text-xs font-medium uppercase tracking-[0.32em] text-brand-green">
               Com a Roll Door
             </span>
             <motion.ul
@@ -197,13 +197,13 @@ export function AntesDepois() {
               initial="hidden"
               whileInView="show"
               viewport={{ once: true, amount: 0.3 }}
-              className="relative mt-8 space-y-4"
+              className="relative mt-8 space-y-5"
             >
               {DEPOIS.map((t) => (
                 <motion.li
                   key={t}
                   variants={item}
-                  className="flex items-start gap-3 text-lg leading-snug text-white md:text-xl"
+                  className="flex items-start gap-3 text-xl leading-snug text-white md:text-2xl"
                 >
                   <span
                     aria-hidden
