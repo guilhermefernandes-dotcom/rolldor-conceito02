@@ -32,6 +32,8 @@ import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
 import { FormularioRevenda } from "@/components/FormularioRevenda";
+import { AntesDepois } from "@/components/AntesDepois";
+
 
 export const Route = createFileRoute("/")({
   head: () => {
