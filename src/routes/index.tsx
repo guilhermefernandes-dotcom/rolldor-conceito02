@@ -157,20 +157,20 @@ function UnderlineWord({
   );
 }
 
-import realVidros from "@/assets/partners/real-vidros.webp.asset.json";
-import nelsonVidros from "@/assets/partners/nelson-vidros.webp.asset.json";
-import mpVidros from "@/assets/partners/mp-vidros.webp.asset.json";
-import infinitoVidros from "@/assets/partners/infinito-vidros.webp.asset.json";
-import akyVidros from "@/assets/partners/aky-vidros.webp.asset.json";
-import reyDoVidro from "@/assets/partners/rey-do-vidro.webp.asset.json";
-import blindexPrime from "@/assets/partners/blindex-prime.webp.asset.json";
-import vidroman from "@/assets/partners/vidroman.webp.asset.json";
-import falcaoGlass from "@/assets/partners/falcao-glass.webp.asset.json";
-import nordesteLogo from "@/assets/partners/nordeste.webp.asset.json";
-import mazalins from "@/assets/partners/mazalins.webp.asset.json";
-import maisonDoVidro from "@/assets/partners/maison-do-vidro.webp.asset.json";
-import voltaRedonda from "@/assets/partners/volta-redonda.webp.asset.json";
-import vidroECia from "@/assets/partners/vidro-e-cia.webp.asset.json";
+import realVidros from "@/assets/partners/real-vidros.png.asset.json";
+import nelsonVidros from "@/assets/partners/nelson-vidros.png.asset.json";
+import mpVidros from "@/assets/partners/mp-vidros.png.asset.json";
+import infinitoVidros from "@/assets/partners/infinito-vidros.png.asset.json";
+import akyVidros from "@/assets/partners/aky-vidros.png.asset.json";
+import reyDoVidro from "@/assets/partners/rey-do-vidro.png.asset.json";
+import blindexPrime from "@/assets/partners/blindex-prime.png.asset.json";
+import vidroman from "@/assets/partners/vidroman.png.asset.json";
+import falcaoGlass from "@/assets/partners/falcao-glass.png.asset.json";
+import nordesteLogo from "@/assets/partners/nordeste.png.asset.json";
+import mazalins from "@/assets/partners/mazalins.png.asset.json";
+import maisonDoVidro from "@/assets/partners/maison-do-vidro.png.asset.json";
+import voltaRedonda from "@/assets/partners/volta-redonda.png.asset.json";
+import vidroECia from "@/assets/partners/vidro-e-cia.png.asset.json";
 
 const LOGOS_REVENDAS: { nome: string; src: string }[] = [
   { nome: "Real Vidros", src: realVidros.url },
@@ -347,15 +347,16 @@ function Landing() {
                 {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((logo, i) => (
                   <div
                     key={i}
-                    className="mx-6 inline-flex h-24 w-40 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-5 shadow-sm md:mx-8"
+                    className="mx-6 inline-flex h-32 w-56 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-6 shadow-sm md:mx-8 md:h-36 md:w-64"
                   >
                     <img
                       src={logo.src}
                       alt={logo.nome}
                       loading="lazy"
-                      className="max-h-16 w-auto max-w-full object-contain"
+                      className="max-h-24 w-auto max-w-full object-contain md:max-h-28"
                     />
                   </div>
+
                 ))}
               </div>
             </div>
