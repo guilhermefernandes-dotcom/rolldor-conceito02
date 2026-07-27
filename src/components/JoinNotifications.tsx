@@ -4,26 +4,78 @@ import { Check } from "lucide-react";
 import rdMark from "@/assets/rd-mark.png";
 
 const EMPRESAS = [
-  { nome: "Vidraçaria Alpha", cidade: "Curitiba, PR" },
-  { nome: "Esquadrias Prime", cidade: "São Paulo, SP" },
-  { nome: "Serralheria Vitral", cidade: "Belo Horizonte, MG" },
-  { nome: "Vidros & Cia", cidade: "Florianópolis, SC" },
-  { nome: "Alumínio Nobre", cidade: "Porto Alegre, RS" },
-  { nome: "Vidraçaria Cristal", cidade: "Recife, PE" },
-  { nome: "Esquadrias do Vale", cidade: "Campinas, SP" },
-  { nome: "Vidraçaria Real", cidade: "Salvador, BA" },
-  { nome: "Serralheria Aço Sul", cidade: "Joinville, SC" },
-  { nome: "Vidraçaria Atlântico", cidade: "Fortaleza, CE" },
-  { nome: "Esquadrias Modena", cidade: "Brasília, DF" },
-  { nome: "Vidraçaria Central", cidade: "Manaus, AM" },
-  { nome: "Alumínio Design", cidade: "Vitória, ES" },
-  { nome: "Vidraçaria Horizonte", cidade: "Natal, RN" },
-  { nome: "Serralheria Premium", cidade: "Maceió, AL" },
+  { nome: "Vidraçaria Alpha", estado: "PR" },
+  { nome: "Esquadrias Prime", estado: "SP" },
+  { nome: "Serralheria Vitral", estado: "MG" },
+  { nome: "Vidros & Cia", estado: "SC" },
+  { nome: "Alumínio Nobre", estado: "RS" },
+  { nome: "Vidraçaria Cristal", estado: "PE" },
+  { nome: "Esquadrias do Vale", estado: "SP" },
+  { nome: "Vidraçaria Real", estado: "BA" },
+  { nome: "Serralheria Aço Sul", estado: "SC" },
+  { nome: "Vidraçaria Atlântico", estado: "CE" },
+  { nome: "Esquadrias Modena", estado: "DF" },
+  { nome: "Vidraçaria Central", estado: "AM" },
+  { nome: "Alumínio Design", estado: "ES" },
+  { nome: "Vidraçaria Horizonte", estado: "RN" },
+  { nome: "Serralheria Premium", estado: "AL" },
+  { nome: "Vidraçaria Solar", estado: "GO" },
+  { nome: "Esquadrias Mont Blanc", estado: "SP" },
+  { nome: "Vidros Aurora", estado: "MG" },
+  { nome: "Alumínio Vertical", estado: "RJ" },
+  { nome: "Vidraçaria Lumière", estado: "PR" },
+  { nome: "Esquadrias Bella Vista", estado: "SC" },
+  { nome: "Serralheria Ferro & Vidro", estado: "RS" },
+  { nome: "Vidraçaria Panorama", estado: "BA" },
+  { nome: "Vidros Nova Era", estado: "PE" },
+  { nome: "Esquadrias Império", estado: "SP" },
+  { nome: "Vidraçaria Belvedere", estado: "MG" },
+  { nome: "Alumínio Master", estado: "GO" },
+  { nome: "Vidros Transparência", estado: "CE" },
+  { nome: "Esquadrias Atlanta", estado: "RJ" },
+  { nome: "Vidraçaria Diamante", estado: "PB" },
+  { nome: "Serralheria Norte Sul", estado: "PA" },
+  { nome: "Vidros Vitória Régia", estado: "AM" },
+  { nome: "Esquadrias Portal", estado: "MT" },
+  { nome: "Vidraçaria Estrela", estado: "MS" },
+  { nome: "Alumínio Prata", estado: "SP" },
+  { nome: "Vidros Reflexo", estado: "SC" },
+  { nome: "Esquadrias Contemporânea", estado: "RS" },
+  { nome: "Vidraçaria Ipanema", estado: "RJ" },
+  { nome: "Serralheria Aliança", estado: "MG" },
+  { nome: "Vidros Cristallo", estado: "SP" },
+  { nome: "Esquadrias Vitrale", estado: "PR" },
+  { nome: "Vidraçaria Costa Verde", estado: "RJ" },
+  { nome: "Alumínio Forte", estado: "BA" },
+  { nome: "Vidros Miraflores", estado: "SE" },
+  { nome: "Esquadrias Sant'Ana", estado: "PI" },
+  { nome: "Vidraçaria São Jorge", estado: "MA" },
+  { nome: "Serralheria Planalto", estado: "DF" },
+  { nome: "Vidros Alvorada", estado: "TO" },
+  { nome: "Esquadrias Serra Azul", estado: "ES" },
+  { nome: "Vidraçaria Bandeirantes", estado: "SP" },
+  { nome: "Alumínio Pampa", estado: "RS" },
+  { nome: "Vidros Litoral", estado: "SC" },
+  { nome: "Esquadrias Monte Verde", estado: "MG" },
+  { nome: "Vidraçaria Guanabara", estado: "RJ" },
+  { nome: "Serralheria Independência", estado: "PR" },
+  { nome: "Vidros Zênite", estado: "GO" },
+  { nome: "Esquadrias Oceânica", estado: "CE" },
+  { nome: "Vidraçaria Palmeiras", estado: "PE" },
+  { nome: "Alumínio Sigma", estado: "SP" },
+  { nome: "Vidros Aliança Sul", estado: "RS" },
+  { nome: "Esquadrias Fênix", estado: "BA" },
+  { nome: "Vidraçaria Aurora Boreal", estado: "AC" },
+  { nome: "Serralheria Rio Branco", estado: "RO" },
+  { nome: "Vidros Amazônia", estado: "AP" },
+  { nome: "Esquadrias Boa Vista", estado: "RR" },
+  { nome: "Vidraçaria Sol Nascente", estado: "AL" },
 ];
 
 const TIMES = ["agora mesmo", "há 1 min", "há 2 min", "há 3 min", "há 5 min"];
 
-type Toast = { id: number; nome: string; cidade: string; time: string };
+type Toast = { id: number; nome: string; estado: string; time: string };
+
 
 export function JoinNotifications() {
   const [toast, setToast] = useState<Toast | null>(null);
@@ -38,7 +90,7 @@ export function JoinNotifications() {
       if (pool.length === 0) pool = [...EMPRESAS].sort(() => Math.random() - 0.5);
       const pick = pool.shift()!;
       const time = TIMES[Math.floor(Math.random() * TIMES.length)];
-      setToast({ id: ++idCounter, nome: pick.nome, cidade: pick.cidade, time });
+      setToast({ id: ++idCounter, nome: pick.nome, estado: pick.estado, time });
 
       setTimeout(() => {
         if (mounted) setToast(null);
@@ -78,11 +130,11 @@ export function JoinNotifications() {
             </div>
             <div className="min-w-0 leading-tight">
               <div className="truncate font-display text-[13px] font-bold text-foreground md:text-[19px]">
-                {toast.nome} <span className="font-medium text-foreground/60">entrou na Rede Premium</span>
+                {toast.nome} <span className="font-medium text-foreground/60">entrou na Rede</span>
               </div>
               <div className="mt-1 flex items-center gap-1.5 truncate text-[11px] font-semibold text-foreground/70 md:mt-1.5 md:gap-2 md:text-[16px]">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-foreground md:h-2 md:w-2" />
-                {toast.cidade}
+                {toast.estado}
               </div>
             </div>
           </motion.div>
