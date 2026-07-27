@@ -27,7 +27,6 @@ import galeria2 from "@/assets/rd-galeria-2.jpg";
 import galeria3 from "@/assets/rd-galeria-3.jpg";
 import rdMark from "@/assets/rd-mark.png";
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
-import rLogoAsset from "@/assets/roll-door-R.png.asset.json";
 import diferenciaisImg from "@/assets/diferenciais-roll-door.png.asset.json";
 import { StatsScrollLock } from "@/components/StatsScrollLock";
 import { VitrineOrbit } from "@/components/VitrineOrbit";
