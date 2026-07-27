@@ -90,7 +90,7 @@ export function JoinNotifications() {
       if (pool.length === 0) pool = [...EMPRESAS].sort(() => Math.random() - 0.5);
       const pick = pool.shift()!;
       const time = TIMES[Math.floor(Math.random() * TIMES.length)];
-      setToast({ id: ++idCounter, nome: pick.nome, cidade: pick.cidade, time });
+      setToast({ id: ++idCounter, nome: pick.nome, estado: pick.estado, time });
 
       setTimeout(() => {
         if (mounted) setToast(null);
@@ -130,11 +130,11 @@ export function JoinNotifications() {
             </div>
             <div className="min-w-0 leading-tight">
               <div className="truncate font-display text-[13px] font-bold text-foreground md:text-[19px]">
-                {toast.nome} <span className="font-medium text-foreground/60">entrou na Rede Premium</span>
+                {toast.nome} <span className="font-medium text-foreground/60">entrou na Rede</span>
               </div>
               <div className="mt-1 flex items-center gap-1.5 truncate text-[11px] font-semibold text-foreground/70 md:mt-1.5 md:gap-2 md:text-[16px]">
                 <span className="inline-block h-1.5 w-1.5 rounded-full bg-foreground md:h-2 md:w-2" />
-                {toast.cidade}
+                {toast.estado}
               </div>
             </div>
           </motion.div>
