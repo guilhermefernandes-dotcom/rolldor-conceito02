@@ -15,7 +15,6 @@ import prodMaximar from "@/assets/rd-prod-maximar.png";
 import prodInside from "@/assets/rd-prod-inside.png";
 import prodPersiana from "@/assets/rd-prod-persiana.png";
 import prodCamarao from "@/assets/rd-prod-camarao.png";
-import prodGiro from "@/assets/rd-prod-giro.png";
 import rdMark from "@/assets/rd-mark.png";
 
 const ITEMS = [
