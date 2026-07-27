@@ -344,12 +344,17 @@ function Landing() {
           <Reveal delay={0.3}>
             <div className="mt-14 overflow-hidden">
               <div className="flex animate-[leevi-marquee_45s_linear_infinite] whitespace-nowrap">
-                {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((nome, i) => (
+                {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((logo, i) => (
                   <div
                     key={i}
-                    className="mx-6 inline-flex h-16 items-center justify-center rounded-lg border border-foreground/10 bg-white px-8 font-display text-base font-bold tracking-wide text-foreground/70 shadow-sm md:mx-8 md:text-lg"
+                    className="mx-6 inline-flex h-24 w-40 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-5 shadow-sm md:mx-8"
                   >
-                    {nome}
+                    <img
+                      src={logo.src}
+                      alt={logo.nome}
+                      loading="lazy"
+                      className="max-h-16 w-auto max-w-full object-contain"
+                    />
                   </div>
                 ))}
               </div>
