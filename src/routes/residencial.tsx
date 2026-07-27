@@ -12,7 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
+import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
 import seloBrasil from "@/assets/selo-image-20.png.asset.json";
 import seloFalcaoBauer from "@/assets/selo-image-21.png.asset.json";
 import seloUniversidadeSom from "@/assets/selo-image-22.png.asset.json";
