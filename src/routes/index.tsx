@@ -812,8 +812,8 @@ function Landing() {
             <div className="space-y-3">
               {[
                 {
-                  q: "Preciso já trabalhar com esquadrias?",
-                  a: "Sim. O programa é destinado para empresas do segmento, como vidraçarias, serralherias e fabricantes de esquadrias.",
+                  q: "Preciso já trabalhar com esquadrias para revender?",
+                  a: "Não. Você não precisa trabalhar com esquadrias para começar. Como somos fornecedores próprios, você pode começar a vender quando quiser — esse é um dos grandes diferenciais da Rede Premium Roll Door.",
                 },
                 {
                   q: "Existe exclusividade?",
