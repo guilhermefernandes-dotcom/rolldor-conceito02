@@ -43,7 +43,7 @@ import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
 const residencialSteps: ScrollStep[] = [
   {
     n: "01",
-    label: "Grandes vãos",
+    label: "Vãos de todos os tamanhos",
     big: "Integração total",
     desc: "Integre ambientes internos e externos com elegância e leveza, ampliando a sensação de espaço e trazendo a natureza para dentro do projeto.",
     Icon: Layers,
@@ -328,7 +328,7 @@ function LandingCliente() {
               <ul className="mt-7 grid gap-3 text-left sm:grid-cols-2">
                 {[
                   "Design sofisticado",
-                  "Grandes vãos e integração dos ambientes",
+                  "Vãos de todos os tamanhos e integração dos ambientes",
                   "Tecnologia e alto desempenho",
                   "Rede de especialistas em todo o Brasil",
                 ].map((item) => (
