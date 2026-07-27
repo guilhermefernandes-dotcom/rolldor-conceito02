@@ -157,20 +157,38 @@ function UnderlineWord({
   );
 }
 
-const LOGOS_REVENDAS = [
-  "Vidraçaria Alpha",
-  "Esquadrias Prime",
-  "Serralheria Vitral",
-  "Vidros & Cia",
-  "Alumínio Nobre",
-  "Vidraçaria Cristal",
-  "Esquadrias do Vale",
-  "Vidraçaria Real",
-  "Serralheria Aço Sul",
-  "Vidraçaria Atlântico",
-  "Esquadrias Modena",
-  "Vidraçaria Central",
+import realVidros from "@/assets/partners/real-vidros.webp.asset.json";
+import nelsonVidros from "@/assets/partners/nelson-vidros.webp.asset.json";
+import mpVidros from "@/assets/partners/mp-vidros.webp.asset.json";
+import infinitoVidros from "@/assets/partners/infinito-vidros.webp.asset.json";
+import akyVidros from "@/assets/partners/aky-vidros.webp.asset.json";
+import reyDoVidro from "@/assets/partners/rey-do-vidro.webp.asset.json";
+import blindexPrime from "@/assets/partners/blindex-prime.webp.asset.json";
+import vidroman from "@/assets/partners/vidroman.webp.asset.json";
+import falcaoGlass from "@/assets/partners/falcao-glass.webp.asset.json";
+import nordesteLogo from "@/assets/partners/nordeste.webp.asset.json";
+import mazalins from "@/assets/partners/mazalins.webp.asset.json";
+import maisonDoVidro from "@/assets/partners/maison-do-vidro.webp.asset.json";
+import voltaRedonda from "@/assets/partners/volta-redonda.webp.asset.json";
+import vidroECia from "@/assets/partners/vidro-e-cia.webp.asset.json";
+
+const LOGOS_REVENDAS: { nome: string; src: string }[] = [
+  { nome: "Real Vidros", src: realVidros.url },
+  { nome: "Nelson Vidros", src: nelsonVidros.url },
+  { nome: "Mangueira Pimenta Vidros", src: mpVidros.url },
+  { nome: "Infinito Vidros", src: infinitoVidros.url },
+  { nome: "Aky Vidros e PVC", src: akyVidros.url },
+  { nome: "Rey do Vidro", src: reyDoVidro.url },
+  { nome: "Blindex Prime", src: blindexPrime.url },
+  { nome: "Vidroman", src: vidroman.url },
+  { nome: "Falcão Glass", src: falcaoGlass.url },
+  { nome: "Nordeste", src: nordesteLogo.url },
+  { nome: "Mazalins", src: mazalins.url },
+  { nome: "Maison do Vidro", src: maisonDoVidro.url },
+  { nome: "Vidraçaria Volta Redonda", src: voltaRedonda.url },
+  { nome: "Vidro e Cia", src: vidroECia.url },
 ];
+
 
 function CtaPrimary({
   children,
@@ -326,12 +344,17 @@ function Landing() {
           <Reveal delay={0.3}>
             <div className="mt-14 overflow-hidden">
               <div className="flex animate-[leevi-marquee_45s_linear_infinite] whitespace-nowrap">
-                {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((nome, i) => (
+                {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((logo, i) => (
                   <div
                     key={i}
-                    className="mx-6 inline-flex h-16 items-center justify-center rounded-lg border border-foreground/10 bg-white px-8 font-display text-base font-bold tracking-wide text-foreground/70 shadow-sm md:mx-8 md:text-lg"
+                    className="mx-6 inline-flex h-24 w-40 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-5 shadow-sm md:mx-8"
                   >
-                    {nome}
+                    <img
+                      src={logo.src}
+                      alt={logo.nome}
+                      loading="lazy"
+                      className="max-h-16 w-auto max-w-full object-contain"
+                    />
                   </div>
                 ))}
               </div>
