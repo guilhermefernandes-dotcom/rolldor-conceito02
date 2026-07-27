@@ -465,11 +465,12 @@ function LandingCliente() {
                 <Reveal delay={0.15}>
                   <ProjetosCarousel
                     slides={[
-                      { src: galeria2, alt: "Residência de alto padrão com esquadrias Roll Door" },
-                      { src: galeria1, alt: "Projeto residencial contemporâneo" },
-                      { src: galeria4, alt: "Ambiente integrado com esquadrias Roll Door" },
-                      { src: galeria3, alt: "Grandes vãos com integração externa" },
-                      { src: galeria5, alt: "Projeto Roll Door — grandes vãos e integração" },
+                      { src: premCamarao.url, alt: "Porta Camarão em alumínio verde em residência de alto padrão" },
+                      { src: premConvencional.url, alt: "Sistema deslizante com vidro esverdeado integrando sala e piscina" },
+                      { src: prem90.url, alt: "Sistema de canto 90° com grandes vãos e integração total" },
+                      { src: premGiro.url, alt: "Porta de giro em alumínio bronze com vidro" },
+                      { src: premLitePlus.url, alt: "Porta de correr Lite Plus com perfil preto e integração com o jardim" },
+                      { src: premAngra.url, alt: "Residências à beira-mar com fachadas em vidro Roll Door" },
                     ]}
                   />
                 </Reveal>
