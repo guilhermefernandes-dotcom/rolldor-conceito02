@@ -107,7 +107,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "Roll Door Company",
           description:
-            "Fabricante brasileira de esquadrias de alto padrão — portas deslizantes, janelas premium e sistemas de alumínio para grandes vãos. Rede Premium de revendedores em todo o Brasil.",
+            "Fabricante brasileira de esquadrias de alto padrão — portas de correr, janelas premium e sistemas de alumínio para grandes vãos. Rede Premium de revendedores em todo o Brasil.",
           sameAs: [],
         }),
       },

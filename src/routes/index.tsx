@@ -47,7 +47,7 @@ export const Route = createFileRoute("/")({
         {
           name: "keywords",
           content:
-            "revenda esquadrias, roll door, portas deslizantes, janelas premium, revendedor premium, alumínio de alto padrão, esquadrias de alto padrão, rede de revendas",
+            "revenda esquadrias, roll door, portas de correr, janelas premium, revendedor premium, alumínio de alto padrão, esquadrias de alto padrão, rede de revendas",
         },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
