@@ -597,9 +597,10 @@ function Landing() {
           {(() => {
             const cards = [
               {
-                title: "Engenharia para qualquer obra",
-                desc: "Soluções pensadas para projetos residenciais, comerciais e corporativos, entregando elegância, desempenho e segurança.",
+                title: "Soluções para qualquer projeto",
+                desc: "Residencial, comercial ou corporate: produtos que se adaptam a cada projeto.",
                 pos: "top-0 left-0 lg:-translate-x-4",
+
                 align: "text-left",
               },
               {
