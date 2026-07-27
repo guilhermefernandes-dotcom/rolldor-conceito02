@@ -784,6 +784,10 @@ function Landing() {
         </div>
       </section>
 
+      {/* ANTES x DEPOIS */}
+      <AntesDepois />
+
+
 
 
 
