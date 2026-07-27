@@ -597,8 +597,8 @@ function Landing() {
           {(() => {
             const cards = [
               {
-                title: "Engenharia para grandes vãos",
-                desc: "Projetos desenvolvidos para entregar elegância, desempenho e segurança.",
+                title: "Engenharia para qualquer obra",
+                desc: "Soluções pensadas para projetos residenciais, comerciais e corporativos, entregando elegância, desempenho e segurança.",
                 pos: "top-0 left-0 lg:-translate-x-4",
                 align: "text-left",
               },
