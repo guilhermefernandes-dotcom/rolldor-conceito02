@@ -12,7 +12,7 @@ import {
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
-import heroBannerAsset from "@/assets/hero-residencial.jpg.asset.json";
+import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
 import seloBrasil from "@/assets/selo-image-20.png.asset.json";
 import seloFalcaoBauer from "@/assets/selo-image-21.png.asset.json";
 import seloUniversidadeSom from "@/assets/selo-image-22.png.asset.json";
@@ -23,7 +23,7 @@ import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
-const heroImg = heroBannerAsset.url;
+const heroImg = heroPortaBandeirasAsset.url;
 const galeria1 = project1Asset.url;
 const galeria2 = project2Asset.url;
 const galeria3 = project3Asset.url;
