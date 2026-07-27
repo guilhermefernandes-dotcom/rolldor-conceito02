@@ -7,22 +7,27 @@ import {
   useTransform,
 } from "motion/react";
 
-import portaProduto from "@/assets/rd-produto-porta.png";
-import janelaProduto from "@/assets/rd-produto-janela.png";
-import foldingProduto from "@/assets/rd-produto-folding.png";
-import pivotProduto from "@/assets/rd-produto-pivot.png";
+import prodSystems from "@/assets/rd-prod-systems.png";
+import prodLite from "@/assets/rd-prod-lite.png";
+import prodSlim from "@/assets/rd-prod-slim.png";
+import prodPivotante from "@/assets/rd-prod-pivotante.png";
+import prodMaximar from "@/assets/rd-prod-maximar.png";
+import prodInside from "@/assets/rd-prod-inside.png";
+import prodPersiana from "@/assets/rd-prod-persiana.png";
+import prodCamarao from "@/assets/rd-prod-camarao.png";
 import rdMark from "@/assets/rd-mark.png";
 
 const ITEMS = [
-  { src: portaProduto, name: "Portas de Correr", tag: "Alto padrão" },
-  { src: janelaProduto, name: "Janelas Premium", tag: "Linha residencial" },
-  { src: foldingProduto, name: "Sistemas Folding", tag: "Grandes vãos" },
-  { src: pivotProduto, name: "Portas Pivotantes", tag: "Design" },
-  { src: portaProduto, name: "Sistemas de Alumínio", tag: "Engenharia" },
-  { src: janelaProduto, name: "Fachadas", tag: "Arquitetura" },
-  { src: foldingProduto, name: "Soluções Personalizadas", tag: "Sob medida" },
-  { src: pivotProduto, name: "Portas de Entrada", tag: "Assinatura" },
+  { src: prodSystems, name: "Roll Door Systems", tag: "Vãos amplos" },
+  { src: prodLite, name: "Roll Door Lite", tag: "Linha residencial" },
+  { src: prodSlim, name: "Roll Door Slim", tag: "Perfis minimalistas" },
+  { src: prodPivotante, name: "Porta Pivotante", tag: "Alto padrão" },
+  { src: prodMaximar, name: "Maxim-ar", tag: "Ventilação" },
+  { src: prodInside, name: "Inside Door Kit", tag: "Ambientes internos" },
+  { src: prodPersiana, name: "Persiana Integrada", tag: "Automação" },
+  { src: prodCamarao, name: "Porta Camarão", tag: "Integração" },
 ];
+
 
 export function VitrineOrbit() {
   const [active, setActive] = useState(0);
