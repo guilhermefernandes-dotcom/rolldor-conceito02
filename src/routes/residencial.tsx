@@ -23,7 +23,7 @@ import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
-const heroImg = heroBannerAsset.url;
+const heroImg = heroPortaBandeirasAsset.url;
 const galeria1 = project1Asset.url;
 const galeria2 = project2Asset.url;
 const galeria3 = project3Asset.url;
