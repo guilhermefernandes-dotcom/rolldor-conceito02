@@ -37,7 +37,7 @@ const STEPS: Step[] = [
     n: "03",
     label: "Portfólio",
     big: "Portas & Janelas",
-    desc: "Portas deslizantes, sistemas folding, pivotantes, janelas premium e soluções sob medida — tudo pensado para atender projetos residenciais, comerciais e arquitetura de alto padrão.",
+    desc: "Portas de correr, sistemas folding, pivotantes, janelas premium e soluções sob medida — tudo pensado para atender projetos residenciais, comerciais e arquitetura de alto padrão.",
     Icon: Layers,
     image: galeria2,
     imagePosition: "50% center",

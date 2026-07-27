@@ -14,7 +14,7 @@ import pivotProduto from "@/assets/rd-produto-pivot.png";
 import rdMark from "@/assets/rd-mark.png";
 
 const ITEMS = [
-  { src: portaProduto, name: "Portas Deslizantes", tag: "Alto padrão" },
+  { src: portaProduto, name: "Portas de Correr", tag: "Alto padrão" },
   { src: janelaProduto, name: "Janelas Premium", tag: "Linha residencial" },
   { src: foldingProduto, name: "Sistemas Folding", tag: "Grandes vãos" },
   { src: pivotProduto, name: "Portas Pivotantes", tag: "Design" },

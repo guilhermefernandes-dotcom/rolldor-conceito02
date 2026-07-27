@@ -97,7 +97,7 @@ export const Route = createFileRoute("/residencial")({
         {
           name: "keywords",
           content:
-            "esquadrias premium, portas deslizantes, grandes vãos, arquitetura contemporânea, casa de alto padrão, roll door residencial",
+            "esquadrias premium, portas de correr, grandes vãos, arquitetura contemporânea, casa de alto padrão, roll door residencial",
         },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
@@ -389,6 +389,34 @@ function LandingCliente() {
 
       </motion.div>
 
+      {/* MARQUEE — faixa de destaque verde */}
+      <div className="overflow-hidden bg-brand-green py-4">
+        <div
+          className="flex animate-[leevi-marquee_35s_linear_infinite] whitespace-nowrap font-display"
+          style={{
+            fontWeight: 500,
+            fontSize: "clamp(15px, 4.5vw, 22px)",
+            lineHeight: "1.3",
+            color: "rgba(255,255,255,0.95)",
+            letterSpacing: "-0.01em",
+          }}
+        >
+          {Array.from({ length: 6 }).flatMap((_, i) =>
+            [
+              "Design sofisticado",
+              "Vãos de todos os tamanhos",
+              "Arquitetura contemporânea",
+              "Rede de especialistas no Brasil",
+            ].map((item, j) => (
+              <span key={`${i}-${j}`} className="inline-flex items-center">
+                <span className="px-8">{item}</span>
+                <span className="opacity-60">•</span>
+              </span>
+            )),
+          )}
+        </div>
+      </div>
+
       {/* SESSÃO 2 — "Um novo padrão" (Apple-style pinned reveal) */}
       <NovoPadraoPinned />
 
@@ -466,7 +494,7 @@ function LandingCliente() {
                   <ProjetosCarousel
                     slides={[
                       { src: premCamarao.url, alt: "Porta Camarão em alumínio verde em residência de alto padrão" },
-                      { src: premConvencional.url, alt: "Sistema deslizante com vidro esverdeado integrando sala e piscina" },
+                      { src: premConvencional.url, alt: "Sistema de correr com vidro esverdeado integrando sala e piscina" },
                       { src: prem90.url, alt: "Sistema de canto 90° com grandes vãos e integração total" },
                       { src: premGiro.url, alt: "Porta de giro em alumínio bronze com vidro" },
                       { src: premLitePlus.url, alt: "Porta de correr Lite Plus com perfil preto e integração com o jardim" },
