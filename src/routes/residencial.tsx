@@ -343,6 +343,36 @@ function LandingCliente() {
                 <CtaPrimary>Solicitar um orçamento</CtaPrimary>
               </div>
             </Reveal>
+
+            <Reveal delay={0.6}>
+              <div className="mt-10 w-full border-t border-white/10 pt-6">
+                <p className="text-[13px] uppercase tracking-[0.22em] text-white/45">
+                  Qualidade certificada
+                </p>
+                <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:gap-4">
+                  {[
+                    { src: seloBrasil.url, alt: "100% fabricado no Brasil" },
+                    { src: seloFalcaoBauer.url, alt: "Testado pelo Instituto Falcão Bauer — acreditado pelo INMETRO" },
+                    { src: seloUniversidadeSom.url, alt: "Universidade do Som" },
+                    { src: seloAbravidro.url, alt: "Prêmio Abravidro Glass South America" },
+                  ].map((s) => (
+                    <div
+                      key={s.alt}
+                      className="flex h-[68px] w-[104px] shrink-0 items-center justify-center rounded-xl bg-white/92 px-3 py-2 shadow-sm backdrop-blur-sm md:h-[76px] md:w-[124px]"
+                    >
+                      <img
+                        src={s.src}
+                        alt={s.alt}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+
           </div>
         </motion.section>
 
