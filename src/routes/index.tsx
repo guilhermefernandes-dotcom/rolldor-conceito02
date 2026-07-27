@@ -347,15 +347,16 @@ function Landing() {
                 {[...LOGOS_REVENDAS, ...LOGOS_REVENDAS].map((logo, i) => (
                   <div
                     key={i}
-                    className="mx-6 inline-flex h-24 w-40 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-5 shadow-sm md:mx-8"
+                    className="mx-6 inline-flex h-32 w-56 shrink-0 items-center justify-center rounded-lg border border-foreground/10 bg-white px-6 shadow-sm md:mx-8 md:h-36 md:w-64"
                   >
                     <img
                       src={logo.src}
                       alt={logo.nome}
                       loading="lazy"
-                      className="max-h-16 w-auto max-w-full object-contain"
+                      className="max-h-24 w-auto max-w-full object-contain md:max-h-28"
                     />
                   </div>
+
                 ))}
               </div>
             </div>
