@@ -26,7 +26,6 @@ import project5Asset from "@/assets/rd-project-5.webp.asset.json";
 import premCamarao from "@/assets/rd-premium-camarao.jpg.asset.json";
 import premGiro from "@/assets/rd-premium-giro.jpg.asset.json";
 import premLitePlus from "@/assets/rd-premium-liteplus.jpg.asset.json";
-import prem90 from "@/assets/rd-premium-90.jpg.asset.json";
 import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
 import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
 const heroImg = heroPortaBandeirasAsset.url;
@@ -89,7 +88,7 @@ export const Route = createFileRoute("/residencial")({
     const title =
       "Roll Door — Esquadrias premium para residências de alto padrão";
     const description =
-      "Sistemas de esquadrias premium desenvolvidos para arquitetura contemporânea, grandes vãos e design minimalista. Solicite um orçamento e transforme seu projeto residencial.";
+      "Sistemas de esquadrias premium desenvolvidos para arquitetura moderna, grandes vãos e design minimalista. Solicite um orçamento e transforme seu projeto residencial.";
     return {
       meta: [
         { title },
@@ -97,7 +96,7 @@ export const Route = createFileRoute("/residencial")({
         {
           name: "keywords",
           content:
-            "esquadrias premium, portas de correr, grandes vãos, arquitetura contemporânea, casa de alto padrão, roll door residencial",
+            "esquadrias premium, portas de correr, grandes vãos, arquitetura moderna, casa de alto padrão, roll door residencial",
         },
         { property: "og:title", content: title },
         { property: "og:description", content: description },
@@ -326,7 +325,7 @@ function LandingCliente() {
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
                 Sistemas de esquadrias premium desenvolvidos para quem busca arquitetura
-                contemporânea, grandes vãos, design minimalista e máxima valorização do imóvel.
+                moderna, grandes vãos, design minimalista e máxima valorização do imóvel.
               </p>
             </Reveal>
 
@@ -405,7 +404,7 @@ function LandingCliente() {
             [
               "Design sofisticado",
               "Vãos de todos os tamanhos",
-              "Arquitetura contemporânea",
+              "Arquitetura moderna",
               "Rede de especialistas no Brasil",
             ].map((item, j) => (
               <span key={`${i}-${j}`} className="inline-flex items-center">
@@ -495,7 +494,6 @@ function LandingCliente() {
                     slides={[
                       { src: premCamarao.url, alt: "Porta Camarão em alumínio verde em residência de alto padrão" },
                       { src: premConvencional.url, alt: "Sistema de correr com vidro esverdeado integrando sala e piscina" },
-                      { src: prem90.url, alt: "Sistema de canto 90° com grandes vãos e integração total" },
                       { src: premGiro.url, alt: "Porta de giro em alumínio bronze com vidro" },
                       { src: premLitePlus.url, alt: "Porta de correr Lite Plus com perfil preto e integração com o jardim" },
                       { src: premAngra.url, alt: "Residências à beira-mar com fachadas em vidro Roll Door" },
@@ -610,7 +608,7 @@ function LandingCliente() {
                     "Marca reconhecida nacionalmente.",
                     "Soluções para projetos de alto padrão.",
                     "Rede de parceiros especializados em todo o Brasil.",
-                    "Produtos desenvolvidos para arquitetura contemporânea.",
+                    "Produtos desenvolvidos para arquitetura moderna.",
                   ].map((item) => (
                     <li key={item} className="flex items-start gap-4 py-5">
                       <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
