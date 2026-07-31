@@ -131,11 +131,38 @@ function RootShell({ children }: { children: React.ReactNode }) {
         <HeadContent />
       </head>
       <body>
+        <noscript>
+          <iframe
+            src="https://www.googletagmanager.com/ns.html?id=GTM-5RZ8XX2S"
+            height="0"
+            width="0"
+            style={{ display: "none", visibility: "hidden" }}
+          />
+        </noscript>
         {children}
+        <script src="https://code.jquery.com/jquery-3.7.1.min.js" />
+        <script src="/gpc-utm.js" />
         <Scripts />
       </body>
     </html>
   );
+}
+
+function UtmSync() {
+  const router = useRouter();
+
+  React.useEffect(() => {
+    const run = () => {
+      const fn = (window as unknown as { CamposUTM?: (modal?: boolean) => void }).CamposUTM;
+      if (typeof fn === "function") fn();
+      else setTimeout(run, 300);
+    };
+    run();
+    const unsub = router.subscribe("onResolved", () => setTimeout(run, 50));
+    return () => unsub();
+  }, [router]);
+
+  return null;
 }
 
 function RootComponent() {
@@ -143,7 +170,9 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      <UtmSync />
       <Outlet />
     </QueryClientProvider>
   );
 }
+
