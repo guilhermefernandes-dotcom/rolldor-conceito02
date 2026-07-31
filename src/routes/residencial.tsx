@@ -325,7 +325,7 @@ function LandingCliente() {
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
                 Sistemas de esquadrias premium desenvolvidos para quem busca arquitetura
-                contemporânea, grandes vãos, design minimalista e máxima valorização do imóvel.
+                moderna, grandes vãos, design minimalista e máxima valorização do imóvel.
               </p>
             </Reveal>
 
