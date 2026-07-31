@@ -7,7 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
   empresa: z.string().trim().min(2, "Informe o nome da empresa").max(160),
-  cnpj: z.string().trim().max(25).optional().or(z.literal("")),
+  cnpj: z.string().trim().min(11, "Informe o CNPJ").max(25),
   whatsapp: z.string().trim().min(8, "Informe um WhatsApp válido").max(40),
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
@@ -189,12 +189,13 @@ export function FormularioRevenda() {
             autoComplete="address-level1"
           />
         </Field>
-        <Field label="CNPJ (opcional)" error={errors.cnpj}>
+        <Field label="CNPJ" error={errors.cnpj}>
           <input
-            className={`${inputBase} border-white/15`}
+            className={`${inputBase} ${errors.cnpj ? "border-destructive" : "border-white/15"}`}
             value={values.cnpj}
             onChange={(e) => update("cnpj", e.target.value)}
             placeholder="00.000.000/0000-00"
+            required
           />
         </Field>
         <Field label="Segmento" error={errors.segmento}>
