@@ -1,8 +1,9 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2, Loader2, ArrowRight, ChevronDown, Home } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
@@ -51,6 +52,7 @@ export function FormularioCliente() {
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
+  const formRef = useRef<HTMLFormElement>(null);
   const [tipoOpen, setTipoOpen] = useState(false);
   const [faseOpen, setFaseOpen] = useState(false);
 
@@ -74,6 +76,7 @@ export function FormularioCliente() {
     }
 
     setStatus("loading");
+    const utm = readUtmFields(formRef.current);
     const payload = {
       nome: parsed.data.nome,
       whatsapp: parsed.data.whatsapp,
@@ -83,6 +86,7 @@ export function FormularioCliente() {
       tipo_projeto: parsed.data.tipo_projeto,
       fase_obra: parsed.data.fase_obra,
       mensagem: parsed.data.mensagem || null,
+      ...utm,
     };
 
     const { error } = await supabase.from("cliente_leads").insert(payload);
@@ -91,6 +95,7 @@ export function FormularioCliente() {
       setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
       return;
     }
+    pushFormSubmitEvent();
     setStatus("success");
     setValues(initialState);
   }
@@ -128,10 +133,12 @@ export function FormularioCliente() {
 
   return (
     <form
+      ref={formRef}
       onSubmit={onSubmit}
       className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-12"
       noValidate
     >
+      <HiddenUtmFields />
       <div className="mb-8 text-center">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/10">
           <Home className="h-6 w-6 text-brand-green" strokeWidth={1.8} />

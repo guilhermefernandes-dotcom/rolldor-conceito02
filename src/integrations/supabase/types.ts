@@ -25,6 +25,11 @@ export type Database = {
           mensagem: string | null
           nome: string
           tipo_projeto: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
           whatsapp: string
         }
         Insert: {
@@ -37,6 +42,11 @@ export type Database = {
           mensagem?: string | null
           nome: string
           tipo_projeto: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           whatsapp: string
         }
         Update: {
@@ -49,6 +59,11 @@ export type Database = {
           mensagem?: string | null
           nome?: string
           tipo_projeto?: Database["public"]["Enums"]["cliente_tipo_projeto"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           whatsapp?: string
         }
         Relationships: []
@@ -66,6 +81,11 @@ export type Database = {
           mensagem: string | null
           nome: string
           segmento: Database["public"]["Enums"]["revenda_segmento"]
+          utm_campaign: string | null
+          utm_content: string | null
+          utm_medium: string | null
+          utm_source: string | null
+          utm_term: string | null
           whatsapp: string
         }
         Insert: {
@@ -80,6 +100,11 @@ export type Database = {
           mensagem?: string | null
           nome: string
           segmento: Database["public"]["Enums"]["revenda_segmento"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           whatsapp: string
         }
         Update: {
@@ -94,6 +119,11 @@ export type Database = {
           mensagem?: string | null
           nome?: string
           segmento?: Database["public"]["Enums"]["revenda_segmento"]
+          utm_campaign?: string | null
+          utm_content?: string | null
+          utm_medium?: string | null
+          utm_source?: string | null
+          utm_term?: string | null
           whatsapp?: string
         }
         Relationships: []
