@@ -774,7 +774,7 @@ function Landing() {
                   </p>
                   <div className="mt-6 border-t border-foreground/10 pt-4">
                     <div className="font-display text-sm font-bold text-foreground">{d.autor}</div>
-                    <div className="text-xs text-muted-foreground">{d.cidade}</div>
+                    
                   </div>
                 </div>
               </Reveal>
