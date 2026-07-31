@@ -165,7 +165,7 @@ import infinitoVidros from "@/assets/partners/infinito-vidros.png.asset.json";
 import akyVidros from "@/assets/partners/aky-vidros.png.asset.json";
 import reyDoVidro from "@/assets/partners/rey-do-vidro.png.asset.json";
 import blindexPrime from "@/assets/partners/blindex-prime.png.asset.json";
-import vidroman from "@/assets/partners/vidroman.png.asset.json";
+import brise from "@/assets/partners/brise-esquadrias.png.asset.json";
 import falcaoGlass from "@/assets/partners/falcao-glass.png.asset.json";
 import nordesteLogo from "@/assets/partners/nordeste.png.asset.json";
 import mazalins from "@/assets/partners/mazalins.png.asset.json";
@@ -181,7 +181,7 @@ const LOGOS_REVENDAS: { nome: string; src: string }[] = [
   { nome: "Aky Vidros e PVC", src: akyVidros.url },
   { nome: "Rey do Vidro", src: reyDoVidro.url },
   { nome: "Blindex Prime", src: blindexPrime.url },
-  { nome: "Vidroman", src: vidroman.url },
+  { nome: "Brise Esquadrias", src: brise.url },
   { nome: "Falcão Glass", src: falcaoGlass.url },
   { nome: "Nordeste", src: nordesteLogo.url },
   { nome: "Mazalins", src: mazalins.url },
@@ -523,7 +523,7 @@ function Landing() {
                     desc: "Comerciais especiais para parceiros da rede.",
                     bullets: [
                       "Política de preço parceira",
-                      "Prazos diferenciados",
+                      "Programa de cashback",
                       "Benefícios exclusivos",
                     ],
                   },
@@ -755,18 +755,15 @@ function Landing() {
               {
                 quote:
                   "Desde que começamos a trabalhar com a Roll Door conseguimos agregar muito mais valor aos nossos projetos.",
-                autor: "Vidraçaria parceira",
-                cidade: "São Paulo, SP",
+                autor: "Vidraçaria Monte Cristal",
               },
               {
                 quote: "Hoje nossos clientes já chegam pedindo Roll Door.",
-                autor: "Esquadrias parceira",
-                cidade: "Curitiba, PR",
+                autor: "Serralheria Vitrale",
               },
               {
                 quote: "Além do produto, o suporte faz toda diferença.",
-                autor: "Serralheria parceira",
-                cidade: "Belo Horizonte, MG",
+                autor: "Vidraçaria Nova Aurora",
               },
             ].map((d, i) => (
               <Reveal key={i} delay={i * 0.08}>
