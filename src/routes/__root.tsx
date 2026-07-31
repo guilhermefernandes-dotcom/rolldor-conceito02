@@ -159,10 +159,14 @@ function UtmSync() {
       if (typeof fn === "function") fn();
       else setTimeout(run, 300);
     };
-    run();
-    const unsub = router.subscribe("onResolved", () => setTimeout(run, 50));
-    return () => unsub();
+    const timers = [0, 300, 800, 1600, 3000].map((ms) => setTimeout(run, ms));
+    const unsub = router.subscribe("onResolved", () => setTimeout(run, 300));
+    return () => {
+      timers.forEach(clearTimeout);
+      unsub();
+    };
   }, [router]);
+
 
   return null;
 }
