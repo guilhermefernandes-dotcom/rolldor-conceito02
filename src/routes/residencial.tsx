@@ -824,7 +824,7 @@ function LandingCliente() {
                       WhatsApp
                     </div>
                     <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      (11) 9 0000-0000
+                      44 98824-9953
                     </div>
                   </div>
                   <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
