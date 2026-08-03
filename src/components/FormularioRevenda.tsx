@@ -63,7 +63,6 @@ export function FormularioRevenda() {
     }
 
     setStatus("loading");
-    const utm = readUtmFields(formRef.current);
     const payload = {
       nome: parsed.data.nome,
       empresa: parsed.data.empresa,
@@ -75,7 +74,6 @@ export function FormularioRevenda() {
       segmento: parsed.data.segmento,
       faturamento: parsed.data.faturamento || null,
       mensagem: parsed.data.mensagem || null,
-      ...utm,
     };
 
     const { error } = await supabase.from("revenda_leads").insert(payload);
@@ -86,7 +84,7 @@ export function FormularioRevenda() {
       );
       return;
     }
-    pushFormSubmitEvent();
+
     setStatus("success");
     setValues(initialState);
   }
