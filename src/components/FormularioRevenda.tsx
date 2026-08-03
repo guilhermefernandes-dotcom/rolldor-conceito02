@@ -127,7 +127,7 @@ export function FormularioRevenda() {
       className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-12"
       noValidate
     >
-      <HiddenUtmFields />
+      
       <div className="mb-8 text-center">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/10">
           <PhoneCall className="h-6 w-6 text-brand-green" strokeWidth={1.8} />
