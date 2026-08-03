@@ -277,6 +277,8 @@ function LandingCliente() {
 
   return (
     <main className="min-h-screen bg-foreground text-white antialiased">
+      <UtmTracking />
+
       {/* HERO — imagem full com overlay escuro, tipografia elegante */}
       <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
         <motion.section
