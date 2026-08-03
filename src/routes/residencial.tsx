@@ -1,4 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { UtmTracking } from "@/components/UtmTracking";
 import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
@@ -277,6 +278,8 @@ function LandingCliente() {
 
   return (
     <main className="min-h-screen bg-foreground text-white antialiased">
+      <UtmTracking />
+
       {/* HERO — imagem full com overlay escuro, tipografia elegante */}
       <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
         <motion.section
