@@ -86,7 +86,6 @@ export function FormularioRevenda() {
       );
       return;
     }
-    await sendToWebhook("revenda", payload);
     pushFormSubmitEvent();
     setStatus("success");
     setValues(initialState);
