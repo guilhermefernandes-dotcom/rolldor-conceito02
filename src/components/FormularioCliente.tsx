@@ -95,7 +95,6 @@ export function FormularioCliente() {
       setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
       return;
     }
-    await sendToWebhook("residencial", payload);
     pushFormSubmitEvent();
     setStatus("success");
     setValues(initialState);
