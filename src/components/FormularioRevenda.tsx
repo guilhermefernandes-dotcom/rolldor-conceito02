@@ -4,6 +4,7 @@ import { CheckCircle2, Loader2, PhoneCall, ArrowRight, ChevronDown } from "lucid
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
+import { sendToWebhook } from "@/lib/webhook";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
@@ -86,6 +87,7 @@ export function FormularioRevenda() {
       );
       return;
     }
+    await sendToWebhook("revenda", payload);
     pushFormSubmitEvent();
     setStatus("success");
     setValues(initialState);
