@@ -242,21 +242,186 @@ const CATEGORIAS: { id: CategoriaId; label: string }[] = [
   { id: "solucoes-internas", label: "Soluções Internas" },
 ];
 
-const PRODUTOS: {
+type Produto = {
   nome: string;
   tag: string;
   img: string;
   cats: CategoriaId[];
-}[] = [
-  { nome: "Porta Camarão", tag: "Integração total", img: prodCamarao, cats: ["portas", "grandes-vaos"] },
-  { nome: "Porta de Giro", tag: "Clássica e versátil", img: prodGiro, cats: ["portas"] },
-  { nome: "Porta Pivotante", tag: "Alto padrão", img: prodPivotante, cats: ["portas"] },
-  { nome: "Persiana Integrada Hiperventilada", tag: "Conforto e automação", img: prodPersiana, cats: ["janelas"] },
-  { nome: "Roll Door Systems", tag: "Vãos amplos", img: prodSystems, cats: ["grandes-vaos"] },
-  { nome: "Roll Door Lite", tag: "Linha residencial", img: prodLite, cats: ["grandes-vaos", "portas"] },
-  { nome: "Roll Door Slim", tag: "Perfis minimalistas", img: prodSlim, cats: ["grandes-vaos"] },
-  { nome: "Inside Door Kit", tag: "Ambientes internos", img: prodInside, cats: ["solucoes-internas"] },
+  galeria: string[];
+};
+
+const PRODUTOS: Produto[] = [
+  {
+    nome: "Porta Camarão",
+    tag: "Integração total",
+    img: prodCamarao,
+    cats: ["portas", "grandes-vaos"],
+    galeria: [prodCamarao, galCamarao1.url, galCamarao2.url, galCamarao3.url],
+  },
+  {
+    nome: "Porta de Giro",
+    tag: "Clássica e versátil",
+    img: prodGiro,
+    cats: ["portas"],
+    galeria: [prodGiro, galGiro1.url, galGiro2.url, galGiro3.url],
+  },
+  {
+    nome: "Porta Pivotante",
+    tag: "Alto padrão",
+    img: prodPivotante,
+    cats: ["portas"],
+    galeria: [prodPivotante, galPivo1.url, galPivo2.url, galPivo3.url],
+  },
+  {
+    nome: "Persiana Integrada Hiperventilada",
+    tag: "Conforto e automação",
+    img: prodPersiana,
+    cats: ["janelas"],
+    galeria: [prodPersiana, galPers1.url, galPers2.url, galPers3.url],
+  },
+  {
+    nome: "Roll Door Systems",
+    tag: "Vãos amplos",
+    img: prodSystems,
+    cats: ["grandes-vaos"],
+    galeria: [prodSystems, galMax1.url, galMax2.url],
+  },
+  {
+    nome: "Roll Door Lite",
+    tag: "Linha residencial",
+    img: prodLite,
+    cats: ["grandes-vaos", "portas"],
+    galeria: [prodLite, galLite1.url, galLite2.url, galLite3.url, galLite4.url],
+  },
+  {
+    nome: "Roll Door Slim",
+    tag: "Perfis minimalistas",
+    img: prodSlim,
+    cats: ["grandes-vaos"],
+    galeria: [prodSlim, galSlim1.url, galSlim2.url, galSlim3.url],
+  },
+  {
+    nome: "Inside Door Kit",
+    tag: "Ambientes internos",
+    img: prodInside,
+    cats: ["solucoes-internas"],
+    galeria: [prodInside, galInside1.url, galInside2.url, galInside3.url],
+  },
 ];
+
+function GaleriaProduto({ produto, onClose }: { produto: Produto; onClose: () => void }) {
+  const [ativo, setAtivo] = useState(0);
+  const total = produto.galeria.length;
+
+  React.useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") onClose();
+      if (e.key === "ArrowRight") setAtivo((i) => (i + 1) % total);
+      if (e.key === "ArrowLeft") setAtivo((i) => (i - 1 + total) % total);
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [onClose, total]);
+
+  return (
+    <motion.div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm md:p-8"
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      onClick={onClose}
+    >
+      <motion.div
+        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0, y: 24, scale: 0.97 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 16, scale: 0.98 }}
+        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+        className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:rounded-3xl"
+      >
+        <div className="flex items-start justify-between gap-4 border-b border-black/5 px-5 py-4 md:px-7 md:py-5">
+          <div>
+            <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+              {produto.tag}
+            </span>
+            <h3
+              className="font-display text-[18px] font-medium text-foreground md:text-[24px]"
+              style={{ letterSpacing: "-0.02em" }}
+            >
+              {produto.nome}
+            </h3>
+          </div>
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label="Fechar galeria"
+            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground/5 text-foreground transition-colors hover:bg-foreground/10"
+          >
+            <X className="h-5 w-5" />
+          </button>
+        </div>
+
+        <div className="relative bg-foreground/5">
+          <div className="relative aspect-[4/3] w-full overflow-hidden md:aspect-[16/10]">
+            <AnimatePresence mode="wait" initial={false}>
+              <motion.img
+                key={ativo}
+                src={produto.galeria[ativo]}
+                alt={`${produto.nome} — foto ${ativo + 1}`}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.25 }}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+            </AnimatePresence>
+          </div>
+          {total > 1 && (
+            <>
+              <button
+                type="button"
+                aria-label="Foto anterior"
+                onClick={() => setAtivo((i) => (i - 1 + total) % total)}
+                className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:bg-white"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                type="button"
+                aria-label="Próxima foto"
+                onClick={() => setAtivo((i) => (i + 1) % total)}
+                className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:bg-white"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </>
+          )}
+        </div>
+
+        <div className="flex gap-2 overflow-x-auto px-5 py-4 md:px-7">
+          {produto.galeria.map((g, i) => (
+            <button
+              key={g}
+              type="button"
+              onClick={() => setAtivo(i)}
+              aria-label={`Ver foto ${i + 1}`}
+              className={`h-16 w-20 shrink-0 overflow-hidden rounded-lg ring-2 transition md:h-20 md:w-28 ${
+                i === ativo ? "ring-brand-green" : "ring-transparent opacity-70 hover:opacity-100"
+              }`}
+            >
+              <img src={g} alt="" loading="lazy" className="h-full w-full object-cover" />
+            </button>
+          ))}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+}
 
 function ProdutosFiltraveis() {
   const [categoria, setCategoria] = useState<CategoriaId>("todos");
