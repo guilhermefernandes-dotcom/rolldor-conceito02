@@ -425,6 +425,7 @@ function GaleriaProduto({ produto, onClose }: { produto: Produto; onClose: () =>
 
 function ProdutosFiltraveis() {
   const [categoria, setCategoria] = useState<CategoriaId>("todos");
+  const [aberto, setAberto] = useState<Produto | null>(null);
 
   const visiveis =
     categoria === "todos"
