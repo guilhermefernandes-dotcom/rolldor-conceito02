@@ -489,12 +489,25 @@ function ProdutosFiltraveis() {
                   >
                     {p.nome}
                   </h3>
+                  <button
+                    type="button"
+                    onClick={() => setAberto(p)}
+                    className="mt-4 inline-flex h-10 w-full items-center justify-center gap-1.5 self-start rounded-full border border-foreground/15 px-4 font-display text-[13px] font-medium text-foreground transition-colors hover:border-brand-green hover:bg-brand-green hover:text-white md:mt-5 md:h-11 md:text-[14px]"
+                  >
+                    Ver mais
+                    <ArrowRight className="h-4 w-4" />
+                  </button>
                 </div>
               </div>
             </motion.div>
           ))}
         </AnimatePresence>
       </motion.div>
+
+      <AnimatePresence>
+        {aberto && <GaleriaProduto produto={aberto} onClose={() => setAberto(null)} />}
+      </AnimatePresence>
+
 
       {/* CTA da seção */}
       <div className="mt-10 flex justify-center md:mt-14">
