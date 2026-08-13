@@ -453,7 +453,7 @@ function LandingCliente() {
 
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section className="bg-foreground py-6 md:py-8">
+      <section id="produtos" className="scroll-mt-16 bg-foreground py-6 md:py-8">
         <div className="mx-auto w-full px-5 md:px-8">
           <div
             className="relative w-full overflow-hidden rounded-[32px] bg-[#F2F0EA] px-6 py-16 md:px-12 md:py-24"
