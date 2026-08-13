@@ -320,15 +320,14 @@ function LandingCliente() {
                   maxWidth: "22ch",
                 }}
               >
-                Transforme sua casa em um projeto que{" "}
-                <span className="text-brand-green">impressiona</span> em cada detalhe.
+                Esquadrias de alumínio{" "}
+                <span className="text-brand-green">premium</span> para o seu projeto.
               </h1>
             </Reveal>
 
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
-                Sistemas de esquadrias premium desenvolvidos para quem busca arquitetura
-                moderna, grandes vãos, design minimalista e máxima valorização do imóvel.
+                Design, desempenho e acabamento de alto padrão para valorizar sua obra.
               </p>
             </Reveal>
 
