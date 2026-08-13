@@ -350,8 +350,16 @@ function LandingCliente() {
             </Reveal>
 
             <Reveal delay={0.5}>
-              <div className="mt-8">
-                <CtaPrimary>Solicitar um orçamento</CtaPrimary>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <CtaPrimary href="#produtos" className="w-full sm:w-auto">
+                  Ver produtos
+                </CtaPrimary>
+                <a
+                  href="#cta-final"
+                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border border-white/35 px-10 font-display text-lg font-medium text-white transition-colors hover:border-brand-green hover:text-brand-green sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
+                >
+                  Solicitar orçamento
+                </a>
               </div>
             </Reveal>
 
