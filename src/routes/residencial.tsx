@@ -22,14 +22,23 @@ import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
-import prodCamarao from "@/assets/rd-prod-camarao.webp";
-import prodGiro from "@/assets/rd-prod-giro.webp";
-import prodPivotante from "@/assets/rd-prod-pivotante.webp";
-import prodPersiana from "@/assets/rd-prod-persiana.webp";
-import prodSystems from "@/assets/rd-prod-systems.webp";
-import prodLite from "@/assets/rd-prod-lite.webp";
-import prodSlim from "@/assets/rd-prod-slim.webp";
-import prodInside from "@/assets/rd-prod-inside.webp";
+import prodCamaraoAsset from "@/assets/rd-real-camarao.webp.asset.json";
+import prodGiroAsset from "@/assets/rd-real-giro.webp.asset.json";
+import prodPivotanteAsset from "@/assets/rd-real-pivotante.webp.asset.json";
+import prodPersianaAsset from "@/assets/rd-real-persiana.webp.asset.json";
+import prodSystemsAsset from "@/assets/rd-real-systems.webp.asset.json";
+import prodLiteAsset from "@/assets/rd-real-lite.webp.asset.json";
+import prodSlimAsset from "@/assets/rd-real-slim.webp.asset.json";
+import prodInsideAsset from "@/assets/rd-real-inside.webp.asset.json";
+
+const prodCamarao = prodCamaraoAsset.url;
+const prodGiro = prodGiroAsset.url;
+const prodPivotante = prodPivotanteAsset.url;
+const prodPersiana = prodPersianaAsset.url;
+const prodSystems = prodSystemsAsset.url;
+const prodLite = prodLiteAsset.url;
+const prodSlim = prodSlimAsset.url;
+const prodInside = prodInsideAsset.url;
 const heroImg = heroPortaBandeirasAsset.url;
 const pullQuoteBg = banner2Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
@@ -267,21 +276,15 @@ function ProdutosFiltraveis() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl md:p-6">
-                <div
-                  className="relative flex aspect-square w-full items-center justify-center rounded-xl md:rounded-2xl"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at center, rgba(156,203,59,0.10) 0%, rgba(14,17,17,0.03) 70%)",
-                  }}
-                >
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-foreground/5 md:rounded-2xl">
                   <img
                     src={p.img}
                     alt={p.nome}
                     loading="lazy"
                     decoding="async"
-                    width={512}
-                    height={512}
-                    className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-105 md:p-5"
+                    width={1000}
+                    height={1000}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-4 flex flex-1 flex-col">
