@@ -318,7 +318,8 @@ function IconePorta({ ativo }: { ativo: boolean }) {
 function ProdutosFiltraveis() {
   const [categoria, setCategoria] = useState<CategoriaId>("portas");
   const [produtoId, setProdutoId] = useState<string | null>(null);
-  const [dropdownAberto, setDropdownAberto] = useState<CategoriaId | null>(null);
+  const [dropdownAberto, setDropdownAberto] = useState(false);
+  const [fotoAberta, setFotoAberta] = useState<{ src: string; nome: string } | null>(null);
 
   const produtosDaCategoria = PRODUTOS.filter((p) => p.cats.includes(categoria));
 
@@ -333,19 +334,33 @@ function ProdutosFiltraveis() {
 
   const labelCategoria = CATEGORIAS.find((c) => c.id === categoria)?.label ?? "";
 
+  React.useEffect(() => {
+    if (!fotoAberta) return;
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setFotoAberta(null);
+    };
+    window.addEventListener("keydown", onKey);
+    const prev = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    return () => {
+      window.removeEventListener("keydown", onKey);
+      document.body.style.overflow = prev;
+    };
+  }, [fotoAberta]);
+
   const aoClicarCategoria = (c: CategoriaId) => {
     if (categoria !== c) {
       setCategoria(c);
       setProdutoId(null);
-      setDropdownAberto(c);
+      setDropdownAberto(true);
     } else {
-      setDropdownAberto((atual) => (atual === c ? null : c));
+      setDropdownAberto((atual) => !atual);
     }
   };
 
   const escolherProduto = (id: string) => {
     setProdutoId((atual) => (atual === id ? null : id));
-    setDropdownAberto(null);
+    setDropdownAberto(false);
   };
 
   return (
@@ -353,9 +368,9 @@ function ProdutosFiltraveis() {
       {/* ── Filtro: categorias no estilo "porta de correr" ─────────────────
           O painel verde (layoutId) desliza entre os quadros como uma folha
           de porta no trilho desenhado acima. Ao apertar, o submenu de
-          produtos desce como uma porta de enrolar (dropdown escondido). */}
-      <div className="relative z-20 mt-9 md:mt-12">
-        <div className="mx-auto w-fit max-w-full">
+          produtos desce logo abaixo, como uma porta de enrolar. */}
+      <div className="mt-9 md:mt-12">
+        <div className="mx-auto max-w-xl md:max-w-none">
           <div aria-hidden className="mb-2 hidden items-center gap-1.5 md:flex">
             <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
             <span className="h-1.5 w-1.5 rounded-full bg-foreground/25" />
@@ -364,135 +379,108 @@ function ProdutosFiltraveis() {
             <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
           </div>
 
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+          <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-center md:gap-3">
             {CATEGORIAS.map((c) => {
               const ativo = categoria === c.id;
-              const aberto = dropdownAberto === c.id;
-              const produtosDoBotao = PRODUTOS.filter((p) => p.cats.includes(c.id));
+              const aberto = ativo && dropdownAberto;
               return (
-                <div key={c.id} className="relative">
-                  <button
-                    type="button"
-                    onClick={() => aoClicarCategoria(c.id)}
-                    aria-pressed={ativo}
-                    aria-expanded={aberto}
-                    className={`relative h-11 overflow-hidden rounded-xl border-2 px-4 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-6 md:text-[15px] ${
-                      ativo
-                        ? "border-brand-green text-white"
-                        : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => aoClicarCategoria(c.id)}
+                  aria-pressed={ativo}
+                  aria-expanded={aberto}
+                  className={`relative h-12 overflow-hidden rounded-xl border-2 px-3 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-6 md:text-[15px] ${
+                    ativo
+                      ? "border-brand-green text-white"
+                      : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+                  }`}
+                >
+                  {ativo && (
+                    <motion.span
+                      layoutId="painel-categoria"
+                      aria-hidden
+                      className="absolute inset-0 bg-brand-green"
+                      transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                    />
+                  )}
+                  {/* "vidro" interno do quadro */}
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
+                      ativo ? "border-white/35" : "border-foreground/10"
                     }`}
-                  >
-                    {ativo && (
-                      <motion.span
-                        layoutId="painel-categoria"
-                        aria-hidden
-                        className="absolute inset-0 bg-brand-green"
-                        transition={{ type: "spring", stiffness: 420, damping: 38 }}
-                      />
-                    )}
-                    {/* "vidro" interno do quadro */}
-                    <span
+                  />
+                  <span className="relative z-10 inline-flex items-center gap-1.5">
+                    {c.label}
+                    <motion.span
                       aria-hidden
-                      className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
-                        ativo ? "border-white/35" : "border-foreground/10"
-                      }`}
-                    />
-                    {/* puxador */}
-                    <span
-                      aria-hidden
-                      className={`pointer-events-none absolute right-2 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full transition-colors duration-300 md:right-2.5 md:h-5 ${
-                        ativo ? "bg-white/85" : "bg-foreground/25"
-                      }`}
-                    />
-                    <span className="relative z-10 inline-flex items-center gap-1.5 pr-2">
-                      {c.label}
-                      <motion.span
-                        aria-hidden
-                        animate={{ rotate: aberto ? 180 : 0 }}
-                        transition={{ duration: 0.25 }}
-                        className="inline-flex"
-                      >
-                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
-                          <path
-                            d="M1.5 3.5L5 7l3.5-3.5"
-                            stroke="currentColor"
-                            strokeWidth="1.6"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                          />
-                        </svg>
-                      </motion.span>
-                    </span>
-                  </button>
-
-                  {/* Dropdown de produtos — desce como porta de enrolar */}
-                  <AnimatePresence>
-                    {aberto && (
-                      <motion.div
-                        initial={{ opacity: 0, scaleY: 0.6, y: -6 }}
-                        animate={{ opacity: 1, scaleY: 1, y: 0 }}
-                        exit={{ opacity: 0, scaleY: 0.6, y: -6 }}
-                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
-                        style={{ transformOrigin: "top center" }}
-                        className="absolute left-1/2 top-full z-30 mt-2 w-[min(280px,86vw)] -translate-x-1/2 overflow-hidden rounded-2xl border-2 border-brand-green/70 bg-white shadow-2xl"
-                      >
-                        {/* lâminas da "porta de enrolar" */}
-                        <div
-                          aria-hidden
-                          className="pointer-events-none absolute inset-0 opacity-[0.05]"
-                          style={{
-                            backgroundImage:
-                              "repeating-linear-gradient(180deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 9px)",
-                          }}
+                      animate={{ rotate: aberto ? 180 : 0 }}
+                      transition={{ duration: 0.25 }}
+                      className="inline-flex"
+                    >
+                      <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                        <path
+                          d="M1.5 3.5L5 7l3.5-3.5"
+                          stroke="currentColor"
+                          strokeWidth="1.6"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
                         />
-                        <div className="relative p-2">
-                          {produtosDoBotao.map((p) => {
-                            const selecionado = produtoId === p.id;
-                            return (
-                              <button
-                                key={p.id}
-                                type="button"
-                                onClick={() => escolherProduto(p.id)}
-                                className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left font-display text-[13px] font-medium transition-colors md:text-[14px] ${
-                                  selecionado
-                                    ? "bg-brand-green text-white"
-                                    : "text-foreground/75 hover:bg-brand-green/10 hover:text-foreground"
-                                }`}
-                              >
-                                <IconePorta ativo={selecionado} />
-                                <span className="flex-1 leading-snug">{p.nome}</span>
-                                <span
-                                  className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
-                                    selecionado
-                                      ? "bg-white/25 text-white"
-                                      : "bg-foreground/8 text-foreground/50"
-                                  }`}
-                                >
-                                  {p.fotos.length}
-                                </span>
-                              </button>
-                            );
-                          })}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                      </svg>
+                    </motion.span>
+                  </span>
+                </button>
               );
             })}
           </div>
-        </div>
 
-        {/* fecha o dropdown ao clicar fora */}
-        {dropdownAberto && (
-          <button
-            type="button"
-            aria-label="Fechar menu de produtos"
-            onClick={() => setDropdownAberto(null)}
-            className="fixed inset-0 z-10 cursor-default"
-            tabIndex={-1}
-          />
-        )}
+          {/* Submenu de produtos — desce abaixo dos botões, nunca corta */}
+          <AnimatePresence>
+            {dropdownAberto && (
+              <motion.div
+                initial={{ opacity: 0, height: 0 }}
+                animate={{ opacity: 1, height: "auto" }}
+                exit={{ opacity: 0, height: 0 }}
+                transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                style={{ transformOrigin: "top center" }}
+                className="overflow-hidden"
+              >
+                <div className="mx-auto mt-2 w-full max-w-2xl rounded-2xl border-2 border-brand-green/60 bg-white p-2 shadow-xl md:mt-3">
+                  <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
+                    {produtosDaCategoria.map((p) => {
+                      const selecionado = produtoId === p.id;
+                      return (
+                        <button
+                          key={p.id}
+                          type="button"
+                          onClick={() => escolherProduto(p.id)}
+                          className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left font-display text-[13px] font-medium transition-colors md:text-[14px] ${
+                            selecionado
+                              ? "bg-brand-green text-white"
+                              : "text-foreground/75 hover:bg-brand-green/10 hover:text-foreground"
+                          }`}
+                        >
+                          <IconePorta ativo={selecionado} />
+                          <span className="flex-1 leading-snug">{p.nome}</span>
+                          <span
+                            className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                              selecionado
+                                ? "bg-white/25 text-white"
+                                : "bg-foreground/8 text-foreground/50"
+                            }`}
+                          >
+                            {p.fotos.length}
+                          </span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
       </div>
 
       {/* Cabeçalho da seleção atual */}
@@ -530,7 +518,7 @@ function ProdutosFiltraveis() {
         )}
       </div>
 
-      {/* ── Galeria: todas as fotos no mesmo tamanho, 9:16 ── */}
+      {/* ── Galeria: altura natural no mobile, 9:16 uniforme no desktop ── */}
       <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 lg:grid-cols-4">
         <AnimatePresence mode="popLayout" initial={false}>
           {fotos.map((f, i) => (
@@ -541,26 +529,77 @@ function ProdutosFiltraveis() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-              className="group relative aspect-[9/16] overflow-hidden rounded-2xl bg-foreground/5 shadow-sm ring-1 ring-black/5 md:rounded-3xl"
+              className="group relative overflow-hidden rounded-2xl bg-foreground/5 shadow-sm ring-1 ring-black/5 sm:aspect-[9/16] md:rounded-3xl"
             >
-              <img
-                src={f.src}
-                alt={`${f.nome} — foto ${f.idx + 1}`}
-                loading="lazy"
-                decoding="async"
-                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
-              />
-              <div
-                aria-hidden
-                className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent"
-              />
-              <figcaption className="pointer-events-none absolute bottom-3 left-3 right-3 font-display text-[12px] font-medium leading-snug text-white md:text-[13px]">
-                {f.nome}
-              </figcaption>
+              <button
+                type="button"
+                onClick={() => setFotoAberta({ src: f.src, nome: f.nome })}
+                aria-label={`Ampliar foto de ${f.nome}`}
+                className="block h-full w-full"
+              >
+                <img
+                  src={f.src}
+                  alt={`${f.nome} — foto ${f.idx + 1}`}
+                  loading="lazy"
+                  decoding="async"
+                  className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.04] sm:absolute sm:inset-0 sm:h-full sm:object-cover"
+                />
+                <span
+                  aria-hidden
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent"
+                />
+                <span className="pointer-events-none absolute bottom-3 left-3 right-3 text-left font-display text-[12px] font-medium leading-snug text-white md:text-[13px]">
+                  {f.nome}
+                </span>
+              </button>
             </motion.figure>
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Lightbox — foto ampliada */}
+      <AnimatePresence>
+        {fotoAberta && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.25 }}
+            onClick={() => setFotoAberta(null)}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm md:p-10"
+          >
+            <button
+              type="button"
+              onClick={() => setFotoAberta(null)}
+              aria-label="Fechar foto"
+              className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white/30"
+            >
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden>
+                <path
+                  d="M4 4l10 10M14 4L4 14"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </button>
+            <motion.img
+              key={fotoAberta.src}
+              src={fotoAberta.src}
+              alt={fotoAberta.nome}
+              initial={{ opacity: 0, scale: 0.94 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
+              onClick={(e) => e.stopPropagation()}
+              className="max-h-[88vh] max-w-full rounded-xl object-contain shadow-2xl"
+            />
+            <div className="pointer-events-none absolute bottom-5 left-1/2 -translate-x-1/2 rounded-full bg-black/55 px-4 py-1.5 font-display text-[13px] font-medium text-white backdrop-blur-sm">
+              {fotoAberta.nome}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* CTA da seção */}
       <div className="mt-10 flex justify-center md:mt-14">
