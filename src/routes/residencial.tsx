@@ -212,10 +212,9 @@ function CtaPrimary({
   );
 }
 
-type CategoriaId = "todos" | "portas" | "janelas" | "grandes-vaos" | "solucoes-internas";
+type CategoriaId = "portas" | "janelas" | "grandes-vaos" | "solucoes-internas";
 
 const CATEGORIAS: { id: CategoriaId; label: string }[] = [
-  { id: "todos", label: "Todos" },
   { id: "portas", label: "Portas" },
   { id: "janelas", label: "Janelas" },
   { id: "grandes-vaos", label: "Grandes Vãos" },
@@ -290,7 +289,7 @@ const PRODUTOS: Produto[] = [
   },
 ];
 
-// Mini ícone de porta (desenho em SVG) usado nos chips de produto
+// Mini ícone de porta (desenho em SVG) usado nos itens do dropdown
 function IconePorta({ ativo }: { ativo: boolean }) {
   return (
     <svg
@@ -317,29 +316,45 @@ function IconePorta({ ativo }: { ativo: boolean }) {
 }
 
 function ProdutosFiltraveis() {
-  const [categoria, setCategoria] = useState<CategoriaId>("todos");
+  const [categoria, setCategoria] = useState<CategoriaId>("portas");
   const [produtoId, setProdutoId] = useState<string | null>(null);
+  const [dropdownAberto, setDropdownAberto] = useState<CategoriaId | null>(null);
 
-  const produtosDaCategoria =
-    categoria === "todos"
-      ? PRODUTOS
-      : PRODUTOS.filter((p) => p.cats.includes(categoria));
+  const produtosDaCategoria = PRODUTOS.filter((p) => p.cats.includes(categoria));
 
   const produtoAtivo = produtoId
     ? PRODUTOS.find((p) => p.id === produtoId) ?? null
     : null;
 
-  const selecionarCategoria = (c: CategoriaId) => {
-    setCategoria(c);
-    setProdutoId(null);
+  // Fotos exibidas: do produto selecionado, ou de todos os produtos da categoria
+  const fotos: { src: string; nome: string; id: string; idx: number }[] = (
+    produtoAtivo ? [produtoAtivo] : produtosDaCategoria
+  ).flatMap((p) => p.fotos.map((src, idx) => ({ src, nome: p.nome, id: p.id, idx })));
+
+  const labelCategoria = CATEGORIAS.find((c) => c.id === categoria)?.label ?? "";
+
+  const aoClicarCategoria = (c: CategoriaId) => {
+    if (categoria !== c) {
+      setCategoria(c);
+      setProdutoId(null);
+      setDropdownAberto(c);
+    } else {
+      setDropdownAberto((atual) => (atual === c ? null : c));
+    }
+  };
+
+  const escolherProduto = (id: string) => {
+    setProdutoId((atual) => (atual === id ? null : id));
+    setDropdownAberto(null);
   };
 
   return (
     <div>
-      {/* ── Filtro nível 1: categorias no estilo "porta de correr" ─────────
-          Um painel verde (layoutId) desliza entre os quadros como uma folha
-          de porta correndo no trilho desenhado acima dos botões. */}
-      <div className="mt-9 md:mt-12">
+      {/* ── Filtro: categorias no estilo "porta de correr" ─────────────────
+          O painel verde (layoutId) desliza entre os quadros como uma folha
+          de porta no trilho desenhado acima. Ao apertar, o submenu de
+          produtos desce como uma porta de enrolar (dropdown escondido). */}
+      <div className="relative z-20 mt-9 md:mt-12">
         <div className="mx-auto w-fit max-w-full">
           <div aria-hidden className="mb-2 hidden items-center gap-1.5 md:flex">
             <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
@@ -352,202 +367,198 @@ function ProdutosFiltraveis() {
           <div className="flex flex-wrap justify-center gap-2 md:gap-3">
             {CATEGORIAS.map((c) => {
               const ativo = categoria === c.id;
+              const aberto = dropdownAberto === c.id;
+              const produtosDoBotao = PRODUTOS.filter((p) => p.cats.includes(c.id));
               return (
-                <button
-                  key={c.id}
-                  type="button"
-                  onClick={() => selecionarCategoria(c.id)}
-                  aria-pressed={ativo}
-                  className={`relative h-11 overflow-hidden rounded-xl border-2 px-4 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-7 md:text-[15px] ${
-                    ativo
-                      ? "border-brand-green text-white"
-                      : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
-                  }`}
-                >
-                  {ativo && (
-                    <motion.span
-                      layoutId="painel-categoria"
+                <div key={c.id} className="relative">
+                  <button
+                    type="button"
+                    onClick={() => aoClicarCategoria(c.id)}
+                    aria-pressed={ativo}
+                    aria-expanded={aberto}
+                    className={`relative h-11 overflow-hidden rounded-xl border-2 px-4 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-6 md:text-[15px] ${
+                      ativo
+                        ? "border-brand-green text-white"
+                        : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+                    }`}
+                  >
+                    {ativo && (
+                      <motion.span
+                        layoutId="painel-categoria"
+                        aria-hidden
+                        className="absolute inset-0 bg-brand-green"
+                        transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                      />
+                    )}
+                    {/* "vidro" interno do quadro */}
+                    <span
                       aria-hidden
-                      className="absolute inset-0 bg-brand-green"
-                      transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                      className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
+                        ativo ? "border-white/35" : "border-foreground/10"
+                      }`}
                     />
-                  )}
-                  {/* "vidro" interno do quadro */}
-                  <span
-                    aria-hidden
-                    className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
-                      ativo ? "border-white/35" : "border-foreground/10"
-                    }`}
-                  />
-                  {/* puxador */}
-                  <span
-                    aria-hidden
-                    className={`pointer-events-none absolute right-2 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full transition-colors duration-300 md:right-2.5 md:h-5 ${
-                      ativo ? "bg-white/85" : "bg-foreground/25"
-                    }`}
-                  />
-                  <span className="relative z-10 pr-2">{c.label}</span>
-                </button>
+                    {/* puxador */}
+                    <span
+                      aria-hidden
+                      className={`pointer-events-none absolute right-2 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full transition-colors duration-300 md:right-2.5 md:h-5 ${
+                        ativo ? "bg-white/85" : "bg-foreground/25"
+                      }`}
+                    />
+                    <span className="relative z-10 inline-flex items-center gap-1.5 pr-2">
+                      {c.label}
+                      <motion.span
+                        aria-hidden
+                        animate={{ rotate: aberto ? 180 : 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="inline-flex"
+                      >
+                        <svg width="10" height="10" viewBox="0 0 10 10" fill="none">
+                          <path
+                            d="M1.5 3.5L5 7l3.5-3.5"
+                            stroke="currentColor"
+                            strokeWidth="1.6"
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                          />
+                        </svg>
+                      </motion.span>
+                    </span>
+                  </button>
+
+                  {/* Dropdown de produtos — desce como porta de enrolar */}
+                  <AnimatePresence>
+                    {aberto && (
+                      <motion.div
+                        initial={{ opacity: 0, scaleY: 0.6, y: -6 }}
+                        animate={{ opacity: 1, scaleY: 1, y: 0 }}
+                        exit={{ opacity: 0, scaleY: 0.6, y: -6 }}
+                        transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                        style={{ transformOrigin: "top center" }}
+                        className="absolute left-1/2 top-full z-30 mt-2 w-[min(280px,86vw)] -translate-x-1/2 overflow-hidden rounded-2xl border-2 border-brand-green/70 bg-white shadow-2xl"
+                      >
+                        {/* lâminas da "porta de enrolar" */}
+                        <div
+                          aria-hidden
+                          className="pointer-events-none absolute inset-0 opacity-[0.05]"
+                          style={{
+                            backgroundImage:
+                              "repeating-linear-gradient(180deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 9px)",
+                          }}
+                        />
+                        <div className="relative p-2">
+                          {produtosDoBotao.map((p) => {
+                            const selecionado = produtoId === p.id;
+                            return (
+                              <button
+                                key={p.id}
+                                type="button"
+                                onClick={() => escolherProduto(p.id)}
+                                className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left font-display text-[13px] font-medium transition-colors md:text-[14px] ${
+                                  selecionado
+                                    ? "bg-brand-green text-white"
+                                    : "text-foreground/75 hover:bg-brand-green/10 hover:text-foreground"
+                                }`}
+                              >
+                                <IconePorta ativo={selecionado} />
+                                <span className="flex-1 leading-snug">{p.nome}</span>
+                                <span
+                                  className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
+                                    selecionado
+                                      ? "bg-white/25 text-white"
+                                      : "bg-foreground/8 text-foreground/50"
+                                  }`}
+                                >
+                                  {p.fotos.length}
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
               );
             })}
           </div>
         </div>
 
-        {/* ── Filtro nível 2: produtos da categoria ── */}
-        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-5">
+        {/* fecha o dropdown ao clicar fora */}
+        {dropdownAberto && (
+          <button
+            type="button"
+            aria-label="Fechar menu de produtos"
+            onClick={() => setDropdownAberto(null)}
+            className="fixed inset-0 z-10 cursor-default"
+            tabIndex={-1}
+          />
+        )}
+      </div>
+
+      {/* Cabeçalho da seleção atual */}
+      <div className="mt-8 flex flex-wrap items-end justify-between gap-3 md:mt-10">
+        <AnimatePresence mode="wait" initial={false}>
+          <motion.div
+            key={produtoAtivo ? produtoAtivo.id : categoria}
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 8 }}
+            transition={{ duration: 0.25 }}
+          >
+            <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+              {produtoAtivo ? produtoAtivo.tag : labelCategoria}
+            </span>
+            <h3
+              className="font-display text-[22px] font-medium text-foreground md:text-[30px]"
+              style={{ letterSpacing: "-0.02em" }}
+            >
+              {produtoAtivo ? produtoAtivo.nome : `Linha ${labelCategoria}`}
+              <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/50 md:text-[14px]">
+                {fotos.length} fotos
+              </span>
+            </h3>
+          </motion.div>
+        </AnimatePresence>
+        {produtoAtivo && (
           <button
             type="button"
             onClick={() => setProdutoId(null)}
-            aria-pressed={!produtoAtivo}
-            className={`inline-flex h-9 items-center gap-1.5 rounded-full px-4 font-display text-[12px] font-medium transition-colors md:h-10 md:text-[13px] ${
-              !produtoAtivo
-                ? "bg-foreground text-white shadow-md"
-                : "border border-foreground/15 bg-white/60 text-foreground/60 hover:border-foreground/40 hover:text-foreground"
-            }`}
+            className="font-display text-[13px] font-medium text-foreground/60 underline-offset-4 transition-colors hover:text-brand-green hover:underline md:text-[14px]"
           >
-            Visão geral
+            ← Ver toda a linha {labelCategoria}
           </button>
-          <AnimatePresence initial={false} mode="popLayout">
-            {produtosDaCategoria.map((p) => {
-              const ativo = produtoId === p.id;
-              return (
-                <motion.button
-                  key={p.id}
-                  layout
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
-                  type="button"
-                  onClick={() => setProdutoId(ativo ? null : p.id)}
-                  aria-pressed={ativo}
-                  className={`inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 font-display text-[12px] font-medium transition-colors md:h-10 md:px-4 md:text-[13px] ${
-                    ativo
-                      ? "bg-brand-green text-white shadow-md"
-                      : "border border-foreground/15 bg-white/60 text-foreground/60 hover:border-brand-green/60 hover:text-foreground"
-                  }`}
-                >
-                  <IconePorta ativo={ativo} />
-                  {p.nome}
-                  <span
-                    className={`rounded-full px-1.5 text-[10px] font-semibold ${
-                      ativo ? "bg-white/25 text-white" : "bg-foreground/8 text-foreground/50"
-                    }`}
-                  >
-                    {p.fotos.length}
-                  </span>
-                </motion.button>
-              );
-            })}
-          </AnimatePresence>
-        </div>
+        )}
       </div>
 
-      {/* Cabeçalho do modo produto */}
-      <AnimatePresence initial={false}>
-        {produtoAtivo && (
-          <motion.div
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.3 }}
-            className="mt-8 flex flex-wrap items-end justify-between gap-3 md:mt-10"
-          >
-            <div>
-              <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
-                {produtoAtivo.tag}
-              </span>
-              <h3
-                className="font-display text-[22px] font-medium text-foreground md:text-[30px]"
-                style={{ letterSpacing: "-0.02em" }}
-              >
-                {produtoAtivo.nome}
-                <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/50 md:text-[14px]">
-                  {produtoAtivo.fotos.length} fotos
-                </span>
-              </h3>
-            </div>
-            <button
-              type="button"
-              onClick={() => setProdutoId(null)}
-              className="font-display text-[13px] font-medium text-foreground/60 underline-offset-4 transition-colors hover:text-brand-green hover:underline md:text-[14px]"
-            >
-              ← Voltar para todos os produtos
-            </button>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* ── Galeria: masonry sem corte (1 coluna no mobile) ── */}
-      <div className="mt-6 columns-1 gap-4 sm:columns-2 md:mt-8 lg:columns-3">
+      {/* ── Galeria: todas as fotos no mesmo tamanho, 9:16 ── */}
+      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 lg:grid-cols-4">
         <AnimatePresence mode="popLayout" initial={false}>
-          {produtoAtivo
-            ? produtoAtivo.fotos.map((foto, i) => (
-                <motion.figure
-                  key={`${produtoAtivo.id}-${i}`}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                  className="relative mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 md:rounded-3xl"
-                >
-                  <img
-                    src={foto}
-                    alt={`${produtoAtivo.nome} — foto ${i + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="block h-auto w-full"
-                  />
-                  <figcaption className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 font-display text-[11px] font-medium text-white backdrop-blur-sm md:text-[12px]">
-                    {produtoAtivo.nome} · {i + 1}/{produtoAtivo.fotos.length}
-                  </figcaption>
-                </motion.figure>
-              ))
-            : produtosDaCategoria.map((p, i) => (
-                <motion.div
-                  key={p.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, scale: 0.96 }}
-                  transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
-                  className="mb-4 break-inside-avoid"
-                >
-                  <button
-                    type="button"
-                    onClick={() => setProdutoId(p.id)}
-                    className="group block w-full overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl"
-                  >
-                    <div className="relative overflow-hidden">
-                      <img
-                        src={p.fotos[0]}
-                        alt={p.nome}
-                        loading="lazy"
-                        decoding="async"
-                        className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
-                      />
-                      <span className="absolute bottom-3 right-3 rounded-full bg-black/55 px-2.5 py-1 font-display text-[11px] font-medium text-white backdrop-blur-sm">
-                        {p.fotos.length} fotos
-                      </span>
-                    </div>
-                    <div className="flex items-center justify-between gap-3 px-4 py-4 md:px-5">
-                      <div>
-                        <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
-                          {p.tag}
-                        </span>
-                        <h3
-                          className="mt-0.5 font-display text-[16px] font-medium leading-snug text-foreground md:text-[19px]"
-                          style={{ letterSpacing: "-0.02em" }}
-                        >
-                          {p.nome}
-                        </h3>
-                      </div>
-                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-foreground/15 text-foreground/60 transition-colors group-hover:border-brand-green group-hover:bg-brand-green group-hover:text-white">
-                        <ArrowRight className="h-4 w-4" />
-                      </span>
-                    </div>
-                  </button>
-                </motion.div>
-              ))}
+          {fotos.map((f, i) => (
+            <motion.figure
+              key={`${f.id}-${f.idx}`}
+              layout
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.96 }}
+              transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative aspect-[9/16] overflow-hidden rounded-2xl bg-foreground/5 shadow-sm ring-1 ring-black/5 md:rounded-3xl"
+            >
+              <img
+                src={f.src}
+                alt={`${f.nome} — foto ${f.idx + 1}`}
+                loading="lazy"
+                decoding="async"
+                className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.04]"
+              />
+              <div
+                aria-hidden
+                className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent"
+              />
+              <figcaption className="pointer-events-none absolute bottom-3 left-3 right-3 font-display text-[12px] font-medium leading-snug text-white md:text-[13px]">
+                {f.nome}
+              </figcaption>
+            </motion.figure>
+          ))}
         </AnimatePresence>
       </div>
 
