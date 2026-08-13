@@ -315,24 +315,36 @@ function IconePorta({ ativo }: { ativo: boolean }) {
   );
 }
 
+// Produto em destaque de cada categoria, exibido na visão "Todos"
+const DESTAQUES: Record<CategoriaId, string> = {
+  portas: "camarao",
+  janelas: "persiana",
+  "grandes-vaos": "systems",
+  "solucoes-internas": "inside",
+};
+
 function ProdutosFiltraveis() {
-  const [categoria, setCategoria] = useState<CategoriaId>("portas");
-  const [produtoId, setProdutoId] = useState<string | null>(null);
-  const [dropdownAberto, setDropdownAberto] = useState(false);
+  // selecao: "todos" ou o id de um produto
+  const [selecao, setSelecao] = useState<string>("todos");
+  const [categoriaAtiva, setCategoriaAtiva] = useState<CategoriaId | null>(null);
+  const [dropdownAberto, setDropdownAberto] = useState<CategoriaId | null>(null);
   const [fotoAberta, setFotoAberta] = useState<{ src: string; nome: string } | null>(null);
 
-  const produtosDaCategoria = PRODUTOS.filter((p) => p.cats.includes(categoria));
+  const produtoAtivo =
+    selecao !== "todos" ? PRODUTOS.find((p) => p.id === selecao) ?? null : null;
 
-  const produtoAtivo = produtoId
-    ? PRODUTOS.find((p) => p.id === produtoId) ?? null
-    : null;
-
-  // Fotos exibidas: do produto selecionado, ou de todos os produtos da categoria
-  const fotos: { src: string; nome: string; id: string; idx: number }[] = (
-    produtoAtivo ? [produtoAtivo] : produtosDaCategoria
-  ).flatMap((p) => p.fotos.map((src, idx) => ({ src, nome: p.nome, id: p.id, idx })));
-
-  const labelCategoria = CATEGORIAS.find((c) => c.id === categoria)?.label ?? "";
+  // Fotos exibidas: capas dos 4 destaques (Todos) ou todas as fotos do produto
+  const fotos: { src: string; nome: string; id: string; idx: number }[] = produtoAtivo
+    ? produtoAtivo.fotos.map((src, idx) => ({
+        src,
+        nome: produtoAtivo.nome,
+        id: produtoAtivo.id,
+        idx,
+      }))
+    : CATEGORIAS.flatMap((c) => {
+        const p = PRODUTOS.find((prod) => prod.id === DESTAQUES[c.id]);
+        return p ? [{ src: p.fotos[0], nome: p.nome, id: p.id, idx: 0 }] : [];
+      });
 
   React.useEffect(() => {
     if (!fotoAberta) return;
@@ -348,29 +360,34 @@ function ProdutosFiltraveis() {
     };
   }, [fotoAberta]);
 
-  const aoClicarCategoria = (c: CategoriaId) => {
-    if (categoria !== c) {
-      setCategoria(c);
-      setProdutoId(null);
-      setDropdownAberto(true);
-    } else {
-      setDropdownAberto((atual) => !atual);
-    }
+  const aoClicarTodos = () => {
+    setSelecao("todos");
+    setCategoriaAtiva(null);
+    setDropdownAberto(null);
   };
 
-  const escolherProduto = (id: string) => {
-    setProdutoId((atual) => (atual === id ? null : id));
-    setDropdownAberto(false);
+  // Clicar numa categoria só abre/fecha o dropdown — a grade não muda
+  const aoClicarCategoria = (c: CategoriaId) => {
+    setDropdownAberto((atual) => (atual === c ? null : c));
   };
+
+  const escolherProduto = (id: string, c: CategoriaId) => {
+    setSelecao(id);
+    setCategoriaAtiva(c);
+    setDropdownAberto(null);
+  };
+
+  const produtosDoDropdown = dropdownAberto
+    ? PRODUTOS.filter((p) => p.cats.includes(dropdownAberto))
+    : [];
+
+  const todosAtivo = selecao === "todos";
 
   return (
     <div>
-      {/* ── Filtro: categorias no estilo "porta de correr" ─────────────────
-          O painel verde (layoutId) desliza entre os quadros como uma folha
-          de porta no trilho desenhado acima. Ao apertar, o submenu de
-          produtos desce logo abaixo, como uma porta de enrolar. */}
+      {/* ── Filtro: "Todos" em largura total + categorias estilo porta ── */}
       <div className="mt-9 md:mt-12">
-        <div className="mx-auto max-w-xl md:max-w-none">
+        <div className="mx-auto max-w-xl md:max-w-3xl">
           <div aria-hidden className="mb-2 hidden items-center gap-1.5 md:flex">
             <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
             <span className="h-1.5 w-1.5 rounded-full bg-foreground/25" />
@@ -379,10 +396,46 @@ function ProdutosFiltraveis() {
             <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
           </div>
 
-          <div className="grid grid-cols-2 gap-2 md:flex md:flex-wrap md:justify-center md:gap-3">
+          {/* Todos — container 100% acima das categorias */}
+          <button
+            type="button"
+            onClick={aoClicarTodos}
+            aria-pressed={todosAtivo}
+            className={`relative h-12 w-full overflow-hidden rounded-xl border-2 px-4 font-display text-[14px] font-medium transition-colors duration-300 md:h-14 md:text-[16px] ${
+              todosAtivo
+                ? "border-brand-green text-white"
+                : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+            }`}
+          >
+            {todosAtivo && (
+              <motion.span
+                layoutId="painel-categoria"
+                aria-hidden
+                className="absolute inset-0 bg-brand-green"
+                transition={{ type: "spring", stiffness: 420, damping: 38 }}
+              />
+            )}
+            <span
+              aria-hidden
+              className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
+                todosAtivo ? "border-white/35" : "border-foreground/10"
+              }`}
+            />
+            {/* puxador central de porta de correr dupla */}
+            <span
+              aria-hidden
+              className={`pointer-events-none absolute left-1/2 top-1/2 hidden h-5 w-[3px] -translate-x-6 -translate-y-1/2 rounded-full transition-colors duration-300 md:block ${
+                todosAtivo ? "bg-white/60" : "bg-foreground/15"
+              }`}
+            />
+            <span className="relative z-10">Todos</span>
+          </button>
+
+          {/* Categorias — abrem o dropdown de produtos */}
+          <div className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
             {CATEGORIAS.map((c) => {
-              const ativo = categoria === c.id;
-              const aberto = ativo && dropdownAberto;
+              const ativo = categoriaAtiva === c.id && !todosAtivo;
+              const aberto = dropdownAberto === c.id;
               return (
                 <button
                   key={c.id}
@@ -390,10 +443,12 @@ function ProdutosFiltraveis() {
                   onClick={() => aoClicarCategoria(c.id)}
                   aria-pressed={ativo}
                   aria-expanded={aberto}
-                  className={`relative h-12 overflow-hidden rounded-xl border-2 px-3 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-6 md:text-[15px] ${
+                  className={`relative h-12 overflow-hidden rounded-xl border-2 px-3 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-4 md:text-[15px] ${
                     ativo
                       ? "border-brand-green text-white"
-                      : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+                      : aberto
+                        ? "border-brand-green bg-white text-foreground"
+                        : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
                   }`}
                 >
                   {ativo && (
@@ -404,7 +459,6 @@ function ProdutosFiltraveis() {
                       transition={{ type: "spring", stiffness: 420, damping: 38 }}
                     />
                   )}
-                  {/* "vidro" interno do quadro */}
                   <span
                     aria-hidden
                     className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
@@ -435,10 +489,11 @@ function ProdutosFiltraveis() {
             })}
           </div>
 
-          {/* Submenu de produtos — desce abaixo dos botões, nunca corta */}
+          {/* Dropdown de produtos — desce abaixo dos botões, nunca corta */}
           <AnimatePresence>
             {dropdownAberto && (
               <motion.div
+                key={dropdownAberto}
                 initial={{ opacity: 0, height: 0 }}
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
@@ -448,13 +503,13 @@ function ProdutosFiltraveis() {
               >
                 <div className="mx-auto mt-2 w-full max-w-2xl rounded-2xl border-2 border-brand-green/60 bg-white p-2 shadow-xl md:mt-3">
                   <div className="grid grid-cols-1 gap-1 sm:grid-cols-2">
-                    {produtosDaCategoria.map((p) => {
-                      const selecionado = produtoId === p.id;
+                    {produtosDoDropdown.map((p) => {
+                      const selecionado = selecao === p.id;
                       return (
                         <button
                           key={p.id}
                           type="button"
-                          onClick={() => escolherProduto(p.id)}
+                          onClick={() => escolherProduto(p.id, dropdownAberto)}
                           className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left font-display text-[13px] font-medium transition-colors md:text-[14px] ${
                             selecionado
                               ? "bg-brand-green text-white"
@@ -487,20 +542,20 @@ function ProdutosFiltraveis() {
       <div className="mt-8 flex flex-wrap items-end justify-between gap-3 md:mt-10">
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
-            key={produtoAtivo ? produtoAtivo.id : categoria}
+            key={produtoAtivo ? produtoAtivo.id : "todos"}
             initial={{ opacity: 0, y: -8 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
           >
             <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
-              {produtoAtivo ? produtoAtivo.tag : labelCategoria}
+              {produtoAtivo ? produtoAtivo.tag : "Destaques"}
             </span>
             <h3
               className="font-display text-[22px] font-medium text-foreground md:text-[30px]"
               style={{ letterSpacing: "-0.02em" }}
             >
-              {produtoAtivo ? produtoAtivo.nome : `Linha ${labelCategoria}`}
+              {produtoAtivo ? produtoAtivo.nome : "Um destaque de cada linha"}
               <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/50 md:text-[14px]">
                 {fotos.length} fotos
               </span>
@@ -510,10 +565,10 @@ function ProdutosFiltraveis() {
         {produtoAtivo && (
           <button
             type="button"
-            onClick={() => setProdutoId(null)}
+            onClick={aoClicarTodos}
             className="font-display text-[13px] font-medium text-foreground/60 underline-offset-4 transition-colors hover:text-brand-green hover:underline md:text-[14px]"
           >
-            ← Ver toda a linha {labelCategoria}
+            ← Voltar para Todos
           </button>
         )}
       </div>
