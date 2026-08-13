@@ -320,15 +320,14 @@ function LandingCliente() {
                   maxWidth: "22ch",
                 }}
               >
-                Transforme sua casa em um projeto que{" "}
-                <span className="text-brand-green">impressiona</span> em cada detalhe.
+                Esquadrias de alumínio{" "}
+                <span className="text-brand-green">premium</span> para o seu projeto.
               </h1>
             </Reveal>
 
             <Reveal delay={0.25}>
               <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
-                Sistemas de esquadrias premium desenvolvidos para quem busca arquitetura
-                moderna, grandes vãos, design minimalista e máxima valorização do imóvel.
+                Design, desempenho e acabamento de alto padrão para valorizar sua obra.
               </p>
             </Reveal>
 
@@ -351,8 +350,16 @@ function LandingCliente() {
             </Reveal>
 
             <Reveal delay={0.5}>
-              <div className="mt-8">
-                <CtaPrimary>Solicitar um orçamento</CtaPrimary>
+              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <CtaPrimary href="#produtos" className="w-full sm:w-auto">
+                  Ver produtos
+                </CtaPrimary>
+                <a
+                  href="#cta-final"
+                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border border-white/35 px-10 font-display text-lg font-medium text-white transition-colors hover:border-brand-green hover:text-brand-green sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
+                >
+                  Solicitar orçamento
+                </a>
               </div>
             </Reveal>
 
@@ -453,7 +460,7 @@ function LandingCliente() {
 
 
       {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section className="bg-foreground py-6 md:py-8">
+      <section id="produtos" className="scroll-mt-16 bg-foreground py-6 md:py-8">
         <div className="mx-auto w-full px-5 md:px-8">
           <div
             className="relative w-full overflow-hidden rounded-[32px] bg-[#F2F0EA] px-6 py-16 md:px-12 md:py-24"
@@ -849,13 +856,6 @@ function LandingCliente() {
         </div>
       </section>
 
-      {/* STICKY MOBILE CTA */}
-      <a
-        href="#cta-final"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-green px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] transition-colors hover:bg-brand-green-deep md:hidden"
-      >
-        Solicitar um orçamento <ArrowRight className="h-4 w-4" />
-      </a>
     </main>
   );
 }
