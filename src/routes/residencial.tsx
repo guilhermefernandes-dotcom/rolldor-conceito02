@@ -10,9 +10,6 @@ import {
   ShieldCheck,
   Layers,
   Quote,
-  X,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
 import seloBrasil from "@/assets/selo-image-20.png.asset.json";
@@ -26,46 +23,29 @@ import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
 import prodCamaraoAsset from "@/assets/rd-real-camarao.webp.asset.json";
-import prodGiroAsset from "@/assets/rd-real-giro.webp.asset.json";
 import prodPivotanteAsset from "@/assets/rd-real-pivotante.webp.asset.json";
 import prodPersianaAsset from "@/assets/rd-real-persiana.webp.asset.json";
 import prodSystemsAsset from "@/assets/rd-real-systems.webp.asset.json";
-import prodLiteAsset from "@/assets/rd-real-lite.webp.asset.json";
 import prodSlimAsset from "@/assets/rd-real-slim.webp.asset.json";
 import prodInsideAsset from "@/assets/rd-real-inside.webp.asset.json";
 import galCamarao1 from "@/assets/rd-gal-camarao1.webp.asset.json";
-import galCamarao2 from "@/assets/rd-gal-camarao2.webp.asset.json";
-import galCamarao3 from "@/assets/rd-gal-camarao3.webp.asset.json";
-import galGiro1 from "@/assets/rd-gal-giro1.webp.asset.json";
 import galGiro2 from "@/assets/rd-gal-giro2.webp.asset.json";
 import galGiro3 from "@/assets/rd-gal-giro3.webp.asset.json";
-import galPivo1 from "@/assets/rd-gal-pivo1.webp.asset.json";
 import galPivo2 from "@/assets/rd-gal-pivo2.webp.asset.json";
 import galPivo3 from "@/assets/rd-gal-pivo3.webp.asset.json";
-import galPers1 from "@/assets/rd-gal-pers1.webp.asset.json";
 import galPers2 from "@/assets/rd-gal-pers2.webp.asset.json";
 import galPers3 from "@/assets/rd-gal-pers3.webp.asset.json";
-import galMax1 from "@/assets/rd-gal-max1.webp.asset.json";
-import galMax2 from "@/assets/rd-gal-max2.webp.asset.json";
-import galLite1 from "@/assets/rd-gal-lite1.webp.asset.json";
-import galLite2 from "@/assets/rd-gal-lite2.webp.asset.json";
 import galLite3 from "@/assets/rd-gal-lite3.webp.asset.json";
 import galLite4 from "@/assets/rd-gal-lite4.webp.asset.json";
-import galSlim1 from "@/assets/rd-gal-slim1.webp.asset.json";
 import galSlim2 from "@/assets/rd-gal-slim2.webp.asset.json";
 import galSlim3 from "@/assets/rd-gal-slim3.webp.asset.json";
-import galInside1 from "@/assets/rd-gal-inside1.webp.asset.json";
 import galInside2 from "@/assets/rd-gal-inside2.webp.asset.json";
-import galInside3 from "@/assets/rd-gal-inside3.webp.asset.json";
+import premCamarao from "@/assets/rd-premium-camarao.jpg.asset.json";
+import premGiro from "@/assets/rd-premium-giro.jpg.asset.json";
+import premLitePlus from "@/assets/rd-premium-liteplus.jpg.asset.json";
+import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
+import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
 
-const prodCamarao = prodCamaraoAsset.url;
-const prodGiro = prodGiroAsset.url;
-const prodPivotante = prodPivotanteAsset.url;
-const prodPersiana = prodPersianaAsset.url;
-const prodSystems = prodSystemsAsset.url;
-const prodLite = prodLiteAsset.url;
-const prodSlim = prodSlimAsset.url;
-const prodInside = prodInsideAsset.url;
 const heroImg = heroPortaBandeirasAsset.url;
 const pullQuoteBg = banner2Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
@@ -243,272 +223,333 @@ const CATEGORIAS: { id: CategoriaId; label: string }[] = [
 ];
 
 type Produto = {
+  id: string;
   nome: string;
   tag: string;
-  img: string;
   cats: CategoriaId[];
-  galeria: string[];
+  fotos: string[];
 };
 
+// A primeira foto de cada produto é a capa exibida na visão geral.
 const PRODUTOS: Produto[] = [
   {
+    id: "camarao",
     nome: "Porta Camarão",
     tag: "Integração total",
-    img: prodCamarao,
     cats: ["portas", "grandes-vaos"],
-    galeria: [prodCamarao, galCamarao1.url, galCamarao2.url, galCamarao3.url],
+    fotos: [premCamarao.url, galCamarao1.url, prodCamaraoAsset.url],
   },
   {
+    id: "giro",
     nome: "Porta de Giro",
     tag: "Clássica e versátil",
-    img: prodGiro,
     cats: ["portas"],
-    galeria: [prodGiro, galGiro1.url, galGiro2.url, galGiro3.url],
+    fotos: [premGiro.url, galGiro2.url, galGiro3.url],
   },
   {
+    id: "pivotante",
     nome: "Porta Pivotante",
     tag: "Alto padrão",
-    img: prodPivotante,
     cats: ["portas"],
-    galeria: [prodPivotante, galPivo1.url, galPivo2.url, galPivo3.url],
+    fotos: [prodPivotanteAsset.url, galPivo2.url, galPivo3.url],
   },
   {
+    id: "persiana",
     nome: "Persiana Integrada Hiperventilada",
     tag: "Conforto e automação",
-    img: prodPersiana,
     cats: ["janelas"],
-    galeria: [prodPersiana, galPers1.url, galPers2.url, galPers3.url],
+    fotos: [prodPersianaAsset.url, galPers3.url, galPers2.url],
   },
   {
+    id: "systems",
     nome: "Roll Door Systems",
     tag: "Vãos amplos",
-    img: prodSystems,
     cats: ["grandes-vaos"],
-    galeria: [prodSystems, galMax1.url, galMax2.url],
+    fotos: [prodSystemsAsset.url, premConvencional.url],
   },
   {
+    id: "lite",
     nome: "Roll Door Lite",
     tag: "Linha residencial",
-    img: prodLite,
     cats: ["grandes-vaos", "portas"],
-    galeria: [prodLite, galLite1.url, galLite2.url, galLite3.url, galLite4.url],
+    fotos: [premLitePlus.url, galLite3.url, galLite4.url, premAngra.url],
   },
   {
+    id: "slim",
     nome: "Roll Door Slim",
     tag: "Perfis minimalistas",
-    img: prodSlim,
     cats: ["grandes-vaos"],
-    galeria: [prodSlim, galSlim1.url, galSlim2.url, galSlim3.url],
+    fotos: [prodSlimAsset.url, galSlim3.url, galSlim2.url],
   },
   {
+    id: "inside",
     nome: "Inside Door Kit",
     tag: "Ambientes internos",
-    img: prodInside,
     cats: ["solucoes-internas"],
-    galeria: [prodInside, galInside1.url, galInside2.url, galInside3.url],
+    fotos: [galInside2.url, prodInsideAsset.url],
   },
 ];
 
-function GaleriaProduto({ produto, onClose }: { produto: Produto; onClose: () => void }) {
-  const [ativo, setAtivo] = useState(0);
-  const total = produto.galeria.length;
-
-  React.useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onClose();
-      if (e.key === "ArrowRight") setAtivo((i) => (i + 1) % total);
-      if (e.key === "ArrowLeft") setAtivo((i) => (i - 1 + total) % total);
-    };
-    window.addEventListener("keydown", onKey);
-    const prev = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      window.removeEventListener("keydown", onKey);
-      document.body.style.overflow = prev;
-    };
-  }, [onClose, total]);
-
+// Mini ícone de porta (desenho em SVG) usado nos chips de produto
+function IconePorta({ ativo }: { ativo: boolean }) {
   return (
-    <motion.div
-      className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 p-4 backdrop-blur-sm md:p-8"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      onClick={onClose}
+    <svg
+      width="14"
+      height="14"
+      viewBox="0 0 16 16"
+      fill="none"
+      aria-hidden
+      className="shrink-0"
     >
-      <motion.div
-        onClick={(e) => e.stopPropagation()}
-        initial={{ opacity: 0, y: 24, scale: 0.97 }}
-        animate={{ opacity: 1, y: 0, scale: 1 }}
-        exit={{ opacity: 0, y: 16, scale: 0.98 }}
-        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-        className="relative flex max-h-[90vh] w-full max-w-4xl flex-col overflow-hidden rounded-2xl bg-white shadow-2xl md:rounded-3xl"
-      >
-        <div className="flex items-start justify-between gap-4 border-b border-black/5 px-5 py-4 md:px-7 md:py-5">
-          <div>
-            <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
-              {produto.tag}
-            </span>
-            <h3
-              className="font-display text-[18px] font-medium text-foreground md:text-[24px]"
-              style={{ letterSpacing: "-0.02em" }}
-            >
-              {produto.nome}
-            </h3>
-          </div>
-          <button
-            type="button"
-            onClick={onClose}
-            aria-label="Fechar galeria"
-            className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-foreground/5 text-foreground transition-colors hover:bg-foreground/10"
-          >
-            <X className="h-5 w-5" />
-          </button>
-        </div>
-
-        <div className="relative bg-foreground/5">
-          <div className="relative aspect-[4/3] w-full overflow-hidden md:aspect-[16/10]">
-            <AnimatePresence mode="wait" initial={false}>
-              <motion.img
-                key={ativo}
-                src={produto.galeria[ativo]}
-                alt={`${produto.nome} — foto ${ativo + 1}`}
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className="absolute inset-0 h-full w-full object-cover"
-              />
-            </AnimatePresence>
-          </div>
-          {total > 1 && (
-            <>
-              <button
-                type="button"
-                aria-label="Foto anterior"
-                onClick={() => setAtivo((i) => (i - 1 + total) % total)}
-                className="absolute left-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:bg-white"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                aria-label="Próxima foto"
-                onClick={() => setAtivo((i) => (i + 1) % total)}
-                className="absolute right-3 top-1/2 flex h-11 w-11 -translate-y-1/2 items-center justify-center rounded-full bg-white/90 text-foreground shadow-lg transition hover:bg-white"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </>
-          )}
-        </div>
-
-        <div className="flex gap-2 overflow-x-auto px-5 py-4 md:px-7">
-          {produto.galeria.map((g, i) => (
-            <button
-              key={g}
-              type="button"
-              onClick={() => setAtivo(i)}
-              aria-label={`Ver foto ${i + 1}`}
-              className={`h-16 w-20 shrink-0 overflow-hidden rounded-lg ring-2 transition md:h-20 md:w-28 ${
-                i === ativo ? "ring-brand-green" : "ring-transparent opacity-70 hover:opacity-100"
-              }`}
-            >
-              <img src={g} alt="" loading="lazy" className="h-full w-full object-cover" />
-            </button>
-          ))}
-        </div>
-      </motion.div>
-    </motion.div>
+      <rect
+        x="2"
+        y="1.5"
+        width="12"
+        height="13"
+        rx="1.5"
+        stroke="currentColor"
+        strokeWidth="1.4"
+      />
+      <line x1="8" y1="1.5" x2="8" y2="14.5" stroke="currentColor" strokeWidth="1.1" />
+      <circle cx="6" cy="8" r="0.9" fill="currentColor" opacity={ativo ? 1 : 0.7} />
+    </svg>
   );
 }
 
 function ProdutosFiltraveis() {
   const [categoria, setCategoria] = useState<CategoriaId>("todos");
-  const [aberto, setAberto] = useState<Produto | null>(null);
+  const [produtoId, setProdutoId] = useState<string | null>(null);
 
-  const visiveis =
+  const produtosDaCategoria =
     categoria === "todos"
       ? PRODUTOS
       : PRODUTOS.filter((p) => p.cats.includes(categoria));
 
+  const produtoAtivo = produtoId
+    ? PRODUTOS.find((p) => p.id === produtoId) ?? null
+    : null;
+
+  const selecionarCategoria = (c: CategoriaId) => {
+    setCategoria(c);
+    setProdutoId(null);
+  };
+
   return (
     <div>
-      {/* Filtros */}
-      <div className="mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
-        {CATEGORIAS.map((c) => {
-          const ativo = categoria === c.id;
-          return (
-            <button
-              key={c.id}
-              type="button"
-              onClick={() => setCategoria(c.id)}
-              aria-pressed={ativo}
-              className={`h-10 rounded-full px-4 font-display text-[13px] font-medium transition-all md:h-11 md:px-6 md:text-[15px] ${
-                ativo
-                  ? "bg-foreground text-white shadow-lg"
-                  : "border border-foreground/15 bg-white/60 text-foreground/70 hover:border-foreground/40 hover:text-foreground"
-              }`}
-            >
-              {c.label}
-            </button>
-          );
-        })}
+      {/* ── Filtro nível 1: categorias no estilo "porta de correr" ─────────
+          Um painel verde (layoutId) desliza entre os quadros como uma folha
+          de porta correndo no trilho desenhado acima dos botões. */}
+      <div className="mt-9 md:mt-12">
+        <div className="mx-auto w-fit max-w-full">
+          <div aria-hidden className="mb-2 hidden items-center gap-1.5 md:flex">
+            <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/25" />
+            <span className="h-[3px] w-10 rounded-full bg-foreground/15" />
+            <span className="h-1.5 w-1.5 rounded-full bg-foreground/25" />
+            <span className="h-[3px] flex-1 rounded-full bg-foreground/15" />
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-2 md:gap-3">
+            {CATEGORIAS.map((c) => {
+              const ativo = categoria === c.id;
+              return (
+                <button
+                  key={c.id}
+                  type="button"
+                  onClick={() => selecionarCategoria(c.id)}
+                  aria-pressed={ativo}
+                  className={`relative h-11 overflow-hidden rounded-xl border-2 px-4 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-7 md:text-[15px] ${
+                    ativo
+                      ? "border-brand-green text-white"
+                      : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
+                  }`}
+                >
+                  {ativo && (
+                    <motion.span
+                      layoutId="painel-categoria"
+                      aria-hidden
+                      className="absolute inset-0 bg-brand-green"
+                      transition={{ type: "spring", stiffness: 420, damping: 38 }}
+                    />
+                  )}
+                  {/* "vidro" interno do quadro */}
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
+                      ativo ? "border-white/35" : "border-foreground/10"
+                    }`}
+                  />
+                  {/* puxador */}
+                  <span
+                    aria-hidden
+                    className={`pointer-events-none absolute right-2 top-1/2 h-4 w-[3px] -translate-y-1/2 rounded-full transition-colors duration-300 md:right-2.5 md:h-5 ${
+                      ativo ? "bg-white/85" : "bg-foreground/25"
+                    }`}
+                  />
+                  <span className="relative z-10 pr-2">{c.label}</span>
+                </button>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* ── Filtro nível 2: produtos da categoria ── */}
+        <div className="mt-4 flex flex-wrap items-center justify-center gap-2 md:mt-5">
+          <button
+            type="button"
+            onClick={() => setProdutoId(null)}
+            aria-pressed={!produtoAtivo}
+            className={`inline-flex h-9 items-center gap-1.5 rounded-full px-4 font-display text-[12px] font-medium transition-colors md:h-10 md:text-[13px] ${
+              !produtoAtivo
+                ? "bg-foreground text-white shadow-md"
+                : "border border-foreground/15 bg-white/60 text-foreground/60 hover:border-foreground/40 hover:text-foreground"
+            }`}
+          >
+            Visão geral
+          </button>
+          <AnimatePresence initial={false} mode="popLayout">
+            {produtosDaCategoria.map((p) => {
+              const ativo = produtoId === p.id;
+              return (
+                <motion.button
+                  key={p.id}
+                  layout
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0, scale: 0.9 }}
+                  transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
+                  type="button"
+                  onClick={() => setProdutoId(ativo ? null : p.id)}
+                  aria-pressed={ativo}
+                  className={`inline-flex h-9 items-center gap-1.5 rounded-full px-3.5 font-display text-[12px] font-medium transition-colors md:h-10 md:px-4 md:text-[13px] ${
+                    ativo
+                      ? "bg-brand-green text-white shadow-md"
+                      : "border border-foreground/15 bg-white/60 text-foreground/60 hover:border-brand-green/60 hover:text-foreground"
+                  }`}
+                >
+                  <IconePorta ativo={ativo} />
+                  {p.nome}
+                  <span
+                    className={`rounded-full px-1.5 text-[10px] font-semibold ${
+                      ativo ? "bg-white/25 text-white" : "bg-foreground/8 text-foreground/50"
+                    }`}
+                  >
+                    {p.fotos.length}
+                  </span>
+                </motion.button>
+              );
+            })}
+          </AnimatePresence>
+        </div>
       </div>
 
-      {/* Grid de produtos */}
-      <motion.div layout className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:gap-5 lg:grid-cols-4">
-        <AnimatePresence mode="popLayout" initial={false}>
-          {visiveis.map((p) => (
-            <motion.div
-              layout
-              key={p.nome}
-              initial={{ opacity: 0, scale: 0.92 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0, scale: 0.92 }}
-              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+      {/* Cabeçalho do modo produto */}
+      <AnimatePresence initial={false}>
+        {produtoAtivo && (
+          <motion.div
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.3 }}
+            className="mt-8 flex flex-wrap items-end justify-between gap-3 md:mt-10"
+          >
+            <div>
+              <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+                {produtoAtivo.tag}
+              </span>
+              <h3
+                className="font-display text-[22px] font-medium text-foreground md:text-[30px]"
+                style={{ letterSpacing: "-0.02em" }}
+              >
+                {produtoAtivo.nome}
+                <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/50 md:text-[14px]">
+                  {produtoAtivo.fotos.length} fotos
+                </span>
+              </h3>
+            </div>
+            <button
+              type="button"
+              onClick={() => setProdutoId(null)}
+              className="font-display text-[13px] font-medium text-foreground/60 underline-offset-4 transition-colors hover:text-brand-green hover:underline md:text-[14px]"
             >
-              <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl md:p-6">
-                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-foreground/5 md:rounded-2xl">
-                  <img
-                    src={p.img}
-                    alt={p.nome}
-                    loading="lazy"
-                    decoding="async"
-                    width={1000}
-                    height={1000}
-                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="mt-4 flex flex-1 flex-col">
-                  <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
-                    {p.tag}
-                  </span>
-                  <h3
-                    className="mt-1 font-display text-[15px] font-medium leading-snug text-foreground md:text-[19px]"
-                    style={{ letterSpacing: "-0.02em" }}
-                  >
-                    {p.nome}
-                  </h3>
-                  <button
-                    type="button"
-                    onClick={() => setAberto(p)}
-                    className="mt-4 inline-flex h-10 w-full items-center justify-center gap-1.5 self-start rounded-full border border-foreground/15 px-4 font-display text-[13px] font-medium text-foreground transition-colors hover:border-brand-green hover:bg-brand-green hover:text-white md:mt-5 md:h-11 md:text-[14px]"
-                  >
-                    Ver mais
-                    <ArrowRight className="h-4 w-4" />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
-        </AnimatePresence>
-      </motion.div>
-
-      <AnimatePresence>
-        {aberto && <GaleriaProduto produto={aberto} onClose={() => setAberto(null)} />}
+              ← Voltar para todos os produtos
+            </button>
+          </motion.div>
+        )}
       </AnimatePresence>
 
+      {/* ── Galeria: masonry sem corte (1 coluna no mobile) ── */}
+      <div className="mt-6 columns-1 gap-4 sm:columns-2 md:mt-8 lg:columns-3">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {produtoAtivo
+            ? produtoAtivo.fotos.map((foto, i) => (
+                <motion.figure
+                  key={`${produtoAtivo.id}-${i}`}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                  className="relative mb-4 break-inside-avoid overflow-hidden rounded-2xl bg-white shadow-sm ring-1 ring-black/5 md:rounded-3xl"
+                >
+                  <img
+                    src={foto}
+                    alt={`${produtoAtivo.nome} — foto ${i + 1}`}
+                    loading="lazy"
+                    decoding="async"
+                    className="block h-auto w-full"
+                  />
+                  <figcaption className="pointer-events-none absolute bottom-3 left-3 rounded-full bg-black/55 px-3 py-1 font-display text-[11px] font-medium text-white backdrop-blur-sm md:text-[12px]">
+                    {produtoAtivo.nome} · {i + 1}/{produtoAtivo.fotos.length}
+                  </figcaption>
+                </motion.figure>
+              ))
+            : produtosDaCategoria.map((p, i) => (
+                <motion.div
+                  key={p.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.96 }}
+                  transition={{ duration: 0.35, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                  className="mb-4 break-inside-avoid"
+                >
+                  <button
+                    type="button"
+                    onClick={() => setProdutoId(p.id)}
+                    className="group block w-full overflow-hidden rounded-2xl bg-white text-left shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl"
+                  >
+                    <div className="relative overflow-hidden">
+                      <img
+                        src={p.fotos[0]}
+                        alt={p.nome}
+                        loading="lazy"
+                        decoding="async"
+                        className="block h-auto w-full transition-transform duration-500 group-hover:scale-[1.03]"
+                      />
+                      <span className="absolute bottom-3 right-3 rounded-full bg-black/55 px-2.5 py-1 font-display text-[11px] font-medium text-white backdrop-blur-sm">
+                        {p.fotos.length} fotos
+                      </span>
+                    </div>
+                    <div className="flex items-center justify-between gap-3 px-4 py-4 md:px-5">
+                      <div>
+                        <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+                          {p.tag}
+                        </span>
+                        <h3
+                          className="mt-0.5 font-display text-[16px] font-medium leading-snug text-foreground md:text-[19px]"
+                          style={{ letterSpacing: "-0.02em" }}
+                        >
+                          {p.nome}
+                        </h3>
+                      </div>
+                      <span className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-foreground/15 text-foreground/60 transition-colors group-hover:border-brand-green group-hover:bg-brand-green group-hover:text-white">
+                        <ArrowRight className="h-4 w-4" />
+                      </span>
+                    </div>
+                  </button>
+                </motion.div>
+              ))}
+        </AnimatePresence>
+      </div>
 
       {/* CTA da seção */}
       <div className="mt-10 flex justify-center md:mt-14">
@@ -523,8 +564,6 @@ function ProdutosFiltraveis() {
     </div>
   );
 }
-
-
 
 function LandingCliente() {
   const { scrollY } = useScroll();
