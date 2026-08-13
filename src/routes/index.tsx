@@ -238,7 +238,7 @@ function Landing() {
               fetchPriority="high"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-black/45" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/55 to-black/80" />
           </div>
 
           <div className="relative mx-auto flex max-w-6xl flex-col items-center text-center">
@@ -250,10 +250,11 @@ function Landing() {
                 className="font-display mx-auto text-white"
                 style={{
                   fontWeight: 500,
-                  fontSize: "clamp(24px, 5.2vw, 56px)",
-                  lineHeight: "1.05",
+                  fontSize: "clamp(26px, 5.2vw, 56px)",
+                  lineHeight: "1.08",
                   letterSpacing: "-0.03em",
                   maxWidth: "26ch",
+                  textShadow: "0 2px 24px rgba(0,0,0,0.55)",
                 }}
               >
                 Torne-se um Revendedor Premium{" "}
@@ -262,7 +263,10 @@ function Landing() {
               </h1>
             </Reveal>
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-[18px] leading-relaxed tracking-[-0.01em] text-white/70 md:mt-8 md:text-[21px]">
+              <p
+                className="mt-6 max-w-2xl text-[17px] font-medium leading-relaxed tracking-[-0.01em] text-white md:mt-8 md:text-[21px]"
+                style={{ textShadow: "0 1px 16px rgba(0,0,0,0.6)" }}
+              >
                 Trabalhe com uma marca reconhecida nacionalmente, tenha suporte comercial, receba
                 oportunidades de negócio e ofereça produtos de alto padrão que agregam valor ao seu
                 portfólio.
@@ -276,7 +280,11 @@ function Landing() {
                   "Produtos de alto padrão",
                   "Programa exclusivo para parceiros",
                 ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[18px] text-white/85 md:text-[18px]">
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-[16px] text-white md:text-[18px]"
+                    style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+                  >
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-white text-foreground">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>

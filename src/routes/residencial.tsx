@@ -10,8 +10,6 @@ import {
   ShieldCheck,
   Layers,
   Quote,
-  ChevronLeft,
-  ChevronRight,
 } from "lucide-react";
 import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
 import seloBrasil from "@/assets/selo-image-20.png.asset.json";
@@ -24,23 +22,21 @@ import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
-import premCamarao from "@/assets/rd-premium-camarao.jpg.asset.json";
-import premGiro from "@/assets/rd-premium-giro.jpg.asset.json";
-import premLitePlus from "@/assets/rd-premium-liteplus.jpg.asset.json";
-import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
-import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
+import prodCamarao from "@/assets/rd-prod-camarao.webp";
+import prodGiro from "@/assets/rd-prod-giro.webp";
+import prodPivotante from "@/assets/rd-prod-pivotante.webp";
+import prodPersiana from "@/assets/rd-prod-persiana.webp";
+import prodSystems from "@/assets/rd-prod-systems.webp";
+import prodLite from "@/assets/rd-prod-lite.webp";
+import prodSlim from "@/assets/rd-prod-slim.webp";
+import prodInside from "@/assets/rd-prod-inside.webp";
 const heroImg = heroPortaBandeirasAsset.url;
-const galeria1 = project1Asset.url;
-const galeria2 = project2Asset.url;
-const galeria3 = project3Asset.url;
-const galeria4 = project4Asset.url;
-const galeria5 = project5Asset.url;
 const pullQuoteBg = banner2Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
-import step01Img from "@/assets/step-01-solicite.png";
-import step02Img from "@/assets/step-02-diagnostico.png";
-import step03Img from "@/assets/step-03-parceiro.png";
-import step04Img from "@/assets/step-04-instalacao.png";
+import step01Img from "@/assets/step-01-solicite.webp";
+import step02Img from "@/assets/step-02-diagnostico.webp";
+import step03Img from "@/assets/step-03-parceiro.webp";
+import step04Img from "@/assets/step-04-instalacao.webp";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
@@ -105,6 +101,14 @@ export const Route = createFileRoute("/residencial")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
+      ],
+      links: [
+        {
+          rel: "preload",
+          as: "image",
+          href: heroPortaBandeirasAsset.url,
+          fetchpriority: "high",
+        },
       ],
     };
   },
@@ -192,78 +196,120 @@ function CtaPrimary({
   );
 }
 
-function ProjetosCarousel({ slides }: { slides: { src: string; alt: string }[] }) {
-  const [index, setIndex] = useState(0);
-  const total = slides.length;
-  const go = (dir: number) => setIndex((i) => (i + dir + total) % total);
+type CategoriaId = "todos" | "portas" | "janelas" | "grandes-vaos" | "solucoes-internas";
+
+const CATEGORIAS: { id: CategoriaId; label: string }[] = [
+  { id: "todos", label: "Todos" },
+  { id: "portas", label: "Portas" },
+  { id: "janelas", label: "Janelas" },
+  { id: "grandes-vaos", label: "Grandes Vãos" },
+  { id: "solucoes-internas", label: "Soluções Internas" },
+];
+
+const PRODUTOS: {
+  nome: string;
+  tag: string;
+  img: string;
+  cats: CategoriaId[];
+}[] = [
+  { nome: "Porta Camarão", tag: "Integração total", img: prodCamarao, cats: ["portas", "grandes-vaos"] },
+  { nome: "Porta de Giro", tag: "Clássica e versátil", img: prodGiro, cats: ["portas"] },
+  { nome: "Porta Pivotante", tag: "Alto padrão", img: prodPivotante, cats: ["portas"] },
+  { nome: "Persiana Integrada Hiperventilada", tag: "Conforto e automação", img: prodPersiana, cats: ["janelas"] },
+  { nome: "Roll Door Systems", tag: "Vãos amplos", img: prodSystems, cats: ["grandes-vaos"] },
+  { nome: "Roll Door Lite", tag: "Linha residencial", img: prodLite, cats: ["grandes-vaos", "portas"] },
+  { nome: "Roll Door Slim", tag: "Perfis minimalistas", img: prodSlim, cats: ["grandes-vaos"] },
+  { nome: "Inside Door Kit", tag: "Ambientes internos", img: prodInside, cats: ["solucoes-internas"] },
+];
+
+function ProdutosFiltraveis() {
+  const [categoria, setCategoria] = useState<CategoriaId>("todos");
+
+  const visiveis =
+    categoria === "todos"
+      ? PRODUTOS
+      : PRODUTOS.filter((p) => p.cats.includes(categoria));
 
   return (
-    <div className="relative">
-      <div className="relative aspect-[4/3] overflow-hidden rounded-3xl bg-foreground/5 md:aspect-[16/11]">
-        <AnimatePresence initial={false} mode="wait">
-          <motion.img
-            key={index}
-            src={slides[index].src}
-            alt={slides[index].alt}
-            className="absolute inset-0 h-full w-full object-cover"
-            initial={{ opacity: 0, scale: 1.03 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-            loading="lazy"
-            decoding="async"
-          />
-        </AnimatePresence>
-
-        <div className="absolute inset-x-4 bottom-4 flex items-center justify-between gap-3">
-          <div className="flex gap-1.5">
-            {slides.map((_, i) => (
-              <button
-                key={i}
-                type="button"
-                aria-label={`Ir para o slide ${i + 1}`}
-                onClick={() => setIndex(i)}
-                className={`h-1.5 rounded-full transition-all ${
-                  i === index ? "w-8 bg-white" : "w-4 bg-white/50 hover:bg-white/80"
-                }`}
-              />
-            ))}
-          </div>
-          <div className="flex gap-2">
+    <div>
+      {/* Filtros */}
+      <div className="mt-8 flex flex-wrap items-center justify-center gap-2 md:mt-10 md:gap-3">
+        {CATEGORIAS.map((c) => {
+          const ativo = categoria === c.id;
+          return (
             <button
+              key={c.id}
               type="button"
-              aria-label="Slide anterior"
-              onClick={() => go(-1)}
-              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
+              onClick={() => setCategoria(c.id)}
+              aria-pressed={ativo}
+              className={`h-10 rounded-full px-4 font-display text-[13px] font-medium transition-all md:h-11 md:px-6 md:text-[15px] ${
+                ativo
+                  ? "bg-foreground text-white shadow-lg"
+                  : "border border-foreground/15 bg-white/60 text-foreground/70 hover:border-foreground/40 hover:text-foreground"
+              }`}
             >
-              <ChevronLeft className="h-5 w-5" />
+              {c.label}
             </button>
-            <button
-              type="button"
-              aria-label="Próximo slide"
-              onClick={() => go(1)}
-              className="grid h-10 w-10 place-items-center rounded-full bg-white/90 text-foreground shadow-lg backdrop-blur transition hover:bg-white"
-            >
-              <ChevronRight className="h-5 w-5" />
-            </button>
-          </div>
-        </div>
+          );
+        })}
       </div>
 
-      <div className="mt-4 grid grid-cols-5 gap-2">
-        {slides.map((s, i) => (
-          <button
-            key={i}
-            type="button"
-            onClick={() => setIndex(i)}
-            aria-label={`Selecionar projeto ${i + 1}`}
-            className={`aspect-[4/3] overflow-hidden rounded-lg transition ${
-              i === index ? "ring-2 ring-brand-green ring-offset-2 ring-offset-[#F2F0EA]" : "opacity-70 hover:opacity-100"
-            }`}
-          >
-            <img src={s.src} alt="" className="h-full w-full object-cover" loading="lazy" decoding="async" />
-          </button>
-        ))}
+      {/* Grid de produtos */}
+      <motion.div layout className="mt-8 grid grid-cols-2 gap-3 md:mt-12 md:gap-5 lg:grid-cols-4">
+        <AnimatePresence mode="popLayout" initial={false}>
+          {visiveis.map((p) => (
+            <motion.div
+              layout
+              key={p.nome}
+              initial={{ opacity: 0, scale: 0.92 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.92 }}
+              transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl md:p-6">
+                <div
+                  className="relative flex aspect-square w-full items-center justify-center rounded-xl md:rounded-2xl"
+                  style={{
+                    background:
+                      "radial-gradient(ellipse at center, rgba(156,203,59,0.10) 0%, rgba(14,17,17,0.03) 70%)",
+                  }}
+                >
+                  <img
+                    src={p.img}
+                    alt={p.nome}
+                    loading="lazy"
+                    decoding="async"
+                    width={512}
+                    height={512}
+                    className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-105 md:p-5"
+                  />
+                </div>
+                <div className="mt-4 flex flex-1 flex-col">
+                  <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+                    {p.tag}
+                  </span>
+                  <h3
+                    className="mt-1 font-display text-[15px] font-medium leading-snug text-foreground md:text-[19px]"
+                    style={{ letterSpacing: "-0.02em" }}
+                  >
+                    {p.nome}
+                  </h3>
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </AnimatePresence>
+      </motion.div>
+
+      {/* CTA da seção */}
+      <div className="mt-10 flex justify-center md:mt-14">
+        <a
+          href="#cta-final"
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:w-auto sm:px-12 md:h-16 md:text-xl"
+        >
+          Solicitar orçamento
+          <ArrowRight className="h-5 w-5" />
+        </a>
       </div>
     </div>
   );
@@ -294,7 +340,7 @@ function LandingCliente() {
               fetchPriority="high"
               decoding="async"
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/45 to-black/75" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/90" />
           </div>
 
 
@@ -314,10 +360,11 @@ function LandingCliente() {
                 className="font-display mx-auto text-white"
                 style={{
                   fontWeight: 500,
-                  fontSize: "clamp(28px, 4.4vw, 54px)",
-                  lineHeight: "1.05",
-                  letterSpacing: "-0.035em",
+                  fontSize: "clamp(30px, 4.4vw, 54px)",
+                  lineHeight: "1.08",
+                  letterSpacing: "-0.03em",
                   maxWidth: "22ch",
+                  textShadow: "0 2px 24px rgba(0,0,0,0.55)",
                 }}
               >
                 Esquadrias de alumínio{" "}
@@ -326,20 +373,22 @@ function LandingCliente() {
             </Reveal>
 
             <Reveal delay={0.25}>
-              <p className="mt-6 max-w-2xl text-[17px] leading-relaxed tracking-[-0.01em] text-white/70 md:text-[19px]">
+              <p
+                className="mt-6 max-w-2xl text-[17px] font-medium leading-relaxed tracking-[-0.01em] text-white md:text-[20px]"
+                style={{ textShadow: "0 1px 16px rgba(0,0,0,0.6)" }}
+              >
                 Design, desempenho e acabamento de alto padrão para valorizar sua obra.
               </p>
             </Reveal>
 
             <Reveal delay={0.35}>
-              <ul className="mt-7 grid gap-3 text-left sm:grid-cols-2">
-                {[
-                  "Design sofisticado",
-                  "Vãos de todos os tamanhos e integração dos ambientes",
-                  "Tecnologia e alto desempenho",
-                  "Rede de especialistas em todo o Brasil",
-                ].map((item) => (
-                  <li key={item} className="flex items-center gap-3 text-[17px] text-white/85">
+              <ul className="mt-7 flex justify-center">
+                {["Rede de especialistas em todo o Brasil"].map((item) => (
+                  <li
+                    key={item}
+                    className="flex items-center gap-3 text-[16px] text-white md:text-[18px]"
+                    style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
+                  >
                     <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
                       <Check className="h-3.5 w-3.5" strokeWidth={3} />
                     </span>
@@ -356,7 +405,7 @@ function LandingCliente() {
                 </CtaPrimary>
                 <a
                   href="#cta-final"
-                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border border-white/35 px-10 font-display text-lg font-medium text-white transition-colors hover:border-brand-green hover:text-brand-green sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
+                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
                 >
                   Solicitar orçamento
                 </a>
@@ -412,9 +461,9 @@ function LandingCliente() {
         >
           {Array.from({ length: 6 }).flatMap((_, i) =>
             [
-              "Design sofisticado",
-              "Vãos de todos os tamanhos",
+              "Esquadrias de alto padrão",
               "Arquitetura moderna",
+              "Acabamento premium",
               "Rede de especialistas no Brasil",
             ].map((item, j) => (
               <span key={`${i}-${j}`} className="inline-flex items-center">
@@ -426,15 +475,54 @@ function LandingCliente() {
         </div>
       </div>
 
-      {/* SESSÃO 2 — "Um novo padrão" (Apple-style pinned reveal) */}
-      <NovoPadraoPinned />
+      {/* SESSÃO 2 — Produtos (filtros por categoria) */}
+      <section id="produtos" className="scroll-mt-16 bg-foreground py-6 md:py-8">
+        <div className="mx-auto w-full px-4 md:px-8">
+          <div className="relative w-full overflow-hidden rounded-[24px] bg-[#F2F0EA] px-4 py-14 md:rounded-[32px] md:px-12 md:py-24">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-0 rounded-[24px] opacity-[0.06] md:rounded-[32px]"
+              style={{
+                backgroundImage:
+                  "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 18px)",
+              }}
+            />
+            <div className="relative z-10 mx-auto max-w-[1280px]">
+              <div className="mx-auto max-w-3xl text-center">
+                <Reveal>
+                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                    Nossos produtos
+                  </span>
+                  <h2
+                    className="mt-5 font-display text-foreground"
+                    style={{
+                      fontWeight: 500,
+                      fontSize: "clamp(28px, 5.2vw, 56px)",
+                      lineHeight: "1.05",
+                      letterSpacing: "-0.035em",
+                    }}
+                  >
+                    Esquadrias pensadas para o{" "}
+                    <UnderlineWord delay={0}>seu projeto</UnderlineWord>.
+                  </h2>
+                  <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-foreground/65 md:text-[20px]">
+                    Conheça nossas linhas de esquadrias, portas e sistemas desenvolvidos para
+                    projetos de alto padrão.
+                  </p>
+                </Reveal>
+              </div>
 
-
-
+              <Reveal delay={0.15}>
+                <ProdutosFiltraveis />
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* SESSÃO 3 — Arquitetura, design e engenharia (4 cards) */}
-      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
-        <div className="mx-auto max-w-[1400px] px-6 md:px-10">
+      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32">
+        <div className="mx-auto max-w-[1400px] px-5 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
               <h2
@@ -458,66 +546,11 @@ function LandingCliente() {
         </div>
       </section>
 
-
-      {/* SESSÃO 4 — Galeria projetos que inspiram */}
-      <section id="produtos" className="scroll-mt-16 bg-foreground py-6 md:py-8">
-        <div className="mx-auto w-full px-5 md:px-8">
-          <div
-            className="relative w-full overflow-hidden rounded-[32px] bg-[#F2F0EA] px-6 py-16 md:px-12 md:py-24"
-          >
-            <div
-              aria-hidden
-              className="pointer-events-none absolute inset-0 rounded-[32px] opacity-[0.06]"
-              style={{
-                backgroundImage:
-                  "repeating-linear-gradient(115deg, rgba(14,17,17,0.9) 0 1px, transparent 1px 18px)",
-              }}
-            />
-            <div className="relative z-10 mx-auto max-w-[1400px]">
-              <div className="grid gap-12 md:grid-cols-[1fr_1.3fr] md:items-center md:gap-16">
-                <Reveal>
-                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
-                    Galeria
-                  </span>
-                  <h2
-                    className="mt-5 font-display text-foreground"
-                    style={{
-                      fontWeight: 500,
-                      fontSize: "clamp(30px, 5.2vw, 56px)",
-                      lineHeight: "1.05",
-                      letterSpacing: "-0.035em",
-                    }}
-                  >
-                    Projetos que <span className="text-foreground/45">inspiram.</span>
-                  </h2>
-                  <div className="mt-8 space-y-5 text-[18px] leading-relaxed text-foreground/70 md:text-[20px]">
-                    <p className="text-foreground">Mais do que produtos.</p>
-                    <p>
-                      Criamos soluções que transformam residências em espaços exclusivos, modernos e
-                      cheios de personalidade.
-                    </p>
-                  </div>
-                </Reveal>
-
-                <Reveal delay={0.15}>
-                  <ProjetosCarousel
-                    slides={[
-                      { src: premCamarao.url, alt: "Porta Camarão em alumínio verde em residência de alto padrão" },
-                      { src: premConvencional.url, alt: "Sistema de correr com vidro esverdeado integrando sala e piscina" },
-                      { src: premGiro.url, alt: "Porta de giro em alumínio bronze com vidro" },
-                      { src: premLitePlus.url, alt: "Porta de correr Lite Plus com perfil preto e integração com o jardim" },
-                      { src: premAngra.url, alt: "Residências à beira-mar com fachadas em vidro Roll Door" },
-                    ]}
-                  />
-                </Reveal>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* SESSÃO 4 — "Um novo padrão" (Apple-style pinned reveal) */}
+      <NovoPadraoPinned />
 
       {/* SESSÃO 5 — O detalhe que valoriza (pull quote) */}
-      <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-28 md:py-36">
+      <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-16 md:py-36">
         <div aria-hidden className="pointer-events-none absolute inset-0">
           <img
             src={pullQuoteBg}
@@ -551,7 +584,7 @@ function LandingCliente() {
             </h2>
           </Reveal>
           <Reveal delay={0.15}>
-            <div className="mx-auto mt-10 max-w-2xl space-y-5 text-[18px] leading-relaxed text-white/70 md:text-[20px]">
+            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-[16px] leading-relaxed text-white/75 md:mt-10 md:text-[20px]">
               <p>Escolher esquadrias premium não é apenas uma decisão estética.</p>
               <p>É investir em conforto, funcionalidade e valorização patrimonial.</p>
               <p>
@@ -624,7 +657,7 @@ function LandingCliente() {
                       <span className="mt-1 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
                         <Check className="h-3.5 w-3.5" strokeWidth={3} />
                       </span>
-                      <span className="text-[18px] leading-relaxed text-white/85 md:text-[20px]">
+                      <span className="text-[16px] leading-relaxed text-white/85 md:text-[20px]">
                         {item}
                       </span>
                     </li>
@@ -638,7 +671,7 @@ function LandingCliente() {
 
 
       {/* SESSÃO 7 — Da inspiração ao seu projeto */}
-      <section className="relative overflow-hidden bg-[#F2F0EA] py-24 md:py-32">
+      <section className="relative overflow-hidden bg-[#F2F0EA] py-16 md:py-32">
         <div className="mx-auto max-w-[1280px] px-6 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
@@ -656,7 +689,7 @@ function LandingCliente() {
               >
                 Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
               </h2>
-              <p className="mx-auto mt-6 text-[18px] text-[#0E1111]/60 md:text-[20px]">
+              <p className="mx-auto mt-6 text-[16px] text-[#0E1111]/60 md:text-[20px]">
                 Quatro passos entre a sua ideia e um ambiente Roll Door.
               </p>
             </Reveal>
@@ -697,7 +730,7 @@ function LandingCliente() {
                       >
                         {s.title}
                       </h3>
-                      <p className="mt-2 max-w-[260px] text-[18px] leading-relaxed text-[#0E1111]/65">{s.desc}</p>
+                      <p className="mt-2 max-w-[260px] text-[16px] leading-relaxed text-[#0E1111]/65 md:text-[18px]">{s.desc}</p>
                     </div>
                   </Reveal>
                   {i < 3 && (
@@ -717,7 +750,7 @@ function LandingCliente() {
 
 
       {/* SESSÃO 8 — Depoimentos */}
-      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32">
+      <section className="relative overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32">
         <div className="mx-auto max-w-[1400px] px-6 md:px-10">
           <div className="mx-auto max-w-3xl text-center">
             <Reveal>
@@ -760,7 +793,7 @@ function LandingCliente() {
               },
             ].map((d, i) => (
               <Reveal key={i} delay={i * 0.08}>
-                <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-8">
+                <div className="flex h-full flex-col rounded-3xl border border-white/10 bg-white/[0.03] p-6 md:p-8">
                   <Quote className="h-8 w-8 text-brand-green/70" strokeWidth={1.5} />
                   <p className="mt-4 flex-1 font-display text-lg font-medium leading-relaxed text-white md:text-xl">
                     "{d.quote}"
@@ -779,7 +812,7 @@ function LandingCliente() {
       {/* CTA FINAL + FORMULÁRIO */}
       <section
         id="cta-final"
-        className="relative overflow-hidden border-t border-white/5 bg-foreground py-24 md:py-32"
+        className="relative overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
@@ -792,7 +825,7 @@ function LandingCliente() {
           <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
             <Reveal>
               <div
-                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-8 text-white md:p-12"
+                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
                 style={{
                   background:
                     "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
@@ -808,7 +841,7 @@ function LandingCliente() {
                 <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                   Seu projeto merece uma solução à altura.
                 </h2>
-                <p className="mt-6 max-w-md text-[18px] leading-relaxed text-white/75 md:text-[19px]">
+                <p className="mt-6 max-w-md text-[16px] leading-relaxed text-white/75 md:text-[19px]">
                   Solicite um atendimento e descubra como as soluções Roll Door podem transformar
                   sua residência com design, tecnologia e sofisticação.
                 </p>
@@ -821,7 +854,7 @@ function LandingCliente() {
                     "Indicação do parceiro Roll Door da sua região",
                     "Suporte técnico especializado",
                   ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[18px] text-white/90">
+                    <li key={item} className="flex items-start gap-3 text-[16px] text-white/90 md:text-[18px]">
                       <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
                       <span>{item}</span>
                     </li>

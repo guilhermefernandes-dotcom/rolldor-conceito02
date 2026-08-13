@@ -7,14 +7,14 @@ import {
   useTransform,
 } from "motion/react";
 
-import prodSystems from "@/assets/rd-prod-systems.png";
-import prodLite from "@/assets/rd-prod-lite.png";
-import prodSlim from "@/assets/rd-prod-slim.png";
-import prodPivotante from "@/assets/rd-prod-pivotante.png";
-import prodMaximar from "@/assets/rd-prod-maximar.png";
-import prodInside from "@/assets/rd-prod-inside.png";
-import prodPersiana from "@/assets/rd-prod-persiana.png";
-import prodCamarao from "@/assets/rd-prod-camarao.png";
+import prodSystems from "@/assets/rd-prod-systems.webp";
+import prodLite from "@/assets/rd-prod-lite.webp";
+import prodSlim from "@/assets/rd-prod-slim.webp";
+import prodPivotante from "@/assets/rd-prod-pivotante.webp";
+import prodMaximar from "@/assets/rd-prod-maximar.webp";
+import prodInside from "@/assets/rd-prod-inside.webp";
+import prodPersiana from "@/assets/rd-prod-persiana.webp";
+import prodCamarao from "@/assets/rd-prod-camarao.webp";
 import rdMark from "@/assets/rd-mark.png";
 
 const ITEMS = [
