@@ -276,21 +276,15 @@ function ProdutosFiltraveis() {
               transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
             >
               <div className="group flex h-full flex-col overflow-hidden rounded-2xl bg-white p-4 shadow-sm ring-1 ring-black/5 transition duration-300 hover:-translate-y-1 hover:shadow-xl md:rounded-3xl md:p-6">
-                <div
-                  className="relative flex aspect-square w-full items-center justify-center rounded-xl md:rounded-2xl"
-                  style={{
-                    background:
-                      "radial-gradient(ellipse at center, rgba(156,203,59,0.10) 0%, rgba(14,17,17,0.03) 70%)",
-                  }}
-                >
+                <div className="relative flex aspect-square w-full items-center justify-center overflow-hidden rounded-xl bg-foreground/5 md:rounded-2xl">
                   <img
                     src={p.img}
                     alt={p.nome}
                     loading="lazy"
                     decoding="async"
-                    width={512}
-                    height={512}
-                    className="h-full w-full object-contain p-3 transition-transform duration-500 group-hover:scale-105 md:p-5"
+                    width={1000}
+                    height={1000}
+                    className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
                 <div className="mt-4 flex flex-1 flex-col">
