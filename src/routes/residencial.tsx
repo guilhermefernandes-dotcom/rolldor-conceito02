@@ -10,6 +10,9 @@ import {
   ShieldCheck,
   Layers,
   Quote,
+  X,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
 import seloBrasil from "@/assets/selo-image-20.png.asset.json";
