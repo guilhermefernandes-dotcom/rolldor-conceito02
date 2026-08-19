@@ -16,7 +16,6 @@ import seloBrasil from "@/assets/selo-image-20.png.asset.json";
 import seloFalcaoBauer from "@/assets/selo-image-21.png.asset.json";
 import seloUniversidadeSom from "@/assets/selo-image-22.png.asset.json";
 import seloAbravidro from "@/assets/selo-image-23.png.asset.json";
-import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
 import project1Asset from "@/assets/rd-project-2.webp.asset.json";
 import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
