@@ -729,40 +729,25 @@ function LandingCliente() {
                 className="mt-6 max-w-2xl text-[17px] font-medium leading-relaxed tracking-[-0.01em] text-white md:text-[20px]"
                 style={{ textShadow: "0 1px 16px rgba(0,0,0,0.6)" }}
               >
-                Design, desempenho e acabamento de alto padrão para valorizar sua obra.
+                Esquadrias alto padrão e portas de alumínio sob medida para mais amplitude e
+                integração.
               </p>
             </Reveal>
 
-            <Reveal delay={0.35}>
-              <ul className="mt-7 flex justify-center">
-                {["Rede de especialistas em todo o Brasil"].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-[16px] text-white md:text-[18px]"
-                    style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
             <Reveal delay={0.5}>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                <CtaPrimary href="#produtos" className="w-full sm:w-auto">
-                  Ver produtos
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <CtaPrimary href="#cta-final" className="w-full font-semibold sm:w-auto">
+                  Solicitar orçamento
                 </CtaPrimary>
                 <a
-                  href="#cta-final"
-                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
+                  href="#produtos"
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
-                  Solicitar orçamento
+                  Ver produtos
                 </a>
               </div>
             </Reveal>
+
 
             <Reveal delay={0.6}>
               <div className="mt-10 w-full border-t border-white/10 pt-6">
