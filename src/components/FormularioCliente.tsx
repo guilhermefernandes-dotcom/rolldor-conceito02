@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, Loader2, ArrowRight, ChevronDown, Home } from "lucide-react";
+import { CheckCircle2, Loader2, ArrowRight, Home } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
 import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
@@ -12,12 +12,6 @@ const schema = z.object({
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
   estado: z.string().trim().min(2, "Informe o estado").max(60),
-  tipo_projeto: z.enum(["casa", "apartamento", "reforma", "construcao"], {
-    message: "Selecione o tipo de projeto",
-  }),
-  fase_obra: z.enum(["projeto", "construcao", "reforma", "finalizacao"], {
-    message: "Selecione a fase da obra",
-  }),
   mensagem: z.string().trim().max(1500).optional().or(z.literal("")),
 });
 
@@ -29,24 +23,8 @@ const initialState: FormState = {
   email: "",
   cidade: "",
   estado: "",
-  tipo_projeto: "casa",
-  fase_obra: "projeto",
   mensagem: "",
 };
-
-const TIPO_OPTS = [
-  { value: "casa", label: "Casa" },
-  { value: "apartamento", label: "Apartamento" },
-  { value: "reforma", label: "Reforma" },
-  { value: "construcao", label: "Construção" },
-] as const;
-
-const FASE_OPTS = [
-  { value: "projeto", label: "Projeto" },
-  { value: "construcao", label: "Construção" },
-  { value: "reforma", label: "Reforma" },
-  { value: "finalizacao", label: "Finalização" },
-] as const;
 
 export function FormularioCliente() {
   const [values, setValues] = useState<FormState>(initialState);
@@ -54,8 +32,6 @@ export function FormularioCliente() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
-  const [tipoOpen, setTipoOpen] = useState(false);
-  const [faseOpen, setFaseOpen] = useState(false);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
@@ -84,8 +60,8 @@ export function FormularioCliente() {
       email: parsed.data.email,
       cidade: parsed.data.cidade,
       estado: parsed.data.estado,
-      tipo_projeto: parsed.data.tipo_projeto,
-      fase_obra: parsed.data.fase_obra,
+      tipo_projeto: "casa" as const,
+      fase_obra: "projeto" as const,
       mensagem: parsed.data.mensagem || null,
       ...utm,
     };
@@ -131,30 +107,29 @@ export function FormularioCliente() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white/[0.03] px-4 py-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
+    "w-full rounded-xl border bg-white/[0.03] px-4 py-3 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
 
   return (
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-12"
+      className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
       noValidate
     >
       <HiddenUtmFields />
-      <div className="mb-8 text-center">
-        <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-brand-green/10">
-          <Home className="h-6 w-6 text-brand-green" strokeWidth={1.8} />
+      <div className="mb-6 text-center">
+        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10">
+          <Home className="h-5 w-5 text-brand-green" strokeWidth={1.8} />
         </div>
-        <h3 className="font-display text-3xl font-medium text-white md:text-4xl">
+        <h3 className="font-display text-2xl font-medium text-white md:text-3xl">
           Solicite um orçamento.
         </h3>
-        <p className="mx-auto mt-3 max-w-md text-[18px] leading-relaxed text-white/70">
-          Preencha seus dados e um especialista da Roll Door entrará em contato para entender seu
-          projeto e indicar o parceiro ideal para atendê-lo.
+        <p className="mx-auto mt-2 max-w-md text-[16px] leading-snug text-white/70">
+          Preencha seus dados e um especialista da Roll Door entrará em contato.
         </p>
       </div>
 
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className="grid gap-3.5 md:grid-cols-2">
         <Field label="Nome" error={errors.nome}>
           <input
             className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
@@ -190,7 +165,7 @@ export function FormularioCliente() {
             autoComplete="address-level2"
           />
         </Field>
-        <Field label="Estado" error={errors.estado} className="md:col-span-2">
+        <Field label="Estado" error={errors.estado}>
           <input
             className={`${inputBase} ${errors.estado ? "border-destructive" : "border-white/15"}`}
             value={values.estado}
@@ -199,31 +174,9 @@ export function FormularioCliente() {
             autoComplete="address-level1"
           />
         </Field>
-        <Field label="Seu projeto é" error={errors.tipo_projeto}>
-          <Dropdown
-            open={tipoOpen}
-            onToggle={() => setTipoOpen((s) => !s)}
-            onClose={() => setTipoOpen(false)}
-            value={values.tipo_projeto}
-            onChange={(v) => update("tipo_projeto", v as FormState["tipo_projeto"])}
-            options={TIPO_OPTS}
-            inputClass={`${inputBase} ${errors.tipo_projeto ? "border-destructive" : "border-white/15"}`}
-          />
-        </Field>
-        <Field label="Em que fase está sua obra" error={errors.fase_obra}>
-          <Dropdown
-            open={faseOpen}
-            onToggle={() => setFaseOpen((s) => !s)}
-            onClose={() => setFaseOpen(false)}
-            value={values.fase_obra}
-            onChange={(v) => update("fase_obra", v as FormState["fase_obra"])}
-            options={FASE_OPTS}
-            inputClass={`${inputBase} ${errors.fase_obra ? "border-destructive" : "border-white/15"}`}
-          />
-        </Field>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
           <textarea
-            className={`${inputBase} min-h-[120px] resize-y border-white/15`}
+            className={`${inputBase} min-h-[92px] resize-y border-white/15`}
             value={values.mensagem}
             onChange={(e) => update("mensagem", e.target.value)}
             placeholder="Conte um pouco sobre seu projeto."
@@ -240,7 +193,7 @@ export function FormularioCliente() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-8 inline-flex h-[62px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-6 inline-flex h-[58px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         style={{ boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)" }}
       >
         {status === "loading" ? (
@@ -253,72 +206,10 @@ export function FormularioCliente() {
           </>
         )}
       </button>
-      <p className="mt-4 text-[14px] text-white/50">
+      <p className="mt-3 text-[13px] text-white/50">
         Usamos seus dados apenas para responder ao seu contato sobre seu projeto Roll Door.
       </p>
     </form>
-  );
-}
-
-function Dropdown({
-  open,
-  onToggle,
-  onClose,
-  value,
-  onChange,
-  options,
-  inputClass,
-}: {
-  open: boolean;
-  onToggle: () => void;
-  onClose: () => void;
-  value: string;
-  onChange: (v: string) => void;
-  options: ReadonlyArray<{ value: string; label: string }>;
-  inputClass: string;
-}) {
-  const current = options.find((o) => o.value === value);
-  return (
-    <div className="relative">
-      <button
-        type="button"
-        onClick={onToggle}
-        className={`${inputClass} inline-flex items-center justify-between`}
-        aria-haspopup="listbox"
-        aria-expanded={open}
-      >
-        <span className="text-white">{current?.label}</span>
-        <ChevronDown
-          className={`h-4 w-4 text-white/50 transition-transform ${open ? "rotate-180" : ""}`}
-        />
-      </button>
-      {open && (
-        <motion.ul
-          initial={{ opacity: 0, y: -8 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.15 }}
-          className="absolute z-20 mt-2 w-full overflow-hidden rounded-xl border border-white/15 bg-[#1a1a1a] py-1 shadow-[0_20px_50px_-15px_rgba(0,0,0,0.5)]"
-          role="listbox"
-        >
-          {options.map((opt) => (
-            <li key={opt.value} role="option" aria-selected={value === opt.value}>
-              <button
-                type="button"
-                onClick={() => {
-                  onChange(opt.value);
-                  onClose();
-                }}
-                className={`w-full px-4 py-3 text-left text-[16px] transition-colors hover:bg-white/10 ${
-                  value === opt.value ? "bg-brand-green/15 text-brand-green" : "text-white"
-                }`}
-              >
-                {opt.label}
-              </button>
-            </li>
-          ))}
-        </motion.ul>
-      )}
-    </div>
   );
 }
 
@@ -335,7 +226,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.14em] text-white/60">
+      <span className="mb-1.5 block font-display text-[12px] font-medium uppercase tracking-[0.12em] text-white/60">
         {label}
       </span>
       {children}

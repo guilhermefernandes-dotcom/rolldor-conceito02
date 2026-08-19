@@ -16,7 +16,6 @@ import seloBrasil from "@/assets/selo-image-20.png.asset.json";
 import seloFalcaoBauer from "@/assets/selo-image-21.png.asset.json";
 import seloUniversidadeSom from "@/assets/selo-image-22.png.asset.json";
 import seloAbravidro from "@/assets/selo-image-23.png.asset.json";
-import banner2Asset from "@/assets/rd-banner-5.webp.asset.json";
 import project1Asset from "@/assets/rd-project-2.webp.asset.json";
 import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
@@ -47,7 +46,6 @@ import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
 import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
 
 const heroImg = heroPortaBandeirasAsset.url;
-const pullQuoteBg = banner2Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import step01Img from "@/assets/step-01-solicite.webp";
 import step02Img from "@/assets/step-02-diagnostico.webp";
@@ -55,7 +53,6 @@ import step03Img from "@/assets/step-03-parceiro.webp";
 import step04Img from "@/assets/step-04-instalacao.webp";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
-import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
 
 
 const residencialSteps: ScrollStep[] = [
@@ -200,7 +197,7 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
+      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -660,8 +657,10 @@ function ProdutosFiltraveis() {
       <div className="mt-10 flex justify-center md:mt-14">
         <a
           href="#cta-final"
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          style={{ background: "#9CCB3B" }}
         >
+
           Solicitar orçamento
           <ArrowRight className="h-5 w-5" />
         </a>
@@ -730,40 +729,25 @@ function LandingCliente() {
                 className="mt-6 max-w-2xl text-[17px] font-medium leading-relaxed tracking-[-0.01em] text-white md:text-[20px]"
                 style={{ textShadow: "0 1px 16px rgba(0,0,0,0.6)" }}
               >
-                Design, desempenho e acabamento de alto padrão para valorizar sua obra.
+                Esquadrias alto padrão e portas de alumínio sob medida para mais amplitude e
+                integração.
               </p>
             </Reveal>
 
-            <Reveal delay={0.35}>
-              <ul className="mt-7 flex justify-center">
-                {["Rede de especialistas em todo o Brasil"].map((item) => (
-                  <li
-                    key={item}
-                    className="flex items-center gap-3 text-[16px] text-white md:text-[18px]"
-                    style={{ textShadow: "0 1px 12px rgba(0,0,0,0.6)" }}
-                  >
-                    <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-brand-green/60 text-brand-green">
-                      <Check className="h-3.5 w-3.5" strokeWidth={3} />
-                    </span>
-                    {item}
-                  </li>
-                ))}
-              </ul>
-            </Reveal>
-
             <Reveal delay={0.5}>
-              <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
-                <CtaPrimary href="#produtos" className="w-full sm:w-auto">
-                  Ver produtos
+              <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row sm:gap-4">
+                <CtaPrimary href="#cta-final" className="w-full font-semibold sm:w-auto">
+                  Solicitar orçamento
                 </CtaPrimary>
                 <a
-                  href="#cta-final"
-                  className="inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:h-[68px] sm:w-auto sm:px-12 sm:text-xl"
+                  href="#produtos"
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
-                  Solicitar orçamento
+                  Ver produtos
                 </a>
               </div>
             </Reveal>
+
 
             <Reveal delay={0.6}>
               <div className="mt-10 w-full border-t border-white/10 pt-6">
@@ -899,54 +883,6 @@ function LandingCliente() {
         </div>
       </section>
 
-      {/* SESSÃO 4 — "Um novo padrão" (Apple-style pinned reveal) */}
-      <NovoPadraoPinned />
-
-      {/* SESSÃO 5 — O detalhe que valoriza (pull quote) */}
-      <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-16 md:py-36">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <img
-            src={pullQuoteBg}
-            alt=""
-            className="h-full w-full object-cover opacity-25"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground via-foreground/85 to-foreground" />
-        </div>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 22px)",
-          }}
-        />
-        <div className="relative mx-auto max-w-4xl px-6 text-center md:px-10">
-          <Reveal>
-            <h2
-              className="font-display text-white"
-              style={{
-                fontWeight: 500,
-                fontSize: "clamp(28px, 5vw, 52px)",
-                lineHeight: "1.08",
-                letterSpacing: "-0.035em",
-              }}
-            >
-              O <UnderlineWord delay={0}>detalhe</UnderlineWord> que valoriza todo o seu imóvel.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-[16px] leading-relaxed text-white/75 md:mt-10 md:text-[20px]">
-              <p>Escolher esquadrias premium não é apenas uma decisão estética.</p>
-              <p>É investir em conforto, funcionalidade e valorização patrimonial.</p>
-              <p>
-                Projetos de alto padrão exigem soluções capazes de acompanhar essa mesma qualidade.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* SESSÃO 6 — Por que escolher a Roll Door (caixa de mensagem) */}
       <section className="bg-foreground pt-4 pb-24 md:pb-32">
@@ -1023,82 +959,6 @@ function LandingCliente() {
       </section>
 
 
-      {/* SESSÃO 7 — Da inspiração ao seu projeto */}
-      <section className="relative overflow-hidden bg-[#F2F0EA] py-16 md:py-32">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
-                Como funciona
-              </span>
-              <h2
-                className="mt-5 font-display text-[#0E1111]"
-                style={{
-                  fontWeight: 500,
-                  fontSize: "clamp(28px, 5vw, 52px)",
-                  lineHeight: "1.05",
-                  letterSpacing: "-0.035em",
-                }}
-              >
-                Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
-              </h2>
-              <p className="mx-auto mt-6 text-[16px] text-[#0E1111]/60 md:text-[20px]">
-                Quatro passos entre a sua ideia e um ambiente Roll Door.
-              </p>
-            </Reveal>
-          </div>
-
-          {/* Horizontal 4-step layout with icon circles + arrows */}
-          <div className="mt-16 md:mt-24">
-            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:items-start md:gap-4">
-              {[
-                { n: "01", title: "Solicite", desc: "Você inicia o contato e conta sobre o seu projeto.", img: step01Img },
-                { n: "02", title: "Diagnóstico", desc: "Nossa equipe identifica a melhor solução para o seu ambiente.", img: step02Img },
-                { n: "03", title: "Parceiro local", desc: "Você é direcionado a um parceiro especializado da sua região.", img: step03Img },
-                { n: "04", title: "Instalação", desc: "Seu projeto ganha vida com a qualidade e o acabamento Roll Door.", img: step04Img },
-              ].map((s, i) => (
-                <React.Fragment key={s.n}>
-                  <Reveal delay={i * 0.08}>
-                    <div className="flex flex-col items-center text-center">
-                      <div
-                        className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full"
-                        style={{ backgroundColor: "#9CCB3B" }}
-                      >
-                        <img
-                          src={s.img}
-                          alt={`Ilustração etapa ${s.n} — ${s.title}`}
-                          loading="lazy"
-                          width={1024}
-                          height={1024}
-                          className="absolute inset-0 h-full w-full object-contain p-10"
-                        />
-                      </div>
-                      <div className="mt-6 flex items-center gap-3">
-                        <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
-                        <span className="h-px w-8 bg-brand-green" />
-                      </div>
-                      <h3
-                        className="mt-3 font-display text-[#0E1111]"
-                        style={{ fontWeight: 500, fontSize: "clamp(20px, 1.8vw, 26px)", letterSpacing: "-0.02em" }}
-                      >
-                        {s.title}
-                      </h3>
-                      <p className="mt-2 max-w-[260px] text-[16px] leading-relaxed text-[#0E1111]/65 md:text-[18px]">{s.desc}</p>
-                    </div>
-                  </Reveal>
-                  {i < 3 && (
-                    <div className="hidden self-center md:flex md:items-center md:justify-center">
-                      <svg width="32" height="16" viewBox="0 0 32 16" fill="none" aria-hidden className="text-[#0E1111]/40">
-                        <path d="M1 8h28m0 0l-6-6m6 6l-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
 
 
@@ -1175,72 +1035,76 @@ function LandingCliente() {
           }}
         />
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
-            <Reveal>
+          <Reveal>
+            <div
+              className="relative overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
+              style={{
+                background:
+                  "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
+              }}
+            >
               <div
-                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
-                style={{
-                  background:
-                    "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
-                }}
-              >
-                <div
-                  className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
-                  style={{ background: "#9CCB3B" }}
-                />
-                <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
-                  Fale com um especialista
-                </span>
-                <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
-                  Seu projeto merece uma solução à altura.
-                </h2>
-                <p className="mt-6 max-w-md text-[16px] leading-relaxed text-white/75 md:text-[19px]">
-                  Solicite um atendimento e descubra como as soluções Roll Door podem transformar
-                  sua residência com design, tecnologia e sofisticação.
-                </p>
+                className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+                style={{ background: "#9CCB3B" }}
+              />
+              <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
+                <div className="flex flex-col">
+                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                    Fale com um especialista
+                  </span>
+                  <h2 className="mt-4 font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
+                    Seu projeto merece uma solução à altura.
+                  </h2>
+                  <p className="mt-4 max-w-md text-[16px] leading-relaxed text-white/75 md:text-[19px]">
+                    Solicite um atendimento e descubra como as soluções Roll Door podem transformar
+                    sua residência com design, tecnologia e sofisticação.
+                  </p>
 
-                <div className="my-8 h-px w-full bg-white/15" />
+                  <div className="my-8 hidden h-px w-full bg-white/15 lg:block" />
 
-                <ul className="flex flex-col gap-4">
-                  {[
-                    "Atendimento personalizado para seu projeto",
-                    "Indicação do parceiro Roll Door da sua região",
-                    "Suporte técnico especializado",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[16px] text-white/90 md:text-[18px]">
-                      <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="hidden flex-col gap-4 lg:flex">
+                    {[
+                      "Atendimento personalizado para seu projeto",
+                      "Indicação do parceiro Roll Door da sua região",
+                      "Suporte técnico especializado",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 text-[16px] text-white/90 md:text-[18px]"
+                      >
+                        <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="mt-auto grid grid-cols-1 gap-3 pt-10 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      WhatsApp
+                  <div className="mt-10 hidden grid-cols-1 gap-3 sm:grid-cols-2 lg:grid">
+                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                        WhatsApp
+                      </div>
+                      <div className="mt-1 font-display text-[18px] font-medium text-white">
+                        44 98824-9953
+                      </div>
                     </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      44 98824-9953
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      E-mail
-                    </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      contato@rolldoor.com.br
+                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                        E-mail
+                      </div>
+                      <div className="mt-1 font-display text-[18px] font-medium text-white">
+                        contato@rolldoor.com.br
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
 
-            <Reveal delay={0.15}>
-              <FormularioCliente />
-            </Reveal>
-          </div>
+                <FormularioCliente />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
+
 
     </main>
   );
