@@ -55,7 +55,6 @@ import step03Img from "@/assets/step-03-parceiro.webp";
 import step04Img from "@/assets/step-04-instalacao.webp";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
-import { NovoPadraoPinned } from "@/components/NovoPadraoPinned";
 
 
 const residencialSteps: ScrollStep[] = [
