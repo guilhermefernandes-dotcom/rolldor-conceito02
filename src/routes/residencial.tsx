@@ -47,7 +47,6 @@ import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
 import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
 
 const heroImg = heroPortaBandeirasAsset.url;
-const pullQuoteBg = banner2Asset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import step01Img from "@/assets/step-01-solicite.webp";
 import step02Img from "@/assets/step-02-diagnostico.webp";
