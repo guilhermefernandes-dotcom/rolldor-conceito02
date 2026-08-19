@@ -197,7 +197,7 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
+      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
