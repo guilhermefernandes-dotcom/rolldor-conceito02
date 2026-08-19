@@ -165,7 +165,7 @@ export function FormularioCliente() {
             autoComplete="address-level2"
           />
         </Field>
-        <Field label="Estado" error={errors.estado} className="md:col-span-2">
+        <Field label="Estado" error={errors.estado}>
           <input
             className={`${inputBase} ${errors.estado ? "border-destructive" : "border-white/15"}`}
             value={values.estado}
