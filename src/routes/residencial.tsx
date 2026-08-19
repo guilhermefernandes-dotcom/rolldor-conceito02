@@ -899,54 +899,6 @@ function LandingCliente() {
         </div>
       </section>
 
-      {/* SESSÃO 4 — "Um novo padrão" (Apple-style pinned reveal) */}
-      <NovoPadraoPinned />
-
-      {/* SESSÃO 5 — O detalhe que valoriza (pull quote) */}
-      <section className="relative overflow-hidden border-y border-white/5 bg-foreground py-16 md:py-36">
-        <div aria-hidden className="pointer-events-none absolute inset-0">
-          <img
-            src={pullQuoteBg}
-            alt=""
-            className="h-full w-full object-cover opacity-25"
-            loading="lazy"
-            decoding="async"
-          />
-          <div className="absolute inset-0 bg-gradient-to-b from-foreground via-foreground/85 to-foreground" />
-        </div>
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-0 opacity-[0.05]"
-          style={{
-            backgroundImage:
-              "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 22px)",
-          }}
-        />
-        <div className="relative mx-auto max-w-4xl px-6 text-center md:px-10">
-          <Reveal>
-            <h2
-              className="font-display text-white"
-              style={{
-                fontWeight: 500,
-                fontSize: "clamp(28px, 5vw, 52px)",
-                lineHeight: "1.08",
-                letterSpacing: "-0.035em",
-              }}
-            >
-              O <UnderlineWord delay={0}>detalhe</UnderlineWord> que valoriza todo o seu imóvel.
-            </h2>
-          </Reveal>
-          <Reveal delay={0.15}>
-            <div className="mx-auto mt-8 max-w-2xl space-y-5 text-[16px] leading-relaxed text-white/75 md:mt-10 md:text-[20px]">
-              <p>Escolher esquadrias premium não é apenas uma decisão estética.</p>
-              <p>É investir em conforto, funcionalidade e valorização patrimonial.</p>
-              <p>
-                Projetos de alto padrão exigem soluções capazes de acompanhar essa mesma qualidade.
-              </p>
-            </div>
-          </Reveal>
-        </div>
-      </section>
 
       {/* SESSÃO 6 — Por que escolher a Roll Door (caixa de mensagem) */}
       <section className="bg-foreground pt-4 pb-24 md:pb-32">
@@ -1023,82 +975,6 @@ function LandingCliente() {
       </section>
 
 
-      {/* SESSÃO 7 — Da inspiração ao seu projeto */}
-      <section className="relative overflow-hidden bg-[#F2F0EA] py-16 md:py-32">
-        <div className="mx-auto max-w-[1280px] px-6 md:px-10">
-          <div className="mx-auto max-w-3xl text-center">
-            <Reveal>
-              <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-[#2F3D30]">
-                Como funciona
-              </span>
-              <h2
-                className="mt-5 font-display text-[#0E1111]"
-                style={{
-                  fontWeight: 500,
-                  fontSize: "clamp(28px, 5vw, 52px)",
-                  lineHeight: "1.05",
-                  letterSpacing: "-0.035em",
-                }}
-              >
-                Da <UnderlineWord delay={0}>inspiração</UnderlineWord> ao seu projeto.
-              </h2>
-              <p className="mx-auto mt-6 text-[16px] text-[#0E1111]/60 md:text-[20px]">
-                Quatro passos entre a sua ideia e um ambiente Roll Door.
-              </p>
-            </Reveal>
-          </div>
-
-          {/* Horizontal 4-step layout with icon circles + arrows */}
-          <div className="mt-16 md:mt-24">
-            <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 md:grid-cols-[1fr_auto_1fr_auto_1fr_auto_1fr] md:items-start md:gap-4">
-              {[
-                { n: "01", title: "Solicite", desc: "Você inicia o contato e conta sobre o seu projeto.", img: step01Img },
-                { n: "02", title: "Diagnóstico", desc: "Nossa equipe identifica a melhor solução para o seu ambiente.", img: step02Img },
-                { n: "03", title: "Parceiro local", desc: "Você é direcionado a um parceiro especializado da sua região.", img: step03Img },
-                { n: "04", title: "Instalação", desc: "Seu projeto ganha vida com a qualidade e o acabamento Roll Door.", img: step04Img },
-              ].map((s, i) => (
-                <React.Fragment key={s.n}>
-                  <Reveal delay={i * 0.08}>
-                    <div className="flex flex-col items-center text-center">
-                      <div
-                        className="relative aspect-square w-full max-w-[240px] overflow-hidden rounded-full"
-                        style={{ backgroundColor: "#9CCB3B" }}
-                      >
-                        <img
-                          src={s.img}
-                          alt={`Ilustração etapa ${s.n} — ${s.title}`}
-                          loading="lazy"
-                          width={1024}
-                          height={1024}
-                          className="absolute inset-0 h-full w-full object-contain p-10"
-                        />
-                      </div>
-                      <div className="mt-6 flex items-center gap-3">
-                        <span className="font-display text-xs font-medium uppercase tracking-[0.28em] text-[#2F3D30]/70">{s.n}</span>
-                        <span className="h-px w-8 bg-brand-green" />
-                      </div>
-                      <h3
-                        className="mt-3 font-display text-[#0E1111]"
-                        style={{ fontWeight: 500, fontSize: "clamp(20px, 1.8vw, 26px)", letterSpacing: "-0.02em" }}
-                      >
-                        {s.title}
-                      </h3>
-                      <p className="mt-2 max-w-[260px] text-[16px] leading-relaxed text-[#0E1111]/65 md:text-[18px]">{s.desc}</p>
-                    </div>
-                  </Reveal>
-                  {i < 3 && (
-                    <div className="hidden self-center md:flex md:items-center md:justify-center">
-                      <svg width="32" height="16" viewBox="0 0 32 16" fill="none" aria-hidden className="text-[#0E1111]/40">
-                        <path d="M1 8h28m0 0l-6-6m6 6l-6 6" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-                      </svg>
-                    </div>
-                  )}
-                </React.Fragment>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
 
 
