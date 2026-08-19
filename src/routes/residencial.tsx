@@ -1175,72 +1175,76 @@ function LandingCliente() {
           }}
         />
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
-          <div className="grid gap-8 lg:grid-cols-2 lg:gap-10">
-            <Reveal>
+          <Reveal>
+            <div
+              className="relative overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
+              style={{
+                background:
+                  "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
+              }}
+            >
               <div
-                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
-                style={{
-                  background:
-                    "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
-                }}
-              >
-                <div
-                  className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
-                  style={{ background: "#9CCB3B" }}
-                />
-                <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
-                  Fale com um especialista
-                </span>
-                <h2 className="mt-5 font-display text-4xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
-                  Seu projeto merece uma solução à altura.
-                </h2>
-                <p className="mt-6 max-w-md text-[16px] leading-relaxed text-white/75 md:text-[19px]">
-                  Solicite um atendimento e descubra como as soluções Roll Door podem transformar
-                  sua residência com design, tecnologia e sofisticação.
-                </p>
+                className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+                style={{ background: "#9CCB3B" }}
+              />
+              <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
+                <div className="flex flex-col">
+                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                    Fale com um especialista
+                  </span>
+                  <h2 className="mt-4 font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
+                    Seu projeto merece uma solução à altura.
+                  </h2>
+                  <p className="mt-4 max-w-md text-[16px] leading-relaxed text-white/75 md:text-[19px]">
+                    Solicite um atendimento e descubra como as soluções Roll Door podem transformar
+                    sua residência com design, tecnologia e sofisticação.
+                  </p>
 
-                <div className="my-8 h-px w-full bg-white/15" />
+                  <div className="my-8 hidden h-px w-full bg-white/15 lg:block" />
 
-                <ul className="flex flex-col gap-4">
-                  {[
-                    "Atendimento personalizado para seu projeto",
-                    "Indicação do parceiro Roll Door da sua região",
-                    "Suporte técnico especializado",
-                  ].map((item) => (
-                    <li key={item} className="flex items-start gap-3 text-[16px] text-white/90 md:text-[18px]">
-                      <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
+                  <ul className="hidden flex-col gap-4 lg:flex">
+                    {[
+                      "Atendimento personalizado para seu projeto",
+                      "Indicação do parceiro Roll Door da sua região",
+                      "Suporte técnico especializado",
+                    ].map((item) => (
+                      <li
+                        key={item}
+                        className="flex items-start gap-3 text-[16px] text-white/90 md:text-[18px]"
+                      >
+                        <Check className="mt-1 h-5 w-5 shrink-0 text-brand-green" strokeWidth={2.5} />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-                <div className="mt-auto grid grid-cols-1 gap-3 pt-10 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      WhatsApp
+                  <div className="mt-10 hidden grid-cols-1 gap-3 sm:grid-cols-2 lg:grid">
+                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                        WhatsApp
+                      </div>
+                      <div className="mt-1 font-display text-[18px] font-medium text-white">
+                        44 98824-9953
+                      </div>
                     </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      44 98824-9953
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      E-mail
-                    </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      contato@rolldoor.com.br
+                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
+                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
+                        E-mail
+                      </div>
+                      <div className="mt-1 font-display text-[18px] font-medium text-white">
+                        contato@rolldoor.com.br
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Reveal>
 
-            <Reveal delay={0.15}>
-              <FormularioCliente />
-            </Reveal>
-          </div>
+                <FormularioCliente />
+              </div>
+            </div>
+          </Reveal>
         </div>
       </section>
+
 
     </main>
   );
