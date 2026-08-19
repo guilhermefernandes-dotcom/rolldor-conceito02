@@ -657,8 +657,10 @@ function ProdutosFiltraveis() {
       <div className="mt-10 flex justify-center md:mt-14">
         <a
           href="#cta-final"
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border-2 border-brand-green px-10 font-display text-lg font-medium text-brand-green transition-colors hover:bg-brand-green hover:text-white sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          style={{ background: "#9CCB3B" }}
         >
+
           Solicitar orçamento
           <ArrowRight className="h-5 w-5" />
         </a>
