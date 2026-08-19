@@ -113,11 +113,11 @@ export function FormularioCliente() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-6 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
+      className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
       noValidate
     >
       <HiddenUtmFields />
-      <div className="mb-6 text-center">
+      <div className="mb-5 text-center">
         <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10">
           <Home className="h-5 w-5 text-brand-green" strokeWidth={1.8} />
         </div>
@@ -129,7 +129,7 @@ export function FormularioCliente() {
         </p>
       </div>
 
-      <div className="grid gap-3.5 md:grid-cols-2">
+      <div className="grid gap-3 md:grid-cols-2">
         <Field label="Nome" error={errors.nome}>
           <input
             className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
@@ -157,23 +157,26 @@ export function FormularioCliente() {
             autoComplete="email"
           />
         </Field>
-        <Field label="Cidade" error={errors.cidade}>
-          <input
-            className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
-            value={values.cidade}
-            onChange={(e) => update("cidade", e.target.value)}
-            autoComplete="address-level2"
-          />
-        </Field>
-        <Field label="Estado" error={errors.estado}>
-          <input
-            className={`${inputBase} ${errors.estado ? "border-destructive" : "border-white/15"}`}
-            value={values.estado}
-            onChange={(e) => update("estado", e.target.value)}
-            placeholder="Ex: SP"
-            autoComplete="address-level1"
-          />
-        </Field>
+        <div className="grid grid-cols-[4fr_1fr] gap-3 md:col-span-2">
+          <Field label="Cidade" error={errors.cidade}>
+            <input
+              className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
+              value={values.cidade}
+              onChange={(e) => update("cidade", e.target.value)}
+              autoComplete="address-level2"
+            />
+          </Field>
+          <Field label="Estado" error={errors.estado}>
+            <input
+              className={`${inputBase} px-2 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
+              value={values.estado}
+              onChange={(e) => update("estado", e.target.value)}
+              placeholder="SP"
+              maxLength={2}
+              autoComplete="address-level1"
+            />
+          </Field>
+        </div>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
           <textarea
             className={`${inputBase} min-h-[92px] resize-y border-white/15`}
@@ -193,7 +196,7 @@ export function FormularioCliente() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-6 inline-flex h-[58px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-5 inline-flex h-[58px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         style={{ boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)" }}
       >
         {status === "loading" ? (
@@ -226,11 +229,11 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1.5 block font-display text-[12px] font-medium uppercase tracking-[0.12em] text-white/60">
+      <span className="mb-1 block font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/60">
         {label}
       </span>
       {children}
-      {error && <span className="mt-1.5 block text-[13px] text-destructive">{error}</span>}
+      {error && <span className="mt-1 block text-[12px] text-destructive">{error}</span>}
     </label>
   );
 }

@@ -1037,7 +1037,7 @@ function LandingCliente() {
         <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
           <Reveal>
             <div
-              className="relative overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
+              className="relative overflow-hidden rounded-3xl p-4 text-white sm:p-8 md:p-12"
               style={{
                 background:
                   "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
