@@ -196,8 +196,11 @@ export function FormularioCliente() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-5 inline-flex h-[58px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
-        style={{ boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)" }}
+        className="mt-5 inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-[68px] sm:text-xl"
+        style={{
+          background: "#9CCB3B",
+          boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
+        }}
       >
         {status === "loading" ? (
           <>
@@ -209,6 +212,7 @@ export function FormularioCliente() {
           </>
         )}
       </button>
+
       <p className="mt-3 text-[13px] text-white/50">
         Usamos seus dados apenas para responder ao seu contato sobre seu projeto Roll Door.
       </p>
