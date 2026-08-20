@@ -205,7 +205,7 @@ export function FormularioCliente() {
           </>
         ) : (
           <>
-            Quero transformar meu projeto <ArrowRight className="h-5 w-5" />
+            Solicitar orçamento <ArrowRight className="h-5 w-5" />
           </>
         )}
       </button>
@@ -229,7 +229,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1 block font-display text-[11px] font-medium uppercase tracking-[0.12em] text-white/60">
+      <span className="mb-1 block truncate font-display text-[11px] font-medium uppercase tracking-[0.08em] text-white/60">
         {label}
       </span>
       {children}
