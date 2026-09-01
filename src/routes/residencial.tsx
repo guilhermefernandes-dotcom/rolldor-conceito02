@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { UtmTracking } from "@/components/UtmTracking";
+import { UtmCapture } from "@/components/UtmCapture";
 import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
@@ -93,6 +93,12 @@ const residencialSteps: ScrollStep[] = [
 ];
 
 
+const GTM_HEAD_SCRIPT = `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-P2GL2SVF');`;
+
 export const Route = createFileRoute("/residencial")({
   head: () => {
     const title =
@@ -123,6 +129,7 @@ export const Route = createFileRoute("/residencial")({
           fetchpriority: "high",
         },
       ],
+      scripts: [{ children: GTM_HEAD_SCRIPT }],
     };
   },
   component: LandingCliente,
@@ -669,16 +676,31 @@ function ProdutosFiltraveis() {
   );
 }
 
+function GtmBody() {
+  return (
+    <noscript>
+      <iframe
+        src="https://www.googletagmanager.com/ns.html?id=GTM-P2GL2SVF"
+        height="0"
+        width="0"
+        style={{ display: "none", visibility: "hidden" }}
+      />
+    </noscript>
+  );
+}
+
 function LandingCliente() {
   const { scrollY } = useScroll();
   const heroPad = useTransform(scrollY, [0, 120], [13, 0]);
   const heroRadius = useTransform(scrollY, [0, 120], [28, 0]);
 
   return (
-    <main className="min-h-screen bg-foreground text-white antialiased">
-      <UtmTracking />
+    <>
+      <GtmBody />
+      <main className="min-h-screen bg-foreground text-white antialiased">
+        <UtmCapture />
 
-      {/* HERO — imagem full com overlay escuro, tipografia elegante */}
+        {/* HERO — imagem full com overlay escuro, tipografia elegante */}
       <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
         <motion.section
           className="relative w-full overflow-hidden px-6 py-16 md:px-10 md:py-16 lg:py-20"

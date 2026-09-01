@@ -1,7 +1,5 @@
 import * as React from "react";
 
-const GTM_ID = "GTM-5RZ8XX2S";
-
 function loadScript(src: string) {
   return new Promise<void>((resolve) => {
     if (document.querySelector(`script[src="${src}"]`)) return resolve();
@@ -15,23 +13,11 @@ function loadScript(src: string) {
 }
 
 /**
- * Carrega GTM + script de captura de UTM apenas nesta página.
+ * Carrega o script de captura de UTM sem o Google Tag Manager.
  */
-export function UtmTracking() {
+export function UtmCapture() {
   React.useEffect(() => {
     let cancelled = false;
-
-    // Google Tag Manager
-    const w = window as unknown as { dataLayer?: unknown[] };
-    w.dataLayer = w.dataLayer || [];
-    if (!document.querySelector(`script[src*="googletagmanager.com/gtm.js?id=${GTM_ID}"]`)) {
-      w.dataLayer.push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
-      const gtm = document.createElement("script");
-      gtm.async = true;
-      gtm.src = `https://www.googletagmanager.com/gtm.js?id=${GTM_ID}`;
-      document.head.appendChild(gtm);
-    }
-
     const timers: ReturnType<typeof setTimeout>[] = [];
 
     (async () => {
@@ -52,14 +38,5 @@ export function UtmTracking() {
     };
   }, []);
 
-  return (
-    <noscript>
-      <iframe
-        src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
-        height="0"
-        width="0"
-        style={{ display: "none", visibility: "hidden" }}
-      />
-    </noscript>
-  );
+  return null;
 }
