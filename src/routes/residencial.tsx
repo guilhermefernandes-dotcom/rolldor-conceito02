@@ -193,12 +193,43 @@ function UnderlineWord({
 }
 
 // Rolagem suave + destaque imediato no formulário ao clicar em qualquer CTA.
+// No CTA final, centraliza o formulário na área visível real (visualViewport
+// já desconta a barra do navegador mobile), sem exigir rolagem extra.
 export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
   if (!href.startsWith("#")) return;
   const target = document.getElementById(href.slice(1));
   if (!target) return;
   e.preventDefault();
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  const scrollToForm = () => {
+    const form = document.getElementById("formulario-orcamento");
+    const el = form ?? target;
+    // Altura visível real, descontando barras do navegador mobile.
+    const viewH = window.visualViewport?.height ?? window.innerHeight;
+    const rect = el.getBoundingClientRect();
+    const elTop = window.scrollY + rect.top;
+    const margin = 12;
+    let y: number;
+    if (rect.height <= viewH - margin * 2) {
+      // Cabe na tela: centraliza verticalmente.
+      y = elTop - (viewH - rect.height) / 2;
+    } else {
+      // Mais alto que a tela: ancora o primeiro campo no topo, garantindo
+      // que o botão de envio também fique visível na mesma tela.
+      const firstField = form?.querySelector("input, textarea, select");
+      const fTop = firstField
+        ? window.scrollY + firstField.getBoundingClientRect().top
+        : elTop;
+      const maxY = fTop - 40; // primeiro campo (com label) no topo
+      const minY = elTop + rect.height - viewH + margin; // botão visível
+      y = minY <= maxY ? maxY : minY;
+    }
+    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+  };
+
+  scrollToForm();
+  // Reancora ao fim da animação para compensar barras que se recolhem no mobile.
+  window.setTimeout(scrollToForm, 500);
   window.setTimeout(() => {
     window.dispatchEvent(new CustomEvent("rd:highlight-form"));
   }, 350);
