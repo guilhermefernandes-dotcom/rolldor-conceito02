@@ -1070,7 +1070,7 @@ function LandingCliente() {
                 style={{ background: "#9CCB3B" }}
               />
               <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">
-                <div className="flex flex-col">
+                <div className="hidden flex-col lg:flex">
                   <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
                     Fale com um especialista
                   </span>
