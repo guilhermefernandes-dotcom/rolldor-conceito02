@@ -192,6 +192,19 @@ function UnderlineWord({
   );
 }
 
+// Rolagem suave + destaque imediato no formulário ao clicar em qualquer CTA.
+export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#")) return;
+  const target = document.getElementById(href.slice(1));
+  if (!target) return;
+  e.preventDefault();
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("rd:highlight-form"));
+  }, 350);
+  if (window.history?.replaceState) window.history.replaceState(null, "", href);
+}
+
 function CtaPrimary({
   children,
   href = "#cta-final",
@@ -204,7 +217,8 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
+      onClick={(e) => handleCtaClick(e, href)}
+      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
