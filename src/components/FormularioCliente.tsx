@@ -107,29 +107,29 @@ export function FormularioCliente() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white/[0.03] px-4 py-3 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
+    "w-full rounded-xl border bg-white/[0.03] px-3 py-2.5 font-sans text-[15px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
 
   return (
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-4 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
+      className="rounded-3xl border border-white/10 bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
       noValidate
     >
       <HiddenUtmFields />
-      <div className="mb-5 text-center">
-        <div className="mx-auto mb-3 flex h-12 w-12 items-center justify-center rounded-full bg-brand-green/10">
-          <Home className="h-5 w-5 text-brand-green" strokeWidth={1.8} />
+      <div className="mb-3 text-center">
+        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-brand-green/10">
+          <Home className="h-4 w-4 text-brand-green" strokeWidth={1.8} />
         </div>
-        <h3 className="font-display text-2xl font-medium text-white md:text-3xl">
+        <h3 className="font-display text-xl font-medium text-white md:text-3xl">
           Solicite um orçamento.
         </h3>
-        <p className="mx-auto mt-2 max-w-md text-[16px] leading-snug text-white/70">
+        <p className="mx-auto mt-1 max-w-md text-[15px] leading-snug text-white/70">
           Preencha seus dados e um especialista da Roll Door entrará em contato.
         </p>
       </div>
 
-      <div className="grid gap-3 md:grid-cols-2">
+      <div className="grid gap-2 md:grid-cols-2">
         <Field label="Nome" error={errors.nome}>
           <input
             className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
@@ -157,7 +157,7 @@ export function FormularioCliente() {
             autoComplete="email"
           />
         </Field>
-        <div className="grid grid-cols-[4fr_1fr] gap-3 md:col-span-2">
+        <div className="grid grid-cols-[3fr_1fr] gap-2 md:col-span-2">
           <Field label="Cidade" error={errors.cidade}>
             <input
               className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
@@ -168,7 +168,7 @@ export function FormularioCliente() {
           </Field>
           <Field label="Estado" error={errors.estado}>
             <input
-              className={`${inputBase} px-2 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
+              className={`${inputBase} px-1 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
               value={values.estado}
               onChange={(e) => update("estado", e.target.value)}
               placeholder="SP"
@@ -179,7 +179,7 @@ export function FormularioCliente() {
         </div>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
           <textarea
-            className={`${inputBase} min-h-[92px] resize-y border-white/15`}
+            className={`${inputBase} min-h-[80px] resize-y border-white/15`}
             value={values.mensagem}
             onChange={(e) => update("mensagem", e.target.value)}
             placeholder="Conte um pouco sobre seu projeto."
@@ -188,7 +188,7 @@ export function FormularioCliente() {
       </div>
 
       {serverError && (
-        <div className="mt-5 rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3 text-[15px] text-destructive">
+        <div className="mt-4 rounded-xl border border-destructive/30 bg-destructive/5 px-3 py-2 text-[14px] text-destructive">
           {serverError}
         </div>
       )}
@@ -196,7 +196,7 @@ export function FormularioCliente() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-5 inline-flex h-16 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-[68px] sm:text-xl"
+        className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-6 font-display text-base font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-16 sm:text-lg"
         style={{
           background: "#9CCB3B",
           boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -213,7 +213,7 @@ export function FormularioCliente() {
         )}
       </button>
 
-      <p className="mt-3 text-[13px] text-white/50">
+      <p className="mt-2 text-[12px] text-white/50">
         Usamos seus dados apenas para responder ao seu contato sobre seu projeto Roll Door.
       </p>
     </form>
@@ -233,11 +233,11 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1 block truncate font-display text-[11px] font-medium uppercase tracking-[0.08em] text-white/60">
+      <span className="mb-0.5 block truncate font-display text-[11px] font-medium uppercase tracking-[0.08em] text-white/60">
         {label}
       </span>
       {children}
-      {error && <span className="mt-1 block text-[12px] text-destructive">{error}</span>}
+      {error && <span className="mt-0.5 block text-[12px] text-destructive">{error}</span>}
     </label>
   );
 }
