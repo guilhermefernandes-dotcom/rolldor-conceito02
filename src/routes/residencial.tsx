@@ -121,7 +121,7 @@ export const Route = createFileRoute("/residencial")({
           rel: "preload",
           as: "image",
           href: heroPortaBandeirasAsset.url,
-          fetchpriority: "high",
+          fetchPriority: "high",
         },
       ],
       scripts: [{ children: GTM_HEAD_SCRIPT }],
