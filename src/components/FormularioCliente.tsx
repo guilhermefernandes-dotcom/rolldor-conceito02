@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2, Loader2, ArrowRight, Home } from "lucide-react";
 import { z } from "zod";
@@ -14,6 +14,11 @@ const schema = z.object({
   estado: z.string().trim().min(2, "Informe o estado").max(60),
   mensagem: z.string().trim().max(1500).optional().or(z.literal("")),
 });
+
+const UFS = [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+  "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
+];
 
 type FormState = z.input<typeof schema>;
 
@@ -32,10 +37,45 @@ export function FormularioCliente() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [highlight, setHighlight] = useState(false);
+
+  // Destaque imediato quando o usuário clica em qualquer CTA "Solicitar orçamento".
+  useEffect(() => {
+    let timer: number | undefined;
+    function onHighlight() {
+      setHighlight(true);
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => setHighlight(false), 1400);
+    }
+    window.addEventListener("rd:highlight-form", onHighlight);
+    return () => {
+      window.removeEventListener("rd:highlight-form", onHighlight);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
+  }
+
+  // Formata apenas quando o cursor está no fim do campo, para nunca reposicionar
+  // o caret durante a digitação (causa de "cliques mortos"/travamentos no Android).
+  function onWhatsappChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const el = e.target;
+    const raw = el.value;
+    const caretAtEnd = el.selectionStart === raw.length;
+    if (!caretAtEnd) {
+      update("whatsapp", raw);
+      return;
+    }
+    const d = raw.replace(/\D/g, "").slice(0, 11);
+    let out = d;
+    if (d.length > 2 && d.length <= 6) out = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    else if (d.length > 6 && d.length <= 10) out = `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    else if (d.length > 10) out = `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+    else if (d.length > 0) out = `(${d}`;
+    update("whatsapp", out);
   }
 
   async function onSubmit(e: React.FormEvent) {
@@ -113,7 +153,12 @@ export function FormularioCliente() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
+      id="formulario-orcamento"
+      className={`rounded-3xl border bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-all duration-300 md:p-8 ${
+        highlight
+          ? "border-brand-green/70 ring-2 ring-brand-green/40 ring-offset-2 ring-offset-transparent"
+          : "border-white/10"
+      }`}
       noValidate
     >
       <HiddenUtmFields />
@@ -140,12 +185,14 @@ export function FormularioCliente() {
         </Field>
         <Field label="WhatsApp" error={errors.whatsapp}>
           <input
+            type="tel"
             className={`${inputBase} ${errors.whatsapp ? "border-destructive" : "border-white/15"}`}
             value={values.whatsapp}
-            onChange={(e) => update("whatsapp", e.target.value)}
+            onChange={onWhatsappChange}
             placeholder="(11) 90000-0000"
-            inputMode="tel"
+            inputMode="numeric"
             autoComplete="tel"
+            maxLength={16}
           />
         </Field>
         <Field label="E-mail" error={errors.email}>
@@ -168,13 +215,22 @@ export function FormularioCliente() {
           </Field>
           <Field label="Estado" error={errors.estado}>
             <input
-              className={`${inputBase} px-1 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
+              list="uf-list"
+              className={`${inputBase} px-2 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
               value={values.estado}
-              onChange={(e) => update("estado", e.target.value)}
+              onChange={(e) =>
+                update("estado", e.target.value.replace(/[^a-zA-Z]/g, "").toUpperCase().slice(0, 2))
+              }
               placeholder="SP"
               maxLength={2}
+              autoCapitalize="characters"
               autoComplete="address-level1"
             />
+            <datalist id="uf-list">
+              {UFS.map((uf) => (
+                <option key={uf} value={uf} />
+              ))}
+            </datalist>
           </Field>
         </div>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">

@@ -192,6 +192,19 @@ function UnderlineWord({
   );
 }
 
+// Rolagem suave + destaque imediato no formulário ao clicar em qualquer CTA.
+export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: string) {
+  if (!href.startsWith("#")) return;
+  const target = document.getElementById(href.slice(1));
+  if (!target) return;
+  e.preventDefault();
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+  window.setTimeout(() => {
+    window.dispatchEvent(new CustomEvent("rd:highlight-form"));
+  }, 350);
+  if (window.history?.replaceState) window.history.replaceState(null, "", href);
+}
+
 function CtaPrimary({
   children,
   href = "#cta-final",
@@ -204,7 +217,8 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
+      onClick={(e) => handleCtaClick(e, href)}
+      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -664,7 +678,8 @@ function ProdutosFiltraveis() {
       <div className="mt-10 flex justify-center md:mt-14">
         <a
           href="#cta-final"
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          onClick={(e) => handleCtaClick(e, "#cta-final")}
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto sm:px-12 md:h-16 md:text-xl"
           style={{ background: "#9CCB3B" }}
         >
 
@@ -763,7 +778,8 @@ function LandingCliente() {
                 </CtaPrimary>
                 <a
                   href="#produtos"
-                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
+                  onClick={(e) => handleCtaClick(e, "#produtos")}
+                  className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 active:scale-[0.98] sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
                   Ver produtos
                 </a>
@@ -1047,7 +1063,7 @@ function LandingCliente() {
       {/* CTA FINAL + FORMULÁRIO */}
       <section
         id="cta-final"
-        className="relative overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32"
+        className="relative scroll-mt-4 overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
