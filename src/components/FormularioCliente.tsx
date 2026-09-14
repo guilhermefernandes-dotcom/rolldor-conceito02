@@ -148,7 +148,12 @@ export function FormularioCliente() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-8"
+      id="formulario-orcamento"
+      className={`rounded-3xl border bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-all duration-300 md:p-8 ${
+        highlight
+          ? "border-brand-green/70 ring-2 ring-brand-green/40 ring-offset-2 ring-offset-transparent"
+          : "border-white/10"
+      }`}
       noValidate
     >
       <HiddenUtmFields />
