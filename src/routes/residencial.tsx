@@ -1077,6 +1077,9 @@ function LandingCliente() {
                   <h2 className="mt-3 font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                     Seu projeto merece uma solução à altura.
                   </h2>
+                  <p className="mt-4 max-w-md text-[16px] leading-relaxed text-white/70 md:text-[18px]">
+                    Solicite um atendimento e descubra como as soluções Roll Door podem transformar sua residência com design, tecnologia e sofisticação.
+                  </p>
 
                   <div className="my-6 hidden h-px w-full bg-white/15 lg:my-8 lg:block" />
 
