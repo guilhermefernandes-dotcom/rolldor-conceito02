@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
 import { CheckCircle2, Loader2, ArrowRight, Home } from "lucide-react";
 import { z } from "zod";
-import { supabase } from "@/integrations/supabase/client";
+
 import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
 import { sendToWebhook } from "@/lib/webhook";
 
@@ -106,6 +106,8 @@ export function FormularioCliente() {
       ...utm,
     };
 
+    // Import dinâmico: mantém o cliente de dados fora do carregamento inicial da página.
+    const { supabase } = await import("@/integrations/supabase/client");
     const { error } = await supabase.from("cliente_leads").insert(payload);
     if (error) {
       setStatus("error");
