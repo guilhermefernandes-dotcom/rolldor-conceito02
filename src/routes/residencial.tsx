@@ -1063,7 +1063,7 @@ function LandingCliente() {
       {/* CTA FINAL + FORMULÁRIO */}
       <section
         id="cta-final"
-        className="relative overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32"
+        className="relative scroll-mt-4 overflow-hidden border-t border-white/5 bg-foreground py-16 md:py-32"
       >
         <div
           className="pointer-events-none absolute inset-0 opacity-[0.06]"
