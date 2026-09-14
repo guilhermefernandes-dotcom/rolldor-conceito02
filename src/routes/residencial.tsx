@@ -214,8 +214,15 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
       // Cabe na tela: centraliza verticalmente.
       y = elTop - (viewH - rect.height) / 2;
     } else {
-      // Mais alto que a tela: ancora o topo com respiro mínimo.
-      y = elTop - margin;
+      // Mais alto que a tela: ancora o primeiro campo no topo, garantindo
+      // que o botão de envio também fique visível na mesma tela.
+      const firstField = form?.querySelector("input, textarea, select");
+      const fTop = firstField
+        ? window.scrollY + firstField.getBoundingClientRect().top
+        : elTop;
+      const maxY = fTop - 40; // primeiro campo (com label) no topo
+      const minY = elTop + rect.height - viewH + margin; // botão visível
+      y = minY <= maxY ? maxY : minY;
     }
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   };
