@@ -32,10 +32,45 @@ export function FormularioCliente() {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
+  const [highlight, setHighlight] = useState(false);
+
+  // Destaque imediato quando o usuário clica em qualquer CTA "Solicitar orçamento".
+  useEffect(() => {
+    let timer: number | undefined;
+    function onHighlight() {
+      setHighlight(true);
+      if (timer) window.clearTimeout(timer);
+      timer = window.setTimeout(() => setHighlight(false), 1400);
+    }
+    window.addEventListener("rd:highlight-form", onHighlight);
+    return () => {
+      window.removeEventListener("rd:highlight-form", onHighlight);
+      if (timer) window.clearTimeout(timer);
+    };
+  }, []);
 
   function update<K extends keyof FormState>(key: K, value: FormState[K]) {
     setValues((v) => ({ ...v, [key]: value }));
     if (errors[key]) setErrors((e) => ({ ...e, [key]: undefined }));
+  }
+
+  // Formata apenas quando o cursor está no fim do campo, para nunca reposicionar
+  // o caret durante a digitação (causa de "cliques mortos"/travamentos no Android).
+  function onWhatsappChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const el = e.target;
+    const raw = el.value;
+    const caretAtEnd = el.selectionStart === raw.length;
+    if (!caretAtEnd) {
+      update("whatsapp", raw);
+      return;
+    }
+    const d = raw.replace(/\D/g, "").slice(0, 11);
+    let out = d;
+    if (d.length > 2 && d.length <= 6) out = `(${d.slice(0, 2)}) ${d.slice(2)}`;
+    else if (d.length > 6 && d.length <= 10) out = `(${d.slice(0, 2)}) ${d.slice(2, 6)}-${d.slice(6)}`;
+    else if (d.length > 10) out = `(${d.slice(0, 2)}) ${d.slice(2, 7)}-${d.slice(7)}`;
+    else if (d.length > 0) out = `(${d}`;
+    update("whatsapp", out);
   }
 
   async function onSubmit(e: React.FormEvent) {
