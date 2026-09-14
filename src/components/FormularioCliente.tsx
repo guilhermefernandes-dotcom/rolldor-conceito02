@@ -210,13 +210,22 @@ export function FormularioCliente() {
           </Field>
           <Field label="Estado" error={errors.estado}>
             <input
-              className={`${inputBase} px-1 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
+              list="uf-list"
+              className={`${inputBase} px-2 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
               value={values.estado}
-              onChange={(e) => update("estado", e.target.value)}
+              onChange={(e) =>
+                update("estado", e.target.value.replace(/[^a-zA-Z]/g, "").toUpperCase().slice(0, 2))
+              }
               placeholder="SP"
               maxLength={2}
+              autoCapitalize="characters"
               autoComplete="address-level1"
             />
+            <datalist id="uf-list">
+              {UFS.map((uf) => (
+                <option key={uf} value={uf} />
+              ))}
+            </datalist>
           </Field>
         </div>
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
