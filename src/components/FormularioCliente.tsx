@@ -180,12 +180,14 @@ export function FormularioCliente() {
         </Field>
         <Field label="WhatsApp" error={errors.whatsapp}>
           <input
+            type="tel"
             className={`${inputBase} ${errors.whatsapp ? "border-destructive" : "border-white/15"}`}
             value={values.whatsapp}
-            onChange={(e) => update("whatsapp", e.target.value)}
+            onChange={onWhatsappChange}
             placeholder="(11) 90000-0000"
-            inputMode="tel"
+            inputMode="numeric"
             autoComplete="tel"
+            maxLength={16}
           />
         </Field>
         <Field label="E-mail" error={errors.email}>
