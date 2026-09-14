@@ -1,5 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { UtmCapture } from "@/components/UtmCapture";
 import React, { useState } from "react";
 import { motion, AnimatePresence, useScroll, useTransform } from "motion/react";
 import {
@@ -11,46 +10,42 @@ import {
   Layers,
   Quote,
 } from "lucide-react";
-import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras.jpg.asset.json";
-import seloBrasil from "@/assets/selo-image-20.png.asset.json";
-import seloFalcaoBauer from "@/assets/selo-image-21.png.asset.json";
-import seloUniversidadeSom from "@/assets/selo-image-22.png.asset.json";
-import seloAbravidro from "@/assets/selo-image-23.png.asset.json";
+import heroPortaBandeirasAsset from "@/assets/hero-porta-bandeiras-opt.webp.asset.json";
+import seloBrasil from "@/assets/selo-image-20-opt.webp.asset.json";
+import seloFalcaoBauer from "@/assets/selo-image-21-opt.webp.asset.json";
+import seloUniversidadeSom from "@/assets/selo-image-22-opt.webp.asset.json";
+import seloAbravidro from "@/assets/selo-image-23-opt.webp.asset.json";
 import project1Asset from "@/assets/rd-project-2.webp.asset.json";
 import project2Asset from "@/assets/rd-project-3.webp.asset.json";
 import project3Asset from "@/assets/rd-project-6.webp.asset.json";
 import project4Asset from "@/assets/rd-project-4.webp.asset.json";
 import project5Asset from "@/assets/rd-project-5.webp.asset.json";
-import prodCamaraoAsset from "@/assets/rd-real-camarao.webp.asset.json";
-import prodPivotanteAsset from "@/assets/rd-real-pivotante.webp.asset.json";
-import prodPersianaAsset from "@/assets/rd-real-persiana.webp.asset.json";
-import prodSystemsAsset from "@/assets/rd-real-systems.webp.asset.json";
-import prodSlimAsset from "@/assets/rd-real-slim.webp.asset.json";
-import prodInsideAsset from "@/assets/rd-real-inside.webp.asset.json";
-import galCamarao1 from "@/assets/rd-gal-camarao1.webp.asset.json";
-import galGiro2 from "@/assets/rd-gal-giro2.webp.asset.json";
-import galGiro3 from "@/assets/rd-gal-giro3.webp.asset.json";
-import galPivo2 from "@/assets/rd-gal-pivo2.webp.asset.json";
-import galPivo3 from "@/assets/rd-gal-pivo3.webp.asset.json";
-import galPers2 from "@/assets/rd-gal-pers2.webp.asset.json";
-import galPers3 from "@/assets/rd-gal-pers3.webp.asset.json";
-import galLite3 from "@/assets/rd-gal-lite3.webp.asset.json";
-import galLite4 from "@/assets/rd-gal-lite4.webp.asset.json";
-import galSlim2 from "@/assets/rd-gal-slim2.webp.asset.json";
-import galSlim3 from "@/assets/rd-gal-slim3.webp.asset.json";
-import galInside2 from "@/assets/rd-gal-inside2.webp.asset.json";
-import premCamarao from "@/assets/rd-premium-camarao.jpg.asset.json";
-import premGiro from "@/assets/rd-premium-giro.jpg.asset.json";
-import premLitePlus from "@/assets/rd-premium-liteplus.jpg.asset.json";
-import premConvencional from "@/assets/rd-premium-convencional.jpg.asset.json";
-import premAngra from "@/assets/rd-premium-angra.jpg.asset.json";
+import prodCamaraoAsset from "@/assets/rd-real-camarao-opt.webp.asset.json";
+import prodPivotanteAsset from "@/assets/rd-real-pivotante-opt.webp.asset.json";
+import prodPersianaAsset from "@/assets/rd-real-persiana-opt.webp.asset.json";
+import prodSystemsAsset from "@/assets/rd-real-systems-opt.webp.asset.json";
+import prodSlimAsset from "@/assets/rd-real-slim-opt.webp.asset.json";
+import prodInsideAsset from "@/assets/rd-real-inside-opt.webp.asset.json";
+import galCamarao1 from "@/assets/rd-gal-camarao1-opt.webp.asset.json";
+import galGiro2 from "@/assets/rd-gal-giro2-opt.webp.asset.json";
+import galGiro3 from "@/assets/rd-gal-giro3-opt.webp.asset.json";
+import galPivo2 from "@/assets/rd-gal-pivo2-opt.webp.asset.json";
+import galPivo3 from "@/assets/rd-gal-pivo3-opt.webp.asset.json";
+import galPers2 from "@/assets/rd-gal-pers2-opt.webp.asset.json";
+import galPers3 from "@/assets/rd-gal-pers3-opt.webp.asset.json";
+import galLite3 from "@/assets/rd-gal-lite3-opt.webp.asset.json";
+import galLite4 from "@/assets/rd-gal-lite4-opt.webp.asset.json";
+import galSlim2 from "@/assets/rd-gal-slim2-opt.webp.asset.json";
+import galSlim3 from "@/assets/rd-gal-slim3-opt.webp.asset.json";
+import galInside2 from "@/assets/rd-gal-inside2-opt.webp.asset.json";
+import premCamarao from "@/assets/rd-premium-camarao-opt.webp.asset.json";
+import premGiro from "@/assets/rd-premium-giro-opt.webp.asset.json";
+import premLitePlus from "@/assets/rd-premium-liteplus-opt.webp.asset.json";
+import premConvencional from "@/assets/rd-premium-convencional-opt.webp.asset.json";
+import premAngra from "@/assets/rd-premium-angra-opt.webp.asset.json";
 
 const heroImg = heroPortaBandeirasAsset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
-import step01Img from "@/assets/step-01-solicite.webp";
-import step02Img from "@/assets/step-02-diagnostico.webp";
-import step03Img from "@/assets/step-03-parceiro.webp";
-import step04Img from "@/assets/step-04-instalacao.webp";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
 
@@ -744,7 +739,6 @@ function LandingCliente() {
     <>
       <GtmBody />
       <main className="min-h-screen bg-foreground text-white antialiased">
-        <UtmCapture />
 
         {/* HERO — imagem full com overlay escuro, tipografia elegante */}
       <motion.div style={{ padding: heroPad, background: "#9CCB3B" }}>
@@ -756,8 +750,11 @@ function LandingCliente() {
             <img
               src={heroImg}
               alt=""
+              width={1600}
+              height={907}
               className="h-full w-full object-cover"
               fetchPriority="high"
+              loading="eager"
               decoding="async"
             />
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/65 to-black/90" />
@@ -770,6 +767,10 @@ function LandingCliente() {
               <img
                 src={logoAsset.url}
                 alt="Roll Door Company"
+                width={250}
+                height={50}
+                fetchPriority="high"
+                decoding="async"
                 className="mb-6 h-auto w-auto max-h-12 md:mb-8 md:max-h-16"
                 style={{ maxWidth: "220px", filter: "brightness(0) invert(1)" }}
               />
@@ -825,10 +826,10 @@ function LandingCliente() {
                 </p>
                 <div className="mt-5 flex flex-wrap items-center justify-center gap-3 md:gap-4">
                   {[
-                    { src: seloBrasil.url, alt: "100% fabricado no Brasil" },
-                    { src: seloFalcaoBauer.url, alt: "Testado pelo Instituto Falcão Bauer — acreditado pelo INMETRO" },
-                    { src: seloUniversidadeSom.url, alt: "Universidade do Som" },
-                    { src: seloAbravidro.url, alt: "Prêmio Abravidro Glass South America" },
+                    { src: seloBrasil.url, alt: "100% fabricado no Brasil", w: 200, h: 200 },
+                    { src: seloFalcaoBauer.url, alt: "Testado pelo Instituto Falcão Bauer — acreditado pelo INMETRO", w: 200, h: 200 },
+                    { src: seloUniversidadeSom.url, alt: "Universidade do Som", w: 400, h: 200 },
+                    { src: seloAbravidro.url, alt: "Prêmio Abravidro Glass South America", w: 200, h: 200 },
                   ].map((s) => (
                     <div
                       key={s.alt}
@@ -837,6 +838,8 @@ function LandingCliente() {
                       <img
                         src={s.src}
                         alt={s.alt}
+                        width={s.w}
+                        height={s.h}
                         loading="lazy"
                         decoding="async"
                         className="max-h-full max-w-full object-contain"
