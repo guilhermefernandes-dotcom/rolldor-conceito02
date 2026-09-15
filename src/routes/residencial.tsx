@@ -809,8 +809,8 @@ function LandingCliente() {
                   Solicitar orçamento
                 </CtaPrimary>
                 <a
-                  href="#produtos"
-                  onClick={(e) => handleCtaClick(e, "#produtos")}
+                  href="#produtos-galeria"
+                  onClick={(e) => handleCtaClick(e, "#produtos-galeria")}
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 active:scale-[0.98] sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
                   Ver produtos
