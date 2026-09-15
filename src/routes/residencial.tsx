@@ -618,7 +618,7 @@ function ProdutosFiltraveis() {
       </div>
 
       {/* ── Galeria: altura natural no mobile, 9:16 uniforme no desktop ── */}
-      <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 lg:grid-cols-4">
+      <div id="produtos-galeria" className="scroll-mt-24 mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 lg:grid-cols-4">
         <AnimatePresence mode="popLayout" initial={false}>
           {fotos.map((f, i) => (
             <motion.figure
@@ -809,8 +809,8 @@ function LandingCliente() {
                   Solicitar orçamento
                 </CtaPrimary>
                 <a
-                  href="#produtos"
-                  onClick={(e) => handleCtaClick(e, "#produtos")}
+                  href="#produtos-galeria"
+                  onClick={(e) => handleCtaClick(e, "#produtos-galeria")}
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 active:scale-[0.98] sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
                   Ver produtos
