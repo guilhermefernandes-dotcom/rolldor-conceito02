@@ -196,20 +196,26 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
   if (!target) return;
   e.preventDefault();
 
-  const scrollToForm = () => {
+  const isFormAnchor = href === "#cta-final" || href === "#formulario-orcamento";
+
+  const scrollToTarget = () => {
     const form = document.getElementById("formulario-orcamento");
-    const el = form ?? target;
+    const el = isFormAnchor ? (form ?? target) : target;
     // Altura visível real, descontando barras do navegador mobile.
     const viewH = window.visualViewport?.height ?? window.innerHeight;
     const rect = el.getBoundingClientRect();
     const elTop = window.scrollY + rect.top;
     const margin = 12;
     let y: number;
-    if (rect.height <= viewH - margin * 2) {
-      // Cabe na tela: centraliza verticalmente.
+
+    if (!isFormAnchor) {
+      // Âncoras de conteúdo (ex: produtos): leva ao topo da seção com pequena folga.
+      y = elTop - margin;
+    } else if (rect.height <= viewH - margin * 2) {
+      // Formulário cabe na tela: centraliza verticalmente.
       y = elTop - (viewH - rect.height) / 2;
     } else {
-      // Mais alto que a tela: ancora o primeiro campo no topo, garantindo
+      // Formulário mais alto que a tela: ancora o primeiro campo no topo, garantindo
       // que o botão de envio também fique visível na mesma tela.
       const firstField = form?.querySelector("input, textarea, select");
       const fTop = firstField
@@ -222,12 +228,14 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   };
 
-  scrollToForm();
+  scrollToTarget();
   // Reancora ao fim da animação para compensar barras que se recolhem no mobile.
-  window.setTimeout(scrollToForm, 500);
-  window.setTimeout(() => {
-    window.dispatchEvent(new CustomEvent("rd:highlight-form"));
-  }, 350);
+  window.setTimeout(scrollToTarget, 500);
+  if (isFormAnchor) {
+    window.setTimeout(() => {
+      window.dispatchEvent(new CustomEvent("rd:highlight-form"));
+    }, 350);
+  }
   if (window.history?.replaceState) window.history.replaceState(null, "", href);
 }
 
@@ -809,8 +817,8 @@ function LandingCliente() {
                   Solicitar orçamento
                 </CtaPrimary>
                 <a
-                  href="#produtos-galeria"
-                  onClick={(e) => handleCtaClick(e, "#produtos-galeria")}
+                  href="#produtos"
+                  onClick={(e) => handleCtaClick(e, "#produtos")}
                   className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl border border-white/45 bg-white/10 px-8 font-display text-base font-semibold text-white backdrop-blur-sm transition-colors hover:bg-white/20 active:scale-[0.98] sm:h-[56px] sm:w-auto sm:px-10 sm:text-lg"
                 >
                   Ver produtos
