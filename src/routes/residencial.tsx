@@ -207,13 +207,17 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
     const elTop = window.scrollY + rect.top;
     const margin = 12;
     let y: number;
-    if (rect.height <= viewH - margin * 2) {
-      // Cabe na tela: centraliza verticalmente.
+
+    if (!isFormAnchor) {
+      // Âncoras de conteúdo (ex: produtos): leva ao topo da seção com pequena folga.
+      y = elTop - margin;
+    } else if (rect.height <= viewH - margin * 2) {
+      // Formulário cabe na tela: centraliza verticalmente.
       y = elTop - (viewH - rect.height) / 2;
     } else {
-      // Mais alto que a tela: ancora o primeiro campo no topo, garantindo
+      // Formulário mais alto que a tela: ancora o primeiro campo no topo, garantindo
       // que o botão de envio também fique visível na mesma tela.
-      const firstField = isFormAnchor ? form?.querySelector("input, textarea, select") : null;
+      const firstField = form?.querySelector("input, textarea, select");
       const fTop = firstField
         ? window.scrollY + firstField.getBoundingClientRect().top
         : elTop;
