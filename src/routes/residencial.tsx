@@ -196,9 +196,11 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
   if (!target) return;
   e.preventDefault();
 
-  const scrollToForm = () => {
+  const isFormAnchor = href === "#cta-final" || href === "#formulario-orcamento";
+
+  const scrollToTarget = () => {
     const form = document.getElementById("formulario-orcamento");
-    const el = form ?? target;
+    const el = isFormAnchor ? (form ?? target) : target;
     // Altura visível real, descontando barras do navegador mobile.
     const viewH = window.visualViewport?.height ?? window.innerHeight;
     const rect = el.getBoundingClientRect();
@@ -211,7 +213,7 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
     } else {
       // Mais alto que a tela: ancora o primeiro campo no topo, garantindo
       // que o botão de envio também fique visível na mesma tela.
-      const firstField = form?.querySelector("input, textarea, select");
+      const firstField = isFormAnchor ? form?.querySelector("input, textarea, select") : null;
       const fTop = firstField
         ? window.scrollY + firstField.getBoundingClientRect().top
         : elTop;
@@ -222,12 +224,14 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
     window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
   };
 
-  scrollToForm();
+  scrollToTarget();
   // Reancora ao fim da animação para compensar barras que se recolhem no mobile.
-  window.setTimeout(scrollToForm, 500);
-  window.setTimeout(() => {
-    window.dispatchEvent(new CustomEvent("rd:highlight-form"));
-  }, 350);
+  window.setTimeout(scrollToTarget, 500);
+  if (isFormAnchor) {
+    window.setTimeout(() => {
+      window.dispatchEvent(new CustomEvent("rd:highlight-form"));
+    }, 350);
+  }
   if (window.history?.replaceState) window.history.replaceState(null, "", href);
 }
 
