@@ -4,6 +4,7 @@ import { CheckCircle2, Loader2, ArrowRight, Home } from "lucide-react";
 import { z } from "zod";
 
 import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
+import { captureClickIds, getClickIds } from "@/lib/clickIds";
 import { sendToWebhook } from "@/lib/webhook";
 
 const schema = z.object({
@@ -38,6 +39,11 @@ export function FormularioCliente() {
   const [serverError, setServerError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [highlight, setHighlight] = useState(false);
+
+  // Guarda gclid/fbclid da URL de entrada para enviar ao webhook no envio do formulário.
+  useEffect(() => {
+    captureClickIds();
+  }, []);
 
   // Destaque imediato quando o usuário clica em qualquer CTA "Solicitar orçamento".
   useEffect(() => {
@@ -94,27 +100,28 @@ export function FormularioCliente() {
 
     setStatus("loading");
     const utm = readUtmFields(formRef.current);
-    const payload = {
+    const lead = {
       nome: parsed.data.nome,
       whatsapp: parsed.data.whatsapp,
       email: parsed.data.email,
       cidade: parsed.data.cidade,
       estado: parsed.data.estado,
-      tipo_projeto: "casa" as const,
-      fase_obra: "projeto" as const,
       mensagem: parsed.data.mensagem || null,
       ...utm,
     };
 
     // Import dinâmico: mantém o cliente de dados fora do carregamento inicial da página.
     const { supabase } = await import("@/integrations/supabase/client");
-    const { error } = await supabase.from("cliente_leads").insert(payload);
+    // tipo_projeto/fase_obra não são mais perguntados, mas seguem obrigatórios na tabela.
+    const { error } = await supabase
+      .from("cliente_leads")
+      .insert({ ...lead, tipo_projeto: "casa" as const, fase_obra: "projeto" as const });
     if (error) {
       setStatus("error");
       setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
       return;
     }
-    sendToWebhook({ ...payload, origem: "residencial" });
+    sendToWebhook({ ...lead, ...getClickIds(), origem: "residencial" });
     pushFormSubmitEvent();
     setStatus("success");
     setValues(initialState);
