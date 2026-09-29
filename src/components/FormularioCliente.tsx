@@ -68,12 +68,12 @@ const schema = z.object({
   whatsapp: z.string().trim().min(8, "Informe um WhatsApp válido").max(40),
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
-  // Só aceita uma das 27 siglas: o Kommo roteia o lead para o vendedor pela UF.
+  // Dropdown fechado com as 27 siglas: o Kommo roteia o lead para o vendedor pela UF.
   estado: z
     .string()
     .trim()
     .toUpperCase()
-    .refine((uf) => UFS.includes(uf), "Estado inválido"),
+    .refine((uf) => UFS.includes(uf), "Selecione o estado"),
   perfil: z.string().min(1, selecione),
   fase_obra: z.string().min(1, selecione),
   tamanho_obra: z.string().min(1, selecione),
@@ -341,25 +341,14 @@ export function FormularioCliente() {
               autoComplete="address-level2"
             />
           </Field>
-          <Field label="Estado" error={errors.estado}>
-            <input
-              list="uf-list"
-              className={`${inputBase} px-2 text-center uppercase ${errors.estado ? "border-destructive" : "border-white/15"}`}
-              value={values.estado}
-              onChange={(e) =>
-                update("estado", e.target.value.replace(/[^a-zA-Z]/g, "").toUpperCase().slice(0, 2))
-              }
-              placeholder="SP"
-              maxLength={2}
-              autoCapitalize="characters"
-              autoComplete="address-level1"
-            />
-            <datalist id="uf-list">
-              {UFS.map((uf) => (
-                <option key={uf} value={uf} />
-              ))}
-            </datalist>
-          </Field>
+          <SelectField
+            label="Estado"
+            placeholder="UF"
+            value={values.estado}
+            options={UFS}
+            error={errors.estado}
+            onChange={(v) => update("estado", v)}
+          />
         </div>
         <SelectField
           label="Qual opção melhor descreve você?"
@@ -431,6 +420,7 @@ export function FormularioCliente() {
 function SelectField({
   label,
   shortLabel,
+  placeholder = "Selecione",
   value,
   options,
   error,
@@ -440,6 +430,7 @@ function SelectField({
   label: string;
   /** Rótulo curto usado no mobile, onde o campo ocupa meia largura. */
   shortLabel?: string;
+  placeholder?: string;
   value: string;
   options: string[];
   error?: string;
@@ -458,14 +449,14 @@ function SelectField({
     <Field label={rotulo} error={error} className={className}>
       <div className="relative">
         <select
-          className={`w-full appearance-none rounded-xl border bg-white/[0.03] py-2 pl-3 pr-9 md:py-2.5 font-sans text-[15px] transition-colors focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
+          className={`w-full appearance-none rounded-xl border bg-white/[0.03] py-2 pl-3 pr-8 md:py-2.5 font-sans text-[15px] transition-colors focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
             value ? "text-white" : "text-white/40"
           } ${error ? "border-destructive" : "border-white/15"}`}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         >
           <option value="" disabled className="bg-neutral-900 text-white/60">
-            Selecione
+            {placeholder}
           </option>
           {options.map((opcao) => (
             <option key={opcao} value={opcao} className="bg-neutral-900 text-white">
@@ -474,7 +465,7 @@ function SelectField({
           ))}
         </select>
         <ChevronDown
-          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+          className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
           strokeWidth={2}
         />
       </div>
