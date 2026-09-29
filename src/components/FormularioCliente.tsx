@@ -73,7 +73,7 @@ const schema = z.object({
     .string()
     .trim()
     .toUpperCase()
-    .refine((uf) => UFS.includes(uf), "Selecione o estado"),
+    .refine((uf) => UFS.includes(uf), "Selecione um estado"),
   perfil: z.string().min(1, selecione),
   fase_obra: z.string().min(1, selecione),
   tamanho_obra: z.string().min(1, selecione),
@@ -341,14 +341,13 @@ export function FormularioCliente() {
               autoComplete="address-level2"
             />
           </Field>
-          <SelectField
-            label="Estado"
-            placeholder="UF"
-            value={values.estado}
-            options={UFS}
-            error={errors.estado}
-            onChange={(v) => update("estado", v)}
-          />
+          <Field label="Estado" error={errors.estado}>
+            <UfCombobox
+              value={values.estado}
+              hasError={Boolean(errors.estado)}
+              onChange={(uf) => update("estado", uf)}
+            />
+          </Field>
         </div>
         <SelectField
           label="Qual opção melhor descreve você?"
@@ -470,6 +469,119 @@ function SelectField({
         />
       </div>
     </Field>
+  );
+}
+
+/**
+ * Campo de UF digitável com lista filtrada. O valor só é definido quando o lead
+ * escolhe uma opção da lista (clique ou setas + Enter); digitar sozinho não vale.
+ */
+function UfCombobox({
+  value,
+  hasError,
+  onChange,
+}: {
+  value: string;
+  hasError: boolean;
+  onChange: (uf: string) => void;
+}) {
+  const [query, setQuery] = useState(value);
+  const [open, setOpen] = useState(false);
+  const [active, setActive] = useState(0);
+  // Ao abrir o campo mostra todas as UFs; só filtra depois que o lead digita.
+  const [filtrando, setFiltrando] = useState(false);
+
+  const filtradas = filtrando ? UFS.filter((uf) => uf.startsWith(query)) : UFS;
+
+  function abrirLista() {
+    setFiltrando(false);
+    setActive(Math.max(UFS.indexOf(value), 0));
+    setOpen(true);
+  }
+
+  function escolher(uf: string) {
+    onChange(uf);
+    setQuery(uf);
+    setOpen(false);
+  }
+
+  function onInput(e: React.ChangeEvent<HTMLInputElement>) {
+    const texto = e.target.value.replace(/[^a-zA-Z]/g, "").toUpperCase().slice(0, 2);
+    setQuery(texto);
+    setFiltrando(true);
+    setActive(0);
+    setOpen(true);
+    // Digitar invalida a escolha anterior até o lead selecionar de novo na lista.
+    if (value) onChange("");
+  }
+
+  function onKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setOpen(true);
+      setActive((i) => Math.min(i + 1, filtradas.length - 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setActive((i) => Math.max(i - 1, 0));
+    } else if (e.key === "Enter" && open) {
+      // Enter escolhe a opção destacada em vez de enviar o formulário.
+      e.preventDefault();
+      if (filtradas[active]) escolher(filtradas[active]);
+    } else if (e.key === "Escape") {
+      setOpen(false);
+    }
+  }
+
+  return (
+    <div className="relative">
+      <input
+        className={`w-full rounded-xl border bg-white/[0.03] px-2 py-2 text-center font-sans text-[15px] uppercase text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 md:py-2.5 ${
+          hasError ? "border-destructive" : "border-white/15"
+        }`}
+        value={query}
+        onChange={onInput}
+        onKeyDown={onKeyDown}
+        onFocus={abrirLista}
+        onClick={abrirLista}
+        onBlur={() => setOpen(false)}
+        placeholder="UF"
+        autoComplete="off"
+        autoCapitalize="characters"
+        role="combobox"
+        aria-expanded={open}
+        aria-controls="uf-opcoes"
+      />
+      {open && filtradas.length > 0 && (
+        <ul
+          id="uf-opcoes"
+          role="listbox"
+          // Evita que clicar na lista (ou na barra de rolagem) tire o foco do campo.
+          onMouseDown={(e) => e.preventDefault()}
+          className="absolute right-0 z-30 mt-1 max-h-48 w-full min-w-[4.5rem] overflow-y-auto rounded-xl border border-white/15 bg-neutral-900 py-1 shadow-lg"
+        >
+          {filtradas.map((uf, i) => (
+            <li
+              key={uf}
+              role="option"
+              aria-selected={uf === value}
+              // mousedown (e não click) para escolher antes do blur fechar a lista.
+              onMouseDown={(e) => {
+                e.preventDefault();
+                escolher(uf);
+              }}
+              // O campo está dentro de um <label>: sem isso o clique "vaza" e reabre a lista.
+              onClick={(e) => e.preventDefault()}
+              onMouseEnter={() => setActive(i)}
+              className={`cursor-pointer px-3 py-1.5 text-center font-sans text-[15px] text-white ${
+                i === active ? "bg-brand-green/25" : ""
+              }`}
+            >
+              {uf}
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
 
