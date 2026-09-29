@@ -545,7 +545,11 @@ function UfCombobox({
         onClick={abrirLista}
         onBlur={() => setOpen(false)}
         placeholder="UF"
-        autoComplete="off"
+        // O Chrome ignora autocomplete="off" em campos que parecem endereço ("Estado") e
+        // abre o autopreenchimento por cima da lista. "one-time-code" + name neutro evita isso.
+        name="rd_uf_escolha"
+        autoComplete="one-time-code"
+        spellCheck={false}
         autoCapitalize="characters"
         role="combobox"
         aria-expanded={open}
