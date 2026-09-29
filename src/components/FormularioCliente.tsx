@@ -58,22 +58,27 @@ const FASE_OBRA_DB = {
 
 const selecione = "Selecione uma opção";
 
+const UFS = [
+  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
+  "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
+];
+
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
   whatsapp: z.string().trim().min(8, "Informe um WhatsApp válido").max(40),
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
-  estado: z.string().trim().min(2, "Informe o estado").max(60),
+  // Só aceita uma das 27 siglas: o Kommo roteia o lead para o vendedor pela UF.
+  estado: z
+    .string()
+    .trim()
+    .toUpperCase()
+    .refine((uf) => UFS.includes(uf), "Estado inválido"),
   perfil: z.string().min(1, selecione),
   fase_obra: z.string().min(1, selecione),
   tamanho_obra: z.string().min(1, selecione),
   tipo_solucao: z.string().min(1, selecione),
 });
-
-const UFS = [
-  "AC", "AL", "AP", "AM", "BA", "CE", "DF", "ES", "GO", "MA", "MT", "MS", "MG",
-  "PA", "PB", "PR", "PE", "PI", "RJ", "RN", "RS", "RO", "RR", "SC", "SP", "SE", "TO",
-];
 
 type FormState = z.input<typeof schema>;
 
