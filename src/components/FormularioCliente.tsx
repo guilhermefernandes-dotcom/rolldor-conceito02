@@ -68,7 +68,6 @@ const schema = z.object({
   fase_obra: z.string().min(1, selecione),
   tamanho_obra: z.string().min(1, selecione),
   tipo_solucao: z.string().min(1, selecione),
-  mensagem: z.string().trim().max(1500).optional().or(z.literal("")),
 });
 
 const UFS = [
@@ -88,7 +87,6 @@ const initialState: FormState = {
   fase_obra: "",
   tamanho_obra: "",
   tipo_solucao: "",
-  mensagem: "",
 };
 
 export function FormularioCliente() {
@@ -167,7 +165,7 @@ export function FormularioCliente() {
       email: parsed.data.email,
       cidade: parsed.data.cidade,
       estado: parsed.data.estado,
-      mensagem: parsed.data.mensagem || null,
+      mensagem: null,
       ...utm,
     };
     const qualificacao = {
@@ -272,7 +270,7 @@ export function FormularioCliente() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white/[0.03] px-3 py-2.5 font-sans text-[15px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
+    "w-full rounded-xl border bg-white/[0.03] px-3 py-2 font-sans text-[15px] md:py-2.5 text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
 
   return (
     <form
@@ -287,19 +285,19 @@ export function FormularioCliente() {
       noValidate
     >
       <HiddenUtmFields />
-      <div className="mb-3 text-center">
-        <div className="mx-auto mb-2 flex h-10 w-10 items-center justify-center rounded-full bg-brand-green/10">
+      <div className="mb-2 text-center md:mb-3">
+        <div className="mx-auto mb-2 hidden h-10 w-10 items-center justify-center rounded-full bg-brand-green/10 md:flex">
           <Home className="h-4 w-4 text-brand-green" strokeWidth={1.8} />
         </div>
         <h3 className="font-display text-xl font-medium text-white md:text-3xl">
           Solicite um orçamento.
         </h3>
-        <p className="mx-auto mt-1 max-w-md text-[15px] leading-snug text-white/70">
+        <p className="mx-auto mt-1 max-w-md text-[13px] leading-snug text-white/70 md:text-[15px]">
           Preencha seus dados e um especialista da Roll Door entrará em contato.
         </p>
       </div>
 
-      <div className="grid gap-2 md:grid-cols-2">
+      <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 md:gap-2">
         <Field label="Nome" error={errors.nome}>
           <input
             className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
@@ -320,7 +318,7 @@ export function FormularioCliente() {
             maxLength={16}
           />
         </Field>
-        <Field label="E-mail" error={errors.email}>
+        <Field label="E-mail" error={errors.email} className="col-span-2 md:col-span-1">
           <input
             type="email"
             className={`${inputBase} ${errors.email ? "border-destructive" : "border-white/15"}`}
@@ -329,7 +327,7 @@ export function FormularioCliente() {
             autoComplete="email"
           />
         </Field>
-        <div className="grid grid-cols-[3fr_1fr] gap-2 md:col-span-2">
+        <div className="col-span-2 grid grid-cols-[3fr_1fr] gap-2">
           <Field label="Cidade" error={errors.cidade}>
             <input
               className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
@@ -364,10 +362,11 @@ export function FormularioCliente() {
           options={PERFIL_OPCOES}
           error={errors.perfil}
           onChange={(v) => update("perfil", v)}
-          className="md:col-span-2"
+          className="col-span-2"
         />
         <SelectField
           label="Em que fase está sua obra?"
+          shortLabel="Fase da obra"
           value={values.fase_obra}
           options={FASE_OBRA_OPCOES}
           error={errors.fase_obra}
@@ -375,6 +374,7 @@ export function FormularioCliente() {
         />
         <SelectField
           label="Qual o tamanho da sua obra?"
+          shortLabel="Tamanho da obra"
           value={values.tamanho_obra}
           options={TAMANHO_OBRA_OPCOES}
           error={errors.tamanho_obra}
@@ -386,16 +386,8 @@ export function FormularioCliente() {
           options={TIPO_SOLUCAO_OPCOES}
           error={errors.tipo_solucao}
           onChange={(v) => update("tipo_solucao", v)}
-          className="md:col-span-2"
+          className="col-span-2"
         />
-        <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
-          <textarea
-            className={`${inputBase} min-h-[80px] resize-y border-white/15`}
-            value={values.mensagem}
-            onChange={(e) => update("mensagem", e.target.value)}
-            placeholder="Conte um pouco sobre seu projeto."
-          />
-        </Field>
       </div>
 
       {serverError && (
@@ -407,7 +399,7 @@ export function FormularioCliente() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-4 inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-6 font-display text-base font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-16 sm:text-lg"
+        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-2xl px-6 font-display text-base font-semibold text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70 sm:h-16 sm:text-lg md:mt-4"
         style={{
           background: "#9CCB3B",
           boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -433,6 +425,7 @@ export function FormularioCliente() {
 
 function SelectField({
   label,
+  shortLabel,
   value,
   options,
   error,
@@ -440,17 +433,27 @@ function SelectField({
   className = "",
 }: {
   label: string;
+  /** Rótulo curto usado no mobile, onde o campo ocupa meia largura. */
+  shortLabel?: string;
   value: string;
   options: string[];
   error?: string;
   onChange: (value: string) => void;
   className?: string;
 }) {
+  const rotulo = shortLabel ? (
+    <>
+      <span className="md:hidden">{shortLabel}</span>
+      <span className="hidden md:inline">{label}</span>
+    </>
+  ) : (
+    label
+  );
   return (
-    <Field label={label} error={error} className={className}>
+    <Field label={rotulo} error={error} className={className}>
       <div className="relative">
         <select
-          className={`w-full appearance-none rounded-xl border bg-white/[0.03] py-2.5 pl-3 pr-9 font-sans text-[15px] transition-colors focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
+          className={`w-full appearance-none rounded-xl border bg-white/[0.03] py-2 pl-3 pr-9 md:py-2.5 font-sans text-[15px] transition-colors focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
             value ? "text-white" : "text-white/40"
           } ${error ? "border-destructive" : "border-white/15"}`}
           value={value}
@@ -480,7 +483,7 @@ function Field({
   children,
   className = "",
 }: {
-  label: string;
+  label: React.ReactNode;
   error?: string;
   children: React.ReactNode;
   className?: string;
