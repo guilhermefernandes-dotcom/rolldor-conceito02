@@ -1,11 +1,62 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { CheckCircle2, Loader2, ArrowRight, Home } from "lucide-react";
+import { CheckCircle2, ChevronDown, Loader2, ArrowRight, Home } from "lucide-react";
 import { z } from "zod";
 
-import { HiddenUtmFields, readUtmFields, pushFormSubmitEvent } from "@/lib/utm";
+import {
+  HiddenUtmFields,
+  readUtmFields,
+  pushDataLayerEvent,
+  pushFormSubmitEvent,
+} from "@/lib/utm";
 import { captureClickIds, getClickIds } from "@/lib/clickIds";
 import { sendToWebhook } from "@/lib/webhook";
+
+// Perguntas de qualificação. Os textos precisam ser idênticos às opções dos
+// campos de seleção no Kommo, porque o Make preenche os campos pelo texto.
+const PERFIL_OPCOES = [
+  "Sou dono(a) da obra",
+  "Sou arquiteto(a) ou engenheiro(a)",
+  "Sou fornecedor",
+  "Só estou pesquisando",
+];
+const FASE_OBRA_OPCOES = [
+  "Projeto",
+  "Em construção",
+  "Obra em fase de acabamento",
+  "Reforma",
+  "Ainda não tenho obra",
+];
+const TAMANHO_OBRA_OPCOES = [
+  "Até 100 m²",
+  "De 100 a 200 m²",
+  "De 200 a 400 m²",
+  "Acima de 400 m²",
+];
+const TIPO_SOLUCAO_OPCOES = [
+  "Portas de correr / grandes vãos",
+  "Janelas",
+  "Porta pivotante",
+  "Projeto completo de esquadrias",
+];
+
+// Respostas que desqualificam o lead: vai só para a planilha, não para o Kommo,
+// e não dispara a conversão de anúncios.
+const DESQUALIFICA: Record<string, string> = {
+  "Sou fornecedor": "Fornecedor",
+  "Só estou pesquisando": "Só pesquisando",
+  "Ainda não tenho obra": "Não tem obra",
+};
+
+// Mapeia a fase escolhida para o enum da coluna fase_obra (obrigatória) no banco.
+const FASE_OBRA_DB = {
+  Projeto: "projeto",
+  "Em construção": "construcao",
+  "Obra em fase de acabamento": "finalizacao",
+  Reforma: "reforma",
+} as const;
+
+const selecione = "Selecione uma opção";
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
@@ -13,6 +64,10 @@ const schema = z.object({
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
   estado: z.string().trim().min(2, "Informe o estado").max(60),
+  perfil: z.string().min(1, selecione),
+  fase_obra: z.string().min(1, selecione),
+  tamanho_obra: z.string().min(1, selecione),
+  tipo_solucao: z.string().min(1, selecione),
   mensagem: z.string().trim().max(1500).optional().or(z.literal("")),
 });
 
@@ -29,13 +84,19 @@ const initialState: FormState = {
   email: "",
   cidade: "",
   estado: "",
+  perfil: "",
+  fase_obra: "",
+  tamanho_obra: "",
+  tipo_solucao: "",
   mensagem: "",
 };
 
 export function FormularioCliente() {
   const [values, setValues] = useState<FormState>(initialState);
   const [errors, setErrors] = useState<Partial<Record<keyof FormState, string>>>({});
-  const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "disqualified" | "error"
+  >("idle");
   const [serverError, setServerError] = useState<string | null>(null);
   const formRef = useRef<HTMLFormElement>(null);
   const [highlight, setHighlight] = useState(false);
@@ -109,22 +170,77 @@ export function FormularioCliente() {
       mensagem: parsed.data.mensagem || null,
       ...utm,
     };
+    const qualificacao = {
+      perfil: parsed.data.perfil,
+      fase_obra: parsed.data.fase_obra,
+      tamanho_obra: parsed.data.tamanho_obra,
+      tipo_solucao: parsed.data.tipo_solucao,
+    };
+    const motivos = [qualificacao.perfil, qualificacao.fase_obra]
+      .map((resposta) => DESQUALIFICA[resposta])
+      .filter(Boolean);
+    const qualificado = motivos.length === 0;
 
     // Import dinâmico: mantém o cliente de dados fora do carregamento inicial da página.
     const { supabase } = await import("@/integrations/supabase/client");
-    // tipo_projeto/fase_obra não são mais perguntados, mas seguem obrigatórios na tabela.
+    // tipo_projeto não é mais perguntado, mas segue obrigatório na tabela.
+    const faseDb =
+      FASE_OBRA_DB[qualificacao.fase_obra as keyof typeof FASE_OBRA_DB] ?? "projeto";
     const { error } = await supabase
       .from("cliente_leads")
-      .insert({ ...lead, tipo_projeto: "casa" as const, fase_obra: "projeto" as const });
+      .insert({ ...lead, tipo_projeto: "casa" as const, fase_obra: faseDb });
     if (error) {
       setStatus("error");
       setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
       return;
     }
-    sendToWebhook({ ...lead, ...getClickIds(), origem: "residencial" });
-    pushFormSubmitEvent();
-    setStatus("success");
+    sendToWebhook({
+      ...lead,
+      ...qualificacao,
+      qualificado: qualificado ? "sim" : "nao",
+      motivo: motivos.join(", ") || null,
+      ...getClickIds(),
+      origem: "residencial",
+    });
+    // Só o lead qualificado dispara o gtm.formSubmit, que conta a conversão no Google e no Meta.
+    if (qualificado) {
+      pushFormSubmitEvent();
+      pushDataLayerEvent("lead_qualificado");
+    } else {
+      pushDataLayerEvent("lead_desqualificado");
+    }
+    setStatus(qualificado ? "success" : "disqualified");
     setValues(initialState);
+  }
+
+  if (status === "disqualified") {
+    return (
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        className="rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-14"
+      >
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-white">
+          <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
+        </div>
+        <h3 className="font-display text-3xl font-medium text-white md:text-4xl">
+          Obrigado pelo contato!
+        </h3>
+        <p className="mx-auto mt-4 max-w-lg text-[18px] text-white/70 md:text-lg">
+          Neste momento nosso atendimento é focado em projetos com obra em andamento. Enquanto
+          isso, conheça nossos projetos no Instagram{" "}
+          <a
+            href="https://www.instagram.com/rolldoorcompany/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-semibold text-brand-green underline-offset-4 hover:underline"
+          >
+            @rolldoorcompany
+          </a>
+          .
+        </p>
+      </motion.div>
+    );
   }
 
   if (status === "success") {
@@ -242,6 +358,36 @@ export function FormularioCliente() {
             </datalist>
           </Field>
         </div>
+        <SelectField
+          label="Qual opção melhor descreve você?"
+          value={values.perfil}
+          options={PERFIL_OPCOES}
+          error={errors.perfil}
+          onChange={(v) => update("perfil", v)}
+          className="md:col-span-2"
+        />
+        <SelectField
+          label="Em que fase está sua obra?"
+          value={values.fase_obra}
+          options={FASE_OBRA_OPCOES}
+          error={errors.fase_obra}
+          onChange={(v) => update("fase_obra", v)}
+        />
+        <SelectField
+          label="Qual o tamanho da sua obra?"
+          value={values.tamanho_obra}
+          options={TAMANHO_OBRA_OPCOES}
+          error={errors.tamanho_obra}
+          onChange={(v) => update("tamanho_obra", v)}
+        />
+        <SelectField
+          label="Que tipo de solução você procura?"
+          value={values.tipo_solucao}
+          options={TIPO_SOLUCAO_OPCOES}
+          error={errors.tipo_solucao}
+          onChange={(v) => update("tipo_solucao", v)}
+          className="md:col-span-2"
+        />
         <Field label="Mensagem (opcional)" error={errors.mensagem} className="md:col-span-2">
           <textarea
             className={`${inputBase} min-h-[80px] resize-y border-white/15`}
@@ -282,6 +428,49 @@ export function FormularioCliente() {
         Usamos seus dados apenas para responder ao seu contato sobre seu projeto Roll Door.
       </p>
     </form>
+  );
+}
+
+function SelectField({
+  label,
+  value,
+  options,
+  error,
+  onChange,
+  className = "",
+}: {
+  label: string;
+  value: string;
+  options: string[];
+  error?: string;
+  onChange: (value: string) => void;
+  className?: string;
+}) {
+  return (
+    <Field label={label} error={error} className={className}>
+      <div className="relative">
+        <select
+          className={`w-full appearance-none rounded-xl border bg-white/[0.03] py-2.5 pl-3 pr-9 font-sans text-[15px] transition-colors focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
+            value ? "text-white" : "text-white/40"
+          } ${error ? "border-destructive" : "border-white/15"}`}
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+        >
+          <option value="" disabled className="bg-neutral-900 text-white/60">
+            Selecione
+          </option>
+          {options.map((opcao) => (
+            <option key={opcao} value={opcao} className="bg-neutral-900 text-white">
+              {opcao}
+            </option>
+          ))}
+        </select>
+        <ChevronDown
+          className="pointer-events-none absolute right-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+          strokeWidth={2}
+        />
+      </div>
+    </Field>
   );
 }
 

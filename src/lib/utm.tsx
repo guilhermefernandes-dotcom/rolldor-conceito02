@@ -80,9 +80,14 @@ export function readUtmFields(form: HTMLFormElement | null): Record<UtmKey, stri
   return out;
 }
 
-/** Dispara o evento de envio de formulário no GTM. */
-export function pushFormSubmitEvent() {
+/** Envia um evento para o dataLayer do GTM. */
+export function pushDataLayerEvent(event: string) {
   const w = window as unknown as { dataLayer?: unknown[] };
   w.dataLayer = w.dataLayer || [];
-  w.dataLayer.push({ event: "gtm.formSubmit" });
+  w.dataLayer.push({ event });
+}
+
+/** Dispara o evento de envio de formulário no GTM (gatilho das conversões). */
+export function pushFormSubmitEvent() {
+  pushDataLayerEvent("gtm.formSubmit");
 }
