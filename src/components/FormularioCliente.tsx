@@ -10,7 +10,6 @@ import {
   pushFormSubmitEvent,
 } from "@/lib/utm";
 import { captureClickIds, getClickIds } from "@/lib/clickIds";
-import { sendToWebhook } from "@/lib/webhook";
 
 // Perguntas de qualificação. Os textos precisam ser idênticos às opções dos
 // campos de seleção no Kommo, porque o Make preenche os campos pelo texto.
@@ -189,22 +188,27 @@ export function FormularioCliente() {
     // tipo_projeto não é mais perguntado, mas segue obrigatório na tabela.
     const faseDb =
       FASE_OBRA_DB[qualificacao.fase_obra as keyof typeof FASE_OBRA_DB] ?? "projeto";
-    const { error } = await supabase
-      .from("cliente_leads")
-      .insert({ ...lead, tipo_projeto: "casa" as const, fase_obra: faseDb });
-    if (error) {
-      setStatus("error");
-      setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
-      return;
-    }
-    sendToWebhook({
+    // O envio ao Make sai do banco (trigger trg_enviar_lead_make), não do navegador:
+    // o endereço do webhook não é alcançável por parte das redes dos visitantes.
+    const webhookPayload = {
       ...lead,
       ...qualificacao,
       qualificado: qualificado ? "sim" : "nao",
       motivo: motivos.join(", ") || null,
       ...getClickIds(),
       origem: "residencial",
+    };
+    const { error } = await supabase.from("cliente_leads").insert({
+      ...lead,
+      tipo_projeto: "casa" as const,
+      fase_obra: faseDb,
+      webhook_payload: webhookPayload,
     });
+    if (error) {
+      setStatus("error");
+      setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
+      return;
+    }
     // Só o lead qualificado dispara o gtm.formSubmit, que conta a conversão no Google e no Meta.
     if (qualificado) {
       pushFormSubmitEvent();
