@@ -66,6 +66,7 @@ export type Database = {
           utm_medium?: string | null
           utm_source?: string | null
           utm_term?: string | null
+          webhook_payload?: Json | null
           whatsapp?: string
         }
         Relationships: []
