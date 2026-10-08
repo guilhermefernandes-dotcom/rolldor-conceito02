@@ -209,13 +209,10 @@ export function FormularioCliente() {
       setServerError("Não foi possível enviar seu cadastro agora. Tente novamente em instantes.");
       return;
     }
-    // Só o lead qualificado dispara o gtm.formSubmit, que conta a conversão no Google e no Meta.
-    if (qualificado) {
-      pushFormSubmitEvent();
-      pushDataLayerEvent("lead_qualificado");
-    } else {
-      pushDataLayerEvent("lead_desqualificado");
-    }
+    // Todo lead enviado dispara o gtm.formSubmit, que conta a conversão no Google e no Meta.
+    // lead_qualificado / lead_desqualificado seguem para segmentar a qualidade no GTM.
+    pushFormSubmitEvent();
+    pushDataLayerEvent(qualificado ? "lead_qualificado" : "lead_desqualificado");
     setStatus(qualificado ? "success" : "disqualified");
     setValues(initialState);
   }
