@@ -203,7 +203,12 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
   const scrollToTarget = () => {
     const form = document.getElementById("formulario-orcamento");
     const el = isFormAnchor ? (form ?? target) : target;
-    const elTop = window.scrollY + el.getBoundingClientRect().top;
+    // offsetTop ignora transform: o formulário entra com animação (desce 24px e sobe),
+    // e medir pelo getBoundingClientRect no meio dela fazia a rolagem passar do ponto.
+    let elTop = 0;
+    for (let n: HTMLElement | null = el; n; n = n.offsetParent as HTMLElement | null) {
+      elTop += n.offsetTop;
+    }
     // Formulário: o topo do card (título "Solicite um orçamento") para logo no alto da tela,
     // com uma folga pequena; a pessoa já começa pelo primeiro campo e rola para descer.
     // Âncoras de conteúdo (ex: produtos): leva ao topo da seção com pequena folga.
