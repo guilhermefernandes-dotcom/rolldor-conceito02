@@ -1122,17 +1122,17 @@ function LandingCliente() {
               "repeating-linear-gradient(115deg, rgba(255,255,255,0.9) 0 1px, transparent 1px 22px)",
           }}
         />
-        <div className="relative mx-auto max-w-[1400px] px-5 md:px-10">
+        <div className="relative mx-auto max-w-[1400px] px-4 md:px-10">
           <Reveal>
             <div
-              className="relative overflow-hidden rounded-3xl p-4 text-white sm:p-8 md:p-12"
+              className="relative overflow-hidden rounded-3xl text-white sm:p-8 md:p-12"
               style={{
                 background:
                   "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.16 0.005 250) 45%, oklch(0.11 0.005 250) 100%)",
               }}
             >
               <div
-                className="pointer-events-none absolute -right-24 -top-24 h-80 w-80 rounded-full opacity-30 blur-3xl"
+                className="pointer-events-none absolute -left-24 -top-24 hidden h-80 w-80 rounded-full opacity-20 blur-3xl lg:block"
                 style={{ background: "#9CCB3B" }}
               />
               <div className="relative grid gap-8 lg:grid-cols-2 lg:items-center lg:gap-14">

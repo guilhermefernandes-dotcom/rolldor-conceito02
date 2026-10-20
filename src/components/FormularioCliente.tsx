@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion } from "motion/react";
-import { AlertCircle, CheckCircle2, ChevronDown, Loader2, ArrowRight, Home } from "lucide-react";
+import { AlertCircle, CheckCircle2, ChevronDown, Loader2, ArrowRight, Lock } from "lucide-react";
 import { z } from "zod";
 
 import {
@@ -129,6 +129,13 @@ const initialState: FormState = {
   tamanho_obra: "",
   tipo_solucao: "",
 };
+
+// Visual único dos campos: 48px de altura (alvo de toque), fundo mais claro que o card
+// para o campo se destacar, e 16px de fonte (abaixo disso o iPhone dá zoom ao tocar).
+const CAMPO_BASE =
+  "block h-12 w-full rounded-xl border bg-white/[0.07] px-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 hover:border-white/40 focus:bg-white/[0.09] focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/25";
+const CAMPO_OK = "border-white/20";
+const CAMPO_ERRO = "border-[#FF8A80]";
 
 export function FormularioCliente() {
   const [values, setValues] = useState<FormState>(initialState);
@@ -323,10 +330,7 @@ export function FormularioCliente() {
     );
   }
 
-  // 16px no campo: abaixo disso o Safari do iPhone dá zoom ao tocar no campo
-  const inputBase =
-    "w-full rounded-xl border bg-white/[0.05] px-3 py-2 font-sans text-[16px] md:py-2.5 text-white transition-colors placeholder:text-white/45 hover:border-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
-  const borda = (k: keyof FormState) => (errors[k] ? "border-[#FF8A80]" : "border-white/25");
+  const borda = (k: keyof FormState) => (errors[k] ? CAMPO_ERRO : CAMPO_OK);
   const aria = (k: keyof FormState) => ({
     "data-campo": k,
     "aria-invalid": errors[k] ? true : undefined,
@@ -340,7 +344,7 @@ export function FormularioCliente() {
       ref={formRef}
       onSubmit={onSubmit}
       id="formulario-orcamento"
-      className={`rounded-3xl border bg-white/[0.03] p-3 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm transition-all duration-300 md:p-8 ${
+      className={`relative rounded-3xl border bg-[#15181A] p-5 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] transition-all duration-300 sm:p-7 md:p-9 ${
         highlight
           ? "border-brand-green/70 ring-2 ring-brand-green/40 ring-offset-2 ring-offset-transparent"
           : "border-white/10"
@@ -355,23 +359,22 @@ export function FormularioCliente() {
           <input ref={honeypotRef} type="text" name="site" tabIndex={-1} autoComplete="off" />
         </label>
       </div>
-      <div className="mb-2 text-center md:mb-3">
-        <div className="mx-auto mb-2 hidden h-10 w-10 items-center justify-center rounded-full bg-brand-green/10 md:flex">
-          <Home className="h-4 w-4 text-brand-green" strokeWidth={1.8} />
-        </div>
-        <h3 className="font-display text-xl font-medium text-white md:text-3xl">
-          Solicite um orçamento.
+
+      <div className="mb-6 md:mb-8">
+        <h3 className="font-display text-[24px] font-medium leading-tight tracking-tight text-white md:text-[30px]">
+          Solicite um orçamento
         </h3>
-        <p className="mx-auto mt-1 max-w-md text-[13px] leading-snug text-white/70 md:text-[15px]">
-          Preencha seus dados e um especialista da Roll Door entrará em contato.
+        <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/75 md:text-[16px]">
+          Preencha seus dados e um especialista da Roll Door entra em contato.
         </p>
       </div>
 
-      <div className="grid grid-cols-2 gap-x-2 gap-y-1.5 md:gap-2">
-        <Field label="Nome" campo="nome" error={errors.nome}>
+      {/* Grupo 1: contato */}
+      <div className="grid grid-cols-1 gap-x-3 gap-y-4 sm:grid-cols-2 md:gap-x-4 md:gap-y-5">
+        <Field label="Nome" campo="nome" error={errors.nome} className="sm:col-span-2">
           <input
             {...aria("nome")}
-            className={`${inputBase} ${borda("nome")}`}
+            className={`${CAMPO_BASE} ${borda("nome")}`}
             value={values.nome}
             onChange={(e) => update("nome", e.target.value)}
             autoComplete="name"
@@ -384,19 +387,19 @@ export function FormularioCliente() {
           {/* Máscara: aceita colar +55, 0 de DDD, espaços e traços; o cursor não pula */}
           <TelefoneInput
             {...aria("whatsapp")}
-            className={`${inputBase} ${borda("whatsapp")}`}
+            className={`${CAMPO_BASE} ${borda("whatsapp")}`}
             value={values.whatsapp}
             onValueChange={(v) => update("whatsapp", v)}
             placeholder="(44) 98824-9953"
             enterKeyHint="next"
           />
         </Field>
-        <Field label="E-mail" campo="email" error={errors.email} className="col-span-2 md:col-span-1">
+        <Field label="E-mail" campo="email" error={errors.email}>
           <input
             {...aria("email")}
             type="email"
             inputMode="email"
-            className={`${inputBase} ${borda("email")}`}
+            className={`${CAMPO_BASE} ${borda("email")}`}
             value={values.email}
             onChange={(e) => update("email", e.target.value.replace(/\s/g, ""))}
             autoComplete="email"
@@ -404,6 +407,7 @@ export function FormularioCliente() {
             autoCorrect="off"
             spellCheck={false}
             enterKeyHint="next"
+            placeholder="nome@email.com"
           />
           {emailSugerido && (
             <button
@@ -413,17 +417,17 @@ export function FormularioCliente() {
                 e.preventDefault();
                 update("email", emailSugerido);
               }}
-              className="mt-1 text-left text-[13px] text-white/80 underline decoration-brand-green underline-offset-4 hover:text-white"
+              className="mt-1.5 text-left text-[13px] text-white/80 underline decoration-brand-green underline-offset-4 hover:text-white"
             >
               Você quis dizer <strong className="font-semibold text-white">{emailSugerido}</strong>?
             </button>
           )}
         </Field>
-        <div className="col-span-2 grid grid-cols-[3fr_1fr] gap-2">
-          <Field label="Cidade" campo="cidade" error={errors.cidade}>
+        <div className="grid grid-cols-[1fr_96px] gap-3 sm:col-span-2 md:grid-cols-[1fr_120px] md:gap-4">
+          <Field label="Cidade da obra" campo="cidade" error={errors.cidade}>
             <input
               {...aria("cidade")}
-              className={`${inputBase} ${borda("cidade")}`}
+              className={`${CAMPO_BASE} ${borda("cidade")}`}
               value={values.cidade}
               onChange={(e) => update("cidade", e.target.value)}
               autoComplete="address-level2"
@@ -439,6 +443,16 @@ export function FormularioCliente() {
             />
           </Field>
         </div>
+      </div>
+
+      {/* Grupo 2: qualificação da obra */}
+      <div className="mt-7 flex items-center gap-3 md:mt-8">
+        <span className="font-display text-[12px] font-semibold uppercase tracking-[0.16em] text-brand-green">
+          Sobre a obra
+        </span>
+        <span aria-hidden className="h-px flex-1 bg-white/10" />
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-4 md:mt-5 md:gap-x-4 md:gap-y-5">
         <SelectField
           campo="perfil"
           label="Qual opção melhor descreve você?"
@@ -480,7 +494,7 @@ export function FormularioCliente() {
       {serverError && (
         <div
           role="alert"
-          className="mt-4 flex items-start gap-2 rounded-xl border border-[#FF8A80]/40 bg-[#FF8A80]/10 px-3 py-2 text-[14px] text-white"
+          className="mt-5 flex items-start gap-2 rounded-xl border border-[#FF8A80]/40 bg-[#FF8A80]/10 px-3 py-2.5 text-[14px] text-white"
         >
           <AlertCircle className="mt-0.5 h-4 w-4 shrink-0 text-[#FF8A80]" aria-hidden />
           {serverError}
@@ -491,25 +505,26 @@ export function FormularioCliente() {
         type="submit"
         disabled={status === "loading"}
         aria-busy={status === "loading"}
-        className="mt-3 inline-flex h-12 w-full items-center justify-center gap-2 rounded-2xl px-6 font-display text-base font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 disabled:cursor-wait disabled:opacity-80 sm:h-16 sm:text-lg md:mt-4"
+        className="mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-6 font-display text-[17px] font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 active:scale-[0.99] disabled:cursor-wait disabled:opacity-80 md:mt-8 md:h-[60px] md:text-lg"
         style={{
           background: "#9CCB3B",
-          boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
+          boxShadow: "0 18px 40px -14px rgba(156, 203, 59, 0.55)",
         }}
       >
         {status === "loading" ? (
           <>
-            <Loader2 className="h-5 w-5 animate-spin" /> Enviando...
+            <Loader2 className="h-5 w-5 animate-spin" aria-hidden /> Enviando...
           </>
         ) : (
           <>
-            Solicitar orçamento <ArrowRight className="h-5 w-5" />
+            Solicitar orçamento <ArrowRight className="h-5 w-5" aria-hidden />
           </>
         )}
       </button>
 
-      <p className="mt-2 text-[12px] text-white/60">
-        Usamos seus dados apenas para responder ao seu contato sobre seu projeto Roll Door.
+      <p className="mt-4 flex items-center justify-center gap-1.5 text-center text-[13px] leading-snug text-white/60">
+        <Lock className="h-3.5 w-3.5 shrink-0" aria-hidden />
+        Seus dados são usados só para responder sobre o seu projeto.
       </p>
     </form>
   );
@@ -552,9 +567,9 @@ function SelectField({
           data-campo={campo}
           aria-invalid={error ? true : undefined}
           aria-describedby={error ? `${campo}-erro` : undefined}
-          className={`w-full appearance-none rounded-xl border bg-white/[0.05] py-2 pl-3 pr-8 md:py-2.5 font-sans text-[16px] transition-colors hover:border-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 ${
-            value ? "text-white" : "text-white/55"
-          } ${error ? "border-[#FF8A80]" : "border-white/25"}`}
+          className={`${CAMPO_BASE} appearance-none truncate pr-10 ${
+            value ? "text-white" : "text-white/50"
+          } ${error ? CAMPO_ERRO : CAMPO_OK}`}
           value={value}
           onChange={(e) => onChange(e.target.value)}
         >
@@ -568,7 +583,7 @@ function SelectField({
           ))}
         </select>
         <ChevronDown
-          className="pointer-events-none absolute right-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/50"
+          className="pointer-events-none absolute right-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-white/60"
           strokeWidth={2}
         />
       </div>
@@ -639,9 +654,7 @@ function UfCombobox({
   return (
     <div className="relative">
       <input
-        className={`w-full rounded-xl border bg-white/[0.03] px-2 py-2 text-center font-sans text-[15px] uppercase text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25 md:py-2.5 ${
-          hasError ? "border-destructive" : "border-white/15"
-        }`}
+        className={`${CAMPO_BASE} px-2 text-center uppercase ${hasError ? CAMPO_ERRO : CAMPO_OK}`}
         value={query}
         onChange={onInput}
         onKeyDown={onKeyDown}
@@ -683,7 +696,7 @@ function UfCombobox({
               // O campo está dentro de um <label>: sem isso o clique "vaza" e reabre a lista.
               onClick={(e) => e.preventDefault()}
               onMouseEnter={() => setActive(i)}
-              className={`cursor-pointer px-3 py-1.5 text-center font-sans text-[15px] text-white ${
+              className={`cursor-pointer px-3 py-2 text-center font-sans text-[16px] text-white ${
                 i === active ? "bg-brand-green/25" : ""
               }`}
             >
@@ -711,14 +724,14 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-1 block truncate font-display text-[12px] font-medium uppercase tracking-[0.08em] text-white/75">
+      <span className="mb-2 block truncate font-display text-[14px] font-medium text-white/85">
         {label}
       </span>
       {children}
       {error && (
         <span
           id={campo ? `${campo}-erro` : undefined}
-          className="mt-1 flex items-start gap-1 text-[12.5px] leading-snug text-[#FF8A80]"
+          className="mt-1.5 flex items-start gap-1.5 text-[13px] leading-snug text-[#FF8A80]"
         >
           <AlertCircle className="mt-[1px] h-3.5 w-3.5 shrink-0" aria-hidden />
           {error}
