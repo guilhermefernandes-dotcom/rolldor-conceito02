@@ -102,7 +102,7 @@ const ORDEM: Campo[] = [
 // Visual único dos campos: 48px de altura, fundo mais claro que o card e fonte de 16px
 // (abaixo disso o iPhone dá zoom ao tocar no campo).
 const CAMPO_BASE =
-  "block h-12 w-full rounded-xl border bg-white/[0.07] px-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 hover:border-white/40 focus:bg-white/[0.09] focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/25";
+  "block h-11 w-full rounded-xl border bg-white/[0.07] px-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 hover:border-white/40 focus:bg-white/[0.09] focus:border-brand-green focus:outline-none focus:ring-2 focus:ring-brand-green/25";
 const CAMPO_OK = "border-white/20";
 const CAMPO_ERRO = "border-[#FF8A80]";
 
@@ -226,7 +226,7 @@ export function FormularioRevenda() {
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="relative rounded-3xl border border-white/10 bg-[#15181A] p-5 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] sm:p-7 md:p-9"
+      className="relative rounded-3xl border border-white/10 bg-[#15181A] p-4 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.6)] sm:p-6 md:p-8"
       noValidate
     >
       {/* Armadilha para robôs: invisível para pessoas e leitores de tela */}
@@ -237,18 +237,18 @@ export function FormularioRevenda() {
         </label>
       </div>
 
-      <div className="mb-6 md:mb-8">
+      <div className="mb-5 md:mb-6">
         <h3 className="font-display text-[24px] font-medium leading-tight tracking-tight text-white md:text-[30px]">
           Cadastre sua empresa
         </h3>
-        <p className="mt-2 max-w-md text-[15px] leading-relaxed text-white/75 md:text-[16px]">
+        <p className="mt-1.5 max-w-md text-[15px] leading-snug text-white/75 md:text-[16px]">
           Nossa equipe entra em contato para apresentar o programa de parceria.
         </p>
       </div>
 
       {/* Grupo 1: empresa */}
       <Grupo titulo="Sua empresa" primeiro />
-      <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 md:mt-5 md:gap-y-5">
+      <div className="mt-3 grid grid-cols-1 gap-x-3 gap-y-3 sm:grid-cols-2 md:mt-4 md:gap-y-3.5">
         <Field label="Nome da empresa" campo="empresa" error={errors.empresa} className="sm:col-span-2">
           <input
             {...aria("empresa")}
@@ -311,7 +311,7 @@ export function FormularioRevenda() {
 
       {/* Grupo 2: contato */}
       <Grupo titulo="Seu contato" />
-      <div className="mt-4 grid grid-cols-1 gap-x-4 gap-y-4 sm:grid-cols-2 md:mt-5 md:gap-y-5">
+      <div className="mt-3 grid grid-cols-1 gap-x-3 gap-y-3 sm:grid-cols-2 md:mt-4 md:gap-y-3.5">
         <Field label="Seu nome" campo="nome" error={errors.nome} className="sm:col-span-2">
           <input
             {...aria("nome")}
@@ -349,7 +349,7 @@ export function FormularioRevenda() {
             enterKeyHint="next"
           />
         </Field>
-        <div className="grid grid-cols-[1fr_96px] gap-3 sm:col-span-2 md:grid-cols-[1fr_120px] md:gap-4">
+        <div className="grid grid-cols-[1fr_96px] gap-3 sm:col-span-2 md:grid-cols-[1fr_120px]">
           <Field label="Cidade" campo="cidade" error={errors.cidade}>
             <input
               {...aria("cidade")}
@@ -399,7 +399,7 @@ export function FormularioRevenda() {
         >
           <textarea
             {...aria("mensagem")}
-            className={`${CAMPO_BASE} ${borda("mensagem")} h-auto min-h-[104px] resize-y py-3`}
+            className={`${CAMPO_BASE} ${borda("mensagem")} h-auto min-h-[88px] resize-y py-2.5`}
             value={values.mensagem}
             onChange={(e) => update("mensagem", e.target.value)}
             maxLength={1500}
@@ -422,7 +422,7 @@ export function FormularioRevenda() {
         type="submit"
         disabled={status === "loading"}
         aria-busy={status === "loading"}
-        className="mt-7 inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-6 font-display text-[17px] font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 active:scale-[0.99] disabled:cursor-wait disabled:opacity-80 md:mt-8 md:h-[60px] md:text-lg"
+        className="mt-5 inline-flex h-[52px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-6 font-display text-[17px] font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 active:scale-[0.99] disabled:cursor-wait disabled:opacity-80 md:mt-6 md:h-14 md:text-lg"
         style={{ boxShadow: "0 18px 40px -14px rgba(156, 203, 59, 0.55)" }}
       >
         {status === "loading" ? (
@@ -435,7 +435,7 @@ export function FormularioRevenda() {
           </>
         )}
       </button>
-      <p className="mt-4 flex items-start justify-center gap-1.5 text-center text-[13px] leading-snug text-white/60">
+      <p className="mt-3 flex items-start justify-center gap-1.5 text-center text-[13px] leading-snug text-white/60">
         <Lock className="mt-[2px] h-3.5 w-3.5 shrink-0" aria-hidden />
         Seus dados são usados só para responder sobre a parceria Roll Door.
       </p>
@@ -445,7 +445,7 @@ export function FormularioRevenda() {
 
 function Grupo({ titulo, primeiro = false }: { titulo: string; primeiro?: boolean }) {
   return (
-    <div className={`flex items-center gap-3 ${primeiro ? "" : "mt-7 md:mt-8"}`}>
+    <div className={`flex items-center gap-3 ${primeiro ? "" : "mt-5 md:mt-6"}`}>
       <span className="font-display text-[12px] font-semibold uppercase tracking-[0.16em] text-brand-green">
         {titulo}
       </span>
@@ -469,7 +469,7 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-2 block font-display text-[14px] font-medium text-white/85">{label}</span>
+      <span className="mb-1.5 block font-display text-[14px] font-medium text-white/85">{label}</span>
       {children}
       {error && (
         <span
