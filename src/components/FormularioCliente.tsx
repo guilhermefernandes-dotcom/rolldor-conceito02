@@ -39,6 +39,8 @@ const TIPO_SOLUCAO_OPCOES = [
   "Janelas",
   "Porta pivotante",
   "Projeto completo de esquadrias",
+  // Precisa existir também no campo "tipo de solução" do Kommo
+  "Não sei",
 ];
 
 // Respostas que desqualificam o lead: vai só para a planilha, não para o Kommo,
@@ -57,7 +59,7 @@ const FASE_OBRA_DB = {
   Reforma: "reforma",
 } as const;
 
-const selecione = "Selecione uma opção";
+const selecione = "Escolha uma opção";
 
 // Erros de digitação comuns no domínio do e-mail (gmial.com -> gmail.com)
 const DOMINIOS_CERTOS: Record<string, string> = {
@@ -453,40 +455,43 @@ export function FormularioCliente() {
         <span aria-hidden className="h-px flex-1 bg-white/10" />
       </div>
       <div className="mt-4 grid grid-cols-2 gap-x-3 gap-y-4 md:mt-5 md:gap-x-4 md:gap-y-5">
-        <SelectField
+        <OpcoesField
           campo="perfil"
           label="Qual opção melhor descreve você?"
           value={values.perfil}
           options={PERFIL_OPCOES}
           error={errors.perfil}
           onChange={(v) => update("perfil", v)}
+          colunas="grid-cols-1 sm:grid-cols-2"
           className="col-span-2"
         />
         <SelectField
           campo="fase_obra"
           label="Em que fase está sua obra?"
-          shortLabel="Fase da obra"
           value={values.fase_obra}
           options={FASE_OBRA_OPCOES}
           error={errors.fase_obra}
           onChange={(v) => update("fase_obra", v)}
+          className="col-span-2"
         />
-        <SelectField
+        <OpcoesField
           campo="tamanho_obra"
           label="Qual o tamanho da sua obra?"
-          shortLabel="Tamanho da obra"
           value={values.tamanho_obra}
           options={TAMANHO_OBRA_OPCOES}
           error={errors.tamanho_obra}
           onChange={(v) => update("tamanho_obra", v)}
+          colunas="grid-cols-2"
+          className="col-span-2"
         />
-        <SelectField
+        <OpcoesField
           campo="tipo_solucao"
           label="Que tipo de solução você procura?"
           value={values.tipo_solucao}
           options={TIPO_SOLUCAO_OPCOES}
           error={errors.tipo_solucao}
           onChange={(v) => update("tipo_solucao", v)}
+          colunas="grid-cols-2"
           className="col-span-2"
         />
       </div>
@@ -527,6 +532,81 @@ export function FormularioCliente() {
         Seus dados são usados só para responder sobre o seu projeto.
       </p>
     </form>
+  );
+}
+
+/**
+ * Pergunta de toque único: as opções ficam à vista (sem abrir lista).
+ * Usa rádio nativo escondido, então setas do teclado e leitores de tela funcionam.
+ */
+function OpcoesField({
+  campo,
+  label,
+  value,
+  options,
+  error,
+  onChange,
+  colunas,
+  className = "",
+}: {
+  campo: string;
+  label: string;
+  value: string;
+  options: string[];
+  error?: string;
+  onChange: (value: string) => void;
+  colunas: string;
+  className?: string;
+}) {
+  return (
+    <fieldset
+      className={className}
+      aria-invalid={error ? true : undefined}
+      aria-describedby={error ? `${campo}-erro` : undefined}
+    >
+      <legend className="mb-2 block font-display text-[14px] font-medium text-white/85">
+        {label}
+      </legend>
+      <div className={`grid gap-2 ${colunas}`}>
+        {options.map((opcao, i) => {
+          const marcado = value === opcao;
+          // Com número ímpar de opções, a última ocupa a linha toda
+          const ultimaSozinha = options.length % 2 === 1 && i === options.length - 1;
+          return (
+            <label
+              key={opcao}
+              className={`relative flex min-h-12 cursor-pointer items-center justify-center rounded-xl border px-3 py-2 text-center font-sans text-[15px] leading-snug transition-colors has-[input:focus-visible]:outline-2 has-[input:focus-visible]:outline-offset-2 has-[input:focus-visible]:outline-[#5A8A17] ${
+                ultimaSozinha ? "col-span-full" : ""
+              } ${
+                marcado
+                  ? "border-brand-green bg-brand-green font-semibold text-[#0E1111]"
+                  : `${error ? CAMPO_ERRO : CAMPO_OK} bg-white/[0.07] text-white/90 hover:border-white/45 hover:bg-white/[0.1]`
+              }`}
+            >
+              <input
+                type="radio"
+                name={campo}
+                value={opcao}
+                checked={marcado}
+                onChange={() => onChange(opcao)}
+                data-campo={i === 0 ? campo : undefined}
+                className="sr-only"
+              />
+              {opcao}
+            </label>
+          );
+        })}
+      </div>
+      {error && (
+        <span
+          id={`${campo}-erro`}
+          className="mt-1.5 flex items-start gap-1.5 text-[13px] leading-snug text-[#FF8A80]"
+        >
+          <AlertCircle className="mt-[1px] h-3.5 w-3.5 shrink-0" aria-hidden />
+          {error}
+        </span>
+      )}
+    </fieldset>
   );
 }
 
