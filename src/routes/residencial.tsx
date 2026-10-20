@@ -48,6 +48,8 @@ const heroImg = heroPortaBandeirasAsset.url;
 import logoAsset from "@/assets/roll-door-logo.png.asset.json";
 import { FormularioCliente } from "@/components/FormularioCliente";
 import { StatsScrollLock, type Step as ScrollStep } from "@/components/StatsScrollLock";
+import { StickyCta } from "@/components/StickyCta";
+import { ContatoDireto } from "@/components/ContatoDireto";
 
 
 const residencialSteps: ScrollStep[] = [
@@ -252,7 +254,7 @@ function CtaPrimary({
     <a
       href={href}
       onClick={(e) => handleCtaClick(e, href)}
-      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
+      className={`group relative inline-flex h-16 items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-[#0E1111] transition-transform hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] sm:h-[68px] sm:px-14 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -455,7 +457,7 @@ function ProdutosFiltraveis() {
             aria-pressed={todosAtivo}
             className={`relative h-12 w-full overflow-hidden rounded-xl border-2 px-4 font-display text-[14px] font-medium transition-colors duration-300 md:h-14 md:text-[16px] ${
               todosAtivo
-                ? "border-brand-green text-white"
+                ? "border-brand-green text-[#0E1111]"
                 : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
             }`}
           >
@@ -470,17 +472,19 @@ function ProdutosFiltraveis() {
             <span
               aria-hidden
               className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
-                todosAtivo ? "border-white/35" : "border-foreground/10"
+                todosAtivo ? "border-black/15" : "border-foreground/10"
               }`}
             />
-            {/* puxador central de porta de correr dupla */}
-            <span
-              aria-hidden
-              className={`pointer-events-none absolute left-1/2 top-1/2 hidden h-5 w-[3px] -translate-x-6 -translate-y-1/2 rounded-full transition-colors duration-300 md:block ${
-                todosAtivo ? "bg-white/60" : "bg-foreground/15"
-              }`}
-            />
-            <span className="relative z-10">Todos</span>
+            {/* puxador de porta de correr: fica ao lado do texto, sem encostar nele */}
+            <span className="relative z-10 inline-flex items-center gap-3">
+              <span
+                aria-hidden
+                className={`hidden h-5 w-[3px] rounded-full transition-colors duration-300 md:block ${
+                  todosAtivo ? "bg-black/25" : "bg-foreground/15"
+                }`}
+              />
+              Todos
+            </span>
           </button>
 
           {/* Categorias — abrem o dropdown de produtos */}
@@ -497,7 +501,7 @@ function ProdutosFiltraveis() {
                   aria-expanded={aberto}
                   className={`relative h-12 overflow-hidden rounded-xl border-2 px-3 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-4 md:text-[15px] ${
                     ativo
-                      ? "border-brand-green text-white"
+                      ? "border-brand-green text-[#0E1111]"
                       : aberto
                         ? "border-brand-green bg-white text-foreground"
                         : "border-foreground/20 bg-white/70 text-foreground/70 hover:border-foreground/45 hover:text-foreground"
@@ -514,7 +518,7 @@ function ProdutosFiltraveis() {
                   <span
                     aria-hidden
                     className={`pointer-events-none absolute inset-[4px] rounded-lg border transition-colors duration-300 ${
-                      ativo ? "border-white/35" : "border-foreground/10"
+                      ativo ? "border-black/15" : "border-foreground/10"
                     }`}
                   />
                   <span className="relative z-10 inline-flex items-center gap-1.5">
@@ -564,8 +568,8 @@ function ProdutosFiltraveis() {
                           onClick={() => escolherProduto(p.id, dropdownAberto)}
                           className={`flex w-full items-center gap-2.5 rounded-xl px-3 py-2.5 text-left font-display text-[13px] font-medium transition-colors md:text-[14px] ${
                             selecionado
-                              ? "bg-brand-green text-white"
-                              : "text-foreground/75 hover:bg-brand-green/10 hover:text-foreground"
+                              ? "bg-brand-green text-[#0E1111]"
+                              : "text-foreground/80 hover:bg-brand-green/10 hover:text-foreground"
                           }`}
                         >
                           <IconePorta ativo={selecionado} />
@@ -573,8 +577,8 @@ function ProdutosFiltraveis() {
                           <span
                             className={`rounded-full px-1.5 py-0.5 text-[10px] font-semibold ${
                               selecionado
-                                ? "bg-white/25 text-white"
-                                : "bg-foreground/8 text-foreground/50"
+                                ? "bg-black/10 text-[#0E1111]"
+                                : "bg-foreground/8 text-foreground/65"
                             }`}
                           >
                             {p.fotos.length}
@@ -600,7 +604,7 @@ function ProdutosFiltraveis() {
             exit={{ opacity: 0, y: 8 }}
             transition={{ duration: 0.25 }}
           >
-            <span className="font-display text-[10px] font-medium uppercase tracking-[0.18em] text-brand-green md:text-[11px]">
+            <span className="font-display text-[11px] font-semibold uppercase tracking-[0.18em] text-brand-green-ink md:text-[12px]">
               {produtoAtivo ? produtoAtivo.tag : "Destaques"}
             </span>
             <h3
@@ -608,7 +612,7 @@ function ProdutosFiltraveis() {
               style={{ letterSpacing: "-0.02em" }}
             >
               {produtoAtivo ? produtoAtivo.nome : "Um destaque de cada linha"}
-              <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/50 md:text-[14px]">
+              <span className="ml-2 align-middle font-sans text-[13px] font-normal text-foreground/65 md:text-[14px]">
                 {fotos.length} fotos
               </span>
             </h3>
@@ -653,9 +657,9 @@ function ProdutosFiltraveis() {
                 />
                 <span
                   aria-hidden
-                  className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/55 to-transparent"
+                  className="pointer-events-none absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-black/75 via-black/30 to-transparent"
                 />
-                <span className="pointer-events-none absolute bottom-3 left-3 right-3 text-left font-display text-[12px] font-medium leading-snug text-white md:text-[13px]">
+                <span className="pointer-events-none absolute bottom-3 left-3 right-3 text-left font-display text-[14px] font-medium leading-snug text-white md:text-[14px]">
                   {f.nome}
                 </span>
               </button>
@@ -673,10 +677,14 @@ function ProdutosFiltraveis() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.25 }}
             onClick={() => setFotoAberta(null)}
+            role="dialog"
+            aria-modal="true"
+            aria-label={`Foto ampliada: ${fotoAberta.nome}`}
             className="fixed inset-0 z-[100] flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm md:p-10"
           >
             <button
               type="button"
+              autoFocus
               onClick={() => setFotoAberta(null)}
               aria-label="Fechar foto"
               className="absolute right-4 top-4 z-10 flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-white backdrop-blur transition-colors hover:bg-white/30"
@@ -713,7 +721,7 @@ function ProdutosFiltraveis() {
         <a
           href="#cta-final"
           onClick={(e) => handleCtaClick(e, "#cta-final")}
-          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-white shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto sm:px-12 md:h-16 md:text-xl"
+          className="inline-flex h-14 w-full items-center justify-center gap-2 rounded-2xl px-10 font-display text-lg font-semibold text-[#0E1111] shadow-[0_18px_40px_-12px_rgba(151,191,76,0.5)] transition-transform hover:-translate-y-0.5 active:scale-[0.98] sm:w-auto sm:px-12 md:h-16 md:text-xl"
           style={{ background: "#9CCB3B" }}
         >
 
@@ -872,7 +880,7 @@ function LandingCliente() {
             fontWeight: 500,
             fontSize: "clamp(15px, 4.5vw, 22px)",
             lineHeight: "1.3",
-            color: "rgba(255,255,255,0.95)",
+            color: "#0E1111",
             letterSpacing: "-0.01em",
           }}
         >
@@ -907,7 +915,7 @@ function LandingCliente() {
             <div className="relative z-10 mx-auto max-w-[1280px]">
               <div className="mx-auto max-w-3xl text-center">
                 <Reveal>
-                  <span className="font-display text-xs font-medium uppercase tracking-[0.24em] text-brand-green">
+                  <span className="font-display text-xs font-semibold uppercase tracking-[0.24em] text-brand-green-ink">
                     Nossos produtos
                   </span>
                   <h2
@@ -920,7 +928,7 @@ function LandingCliente() {
                     }}
                   >
                     Esquadrias pensadas para o{" "}
-                    <UnderlineWord delay={0}>seu projeto</UnderlineWord>.
+                    <span className="whitespace-nowrap"><UnderlineWord delay={0}>seu projeto</UnderlineWord>.</span>
                   </h2>
                   <p className="mx-auto mt-6 max-w-2xl text-[17px] leading-relaxed text-foreground/65 md:text-[20px]">
                     Conheça nossas linhas de esquadrias, portas e sistemas desenvolvidos para
@@ -951,7 +959,7 @@ function LandingCliente() {
                   letterSpacing: "-0.035em",
                 }}
               >
-                Quando <UnderlineWord delay={0}>arquitetura</UnderlineWord>, design e engenharia
+                Quando <span className="whitespace-nowrap"><UnderlineWord delay={0}>arquitetura</UnderlineWord>,</span> design e engenharia
                 trabalham juntos.
               </h2>
             </Reveal>
@@ -1005,7 +1013,7 @@ function LandingCliente() {
                   }}
                 >
                   Por que escolher a{" "}
-                  <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
+                  <span className="whitespace-nowrap"><UnderlineWord delay={0}>Roll Door</UnderlineWord>?</span>
                 </h2>
                 <p className="mt-6 max-w-md text-[18px] leading-relaxed text-white/65">
                   Uma marca construída sobre décadas de engenharia, design e presença nacional em
@@ -1093,7 +1101,7 @@ function LandingCliente() {
                   </p>
                   <div className="mt-6 border-t border-white/10 pt-4">
                     <div className="font-display text-sm font-bold text-white">{d.autor}</div>
-                    <div className="text-xs text-white/50">{d.cidade}</div>
+                    <div className="mt-0.5 text-[13px] text-white/65">{d.cidade}</div>
                   </div>
                 </div>
               </Reveal>
@@ -1135,7 +1143,7 @@ function LandingCliente() {
                   <h2 className="mt-3 font-display text-3xl font-medium leading-[1.05] tracking-tight text-white md:text-5xl">
                     Seu projeto merece uma solução à altura.
                   </h2>
-                  <p className="hidden mt-4 max-w-md text-[16px] leading-relaxed text-white/70 md:block md:text-[18px]">
+                  <p className="hidden mt-4 max-w-md text-[16px] leading-relaxed text-white/75 md:block md:text-[18px]">
                     Solicite um atendimento e descubra como as soluções Roll Door podem transformar sua residência com design, tecnologia e sofisticação.
                   </p>
 
@@ -1157,23 +1165,8 @@ function LandingCliente() {
                     ))}
                   </ul>
 
-                  <div className="mt-10 hidden grid-cols-1 gap-3 sm:grid-cols-2 lg:grid">
-                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                        WhatsApp
-                      </div>
-                      <div className="mt-1 font-display text-[18px] font-medium text-white">
-                        44 98824-9953
-                      </div>
-                    </div>
-                    <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                      <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                        E-mail
-                      </div>
-                      <div className="mt-1 font-display text-[18px] font-medium text-white">
-                        contato@rolldoor.com.br
-                      </div>
-                    </div>
+                  <div className="hidden lg:block">
+                    <ContatoDireto mensagem="Olá! Vim pelo site e quero um orçamento de esquadrias Roll Door." />
                   </div>
                 </div>
 
@@ -1184,7 +1177,8 @@ function LandingCliente() {
         </div>
       </section>
 
-
+      {/* CTA fixo no mobile — some quando o formulário está na tela */}
+      <StickyCta onClick={(e) => handleCtaClick(e, "#cta-final")}>Solicitar orçamento</StickyCta>
     </main>
     </>
   );

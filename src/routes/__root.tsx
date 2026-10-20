@@ -1,5 +1,6 @@
 import * as React from "react";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { MotionConfig } from "motion/react";
 
 import {
   Outlet,
@@ -73,7 +74,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
   head: () => ({
     meta: [
       { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "viewport", content: "width=device-width, initial-scale=1, viewport-fit=cover" },
       { name: "theme-color", content: "#111214" },
       { name: "robots", content: "index, follow" },
       { property: "og:type", content: "website" },
@@ -147,7 +148,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      {/* Respeita "reduzir movimento" do sistema: o motion troca deslocamentos por fade */}
+      <MotionConfig reducedMotion="user">
+        <Outlet />
+      </MotionConfig>
     </QueryClientProvider>
   );
 }

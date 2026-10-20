@@ -48,6 +48,7 @@
   --color-brand-green: var(--brand-green);
   --color-brand-green-soft: var(--brand-green-soft);
   --color-brand-green-deep: var(--brand-green-deep);
+  --color-brand-green-ink: var(--brand-green-ink);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
   --color-chart-3: var(--chart-3);
@@ -98,6 +99,8 @@
   --brand-green: #9CCB3B;
   --brand-green-soft: #c7e08a;
   --brand-green-deep: #2F3D30;
+  /* Verde para TEXTO sobre fundos claros: #9CCB3B no creme dá 1.7:1; este dá 5.1:1 (WCAG AA) */
+  --brand-green-ink: #47700F;
   --gradient-gold: linear-gradient(135deg, #2F3D30, #0E1111);
 
   --gradient-dark: radial-gradient(ellipse at top, oklch(0.98 0.002 250) 0%, oklch(1 0 0) 70%);
@@ -158,9 +161,31 @@
     border-color: var(--color-border);
   }
 
+  /* clip (e não hidden) para não criar um contêiner de rolagem e não quebrar position: sticky */
   html, body {
-    overflow-x: hidden;
+    overflow-x: clip;
     max-width: 100vw;
+  }
+
+  html {
+    scroll-padding-top: 16px;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
+  }
+
+  /* Foco visível: este verde passa 3:1 tanto no creme (3.6) quanto no preto (4.6) — WCAG 2.4.7/1.4.11 */
+  :focus-visible {
+    outline: 2px solid #5A8A17;
+    outline-offset: 3px;
+  }
+  input:focus-visible,
+  textarea:focus-visible {
+    outline: none;
   }
 
   body {
@@ -204,8 +229,27 @@
     font-weight: 500;
     color: #0E1111;
     letter-spacing: -0.035em;
+    text-wrap: balance;
   }
 
+  /* Evita a palavra órfã sozinha na última linha dos parágrafos */
+  p, li {
+    text-wrap: pretty;
+  }
+
+}
+
+/* Quem pede menos movimento no sistema não recebe marquees, cursor piscando nem anéis girando */
+@media (prefers-reduced-motion: reduce) {
+  .animate-\[leevi-marquee_30s_linear_infinite\],
+  .animate-\[leevi-marquee_35s_linear_infinite\],
+  .animate-\[leevi-marquee_45s_linear_infinite\],
+  .caret-blink {
+    animation: none;
+  }
+  .motion-spin-ring {
+    animation: none !important;
+  }
 }
 
 @keyframes leevi-marquee {

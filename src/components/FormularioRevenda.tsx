@@ -3,13 +3,18 @@ import { motion } from "motion/react";
 import { CheckCircle2, Loader2, PhoneCall, ArrowRight, ChevronDown } from "lucide-react";
 import { z } from "zod";
 import { supabase } from "@/integrations/supabase/client";
+import { telefoneValido } from "@/lib/telefone";
+import { TelefoneInput } from "@/components/TelefoneInput";
 
 
 const schema = z.object({
   nome: z.string().trim().min(2, "Informe seu nome").max(120),
   empresa: z.string().trim().min(2, "Informe o nome da empresa").max(160),
   cnpj: z.string().trim().min(11, "Informe o CNPJ").max(25),
-  whatsapp: z.string().trim().min(8, "Informe um WhatsApp válido").max(40),
+  whatsapp: z
+    .string()
+    .trim()
+    .refine(telefoneValido, "Digite o WhatsApp com DDD, ex.: (44) 98824-9953"),
   email: z.string().trim().email("Informe um e-mail válido").max(200),
   cidade: z.string().trim().min(2, "Informe a cidade").max(120),
   estado: z.string().trim().min(2, "Informe o estado").max(60),
@@ -96,7 +101,7 @@ export function FormularioRevenda() {
         animate={{ opacity: 1, y: 0 }}
         className="rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-14"
       >
-        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-white">
+        <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-brand-green text-[#0E1111]">
           <CheckCircle2 className="h-8 w-8" strokeWidth={2} />
         </div>
         <h3 className="font-display text-3xl font-medium text-white md:text-4xl">
@@ -118,13 +123,13 @@ export function FormularioRevenda() {
   }
 
   const inputBase =
-    "w-full rounded-xl border bg-white/[0.03] px-4 py-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/40 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
+    "w-full rounded-xl border bg-white/[0.03] px-4 py-3.5 font-sans text-[16px] text-white transition-colors placeholder:text-white/45 focus:outline-none focus:border-brand-green focus:ring-2 focus:ring-brand-green/25";
 
   return (
     <form
       ref={formRef}
       onSubmit={onSubmit}
-      className="rounded-3xl border border-white/10 bg-white/[0.03] p-8 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm md:p-12"
+      className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 text-white shadow-[0_30px_80px_-30px_rgba(0,0,0,0.25)] backdrop-blur-sm sm:p-8 md:p-12"
       noValidate
     >
       
@@ -144,7 +149,7 @@ export function FormularioRevenda() {
       <div className="grid gap-5 md:grid-cols-2">
         <Field label="Nome" error={errors.nome}>
           <input
-            className={`${inputBase} ${errors.nome ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.nome ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.nome}
             onChange={(e) => update("nome", e.target.value)}
             autoComplete="name"
@@ -152,26 +157,24 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Empresa" error={errors.empresa}>
           <input
-            className={`${inputBase} ${errors.empresa ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.empresa ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.empresa}
             onChange={(e) => update("empresa", e.target.value)}
             autoComplete="organization"
           />
         </Field>
         <Field label="WhatsApp" error={errors.whatsapp}>
-          <input
-            className={`${inputBase} ${errors.whatsapp ? "border-destructive" : "border-white/15"}`}
+          <TelefoneInput
+            className={`${inputBase} ${errors.whatsapp ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.whatsapp}
-            onChange={(e) => update("whatsapp", e.target.value)}
-            placeholder="(11) 90000-0000"
-            inputMode="tel"
-            autoComplete="tel"
+            onValueChange={(v) => update("whatsapp", v)}
+            placeholder="(44) 98824-9953"
           />
         </Field>
         <Field label="E-mail" error={errors.email}>
           <input
             type="email"
-            className={`${inputBase} ${errors.email ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.email ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.email}
             onChange={(e) => update("email", e.target.value)}
             autoComplete="email"
@@ -179,7 +182,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Cidade" error={errors.cidade}>
           <input
-            className={`${inputBase} ${errors.cidade ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.cidade ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.cidade}
             onChange={(e) => update("cidade", e.target.value)}
             autoComplete="address-level2"
@@ -187,7 +190,7 @@ export function FormularioRevenda() {
         </Field>
         <Field label="Estado" error={errors.estado}>
           <input
-            className={`${inputBase} ${errors.estado ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.estado ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.estado}
             onChange={(e) => update("estado", e.target.value)}
             placeholder="Ex: SP"
@@ -196,10 +199,11 @@ export function FormularioRevenda() {
         </Field>
         <Field label="CNPJ" error={errors.cnpj}>
           <input
-            className={`${inputBase} ${errors.cnpj ? "border-destructive" : "border-white/15"}`}
+            className={`${inputBase} ${errors.cnpj ? "border-[#FF8A80]" : "border-white/15"}`}
             value={values.cnpj}
             onChange={(e) => update("cnpj", e.target.value)}
             placeholder="00.000.000/0000-00"
+            inputMode="numeric"
             required
           />
         </Field>
@@ -208,7 +212,7 @@ export function FormularioRevenda() {
             <button
               type="button"
               onClick={() => setSegmentOpen((s) => !s)}
-              className={`${inputBase} ${errors.segmento ? "border-destructive" : "border-white/15"} inline-flex items-center justify-between`}
+              className={`${inputBase} ${errors.segmento ? "border-[#FF8A80]" : "border-white/15"} inline-flex items-center justify-between`}
               aria-haspopup="listbox"
               aria-expanded={segmentOpen}
             >
@@ -279,7 +283,7 @@ export function FormularioRevenda() {
       </div>
 
       {serverError && (
-        <div className="mt-5 rounded-xl border border-destructive/30 bg-destructive/5 px-4 py-3 text-[15px] text-destructive">
+        <div className="mt-5 rounded-xl border border-[#FF8A80]/40 bg-[#FF8A80]/10 px-4 py-3 text-[15px] text-white">
           {serverError}
         </div>
       )}
@@ -287,7 +291,7 @@ export function FormularioRevenda() {
       <button
         type="submit"
         disabled={status === "loading"}
-        className="mt-8 inline-flex h-[62px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-medium text-white transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
+        className="mt-8 inline-flex h-[62px] w-full items-center justify-center gap-2 rounded-2xl bg-brand-green px-8 font-display text-lg font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 disabled:cursor-not-allowed disabled:opacity-70"
         style={{
           boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
         }}
@@ -302,7 +306,7 @@ export function FormularioRevenda() {
           </>
         )}
       </button>
-      <p className="mt-4 text-[14px] text-white/50">
+      <p className="mt-4 text-[14px] text-white/60">
         Usamos seus dados apenas para responder ao seu contato sobre a parceria Roll Door.
       </p>
     </form>
@@ -323,11 +327,11 @@ function Field({
 }) {
   return (
     <label className={`block ${className}`}>
-      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.14em] text-white/60">
+      <span className="mb-2 block font-display text-[13px] font-medium uppercase tracking-[0.12em] text-white/75">
         {label}
       </span>
       {children}
-      {error && <span className="mt-1.5 block text-[13px] text-destructive">{error}</span>}
+      {error && <span role="alert" className="mt-1.5 block text-[14px] text-[#FF8A80]">{error}</span>}
     </label>
   );
 }
