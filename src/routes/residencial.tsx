@@ -203,31 +203,12 @@ export function handleCtaClick(e: React.MouseEvent<HTMLAnchorElement>, href: str
   const scrollToTarget = () => {
     const form = document.getElementById("formulario-orcamento");
     const el = isFormAnchor ? (form ?? target) : target;
-    // Altura visível real, descontando barras do navegador mobile.
-    const viewH = window.visualViewport?.height ?? window.innerHeight;
-    const rect = el.getBoundingClientRect();
-    const elTop = window.scrollY + rect.top;
-    const margin = 12;
-    let y: number;
-
-    if (!isFormAnchor) {
-      // Âncoras de conteúdo (ex: produtos): leva ao topo da seção com pequena folga.
-      y = elTop - margin;
-    } else if (rect.height <= viewH - margin * 2) {
-      // Formulário cabe na tela: centraliza verticalmente.
-      y = elTop - (viewH - rect.height) / 2;
-    } else {
-      // Formulário mais alto que a tela: ancora o primeiro campo no topo, garantindo
-      // que o botão de envio também fique visível na mesma tela.
-      const firstField = form?.querySelector("input, textarea, select");
-      const fTop = firstField
-        ? window.scrollY + firstField.getBoundingClientRect().top
-        : elTop;
-      const maxY = fTop - 40; // primeiro campo (com label) no topo
-      const minY = elTop + rect.height - viewH + margin; // botão visível
-      y = minY <= maxY ? maxY : minY;
-    }
-    window.scrollTo({ top: Math.max(0, y), behavior: "smooth" });
+    const elTop = window.scrollY + el.getBoundingClientRect().top;
+    // Formulário: o topo do card (título "Solicite um orçamento") para logo no alto da tela,
+    // com uma folga pequena; a pessoa já começa pelo primeiro campo e rola para descer.
+    // Âncoras de conteúdo (ex: produtos): leva ao topo da seção com pequena folga.
+    const margin = isFormAnchor ? 16 : 12;
+    window.scrollTo({ top: Math.max(0, elTop - margin), behavior: "smooth" });
   };
 
   scrollToTarget();
