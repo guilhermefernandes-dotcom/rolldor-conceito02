@@ -20,7 +20,7 @@ import {
   ShieldCheck,
 } from "lucide-react";
 import polygonShape from "@/assets/polygon-13.svg";
-import { useState } from "react";
+import { useId, useState } from "react";
 import heroImg from "@/assets/rd-hero.jpg";
 import galeria1 from "@/assets/rd-galeria-1.jpg";
 import galeria2 from "@/assets/rd-galeria-2.jpg";
@@ -33,6 +33,8 @@ import { VitrineOrbit } from "@/components/VitrineOrbit";
 import { JoinNotifications } from "@/components/JoinNotifications";
 import { FormularioRevenda } from "@/components/FormularioRevenda";
 import { AntesDepois } from "@/components/AntesDepois";
+import { StickyCta } from "@/components/StickyCta";
+import { ContatoDireto } from "@/components/ContatoDireto";
 
 
 export const Route = createFileRoute("/")({
@@ -203,7 +205,7 @@ function CtaPrimary({
   return (
     <a
       href={href}
-      className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-white transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
+      className={`group relative flex h-16 w-full items-center justify-center rounded-2xl px-8 font-display text-lg font-bold text-[#0E1111] transition-transform hover:-translate-y-0.5 sm:h-[72px] sm:px-12 sm:text-xl ${className}`}
       style={{
         background: "#9CCB3B",
         boxShadow: "0 18px 40px -12px rgba(151, 191, 76, 0.45)",
@@ -310,7 +312,7 @@ function Landing() {
             fontWeight: 500,
             fontSize: "clamp(15px, 4.5vw, 22px)",
             lineHeight: "1.3",
-            color: "rgba(255,255,255,0.95)",
+            color: "#0E1111",
             letterSpacing: "-0.01em",
           }}
         >
@@ -337,7 +339,7 @@ function Landing() {
             <Reveal>
               <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Mais de <UnderlineWord delay={0}>700 revendas</UnderlineWord> fazem parte da{" "}
-                <UnderlineWord delay={0.18}>rede Roll Door</UnderlineWord>.
+                <span className="whitespace-nowrap"><UnderlineWord delay={0.18}>rede Roll Door</UnderlineWord>.</span>
               </h2>
             </Reveal>
             <Reveal delay={0.2}>
@@ -444,7 +446,7 @@ function Landing() {
                 <Reveal delay={0.1}>
                   <a
                     href="#cta-final"
-                    className="group inline-flex items-center gap-3 rounded-2xl bg-brand-green px-7 py-4 font-display text-base font-bold text-white transition-colors hover:bg-brand-green-deep"
+                    className="group inline-flex items-center gap-3 min-h-12 rounded-2xl bg-brand-green px-7 py-4 font-display text-base font-bold text-[#0E1111] transition-colors hover:bg-brand-green-soft"
                   >
                     Quero fazer parte
                     <ArrowRight className="h-5 w-5" />
@@ -583,7 +585,7 @@ function Landing() {
                 ))}
               </div>
 
-              <p className="relative z-10 mt-8 text-xs text-white/40">
+              <p className="relative z-10 mt-8 text-[13px] text-white/60">
                 *Disponível conforme critérios do programa.
               </p>
             </div>
@@ -598,7 +600,7 @@ function Landing() {
             <Reveal>
               <h2 className="font-display text-4xl font-medium leading-[1.05] tracking-tight md:text-6xl">
                 Por que o mercado escolhe a{" "}
-                <UnderlineWord delay={0}>Roll Door</UnderlineWord>?
+                <span className="whitespace-nowrap"><UnderlineWord delay={0}>Roll Door</UnderlineWord>?</span>
               </h2>
             </Reveal>
           </div>
@@ -648,7 +650,7 @@ function Landing() {
                     {cards.map((c, i) => (
                       <Reveal key={c.title} delay={i * 0.06}>
                         <div className="h-full rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_20px_50px_-30px_rgba(0,0,0,0.25)]">
-                          <h3 className="font-display text-lg font-medium" style={{ color: "var(--gold)" }}>
+                          <h3 className="font-display text-lg font-medium text-foreground">
                             {c.title}
                           </h3>
                           <p className="mt-2 text-[18px] leading-relaxed text-muted-foreground">
@@ -684,8 +686,7 @@ function Landing() {
                           className={`rounded-2xl border border-foreground/10 bg-white p-6 shadow-[0_25px_60px_-25px_rgba(0,0,0,0.3)] ${c.align}`}
                         >
                           <h3
-                            className="font-display text-lg font-medium xl:text-xl"
-                            style={{ color: "var(--gold)" }}
+                            className="font-display text-lg font-medium text-foreground xl:text-xl"
                           >
                             {c.title}
                           </h3>
@@ -860,7 +861,7 @@ function Landing() {
             {/* Painel esquerdo — copy */}
             <Reveal>
               <div
-                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-8 text-white md:p-12"
+                className="relative flex h-full flex-col overflow-hidden rounded-3xl p-6 text-white sm:p-8 md:p-12"
                 style={{
                   background:
                     "linear-gradient(160deg, oklch(0.22 0.005 250) 0%, oklch(0.18 0.005 250) 45%, oklch(0.14 0.005 250) 100%)",
@@ -897,24 +898,7 @@ function Landing() {
                   ))}
                 </ul>
 
-                <div className="mt-auto grid grid-cols-1 gap-3 pt-10 sm:grid-cols-2">
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      WhatsApp
-                    </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      44 98824-9953
-                    </div>
-                  </div>
-                  <div className="rounded-2xl border border-white/15 bg-white/5 px-5 py-4 backdrop-blur-sm">
-                    <div className="font-display text-xs font-medium uppercase tracking-widest text-white/50">
-                      E-mail
-                    </div>
-                    <div className="mt-1 font-display text-[18px] font-medium text-white">
-                      contato@rolldoor.com.br
-                    </div>
-                  </div>
-                </div>
+                <ContatoDireto mensagem="Olá! Quero saber mais sobre a Rede Premium Roll Door." />
               </div>
             </Reveal>
 
@@ -927,23 +911,22 @@ function Landing() {
       </section>
 
 
-      {/* STICKY MOBILE CTA */}
-      <a
-        href="#cta-final"
-        className="fixed bottom-4 left-4 right-4 z-40 inline-flex items-center justify-center gap-2 rounded-2xl bg-brand-green px-6 py-4 font-display text-base font-bold tracking-tight text-white shadow-[0_20px_60px_-15px_rgba(0,0,0,0.6)] transition-colors hover:bg-brand-green-deep md:hidden"
-      >
-        Quero ser Revendedor Premium <ArrowRight className="h-4 w-4" />
-      </a>
+      {/* STICKY MOBILE CTA — some quando o formulário está na tela */}
+      <StickyCta>Quero ser Revendedor Premium</StickyCta>
     </main>
   );
 }
 
 function FaqItem({ q, a }: { q: string; a: string }) {
   const [open, setOpen] = useState(false);
+  const id = useId();
   return (
     <div className="overflow-hidden rounded-2xl border border-white/10 bg-white/[0.03] transition-colors hover:border-white/25">
       <button
+        type="button"
         onClick={() => setOpen(!open)}
+        aria-expanded={open}
+        aria-controls={id}
         className="flex w-full items-center justify-between gap-4 px-6 py-5 text-left md:px-7 md:py-6"
       >
         <span className="font-display text-[18px] font-medium tracking-tight text-white md:text-lg">
@@ -954,6 +937,9 @@ function FaqItem({ q, a }: { q: string; a: string }) {
         </span>
       </button>
       <motion.div
+        id={id}
+        role="region"
+        aria-hidden={!open}
         initial={false}
         animate={{ height: open ? "auto" : 0, opacity: open ? 1 : 0 }}
         transition={{ duration: 0.3 }}

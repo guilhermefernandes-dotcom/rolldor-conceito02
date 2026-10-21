@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { motion, type Variants } from "motion/react";
+import { motion, useReducedMotion, type Variants } from "motion/react";
 
 /**
  * "Um novo padrão" — entrada cinematográfica.
@@ -38,8 +38,14 @@ const paragraphs: Variants = {
 
 function useTypingLoop(text: string) {
   const [displayed, setDisplayed] = useState("");
+  // Quem pede menos movimento vê o título inteiro, sem digitar/apagar em loop
+  const reduzir = useReducedMotion();
 
   useEffect(() => {
+    if (reduzir) {
+      setDisplayed(text);
+      return;
+    }
     let cancelled = false;
     let timeoutId: ReturnType<typeof setTimeout>;
 
@@ -68,7 +74,7 @@ function useTypingLoop(text: string) {
       cancelled = true;
       clearTimeout(timeoutId);
     };
-  }, [text]);
+  }, [text, reduzir]);
 
   return displayed;
 }
@@ -115,7 +121,7 @@ export function NovoPadraoPinned() {
       >
         <motion.span
           variants={fadeUp}
-          className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green md:text-xs"
+          className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green-ink md:text-xs"
         >
           O padrão Roll Door
         </motion.span>
@@ -135,7 +141,7 @@ export function NovoPadraoPinned() {
           }}
         >
           <span aria-hidden>{first}</span>
-          <span aria-hidden className="text-[#2F3D30]/80">
+          <span aria-hidden className="text-[#2F3D30]">
             {second}
           </span>
           {/* Cursor piscando padrão */}
@@ -178,14 +184,14 @@ export function NovoPadraoPinned() {
           <motion.span variants={fadeUp} className="block">
             Muito mais do que esquadrias.
           </motion.span>
-          <motion.span variants={fadeUp} className="block text-[#0E1111]/50">
+          <motion.span variants={fadeUp} className="block text-[#0E1111]/60">
             Um novo padrão para viver sua casa.
           </motion.span>
         </motion.h3>
 
         <motion.div
           variants={paragraphs}
-          className="mx-auto mt-10 max-w-2xl space-y-4 text-[17px] leading-relaxed text-[#0E1111]/70 md:mt-14 md:text-[19px]"
+          className="mx-auto mt-10 max-w-2xl space-y-4 text-[17px] leading-relaxed text-[#0E1111]/75 md:mt-14 md:text-[19px]"
         >
           <motion.p variants={fadeUp}>
             Cada detalhe de um projeto transmite uma sensação.

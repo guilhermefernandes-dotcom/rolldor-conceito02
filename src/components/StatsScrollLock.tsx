@@ -60,9 +60,11 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
   const labelActive = variant === "dark" ? "#ffffff" : "oklch(0.18 0.005 250)";
   const labelIdle =
     variant === "dark"
-      ? "color-mix(in oklab, #ffffff 35%, transparent)"
-      : "color-mix(in oklab, oklch(0.18 0.005 250) 25%, transparent)";
+      ? "color-mix(in oklab, #ffffff 62%, transparent)"
+      : "color-mix(in oklab, oklch(0.18 0.005 250) 66%, transparent)";
   const isDark = variant === "dark";
+  // O cinza "gold" (#B8B8B2) some no fundo claro (2:1); lá o número ativo usa a cor do texto
+  const numberActive = isDark ? "var(--gold)" : labelActive;
   const cardBg = isDark ? "#F5F3EE" : "var(--background)";
   const cardText = isDark ? "#0E1111" : "var(--foreground)";
   const cardMuted = isDark ? "rgba(14,17,17,0.62)" : "var(--muted-foreground)";
@@ -74,8 +76,10 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
   const stoppedRef = useRef(false);
 
   useEffect(() => {
+    // Sem autoplay para quem pede menos movimento; pausa quando a aba está escondida
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) stoppedRef.current = true;
     const id = window.setInterval(() => {
-      if (stoppedRef.current) return;
+      if (stoppedRef.current || document.hidden) return;
       setActive((prev) => (prev + 1) % STEPS_LIST.length);
     }, INTERVAL_MS);
     return () => window.clearInterval(id);
@@ -103,7 +107,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
     <section className="relative" style={{ backgroundColor: "transparent" }}>
       <div className="flex items-center py-12 md:py-16">
         <div
-          className="mx-auto grid w-full grid-cols-12 gap-8 pl-5 pr-5 md:pl-32 md:pr-10"
+          className="mx-auto grid w-full grid-cols-12 gap-x-0 gap-y-8 pl-5 pr-5 md:gap-8 md:pl-32 md:pr-10"
           style={{ maxWidth: "1300px" }}
         >
           {/* MOBILE — horizontal stepper */}
@@ -160,6 +164,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                         strokeWidth={1.2}
                         strokeDasharray="2 4"
                         opacity={0.85}
+                        className="motion-spin-ring"
                         style={{
                           transformBox: "fill-box",
                           transformOrigin: "center",
@@ -190,11 +195,11 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                         initial={false}
                         animate={{
                           color: isActive
-                            ? "var(--gold)"
-                            : "color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
+                            ? numberActive
+                            : labelIdle,
                         }}
                         transition={{ duration: 0.6 }}
-                        className="font-display text-[9px] tracking-[0.25em]"
+                        className="font-display text-[11px] tracking-[0.2em]"
                       >
                         {s.n}
                       </motion.div>
@@ -256,6 +261,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                   strokeWidth={1.2}
                   strokeDasharray="2 4"
                   opacity={0.85}
+                  className="motion-spin-ring"
                   style={{
                     transformBox: "fill-box",
                     transformOrigin: "center",
@@ -289,11 +295,11 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                         initial={false}
                         animate={{
                           color: isActive
-                            ? "var(--gold)"
-                            : "color-mix(in oklab, var(--muted-foreground) 50%, transparent)",
+                            ? numberActive
+                            : labelIdle,
                         }}
                         transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="absolute -top-5 left-0 font-display text-[11px] tracking-[0.3em]"
+                        className="absolute -top-5 left-0 font-display text-[12px] tracking-[0.3em]"
                       >
                         {s.n}
                       </motion.div>
@@ -393,7 +399,7 @@ export function StatsScrollLock({ steps, variant = "light" }: { steps?: Step[]; 
                     className="absolute inset-0 flex flex-col gap-5 rounded-3xl p-6 pb-24 shadow-[0_40px_80px_-30px_rgba(0,0,0,0.25)] md:gap-0 md:p-10 md:pb-10"
                   >
                     <div
-                      className="absolute right-6 top-6 z-10 font-display text-2xl font-medium md:right-9 md:top-9 md:text-3xl"
+                      className={`absolute right-6 top-6 z-10 font-display text-2xl font-medium md:text-3xl ${s.image ? "md:hidden" : "md:right-9 md:top-9"}`}
                       style={{ color: cardNumber }}
                     >
                       {s.n}

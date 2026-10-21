@@ -55,7 +55,7 @@ export function AntesDepois() {
         >
           <motion.span
             variants={item}
-            className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green md:text-xs"
+            className="font-display text-[11px] font-medium uppercase tracking-[0.32em] text-brand-green-ink md:text-xs"
           >
             Na prática
           </motion.span>
@@ -107,7 +107,7 @@ export function AntesDepois() {
                   "repeating-linear-gradient(45deg, rgba(14,17,17,1) 0 1px, transparent 1px 10px)",
               }}
             />
-            <span className="relative font-display text-xs font-medium uppercase tracking-[0.32em] text-foreground/40">
+            <span className="relative font-display text-xs font-medium uppercase tracking-[0.32em] text-foreground/60">
               Antes
             </span>
             <motion.ul
@@ -121,7 +121,7 @@ export function AntesDepois() {
                 <motion.li
                   key={t}
                   variants={item}
-                  className="flex items-start gap-3 text-xl leading-snug text-foreground/45 md:text-2xl"
+                  className="flex items-start gap-3 text-xl leading-snug text-foreground/65 md:text-2xl"
                 >
                   <span
                     aria-hidden
