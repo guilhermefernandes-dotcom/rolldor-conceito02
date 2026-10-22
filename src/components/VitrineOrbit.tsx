@@ -12,7 +12,6 @@ import prodLite from "@/assets/rd-prod-lite.webp";
 import prodSlim from "@/assets/rd-prod-slim.webp";
 import prodPivotante from "@/assets/rd-prod-pivotante.webp";
 import prodMaximar from "@/assets/rd-prod-maximar.webp";
-import prodInside from "@/assets/rd-prod-inside.webp";
 import prodPersiana from "@/assets/rd-prod-persiana.webp";
 import prodCamarao from "@/assets/rd-prod-camarao.webp";
 import rdMark from "@/assets/rd-mark.png";
@@ -23,7 +22,6 @@ const ITEMS = [
   { src: prodSlim, name: "Roll Door Slim", tag: "Perfis minimalistas" },
   { src: prodPivotante, name: "Porta Pivotante", tag: "Alto padrão" },
   { src: prodMaximar, name: "Maxim-ar", tag: "Ventilação" },
-  { src: prodInside, name: "Inside Door Kit", tag: "Ambientes internos" },
   { src: prodPersiana, name: "Persiana Integrada", tag: "Automação" },
   { src: prodCamarao, name: "Porta Camarão", tag: "Integração" },
 ];
