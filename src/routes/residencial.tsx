@@ -25,7 +25,6 @@ import prodPivotanteAsset from "@/assets/rd-real-pivotante-opt.webp.asset.json";
 import prodPersianaAsset from "@/assets/rd-real-persiana-opt.webp.asset.json";
 import prodSystemsAsset from "@/assets/rd-real-systems-opt.webp.asset.json";
 import prodSlimAsset from "@/assets/rd-real-slim-opt.webp.asset.json";
-import prodInsideAsset from "@/assets/rd-real-inside-opt.webp.asset.json";
 import galCamarao1 from "@/assets/rd-gal-camarao1-opt.webp.asset.json";
 import galGiro2 from "@/assets/rd-gal-giro2-opt.webp.asset.json";
 import galGiro3 from "@/assets/rd-gal-giro3-opt.webp.asset.json";
@@ -37,7 +36,6 @@ import galLite3 from "@/assets/rd-gal-lite3-opt.webp.asset.json";
 import galLite4 from "@/assets/rd-gal-lite4-opt.webp.asset.json";
 import galSlim2 from "@/assets/rd-gal-slim2-opt.webp.asset.json";
 import galSlim3 from "@/assets/rd-gal-slim3-opt.webp.asset.json";
-import galInside2 from "@/assets/rd-gal-inside2-opt.webp.asset.json";
 import premCamarao from "@/assets/rd-premium-camarao-opt.webp.asset.json";
 import premGiro from "@/assets/rd-premium-giro-opt.webp.asset.json";
 import premLitePlus from "@/assets/rd-premium-liteplus-opt.webp.asset.json";
@@ -252,13 +250,12 @@ function CtaPrimary({
   );
 }
 
-type CategoriaId = "portas" | "janelas" | "grandes-vaos" | "solucoes-internas";
+type CategoriaId = "portas" | "janelas" | "grandes-vaos";
 
 const CATEGORIAS: { id: CategoriaId; label: string }[] = [
   { id: "portas", label: "Portas" },
   { id: "janelas", label: "Janelas" },
   { id: "grandes-vaos", label: "Grandes Vãos" },
-  { id: "solucoes-internas", label: "Soluções Internas" },
 ];
 
 type Produto = {
@@ -320,13 +317,6 @@ const PRODUTOS: Produto[] = [
     cats: ["grandes-vaos"],
     fotos: [prodSlimAsset.url, galSlim3.url, galSlim2.url],
   },
-  {
-    id: "inside",
-    nome: "Inside Door Kit",
-    tag: "Ambientes internos",
-    cats: ["solucoes-internas"],
-    fotos: [galInside2.url, prodInsideAsset.url],
-  },
 ];
 
 // Mini ícone de porta (desenho em SVG) usado nos itens do dropdown
@@ -360,7 +350,6 @@ const DESTAQUES: Record<CategoriaId, string> = {
   portas: "camarao",
   janelas: "persiana",
   "grandes-vaos": "systems",
-  "solucoes-internas": "inside",
 };
 
 function ProdutosFiltraveis() {
@@ -474,7 +463,7 @@ function ProdutosFiltraveis() {
           </button>
 
           {/* Categorias — abrem o dropdown de produtos */}
-          <div className="mt-2 grid grid-cols-2 gap-2 md:grid-cols-4 md:gap-3">
+          <div className="mt-2 grid grid-cols-3 gap-2 md:gap-3">
             {CATEGORIAS.map((c) => {
               const ativo = categoriaAtiva === c.id && !todosAtivo;
               const aberto = dropdownAberto === c.id;
@@ -485,7 +474,7 @@ function ProdutosFiltraveis() {
                   onClick={() => aoClicarCategoria(c.id)}
                   aria-pressed={ativo}
                   aria-expanded={aberto}
-                  className={`relative h-12 overflow-hidden rounded-xl border-2 px-3 font-display text-[13px] font-medium transition-colors duration-300 md:h-14 md:px-4 md:text-[15px] ${
+                  className={`relative h-12 overflow-hidden whitespace-nowrap rounded-xl border-2 px-1.5 font-display text-[12px] font-medium transition-colors duration-300 sm:px-3 sm:text-[13px] md:h-14 md:px-4 md:text-[15px] ${
                     ativo
                       ? "border-brand-green text-[#0E1111]"
                       : aberto
@@ -616,7 +605,7 @@ function ProdutosFiltraveis() {
       </div>
 
       {/* ── Galeria: altura natural no mobile, 9:16 uniforme no desktop ── */}
-      <div id="produtos-galeria" className="scroll-mt-24 mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 lg:grid-cols-4">
+      <div id="produtos-galeria" className={`scroll-mt-24 mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2 md:mt-8 ${produtoAtivo ? "lg:grid-cols-4" : "lg:grid-cols-3"}`}>
         <AnimatePresence mode="popLayout" initial={false}>
           {fotos.map((f, i) => (
             <motion.figure
