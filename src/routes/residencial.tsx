@@ -115,6 +115,12 @@ export const Route = createFileRoute("/residencial")({
         { name: "twitter:card", content: "summary_large_image" },
         { name: "twitter:title", content: title },
         { name: "twitter:description", content: description },
+        { property: "og:url", content: "https://lp.rolldoorcompany.com.br/residencial" },
+        { property: "og:image", content: "https://lp.rolldoorcompany.com.br/og-residencial.jpg" },
+        { property: "og:image:width", content: "1200" },
+        { property: "og:image:height", content: "630" },
+        { property: "og:image:alt", content: "Roll Door: esquadrias de alumínio premium para o seu projeto" },
+        { name: "twitter:image", content: "https://lp.rolldoorcompany.com.br/og-residencial.jpg" },
       ],
       links: [
         {
